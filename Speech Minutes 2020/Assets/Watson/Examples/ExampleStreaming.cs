@@ -424,12 +424,12 @@ namespace IBM.Watsson.Examples
         }
 
         //話題ボタンが押されると呼び出されるメソッド
-        public void WadaiButton0()
+        public void WadaiButton1()
         {
             if (NowBottonPushed != 0)
             {
                 FilePathSelect(0);
-                Debug.Log("話題0が押されました");
+                Debug.Log("話題1が押されました");
                 NowBottonPushed = 0;
             }
             else
@@ -440,28 +440,13 @@ namespace IBM.Watsson.Examples
             }
 
         }
-        public void WadaiButton1()
+        public void WadaiButton2()
         {
             if (NowBottonPushed != 1)
             {
                 FilePathSelect(1);
-                Debug.Log("話題1が押されました");
-                NowBottonPushed = 1;
-            }
-            else
-            {
-                FilePathSelect(-1);
-                Debug.Log("話題が解除されました");
-                NowBottonPushed = -1;
-            }
-        }
-        public void WadaiButton2()
-        {
-            if (NowBottonPushed != 2)
-            {
-                FilePathSelect(2);
                 Debug.Log("話題2が押されました");
-                NowBottonPushed = 2;
+                NowBottonPushed = 1;
             }
             else
             {
@@ -472,11 +457,11 @@ namespace IBM.Watsson.Examples
         }
         public void WadaiButton3()
         {
-            if (NowBottonPushed != 3)
+            if (NowBottonPushed != 2)
             {
-                FilePathSelect(3);
+                FilePathSelect(2);
                 Debug.Log("話題3が押されました");
-                NowBottonPushed = 3;
+                NowBottonPushed = 2;
             }
             else
             {
@@ -487,11 +472,11 @@ namespace IBM.Watsson.Examples
         }
         public void WadaiButton4()
         {
-            if (NowBottonPushed != 4)
+            if (NowBottonPushed != 3)
             {
-                FilePathSelect(4);
+                FilePathSelect(3);
                 Debug.Log("話題4が押されました");
-                NowBottonPushed = 4;
+                NowBottonPushed = 3;
             }
             else
             {
@@ -502,11 +487,11 @@ namespace IBM.Watsson.Examples
         }
         public void WadaiButton5()
         {
-            if (NowBottonPushed != 5)
+            if (NowBottonPushed != 4)
             {
-                FilePathSelect(5);
+                FilePathSelect(4);
                 Debug.Log("話題5が押されました");
-                NowBottonPushed = 5;
+                NowBottonPushed = 4;
             }
             else
             {
@@ -517,11 +502,11 @@ namespace IBM.Watsson.Examples
         }
         public void WadaiButton6()
         {
-            if (NowBottonPushed != 6)
+            if (NowBottonPushed != 5)
             {
-                FilePathSelect(6);
+                FilePathSelect(5);
                 Debug.Log("話題6が押されました");
-                NowBottonPushed = 6;
+                NowBottonPushed = 5;
             }
             else
             {
@@ -532,10 +517,25 @@ namespace IBM.Watsson.Examples
         }
         public void WadaiButton7()
         {
+            if (NowBottonPushed != 6)
+            {
+                FilePathSelect(6);
+                Debug.Log("話題7が押されました");
+                NowBottonPushed = 6;
+            }
+            else
+            {
+                FilePathSelect(-1);
+                Debug.Log("話題が解除されました");
+                NowBottonPushed = -1;
+            }
+        }
+        public void WadaiButton8()
+        {
             if (NowBottonPushed != 7)
             {
                 FilePathSelect(7);
-                Debug.Log("話題7が押されました");
+                Debug.Log("話題8が押されました");
                 NowBottonPushed = 7;
             }
             else

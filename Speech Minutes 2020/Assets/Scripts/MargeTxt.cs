@@ -8,8 +8,10 @@ using System.ComponentModel;
 using System;
 using System.Linq;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class MargeTxt : MonobitEngine.MonoBehaviour
+
+public class MargeTxt : MonobitEngine.MonoBehaviour, IDragHandler
 {
 
     string MargefilePath;
@@ -17,7 +19,7 @@ public class MargeTxt : MonobitEngine.MonoBehaviour
     string LogDataPath;
     int player;
     [SerializeField]
-    GameObject PopUp;
+    GameObject LogText;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +30,7 @@ public class MargeTxt : MonobitEngine.MonoBehaviour
 
     void Clear()
     {
-        PopUp.GetComponent<Text>().text = "";
+        LogText.GetComponent<Text>().text = "";
     }
 
 
@@ -75,8 +77,8 @@ public class MargeTxt : MonobitEngine.MonoBehaviour
     [MunRPC]
     public void RecvChat(string list)
     {
-        PopUp.GetComponent<Text>().text += Environment.NewLine;
-        PopUp.GetComponent<Text>().text += list;
+        LogText.GetComponent<Text>().text += Environment.NewLine;
+        LogText.GetComponent<Text>().text += list;
 
     }
 
@@ -276,5 +278,27 @@ public class MargeTxt : MonobitEngine.MonoBehaviour
                 LogDataPath = @"/LogDatas/LogData.txt";
                 break;
         }
+    }
+
+
+
+
+
+
+
+    public RectTransform m_rectTransform = null;
+
+    /// <summary>
+    /// テキストの位置取得
+    /// </summary>
+    private void Reset()
+    {
+        m_rectTransform = GetComponent<RectTransform>();
+    }
+
+    public void OnDrag(PointerEventData e)
+    {
+        m_rectTransform.position += new Vector3(e.delta.x, e.delta.y, 0f);
+        Debug.Log("オンドラック");
     }
 }

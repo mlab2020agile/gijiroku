@@ -21,7 +21,7 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	public Material lineMaterial;
 	public Color lineColor;
 	[Range(0, 64)] public float lineWidth;
-	public GameObject itakire = GameObject.Find("Plane");
+	public GameObject itakire;
 	/// <summary>
 	/// 白黒反転
 	/// </summary>
@@ -39,6 +39,7 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 		drawTexture.filterMode = FilterMode.Point;
 
 		PenMode = GameObject.Find("PenMode");
+		itakire = GameObject.Find("Plane");
 	}
 
 	//PenMode切り替え用

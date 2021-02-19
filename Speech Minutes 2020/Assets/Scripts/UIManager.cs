@@ -20,8 +20,10 @@ public class UIManager : MonoBehaviour
         EnableSendTextPanel = true;
     }
 
+    //UI右上の話題選択ボタンが押されたとき
     public void OnclickWadaiButton()
     {
+        //話題パネルをアクティブ化させ、他のパネルを非アクティブ化させる
         WhiteBoardPanel.SetActive(false);
         SendTextPanel.SetActive(false);
         EnableWhiteBoardPanel = true;
@@ -31,8 +33,10 @@ public class UIManager : MonoBehaviour
         EnableWadaiPanel = !EnableWadaiPanel;
     }
 
+    //UI右上のホワイトボードボタンが押されたとき
     public void OnclickWhiteBoardButton()
     {
+        //ホワイトボードパネルをアクティブ化させ、他のパネルを非アクティブ化させる
         WadaiPanel.SetActive(false);
         SendTextPanel.SetActive(false);
         EnableWadaiPanel = true;
@@ -42,8 +46,10 @@ public class UIManager : MonoBehaviour
         EnableWhiteBoardPanel = !EnableWhiteBoardPanel;
     }
 
+    //UI真ん中下のテキスト送信ボタンが押されたとき
     public void OnclickSendTextButton()
     {
+        //テキスト送信パエルをアクティブ化させ、他のパネルを非アクティブ化させる
         WadaiPanel.SetActive(false);
         WhiteBoardPanel.SetActive(false);
         EnableWadaiPanel = true;

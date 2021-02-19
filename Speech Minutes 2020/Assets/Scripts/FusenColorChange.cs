@@ -18,6 +18,7 @@ public class FusenColorChange : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //ドロップダウンの値によって色を変化させる
         if (dropdown.value == 0)
         {
             FusenPanel.GetComponent<Image>().color = Color.magenta;

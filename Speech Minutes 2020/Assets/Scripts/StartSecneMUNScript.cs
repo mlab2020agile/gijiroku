@@ -25,11 +25,11 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
             {
                 // ルーム名の入力
                 GUILayout.BeginHorizontal();
-                GUILayout.Label("RoomName : ");
+                GUILayout.Label("部屋名: ");
                 roomName = GUILayout.TextField(roomName, GUILayout.Width(200));
                 GUILayout.EndHorizontal();
                 // ルームを作成して入室する
-                if (GUILayout.Button("Create Room", GUILayout.Width(150)))
+                if (GUILayout.Button("部屋を作成", GUILayout.Width(150)))
                 {
                     MonobitNetwork.CreateRoom(roomName);
                     Debug.Log("ルームを作成しました");

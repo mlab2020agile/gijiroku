@@ -61,7 +61,8 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
                             room.playerCount,
                             ((room.maxPlayers == 0) ? "-" : room.maxPlayers.ToString())
                         );
-
+                    GUILayout.BeginHorizontal();
+                    GUILayout.Space(455);
                     // ルームを選択して入室する
                     if (GUILayout.Button("部屋に入室 : " + roomParam))
                     {
@@ -71,6 +72,7 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
                         *********/
                         SceneManager.LoadScene("newUI");
                     }
+                    GUILayout.EndHorizontal();
                 }
             }
 

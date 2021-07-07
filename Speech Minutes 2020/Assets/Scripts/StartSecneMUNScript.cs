@@ -23,22 +23,25 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
             // ルームに入室していない場合
             else
             {
+                int x = Screen.width;
+                int y = Screen.height;
                 // ルーム名の入力
                 //UIの位置を中心に
-                GUILayout.Space(370);
+                GUILayout.Space(y/2.3f);
                 GUILayout.BeginHorizontal();
                 {
-                    GUILayout.Space (300);
-                    GUILayout.Label("部屋名: ", GUILayout.Width(150));
-                    GUI.skin.label.fontSize = 30;
-                    GUI.skin.textField.fontSize = 30;
-                    roomName = GUILayout.TextField(roomName,GUILayout.Height(45),GUILayout.Width(600));
+                    GUILayout.Space (x/4);
+                    GUILayout.Label("部屋名: ", GUILayout.Width(x/8));
+                    GUI.skin.label.fontSize = x/50;
+                    GUI.skin.textField.fontSize = x/50;
+                    GUI.skin.button.fontSize = x/50;
+                    roomName = GUILayout.TextField(roomName,GUILayout.Height(x/40),GUILayout.Width(x/3));
                 }
                 GUILayout.EndHorizontal();
                 // ルームを作成して入室する
                 GUILayout.BeginHorizontal();
-                GUILayout.Space(455);
-                if (GUILayout.Button("部屋を作成",GUILayout.Height(45),GUILayout.Width(600)))
+                GUILayout.Space(x*3/8);
+                if (GUILayout.Button("部屋を作成",GUILayout.Height(x/35),GUILayout.Width(x/3)))
                 {
                     MonobitNetwork.CreateRoom(roomName);
                     Debug.Log("ルームを作成しました");
@@ -61,7 +64,7 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
                             ((room.maxPlayers == 0) ? "-" : room.maxPlayers.ToString())
                         );
                     GUILayout.BeginHorizontal();
-                    GUILayout.Space(455);
+                    GUILayout.Space(x*3/8);
                     // ルームを選択して入室する
                     if (GUILayout.Button("部屋に入室 : " + roomParam))
                     {
@@ -79,19 +82,21 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
         //していない場合
         else
         {
+            int x = Screen.width;
+            int y = Screen.height;
             // プレイヤー名の入力
-            GUILayout.Space(370);
+            GUILayout.Space(y/2.3f);
             GUILayout.BeginHorizontal();
             {
-                GUILayout.Space(270);
-                GUILayout.Label("名前入力 : ", GUILayout.Width(180));
-                GUI.skin.label.fontSize = 30;
-                GUI.skin.textField.fontSize = 30;
-                GUI.skin.button.fontSize = 30;
+                GUILayout.Space(x/4);
+                GUILayout.Label("名前入力 : ", GUILayout.Width(x/8));
+                GUI.skin.label.fontSize = x/50;
+                GUI.skin.textField.fontSize = x/50;
+                GUI.skin.button.fontSize = x/50;
                 MonobitNetwork.playerName = GUILayout.TextField(
                     (MonobitNetwork.playerName == null) ?
                         "" :
-                        MonobitNetwork.playerName,GUILayout.Height(45), GUILayout.Width(600));
+                        MonobitNetwork.playerName,GUILayout.Height(x/40), GUILayout.Width(x/3));
             }
             GUILayout.EndHorizontal();
 
@@ -100,8 +105,8 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
 
             // MUNサーバに接続する
             GUILayout.BeginHorizontal();
-            GUILayout.Space(455);
-            if (GUILayout.Button("サーバに接続",GUILayout.Height(45), GUILayout.Width(600)))
+            GUILayout.Space(x*3/8);
+            if (GUILayout.Button("サーバに接続",GUILayout.Height(x/35), GUILayout.Width(x/3)))
             {
                 MonobitNetwork.ConnectServer("SimpleChat_v1.0");
                 Debug.Log("サーバに接続しました");

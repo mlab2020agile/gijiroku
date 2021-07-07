@@ -24,16 +24,15 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
             else
             {
                 // ルーム名の入力
+                //UIの位置を中心に
                 GUILayout.Space(370);
                 GUILayout.BeginHorizontal();
                 {
-                    GUILayout.FlexibleSpace();
                     GUILayout.Space (300);
                     GUILayout.Label("部屋名: ", GUILayout.Width(150));
                     GUI.skin.label.fontSize = 30;
                     GUI.skin.textField.fontSize = 30;
                     roomName = GUILayout.TextField(roomName,GUILayout.Height(45),GUILayout.Width(600));
-                    GUILayout.FlexibleSpace();
                 }
                 GUILayout.EndHorizontal();
                 // ルームを作成して入室する

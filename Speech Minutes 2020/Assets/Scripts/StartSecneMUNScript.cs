@@ -8,6 +8,8 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
 {
     /** ルーム名. */
     private string roomName = "";
+    private string roomPasword = "";
+    private string roomUnrock = "";
 
     private void OnGUI()
     {
@@ -38,11 +40,20 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
                     roomName = GUILayout.TextField(roomName,GUILayout.Height(x/40),GUILayout.Width(x/3));
                 }
                 GUILayout.EndHorizontal();
+                //パスワード欄
+                GUILayout.BeginHorizontal();
+                {
+                    GUILayout.Space (x/4);
+                    GUILayout.Label("パスワード作成: ",GUILayout.Height(x/40),GUILayout.Width(x/8));
+                    roomPasword = GUILayout.TextField(roomPasword,GUILayout.Height(x/40),GUILayout.Width(x/3));
+                }
+                GUILayout.EndHorizontal();
                 // ルームを作成して入室する
                 GUILayout.BeginHorizontal();
                 GUILayout.Space(x*3/8);
                 if (GUILayout.Button("部屋を作成",GUILayout.Height(x/35),GUILayout.Width(x/3)))
                 {
+                    
                     MonobitNetwork.CreateRoom(roomName);
                     Debug.Log("ルームを作成しました");
                     
@@ -63,16 +74,28 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
                             room.playerCount,
                             ((room.maxPlayers == 0) ? "-" : room.maxPlayers.ToString())
                         );
+                    //ルームパスワードと結びつけ
+                    GUILayout.BeginHorizontal();
+                    {
+                        GUILayout.Space (x/4);
+                        GUILayout.Label("のパスワード解除: ",GUILayout.Height(x/40),GUILayout.Width(x/8));
+                        roomUnrock = GUILayout.TextField(roomUnrock,GUILayout.Height(x/40),GUILayout.Width(x/3));
+                    }
+                    GUILayout.EndHorizontal();
                     GUILayout.BeginHorizontal();
                     GUILayout.Space(x*3/8);
                     // ルームを選択して入室する
                     if (GUILayout.Button("部屋に入室 : " + roomParam))
                     {
-                        MonobitNetwork.JoinRoom(room.name);
-                        /********
-                        ここでメインのシーンに遷移する
-                        *********/
-                        SceneManager.LoadScene("newUI");
+                        if (roomUnrock == roomPasword)
+                        {
+                            MonobitNetwork.JoinRoom(room.name);
+                            /********
+                            ここでメインのシーンに遷移する
+                            *********/
+                            SceneManager.LoadScene("newUI");
+                        }
+                        
                     }
                     GUILayout.EndHorizontal();
                 }

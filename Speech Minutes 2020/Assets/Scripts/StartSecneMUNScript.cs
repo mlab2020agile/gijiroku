@@ -11,6 +11,9 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
     private string roomPasword = "";
     private string roomUnrock = "";
 
+    // カスタムパラメータリスト
+    private Hashtable customRoomParam = new Hashtable();
+
     private void OnGUI()
     {
         //MUNサーバに接続している場合
@@ -45,7 +48,8 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
                 {
                     GUILayout.Space (x/4);
                     GUILayout.Label("パスワード作成: ",GUILayout.Height(x/40),GUILayout.Width(x/8));
-                    roomPasword = GUILayout.TextField(roomPasword,GUILayout.Height(x/40),GUILayout.Width(x/3));
+                    this.customRoomParam["Password"] = GUILayout.TextField((this.customRoomParam.ContainsKey("Password")) ? 
+                        this.customRoomParam["Password"].ToString() : "", GUILayout.Height(x/40),GUILayout.Width(x/3));
                 }
                 GUILayout.EndHorizontal();
                 // ルームを作成して入室する
@@ -53,8 +57,15 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
                 GUILayout.Space(x*3/8);
                 if (GUILayout.Button("部屋を作成",GUILayout.Height(x/35),GUILayout.Width(x/3)))
                 {
-                    
-                    MonobitNetwork.CreateRoom(roomName);
+                    // カスタムルームパラメータの設定
+                    MonobitEngine.RoomSettings roomSettings = new MonobitEngine.RoomSettings()
+                    {
+                        isVisible = true,
+                        isOpen = true,
+                        roomParameters = customRoomParam,
+                        lobbyParameters = new string[] { }
+                    };
+                    MonobitNetwork.CreateRoom(roomName,roomSettings,null);
                     Debug.Log("ルームを作成しました");
                     
                     /********
@@ -87,7 +98,7 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
                     // ルームを選択して入室する
                     if (GUILayout.Button("部屋に入室 : " + roomParam))
                     {
-                        if (roomUnrock == roomPasword)
+                        if (customRoomParam["Password"].Equals(roomUnrock))
                         {
                             MonobitNetwork.JoinRoom(room.name);
                             /********

@@ -29,12 +29,19 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
                 int y = Screen.height;
                 // ルーム名の入力
                 //UIの位置を中心に
-                GUILayout.Space(y/2.3f);
+                GUILayout.Space(y/3.2f);
+                GUILayout.BeginHorizontal();
+                {
+                    GUILayout.Space (x/4.5f);
+                    GUI.skin.label.fontSize = x/30;
+                    GUILayout.Label("部屋名・パスワードは４文字まで", GUILayout.Height(x/20), GUILayout.Width(x/2));
+                }
+                GUILayout.EndHorizontal();
                 GUILayout.BeginHorizontal();
                 {
                     GUILayout.Space (x/4);
-                    GUILayout.Label("部屋名: ", GUILayout.Width(x/8));
                     GUI.skin.label.fontSize = x/50;
+                    GUILayout.Label("部屋名: ", GUILayout.Width(x/8));
                     GUI.skin.textField.fontSize = x/50;
                     GUI.skin.button.fontSize = x/50;
                     roomName = GUILayout.TextField(roomName,GUILayout.Height(x/40),GUILayout.Width(x/3));
@@ -43,8 +50,8 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
                 //パスワード欄
                 GUILayout.BeginHorizontal();
                 {
-                    GUILayout.Space (x/4);
-                    GUILayout.Label("パスワード作成: ",GUILayout.Height(x/40),GUILayout.Width(x/8));
+                    GUILayout.Space (x/5);
+                    GUILayout.Label("パスワード作成: ",GUILayout.Height(x/40),GUILayout.Width(x*7/40));
                     roomPasword = GUILayout.TextField(roomPasword,GUILayout.Height(x/40),GUILayout.Width(x/3));
                 }
                 GUILayout.EndHorizontal();
@@ -87,15 +94,15 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
                     //ルームパスワードと結びつけ
                     GUILayout.BeginHorizontal();
                     {
-                        GUILayout.Space (x/4);
-                        GUILayout.Label(s3+"のパスワード解除: ",GUILayout.Height(x/40),GUILayout.Width(x/8));
+                        GUILayout.Space (x/8);
+                        GUILayout.Label(s3+"のパスワード解除: ",GUILayout.Height(x/40),GUILayout.Width(x/4));
                         roomUnrock = GUILayout.TextField(roomUnrock,GUILayout.Height(x/40),GUILayout.Width(x/3));
                     }
                     GUILayout.EndHorizontal();
                     GUILayout.BeginHorizontal();
                     GUILayout.Space(x*3/8);
                     // ルームを選択して入室する
-                    if (GUILayout.Button("部屋に入室 : " + s3))
+                    if (GUILayout.Button("部屋に入室 : " + s3, GUILayout.Height(x/35),GUILayout.Width(x/3)))
                     {
                         if (roomUnrock == s4)
                         {
@@ -104,6 +111,10 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
                             ここでメインのシーンに遷移する
                             *********/
                             SceneManager.LoadScene("newUI");
+                        }
+                        else
+                        {
+                            Debug.Log("パスワードが違います");
                         }
                         
                     }

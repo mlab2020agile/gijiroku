@@ -11,9 +11,6 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
     private string roomPasword = "";
     private string roomUnrock = "";
 
-    // カスタムパラメータリスト
-    private Hashtable customRoomParam = new Hashtable();
-
     private void OnGUI()
     {
         //MUNサーバに接続している場合
@@ -48,8 +45,7 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
                 {
                     GUILayout.Space (x/4);
                     GUILayout.Label("パスワード作成: ",GUILayout.Height(x/40),GUILayout.Width(x/8));
-                    this.customRoomParam["Password"] = GUILayout.TextField((this.customRoomParam.ContainsKey("Password")) ? 
-                        this.customRoomParam["Password"].ToString() : "", GUILayout.Height(x/40),GUILayout.Width(x/3));
+                    roomPasword = GUILayout.TextField(roomPasword,GUILayout.Height(x/40),GUILayout.Width(x/3));
                 }
                 GUILayout.EndHorizontal();
                 // ルームを作成して入室する
@@ -57,15 +53,10 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
                 GUILayout.Space(x*3/8);
                 if (GUILayout.Button("部屋を作成",GUILayout.Height(x/35),GUILayout.Width(x/3)))
                 {
-                    // カスタムルームパラメータの設定
-                    MonobitEngine.RoomSettings roomSettings = new MonobitEngine.RoomSettings()
-                    {
-                        isVisible = true,
-                        isOpen = true,
-                        roomParameters = customRoomParam,
-                        lobbyParameters = new string[] { }
-                    };
-                    MonobitNetwork.CreateRoom(roomName,roomSettings,null);
+                    int a = roomName.Length;
+                    int b = roomPasword.Length;
+
+                    MonobitNetwork.CreateRoom(roomName+roomPasword+a+b);
                     Debug.Log("ルームを作成しました");
                     
                     /********
@@ -77,6 +68,7 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
                 // ルーム一覧を検索
                 foreach (RoomData room in MonobitNetwork.GetRoomData())
                 {
+
                     // ルームパラメータの可視化
                     System.String roomParam =
                         System.String.Format(
@@ -85,20 +77,27 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
                             room.playerCount,
                             ((room.maxPlayers == 0) ? "-" : room.maxPlayers.ToString())
                         );
+                    string rn = room.name;
+                    string s1 = rn.Substring(rn.Length - 1);
+                    string s2 = rn.Substring(rn.Length - 2,1);
+                    int i1 = int.Parse(s1);
+                    int i2 = int.Parse(s2);
+                    string s3 = rn.Substring(0,i1);
+                    string s4 = rn.Substring(i1,i2);
                     //ルームパスワードと結びつけ
                     GUILayout.BeginHorizontal();
                     {
                         GUILayout.Space (x/4);
-                        GUILayout.Label("のパスワード解除: ",GUILayout.Height(x/40),GUILayout.Width(x/8));
+                        GUILayout.Label(s3+"のパスワード解除: ",GUILayout.Height(x/40),GUILayout.Width(x/8));
                         roomUnrock = GUILayout.TextField(roomUnrock,GUILayout.Height(x/40),GUILayout.Width(x/3));
                     }
                     GUILayout.EndHorizontal();
                     GUILayout.BeginHorizontal();
                     GUILayout.Space(x*3/8);
                     // ルームを選択して入室する
-                    if (GUILayout.Button("部屋に入室 : " + roomParam))
+                    if (GUILayout.Button("部屋に入室 : " + s3))
                     {
-                        if (customRoomParam["Password"].Equals(roomUnrock))
+                        if (roomUnrock == s4)
                         {
                             MonobitNetwork.JoinRoom(room.name);
                             /********
@@ -153,3 +152,4 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
 
     }
 }
+

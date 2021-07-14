@@ -82,8 +82,8 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
                     string s2 = rn.Substring(rn.Length - 2,1);
                     int i1 = int.Parse(s1);
                     int i2 = int.Parse(s2);
-                    string s3 = rn.Substring(0,i1);
-                    string s4 = rn.Substring(i1,i2);
+                    string s3 = rn.Substring(0,i2);
+                    string s4 = rn.Substring(i2,i1);
                     //ルームパスワードと結びつけ
                     GUILayout.BeginHorizontal();
                     {

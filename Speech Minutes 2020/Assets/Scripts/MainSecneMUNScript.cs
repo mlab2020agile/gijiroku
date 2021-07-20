@@ -24,6 +24,8 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     [SerializeField]
     GameObject canvas;
 
+    public GameObject[] usericon = new GameObject[9];
+
     public bool Mute = false;
 
     /** ルーム名. */
@@ -141,43 +143,17 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
 
         Debug.Log(MonobitNetwork.playerName);
 
-        //7/2試行部分
-        // ResourcesフォルダにあるNew SpriteプレハブをGameObject型で取得
-        //GameObject obj = (GameObject)Resources.Load("icon");
-        // iconプレハブを元に、インスタンスを生成、
-        //Instantiate(obj, new Vector3(0.0f, 2.0f, 0.0f), Quaternion.identity);
+        int playerCount = MonobitEngine.MonobitNetwork.room.playerCount;
+        int num;
+        for (num = 0; num < playerCount; num++)
+        {
+            GameObject prefab = (GameObject)Instantiate(usericon[num]);
+            prefab.transform.SetParent(canvas.transform, false);
+            Vector3 tmp = prefab.transform.position;
+            prefab.transform.position = new Vector3(tmp.x - 70*num, tmp.y, tmp.z);
+        }
 
-        //7/6試行部分
-        //GameObject user_icon= new GameObject("usericon");
-        //user_icon.transform.parent = GameObject.Find("Canvas").transform;
-        //user_icon.AddComponent<RectTransform>().anchoredPosition = new Vector3(0, 0, 0);
-        //user_icon.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-        //user_icon.AddComponent<Image>().sprite = Resources.Load<Sprite>("textures/ifn0438");
-        //7/7 user_icon.AddComponent<Image>().sprite = Resources.Load("textures/ifn0438", typeof(Sprite)) as Sprite;
-        //user_icon.GetComponent<Image>().preserveAspect = true;
-        //user_icon.GetComponent<Image>().SetNativeSize();
-
-        // 「Sprite sprite = Resources.Load("ban", typeof(Sprite)) as Sprite;」と同じ
-        //Sprite sprite = Resources.Load<Sprite>("ban");
-
-        // 空のゲームオブジェクトを生成
-        //GameObject gameObj = new GameObject();
-        // Imageコンポーネントをアタッチ
-        //Image image = gameObj.AddComponent<Image>();
-        // Resources.Load()で生成したSpriteを指定
-        //image.sprite = sprite;
-        // Canvasの子オブジェクトとする
-        //gameObj.transform.parent = FindObjectOfType<Canvas>().transform;
-
-        // Texture2Dでサイズを取得し、変更する
-        //Texture2D texture = Resources.Load<Texture2D>("ban");
-        //gameObj.GetComponent<RectTransform>().sizeDelta = new Vector2(texture.width, texture.height);
-
-        //7/7
-        GameObject prefab = (GameObject)Instantiate(UserIcon);
-        prefab.transform.SetParent(canvas.transform, false);
-
-        if (myVoice != null)
+if (myVoice != null)
         {
             myVoice.SetMicrophoneErrorHandler(OnMicrophoneError);
             myVoice.SetMicrophoneRestartHandler(OnMicrophoneRestart);

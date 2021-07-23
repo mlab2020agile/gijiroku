@@ -93,7 +93,17 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
                     PlayerList.text = PlayerList.text + player.name + " ";
                 }
 
-                
+                int playerCount = MonobitEngine.MonobitNetwork.room.playerCount;
+                int num;
+                int x = Screen.width;
+                int y = Screen.height;
+                for (num = 0; num < playerCount; num++)
+                {
+                    GameObject prefab = (GameObject)Instantiate(usericon[num], new Vector3(x * num / 20, y / 2, 0), Quaternion.identity);
+                    prefab.transform.SetParent(canvas.transform, false);
+                }
+
+
                 if (Mute)
                 {
                     List<MonobitPlayer> playerList = new List<MonobitPlayer>(vcPlayerInfo.Keys);
@@ -143,15 +153,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
 
         Debug.Log(MonobitNetwork.playerName);
 
-        int playerCount = MonobitEngine.MonobitNetwork.room.playerCount;
-        int num;
-        int x = Screen.width;
-        int y = Screen.height;
-        for (num = 0; num < playerCount; num++)
-        {
-            GameObject prefab = (GameObject)Instantiate(usericon[num],new Vector3(x*num/20,y/2,0), Quaternion.identity);
-            prefab.transform.SetParent(canvas.transform, false);
-        }
+        
 
 if (myVoice != null)
         {

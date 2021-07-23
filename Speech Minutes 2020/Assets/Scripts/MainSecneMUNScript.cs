@@ -145,12 +145,12 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
 
         int playerCount = MonobitEngine.MonobitNetwork.room.playerCount;
         int num;
+        int x = Screen.width;
+        int y = Screen.height;
         for (num = 0; num < playerCount; num++)
         {
-            GameObject prefab = (GameObject)Instantiate(usericon[num]);
+            GameObject prefab = (GameObject)Instantiate(usericon[num],new Vector3(x*num/20,y/2,0), Quaternion.identity);
             prefab.transform.SetParent(canvas.transform, false);
-            Vector3 tmp = prefab.transform.position;
-            prefab.transform.position = new Vector3(tmp.x - 70*num, tmp.y, tmp.z);
         }
 
 if (myVoice != null)

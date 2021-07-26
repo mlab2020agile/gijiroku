@@ -26,6 +26,8 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	/// 白黒反転
 	/// </summary>
 	int inversionFlag = 0;
+	float x1 = 0.0f;
+	float y1 = 0.0f;
 
 	public void Start()
 	{
@@ -191,18 +193,44 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 
 		if (mode)
 		{
-			if (Input.GetMouseButton(0))
+			if (Input.GetMouseButtonDown(0))
 			{
+				Vector3 mousePos = Input.mousePosition;
+				float x2 = mousePos.x;
+				float y2 = mousePos.y;
 				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 				RaycastHit hit;
 				if (Physics.Raycast(ray, out hit, 100.0f))
 				{
 					monobitView.RPC("Draw", MonobitTargets.All, hit.textureCoord * 256);
 				}
-
 				drawTexture.SetPixels(buffer);
 				drawTexture.Apply();
 				GetComponent<Renderer>().material.mainTexture = drawTexture;
+				x1 =x2;
+				y1 =y2;
+			}
+			if (Input.GetMouseButton(0))
+			{
+				Vector3 mousePos = Input.mousePosition;
+				float x2 = mousePos.x;
+				float y2 = mousePos.y;
+				/*else
+				{
+					drawTexture.moveTo(x1,y1,0);
+					drawTexture.lineTo(x2,y2,0);
+				}*/
+				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+				RaycastHit hit;
+				if (Physics.Raycast(ray, out hit, 100.0f))
+				{
+					monobitView.RPC("Draw", MonobitTargets.All, hit.textureCoord * 256);
+				}
+				drawTexture.SetPixels(buffer);
+				drawTexture.Apply();
+				GetComponent<Renderer>().material.mainTexture = drawTexture;
+				x1 =x2;
+				y1 =y2;
 			}
 		}
 	}

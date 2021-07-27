@@ -13,6 +13,8 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     [SerializeField]
     private Text PlayerList;
     [SerializeField]
+    private Text InitialList;
+    [SerializeField]
     private GameObject MuteLine;
     [SerializeField]
     private GameObject UserIcon;
@@ -68,10 +70,12 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
                 roomName = MonobitEngine.MonobitNetwork.room.name;
                 RoomNameText.text = "roomName : " + roomName;
                 PlayerList.text = "PlayerList : ";
+                InitialList.text = "";
                 //Debug.Log("PlayerList:");
                 foreach (MonobitPlayer player in MonobitNetwork.playerList)
                 {
                     PlayerList.text = PlayerList.text + player.name + " ";
+                    InitialList.text = InitialList.text + player.name.Substring(0,1)+"     ";
                 }
                 if (playerCount != MonobitNetwork.room.playerCount)
                 {
@@ -87,11 +91,6 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
                     }
                     playerCount = MonobitNetwork.room.playerCount;
                 }
-                //for (num = 0; num < playerCount; num++)
-                //{
-                //GameObject prefab = (GameObject)Instantiate(usericon[num], new Vector3(x * num / 20, y / 2, 0), Quaternion.identity);
-                //prefab.transform.SetParent(canvas.transform, false);
-                //}
                 Debug.Log(MonobitNetwork.room.playerCount);
                 if (Mute)
                 {

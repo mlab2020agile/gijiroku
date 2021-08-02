@@ -90,8 +90,8 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
                         prefab.transform.SetParent(canvas.transform, false);
                     }
                     playerCount = MonobitNetwork.room.playerCount;
+                    Debug.Log(MonobitNetwork.room.playerCount);
                 }
-                Debug.Log(MonobitNetwork.room.playerCount);
                 if (Mute)
                 {
                     List<MonobitPlayer> playerList = new List<MonobitPlayer>(vcPlayerInfo.Keys);

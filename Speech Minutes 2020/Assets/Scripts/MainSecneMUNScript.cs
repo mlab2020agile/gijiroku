@@ -21,6 +21,8 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     [SerializeField]
     GameObject canvas;
     [SerializeField]
+    public Dropdown usernamedropdown;
+    [SerializeField]
     int playerCount = 0;
     int num;
     int x = Screen.width;
@@ -91,6 +93,27 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
                     }
                     playerCount = MonobitNetwork.room.playerCount;
                     Debug.Log(MonobitNetwork.room.playerCount);
+                }
+                if (usernamedropdown)
+                {
+                    string[] playerlist = new string[MonobitNetwork.room.playerCount];
+                    for (num = 0; num < MonobitNetwork.room.playerCount; num++)
+                    {
+                        playerlist[num]="";
+                    }
+                    num = 0;
+                    foreach (MonobitPlayer player in MonobitNetwork.playerList)
+                    {
+                        playerlist[num]=player.name;
+                        num++;
+                    }
+                    usernamedropdown.options.Clear();//現在の要素をクリアする
+                    usernamedropdown.options.Add(new Dropdown.OptionData("PlayerList"));//新しく要素を追加する
+                    for(num=0;num< MonobitNetwork.room.playerCount;num++)
+                    {
+                        usernamedropdown.options.Add(new Dropdown.OptionData(playerlist[num]));
+                    }
+                    usernamedropdown.value = 0;//デフォルトを「PlayerList」に設定
                 }
                 if (Mute)
                 {

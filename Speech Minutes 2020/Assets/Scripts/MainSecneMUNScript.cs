@@ -96,22 +96,11 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
                 }
                 if (usernamedropdown)
                 {
-                    string[] playerlist = new string[MonobitNetwork.room.playerCount];
-                    for (num = 0; num < MonobitNetwork.room.playerCount; num++)
-                    {
-                        playerlist[num]="";
-                    }
-                    num = 0;
-                    foreach (MonobitPlayer player in MonobitNetwork.playerList)
-                    {
-                        playerlist[num]=player.name;
-                        num++;
-                    }
                     usernamedropdown.options.Clear();//現在の要素をクリアする
                     usernamedropdown.options.Add(new Dropdown.OptionData("PlayerList"));//新しく要素を追加する
-                    for(num=0;num< MonobitNetwork.room.playerCount;num++)
+                    for (num = 0; num < MonobitNetwork.playerList.Length; num++)
                     {
-                        usernamedropdown.options.Add(new Dropdown.OptionData(playerlist[num]));
+                        usernamedropdown.options.Add(new Dropdown.OptionData(MonobitNetwork.playerList[num].name));
                     }
                     usernamedropdown.value = 0;//デフォルトを「PlayerList」に設定
                 }

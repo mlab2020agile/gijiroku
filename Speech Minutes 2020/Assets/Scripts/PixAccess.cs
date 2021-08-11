@@ -26,8 +26,6 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	/// 白黒反転
 	/// </summary>
 	int inversionFlag = 0;
-	float x1 = 0.0f;
-	float y1 = 0.0f;
 
 	private Vector2 _prevPosition;
 
@@ -112,17 +110,28 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	[MunRPC]
 	public void Draw(Vector2 p)
 	{
-		for (int x = 0; x < 256; x++)
+		if (lineWidth%2 == 1)
 		{
-			for (int y = 0; y < 256; y++)
+			for (int x = (int)p.x-(int)(lineWidth/2); x < (int)p.x+(int)(lineWidth/2)+1; x++)
 			{
-				if ((p - new Vector2(x, y)).magnitude < lineWidth)
+				for (int y = (int)p.y-(int)(lineWidth/2); y < (int)p.y+(int)(lineWidth/2)+1; y++)
+				{
+					buffer.SetValue(lineColor, x + 256 * y);
+				}
+			}
+		}
+		else
+		{
+			for (int x = (int)p.x-(int)(lineWidth/2); x < (int)p.x+(int)(lineWidth/2); x++)
+			{
+				for (int y = (int)p.y-(int)(lineWidth/2); y < (int)p.y+(int)(lineWidth/2); y++)
 				{
 					buffer.SetValue(lineColor, x + 256 * y);
 				}
 			}
 		}
 	}
+
 
 	public void inversion()
 	{

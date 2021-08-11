@@ -20,15 +20,15 @@ public class ChangeLineWeight : MonoBehaviour
     void Update()
     {
         if(dropdown.value == 0){
-            script.lineWidth = 0.5f;
+            script.lineWidth = 1;
         }
 
         if(dropdown.value == 1){
-            script.lineWidth = 1f;
+            script.lineWidth = 2;
         }
 
         if(dropdown.value == 2){
-            script.lineWidth = 2f;
+            script.lineWidth =4;
         }
     }
 }

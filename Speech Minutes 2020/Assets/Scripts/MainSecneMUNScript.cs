@@ -74,7 +74,14 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
             if (MonobitNetwork.inRoom)
             {
                 roomName = MonobitEngine.MonobitNetwork.room.name;
-                RoomNameText.text = "roomName : " + roomName;
+                string rn = roomName;
+                string s1 = rn.Substring(rn.Length - 1);
+                string s2 = rn.Substring(rn.Length - 2,1);
+                int i1 = int.Parse(s1);
+                int i2 = int.Parse(s2);
+                string s3 = rn.Substring(0,i2);
+                string s4 = rn.Substring(i2,i1);
+                RoomNameText.text = "roomName : " + s3;
                 PlayerList.text = "PlayerList : ";
                 InitialList.text = "";
                 //Debug.Log("PlayerList:");

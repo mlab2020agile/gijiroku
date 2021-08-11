@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using MonobitEngine;
 using UnityEngine.SceneManagement;
+using System.Text.RegularExpressions;
 
 public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
 {
@@ -32,9 +33,9 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
                 GUILayout.Space(y/3.2f);
                 GUILayout.BeginHorizontal();
                 {
-                    GUILayout.Space (x/4.5f);
+                    GUILayout.Space (x/6);
                     GUI.skin.label.fontSize = x/30;
-                    GUILayout.Label("部屋名・パスワードは４文字まで", GUILayout.Height(x/20), GUILayout.Width(x/2));
+                    GUILayout.Label("部屋名・パスワードは半角英数字5文字まで", GUILayout.Height(x/20), GUILayout.Width(x*2/3));
                 }
                 GUILayout.EndHorizontal();
                 GUILayout.BeginHorizontal();
@@ -62,14 +63,39 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
                 {
                     int a = roomName.Length;
                     int b = roomPasword.Length;
-
-                    MonobitNetwork.CreateRoom(roomName+roomPasword+a+b);
-                    Debug.Log("ルームを作成しました");
-                    
-                    /********
-                    ここでメインのシーンに遷移する
-                    *********/
-                    SceneManager.LoadScene("newUI");
+                    if (a == 0 || b == 0)
+                    {
+                        string s = "部屋名・パスワードどちらも入力してください";
+                        Debug.Log(s);
+                    }
+                    else if (a <= 5 && b <= 5)
+                    {
+                        if (!(Regex.Match(roomName, "^[a-zA-Z0-9]+$")).Success)
+                        {
+                            string s = "半角英数字で入力してください";
+                            Debug.Log(s);
+                        }
+                        else if (!(Regex.Match(roomPasword, "^[a-zA-Z0-9]+$")).Success)
+                        {
+                            string s = "半角英数字で入力してください";
+                            Debug.Log(s);
+                        }
+                        else
+                        {
+                            MonobitNetwork.CreateRoom(roomName+roomPasword+a+b);
+                            string s = "ルームを作成しました";
+                            Debug.Log(s);
+                            /********
+                            ここでメインのシーンに遷移する
+                            *********/
+                            SceneManager.LoadScene("newUI");
+                        }
+                    }
+                    else
+                    {
+                        string s = "文字数の条件を守ってください";
+                        Debug.Log(s);
+                    }
                 }
                 GUILayout.EndHorizontal();
                 // ルーム一覧を検索

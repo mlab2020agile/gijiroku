@@ -38,8 +38,12 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     private bool first = true;
     private MonobitMicrophone Mc = null;
     public AudioClip AC;
+    public GameObject PlayerListButton;
+    public bool PlayerScrollState=false;
+    public GameObject PlayerScroll;
     private void Start()
     {
+        PlayerScroll.SetActive(false);
     }
     /** ボイスチャット送信可否設定の定数. */
     private enum EnableVC
@@ -173,6 +177,19 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
             vcPlayerInfo.Remove(otherPlayer);
         }
     }
+     public void ListButtonOnclick()
+    {
+                    if (PlayerScrollState == false)
+                    {
+                        PlayerScrollState = !PlayerScrollState;
+                        PlayerScroll.SetActive(true);
+                    }
+                    else
+                    {
+                        PlayerScrollState = !PlayerScrollState;
+                        PlayerScroll.SetActive(false);
+                    }
+     }
     /// <summary>
     /// マイクのエラーハンドリング用デリゲート
     /// </summary>

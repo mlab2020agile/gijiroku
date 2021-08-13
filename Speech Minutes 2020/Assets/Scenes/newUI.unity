@@ -7377,7 +7377,7 @@ GameObject:
   - component: {fileID: 1073307122}
   - component: {fileID: 1073307121}
   m_Layer: 5
-  m_Name: Content
+  m_Name: Content1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13764,6 +13764,9 @@ MonoBehaviour:
   PlayerListButton: {fileID: 2112341121}
   PlayerScrollState: 0
   PlayerScroll: {fileID: 2031516366}
+  textPrefab: {fileID: 1267426624782990251, guid: 314f587ab3cd441009543780d0bd8337,
+    type: 3}
+  content1: {fileID: 1073307119}
 --- !u!114 &1782908609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16423,7 +16426,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
+    m_ColorMultiplier: 1.79
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}

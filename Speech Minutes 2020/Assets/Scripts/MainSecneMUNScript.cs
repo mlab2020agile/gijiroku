@@ -41,7 +41,9 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     public GameObject PlayerListButton;
     public bool PlayerScrollState=false;
     public GameObject PlayerScroll;
-    private void Start()
+    public GameObject textPrefab;
+    public GameObject content1;
+    void Start()
     {
         PlayerScroll.SetActive(false);
     }
@@ -188,11 +190,21 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     {
                     if (PlayerScrollState == false)
                     {
+                        foreach (MonobitPlayer player in MonobitNetwork.playerList)
+                        {
+                            GameObject _text = Instantiate(textPrefab, content1.transform);
+                            _text.GetComponent<Text>().text = player.name;
+                        }
                         PlayerScrollState = !PlayerScrollState;
                         PlayerScroll.SetActive(true);
                     }
                     else
                     {
+                        foreach (Transform child in content1.transform)
+                        {
+                            // 一つずつ破棄する
+                            Destroy(child.gameObject);
+                        }
                         PlayerScrollState = !PlayerScrollState;
                         PlayerScroll.SetActive(false);
                     }

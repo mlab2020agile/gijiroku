@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using MonobitEngine;
 using UnityEngine.SceneManagement;
 using System.Text.RegularExpressions;
@@ -11,7 +12,6 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
     private string roomName = "";
     private string roomPasword = "";
     private string roomUnrock = "";
-
     private void OnGUI()
     {
         //MUNサーバに接続している場合
@@ -66,18 +66,22 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
                     if (a == 0 || b == 0)
                     {
                         string s = "部屋名・パスワードどちらも入力してください";
+                        EditorUtility.DisplayDialog("警告", s, "Close");
                         Debug.Log(s);
+                        
                     }
                     else if (a <= 5 && b <= 5)
                     {
                         if (!(Regex.Match(roomName, "^[a-zA-Z0-9]+$")).Success)
                         {
                             string s = "半角英数字で入力してください";
+                            EditorUtility.DisplayDialog("警告", s, "Close");
                             Debug.Log(s);
                         }
                         else if (!(Regex.Match(roomPasword, "^[a-zA-Z0-9]+$")).Success)
                         {
                             string s = "半角英数字で入力してください";
+                            EditorUtility.DisplayDialog("警告", s, "Close");
                             Debug.Log(s);
                         }
                         else
@@ -94,6 +98,7 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
                     else
                     {
                         string s = "文字数の条件を守ってください";
+                        EditorUtility.DisplayDialog("警告", s, "Close");
                         Debug.Log(s);
                     }
                 }
@@ -140,7 +145,9 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
                         }
                         else
                         {
-                            Debug.Log("パスワードが違います");
+                            string s = "パスワードが違います";
+                            EditorUtility.DisplayDialog("警告", s, "Close");
+                            Debug.Log(s);
                         }
                         
                     }

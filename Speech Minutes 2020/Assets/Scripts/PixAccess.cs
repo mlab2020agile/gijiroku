@@ -25,7 +25,7 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	/// <summary>
 	/// 白黒反転
 	/// </summary>
-	int inversionFlag = 0;
+	//int inversionFlag = 0;
 
 	private Vector2 _prevPosition;
 
@@ -42,6 +42,8 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 
 		PenMode = GameObject.Find("PenMode");
 		itakire = GameObject.Find("Plane");
+
+		mode = true;
 	}
 
 	//PenMode切り替え用
@@ -84,18 +86,6 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 				}
 			}
 		}
-		drawTexture = new Texture2D(mainTexture.width, mainTexture.height, TextureFormat.RGBA32, false);
-		drawTexture.filterMode = FilterMode.Point;
-		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		RaycastHit hit;
-		if (Physics.Raycast(ray, out hit, 100.0f))
-		{
-			monobitView.RPC("Draw", MonobitTargets.All, hit.textureCoord * 256);
-		}
-
-		drawTexture.SetPixels(buffer);
-		drawTexture.Apply();
-		GetComponent<Renderer>().material.mainTexture = drawTexture;
 	}
 
 
@@ -110,6 +100,8 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	[MunRPC]
 	public void Draw(Vector2 p)
 	{
+
+
 		if (lineWidth%2 == 1)
 		{
 			for (int x = (int)p.x-(int)(lineWidth/2); x < (int)p.x+(int)(lineWidth/2)+1; x++)
@@ -131,64 +123,7 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 			}
 		}
 	}
-
-
-	public void inversion()
-	{
-		Texture2D mainTexture = (Texture2D)GetComponent<Renderer>().material.mainTexture;
-		Color[] pixels = mainTexture.GetPixels();
-
-		buffer = new Color[pixels.Length];
-		pixels.CopyTo(buffer, 0);
-		if (inversionFlag == 0)
-		{
-            /*script.bgColor = Color.black;
-           // texscript.texcolor = Color.white;*/
-            for (int x = 0; x < mainTexture.width; x++)
-			{
-				for (int y = 0; y < mainTexture.height; y++)
-				{
-					if (y < mainTexture.height)
-					{
-						buffer.SetValue(Color.black, x + 256 * y);
-					}
-				}
-			}
-			inversionFlag = 1;
-			Debug.Log("黒");
-		}
-		else
-		if (inversionFlag == 1)
-		{
-			/* script.bgColor = Color.white;
-		   //  texscript.texcolor = Color.black;*/
-			for (int x = 0; x < mainTexture.width; x++)
-			{
-				for (int y = 0; y < mainTexture.height; y++)
-				{
-					if (y < mainTexture.height)
-					{
-						buffer.SetValue(Color.white, x + 256 * y);
-					}
-				}
-			}
-			inversionFlag = 0;
-			Debug.Log("白");
-		}
-
-		drawTexture = new Texture2D(mainTexture.width, mainTexture.height, TextureFormat.RGBA32, false);
-		drawTexture.filterMode = FilterMode.Point;
-		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		RaycastHit hit;
-		if (Physics.Raycast(ray, out hit, 100.0f))
-		{
-			monobitView.RPC("Draw", MonobitTargets.All, hit.textureCoord * 256);
-		}
-
-		drawTexture.SetPixels(buffer);
-		drawTexture.Apply();
-		GetComponent<Renderer>().material.mainTexture = drawTexture;
-	}
+	
 
 	[MunRPC]
 	public void objectCloorUpdate()
@@ -206,21 +141,6 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 		{
 			if (Input.GetMouseButton(0))
 			{
-				//Vector3 mousePos = Input.mousePosition;
-				//float x2 = mousePos.x;
-				//float y2 = mousePos.y;
-				//Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-				//RaycastHit hit;
-				//if (Physics.Raycast(ray, out hit, 100.0f))
-				//{
-				//	monobitView.RPC("Draw", MonobitTargets.All, hit.textureCoord * 256);
-				//}
-				//drawTexture.SetPixels(buffer);
-				//drawTexture.Apply();
-				//GetComponent<Renderer>().material.mainTexture = drawTexture;
-				//x1 =x2;
-				//y1 =y2;
-
 				//前回値がまだないなら現在の値を前回値として扱う
             	if (_prevPosition == Vector2.zero)
             	{
@@ -263,28 +183,6 @@ public class PixAccess : MonobitEngine.MonoBehaviour
             	//前回の入力座標をリセット
             	_prevPosition = Vector2.zero;
         	}
-				//if (Input.GetMouseButton(0))
-				//{
-					//Vector3 mousePos = Input.mousePosition;
-					//float x2 = mousePos.x;
-					//float y2 = mousePos.y;
-					/*else
-					{
-						drawTexture.moveTo(x1,y1,0);
-						drawTexture.lineTo(x2,y2,0);
-					}*/
-					//Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-					//RaycastHit hit;
-					//if (Physics.Raycast(ray, out hit, 100.0f))
-					//{
-						//monobitView.RPC("Draw", MonobitTargets.All, hit.textureCoord * 256);
-					//}
-					//drawTexture.SetPixels(buffer);
-					//drawTexture.Apply();
-					//GetComponent<Renderer>().material.mainTexture = drawTexture;
-					//x1 =x2;
-					//y1 =y2;
-				//}
 		}
 	}
 }

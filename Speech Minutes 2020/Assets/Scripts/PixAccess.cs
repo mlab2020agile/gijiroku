@@ -139,7 +139,10 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 			}
 		}
 	}
-
+	/// <summary>
+	/// 初期化
+	/// </summary>
+	[MunRPC]
 	// 太さ：1　色：緑
 	public void Draw4(Vector2 p)
 	{
@@ -151,7 +154,10 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 			}
 		}
 	}
-
+	/// <summary>
+	/// 初期化
+	/// </summary>
+	[MunRPC]
 	// 太さ：1　色：黄色
 	public void Draw5(Vector2 p)
 	{
@@ -163,6 +169,10 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 			}
 		}
 	}
+	/// <summary>
+	/// 初期化
+	/// </summary>
+	[MunRPC]
 	// 太さ：1　色：ピンク
 	public void Draw6(Vector2 p)
 	{
@@ -174,6 +184,10 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 			}
 		}
 	}
+	/// <summary>
+	/// 初期化
+	/// </summary>
+	[MunRPC]
 	// 太さ：1　色：白
 	public void Draw7(Vector2 p)
 	{
@@ -185,6 +199,10 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 			}
 		}
 	}
+	/// <summary>
+	/// 初期化
+	/// </summary>
+	[MunRPC]
 	// 太さ：2　色：黒
 	public void Draw8(Vector2 p)
 	{
@@ -196,6 +214,10 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 			}
 		}
 	}
+	/// <summary>
+	/// 初期化
+	/// </summary>
+	[MunRPC]
 	// 太さ：2　色：赤
 	public void Draw9(Vector2 p)
 	{
@@ -207,6 +229,10 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 			}
 		}
 	}
+	/// <summary>
+	/// 初期化
+	/// </summary>
+	[MunRPC]
 	// 太さ：2　色：青
 	public void Draw10(Vector2 p)
 	{
@@ -218,6 +244,10 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 			}
 		}
 	}
+	/// <summary>
+	/// 初期化
+	/// </summary>
+	[MunRPC]
 	// 太さ：2　色：緑
 	public void Draw11(Vector2 p)
 	{
@@ -229,6 +259,10 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 			}
 		}
 	}
+	/// <summary>
+	/// 初期化
+	/// </summary>
+	[MunRPC]
 	// 太さ：2　色：黄色
 	public void Draw12(Vector2 p)
 	{
@@ -240,6 +274,10 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 			}
 		}
 	}
+	/// <summary>
+	/// 初期化
+	/// </summary>
+	[MunRPC]
 	// 太さ：2　色：ピンク
 	public void Draw13(Vector2 p)
 	{
@@ -251,6 +289,10 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 			}
 		}
 	}
+	/// <summary>
+	/// 初期化
+	/// </summary>
+	[MunRPC]
 	// 太さ：2　色：白
 	public void Draw14(Vector2 p)
 	{
@@ -262,6 +304,10 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 			}
 		}
 	}
+	/// <summary>
+	/// 初期化
+	/// </summary>
+	[MunRPC]
 	// 太さ：4　色：黒
 	public void Draw15(Vector2 p)
 	{
@@ -273,6 +319,10 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 			}
 		}
 	}
+	/// <summary>
+	/// 初期化
+	/// </summary>
+	[MunRPC]
 	// 太さ：4　色：赤
 	public void Draw16(Vector2 p)
 	{
@@ -284,6 +334,10 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 			}
 		}
 	}
+	/// <summary>
+	/// 初期化
+	/// </summary>
+	[MunRPC]
 	// 太さ：4　色：青
 	public void Draw17(Vector2 p)
 	{
@@ -295,6 +349,10 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 			}
 		}
 	}
+	/// <summary>
+	/// 初期化
+	/// </summary>
+	[MunRPC]
 	// 太さ：4　色：緑
 	public void Draw18(Vector2 p)
 	{
@@ -306,6 +364,10 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 			}
 		}
 	}
+	/// <summary>
+	/// 初期化
+	/// </summary>
+	[MunRPC]
 	// 太さ：4　色：黄色
 	public void Draw19(Vector2 p)
 	{
@@ -317,6 +379,10 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 			}
 		}
 	}
+	/// <summary>
+	/// 初期化
+	/// </summary>
+	[MunRPC]
 	// 太さ：4　色：ピンク
 	public void Draw20(Vector2 p)
 	{
@@ -328,6 +394,10 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 			}
 		}
 	}
+	/// <summary>
+	/// 初期化
+	/// </summary>
+	[MunRPC]
 	// 太さ：4　色：白
 	public void Draw21(Vector2 p)
 	{
@@ -411,6 +481,68 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 							else if (lineColor == Color.white)
 							{
 								monobitView.RPC("Draw7", MonobitTargets.All, hit.textureCoord * 256);
+							}
+						}
+						if (lineWidth == 2)
+						{
+							if (lineColor == Color.black)
+							{
+								monobitView.RPC("Draw8", MonobitTargets.All, hit.textureCoord * 256);
+							}
+							else if (lineColor == Color.red)
+							{
+								monobitView.RPC("Draw9", MonobitTargets.All, hit.textureCoord * 256);
+							}
+							else if (lineColor == Color.blue)
+							{
+								monobitView.RPC("Draw10", MonobitTargets.All, hit.textureCoord * 256);
+							}
+							else if (lineColor == Color.green)
+							{
+								monobitView.RPC("Draw11", MonobitTargets.All, hit.textureCoord * 256);
+							}
+							else if (lineColor == Color.yellow)
+							{
+								monobitView.RPC("Draw12", MonobitTargets.All, hit.textureCoord * 256);
+							}
+							else if (lineColor == Color.magenta)
+							{
+								monobitView.RPC("Draw13", MonobitTargets.All, hit.textureCoord * 256);
+							}
+							else if (lineColor == Color.white)
+							{
+								monobitView.RPC("Draw14", MonobitTargets.All, hit.textureCoord * 256);
+							}
+						}
+						if (lineWidth == 4)
+						{
+							if (lineColor == Color.black)
+							{
+								monobitView.RPC("Draw15", MonobitTargets.All, hit.textureCoord * 256);
+							}
+							else if (lineColor == Color.red)
+							{
+								monobitView.RPC("Draw16", MonobitTargets.All, hit.textureCoord * 256);
+							}
+							else if (lineColor == Color.blue)
+							{
+								monobitView.RPC("Draw17", MonobitTargets.All, hit.textureCoord * 256);
+							}
+							else if (lineColor == Color.green)
+							{
+								monobitView.RPC("Draw18", MonobitTargets.All, hit.textureCoord * 256);
+							}
+							else if (lineColor == Color.yellow)
+							{
+								monobitView.RPC("Draw19", MonobitTargets.All, hit.textureCoord * 256);
+							}
+							else if (lineColor == Color.magenta)
+							{
+								monobitView.RPC("Draw20", MonobitTargets.All, hit.textureCoord * 256);
+							}
+							else if (lineColor == Color.white)
+							{
+								monobitView.RPC("Draw21", MonobitTargets.All, hit.textureCoord * 256);
 							}
 						}
                 	}

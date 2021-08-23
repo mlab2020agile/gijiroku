@@ -61,11 +61,20 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
                 GUILayout.Space(x*3/8);
                 if (GUILayout.Button("部屋を作成",GUILayout.Height(x/35),GUILayout.Width(x/3)))
                 {
+                    string s ="";
                     int a = roomName.Length;
                     int b = roomPasword.Length;
                     if (a == 0 || b == 0)
                     {
-                        string s = "部屋名・パスワードどちらも入力してください";
+                        s = "・部屋名・パスワードどちらも1~5文字の範囲で入力してください\r\n";
+                        if (!(Regex.Match(roomName, "^[a-zA-Z0-9]+$")).Success)
+                        {
+                            s = s + "・半角英数字で入力してください";
+                        }
+                        else if (!(Regex.Match(roomPasword, "^[a-zA-Z0-9]+$")).Success)
+                        {
+                            s = s + "・半角英数字で入力してください";
+                        }
                         EditorUtility.DisplayDialog("警告", s, "Close");
                         Debug.Log(s);
                         
@@ -74,30 +83,37 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
                     {
                         if (!(Regex.Match(roomName, "^[a-zA-Z0-9]+$")).Success)
                         {
-                            string s = "半角英数字で入力してください";
-                            EditorUtility.DisplayDialog("警告", s, "Close");
+                            s = s + "・半角英数字で入力してください";
                             Debug.Log(s);
                         }
                         else if (!(Regex.Match(roomPasword, "^[a-zA-Z0-9]+$")).Success)
                         {
-                            string s = "半角英数字で入力してください";
-                            EditorUtility.DisplayDialog("警告", s, "Close");
+                            s = s + "・半角英数字で入力してください";
                             Debug.Log(s);
                         }
                         else
                         {
                             MonobitNetwork.CreateRoom(roomName+roomPasword+a+b);
-                            string s = "ルームを作成しました";
+                            s = "ルームを作成しました";
                             Debug.Log(s);
                             /********
                             ここでメインのシーンに遷移する
                             *********/
                             SceneManager.LoadScene("newUI");
                         }
+                    EditorUtility.DisplayDialog("警告", s, "Close");
                     }
                     else
                     {
-                        string s = "文字数の条件を守ってください";
+                        s = "・部屋名・パスワードどちらも1~5文字の範囲で入力してください\r\n";
+                        if (!(Regex.Match(roomName, "^[a-zA-Z0-9]+$")).Success)
+                        {
+                            s = s + "・半角英数字で入力してください\r\n";
+                        }
+                        else if (!(Regex.Match(roomPasword, "^[a-zA-Z0-9]+$")).Success)
+                        {
+                            s = s + "・半角英数字で入力してください\r\n";
+                        }
                         EditorUtility.DisplayDialog("警告", s, "Close");
                         Debug.Log(s);
                     }

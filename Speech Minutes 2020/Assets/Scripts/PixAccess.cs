@@ -42,8 +42,6 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 
 		PenMode = GameObject.Find("PenMode");
 		itakire = GameObject.Find("Plane");
-
-		mode = true;
 	}
 
 	//PenMode切り替え用
@@ -98,32 +96,249 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	/// </summary>
 	/// <param name="p"></param>
 	[MunRPC]
-	public void Draw(Vector2 p)
+
+	// 太さ：1　色：黒
+	public void Draw1(Vector2 p)
 	{
-
-
-		if (lineWidth%2 == 1)
+		for (int x = (int)p.x; x < (int)p.x+1; x++)
 		{
-			for (int x = (int)p.x-(int)(lineWidth/2); x < (int)p.x+(int)(lineWidth/2)+1; x++)
+			for (int y = (int)p.y; y < (int)p.y+1; y++)
 			{
-				for (int y = (int)p.y-(int)(lineWidth/2); y < (int)p.y+(int)(lineWidth/2)+1; y++)
-				{
-					buffer.SetValue(lineColor, x + 256 * y);
-				}
-			}
-		}
-		else
-		{
-			for (int x = (int)p.x-(int)(lineWidth/2); x < (int)p.x+(int)(lineWidth/2); x++)
-			{
-				for (int y = (int)p.y-(int)(lineWidth/2); y < (int)p.y+(int)(lineWidth/2); y++)
-				{
-					buffer.SetValue(lineColor, x + 256 * y);
-				}
+				buffer.SetValue(Color.black, x + 256 * y);
 			}
 		}
 	}
-	
+	/// <summary>
+	/// 初期化
+	/// </summary>
+	[MunRPC]
+	// 太さ：1　色：赤
+	public void Draw2(Vector2 p)
+	{
+		for (int x = (int)p.x; x < (int)p.x+1; x++)
+		{
+			for (int y = (int)p.y; y < (int)p.y+1; y++)
+			{
+				buffer.SetValue(Color.red, x + 256 * y);
+			}
+
+		}
+	}
+	/// <summary>
+	/// 初期化
+	/// </summary>
+	[MunRPC]
+	// 太さ：1　色：青
+	public void Draw3(Vector2 p)
+	{
+		for (int x = (int)p.x; x < (int)p.x+1; x++)
+		{
+			for (int y = (int)p.y; y < (int)p.y+1; y++)
+			{
+				buffer.SetValue(Color.blue, x + 256 * y);
+			}
+		}
+	}
+
+	// 太さ：1　色：緑
+	public void Draw4(Vector2 p)
+	{
+		for (int x = (int)p.x; x < (int)p.x+1; x++)
+		{
+			for (int y = (int)p.y; y < (int)p.y+1; y++)
+			{
+				buffer.SetValue(Color.green, x + 256 * y);
+			}
+		}
+	}
+
+	// 太さ：1　色：黄色
+	public void Draw5(Vector2 p)
+	{
+		for (int x = (int)p.x; x < (int)p.x+1; x++)
+		{
+			for (int y = (int)p.y; y < (int)p.y+1; y++)
+			{
+				buffer.SetValue(Color.yellow, x + 256 * y);
+			}
+		}
+	}
+	// 太さ：1　色：ピンク
+	public void Draw6(Vector2 p)
+	{
+		for (int x = (int)p.x; x < (int)p.x+1; x++)
+		{
+			for (int y = (int)p.y; y < (int)p.y+1; y++)
+			{
+				buffer.SetValue(Color.magenta, x + 256 * y);
+			}
+		}
+	}
+	// 太さ：1　色：白
+	public void Draw7(Vector2 p)
+	{
+		for (int x = (int)p.x; x < (int)p.x+1; x++)
+		{
+			for (int y = (int)p.y; y < (int)p.y+1; y++)
+			{
+				buffer.SetValue(Color.white, x + 256 * y);
+			}
+		}
+	}
+	// 太さ：2　色：黒
+	public void Draw8(Vector2 p)
+	{
+		for (int x = (int)p.x-1; x < (int)p.x+1; x++)
+		{
+			for (int y = (int)p.y-1; y < (int)p.y+1; y++)
+			{
+				buffer.SetValue(Color.black, x + 256 * y);
+			}
+		}
+	}
+	// 太さ：2　色：赤
+	public void Draw9(Vector2 p)
+	{
+		for (int x = (int)p.x-1; x < (int)p.x+1; x++)
+		{
+			for (int y = (int)p.y-1; y < (int)p.y+1; y++)
+			{
+				buffer.SetValue(Color.red, x + 256 * y);
+			}
+		}
+	}
+	// 太さ：2　色：青
+	public void Draw10(Vector2 p)
+	{
+		for (int x = (int)p.x-1; x < (int)p.x+1; x++)
+		{
+			for (int y = (int)p.y-1; y < (int)p.y+1; y++)
+			{
+				buffer.SetValue(Color.blue, x + 256 * y);
+			}
+		}
+	}
+	// 太さ：2　色：緑
+	public void Draw11(Vector2 p)
+	{
+		for (int x = (int)p.x-1; x < (int)p.x+1; x++)
+		{
+			for (int y = (int)p.y-1; y < (int)p.y+1; y++)
+			{
+				buffer.SetValue(Color.green, x + 256 * y);
+			}
+		}
+	}
+	// 太さ：2　色：黄色
+	public void Draw12(Vector2 p)
+	{
+		for (int x = (int)p.x-1; x < (int)p.x+1; x++)
+		{
+			for (int y = (int)p.y-1; y < (int)p.y+1; y++)
+			{
+				buffer.SetValue(Color.yellow, x + 256 * y);
+			}
+		}
+	}
+	// 太さ：2　色：ピンク
+	public void Draw13(Vector2 p)
+	{
+		for (int x = (int)p.x-1; x < (int)p.x+1; x++)
+		{
+			for (int y = (int)p.y-1; y < (int)p.y+1; y++)
+			{
+				buffer.SetValue(Color.magenta, x + 256 * y);
+			}
+		}
+	}
+	// 太さ：2　色：白
+	public void Draw14(Vector2 p)
+	{
+		for (int x = (int)p.x-1; x < (int)p.x+1; x++)
+		{
+			for (int y = (int)p.y-1; y < (int)p.y+1; y++)
+			{
+				buffer.SetValue(Color.white, x + 256 * y);
+			}
+		}
+	}
+	// 太さ：4　色：黒
+	public void Draw15(Vector2 p)
+	{
+		for (int x = (int)p.x-2; x < (int)p.x+2; x++)
+		{
+			for (int y = (int)p.y-2; y < (int)p.y+2; y++)
+			{
+				buffer.SetValue(Color.black, x + 256 * y);
+			}
+		}
+	}
+	// 太さ：4　色：赤
+	public void Draw16(Vector2 p)
+	{
+		for (int x = (int)p.x-2; x < (int)p.x+2; x++)
+		{
+			for (int y = (int)p.y-2; y < (int)p.y+2; y++)
+			{
+				buffer.SetValue(Color.red, x + 256 * y);
+			}
+		}
+	}
+	// 太さ：4　色：青
+	public void Draw17(Vector2 p)
+	{
+		for (int x = (int)p.x-2; x < (int)p.x+2; x++)
+		{
+			for (int y = (int)p.y-2; y < (int)p.y+2; y++)
+			{
+				buffer.SetValue(Color.blue, x + 256 * y);
+			}
+		}
+	}
+	// 太さ：4　色：緑
+	public void Draw18(Vector2 p)
+	{
+		for (int x = (int)p.x-2; x < (int)p.x+2; x++)
+		{
+			for (int y = (int)p.y-2; y < (int)p.y+2; y++)
+			{
+				buffer.SetValue(Color.green, x + 256 * y);
+			}
+		}
+	}
+	// 太さ：4　色：黄色
+	public void Draw19(Vector2 p)
+	{
+		for (int x = (int)p.x-2; x < (int)p.x+2; x++)
+		{
+			for (int y = (int)p.y-2; y < (int)p.y+2; y++)
+			{
+				buffer.SetValue(Color.yellow, x + 256 * y);
+			}
+		}
+	}
+	// 太さ：4　色：ピンク
+	public void Draw20(Vector2 p)
+	{
+		for (int x = (int)p.x-2; x < (int)p.x+2; x++)
+		{
+			for (int y = (int)p.y-2; y < (int)p.y+2; y++)
+			{
+				buffer.SetValue(Color.magenta, x + 256 * y);
+			}
+		}
+	}
+	// 太さ：4　色：白
+	public void Draw21(Vector2 p)
+	{
+		for (int x = (int)p.x-2; x < (int)p.x+2; x++)
+		{
+			for (int y = (int)p.y-2; y < (int)p.y+1; y++)
+			{
+				buffer.SetValue(Color.white, x + 256 * y);
+			}
+		}
+	}
 
 	[MunRPC]
 	public void objectCloorUpdate()
@@ -167,7 +382,37 @@ public class PixAccess : MonobitEngine.MonoBehaviour
                 	RaycastHit hit;
                 	if (Physics.Raycast(ray, out hit, 100.0f))
                 	{
-                	    monobitView.RPC("Draw", MonobitTargets.All, hit.textureCoord * 256);
+						if (lineWidth == 1)
+						{
+							if (lineColor == Color.black)
+							{
+								monobitView.RPC("Draw1", MonobitTargets.All, hit.textureCoord * 256);
+							}
+							else if (lineColor == Color.red)
+							{
+								monobitView.RPC("Draw2", MonobitTargets.All, hit.textureCoord * 256);
+							}
+							else if (lineColor == Color.blue)
+							{
+								monobitView.RPC("Draw3", MonobitTargets.All, hit.textureCoord * 256);
+							}
+							else if (lineColor == Color.green)
+							{
+								monobitView.RPC("Draw4", MonobitTargets.All, hit.textureCoord * 256);
+							}
+							else if (lineColor == Color.yellow)
+							{
+								monobitView.RPC("Draw5", MonobitTargets.All, hit.textureCoord * 256);
+							}
+							else if (lineColor == Color.magenta)
+							{
+								monobitView.RPC("Draw6", MonobitTargets.All, hit.textureCoord * 256);
+							}
+							else if (lineColor == Color.white)
+							{
+								monobitView.RPC("Draw7", MonobitTargets.All, hit.textureCoord * 256);
+							}
+						}
                 	}
 
                 	drawTexture.SetPixels(buffer);

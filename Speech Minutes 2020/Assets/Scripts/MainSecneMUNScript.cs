@@ -104,6 +104,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
                         GameObject prefab = (GameObject)Instantiate(usericon[num], new Vector3(-x/2+x * num / 15, -y / 6, 0), Quaternion.identity);
                         prefab.transform.SetParent(canvas.transform, false);
                         prefab.transform.Find("Text").GetComponent<Text>().text = MonobitNetwork.playerList[num].name;
+                        prefab.transform.Find("Initial").GetComponent<Text>().text = MonobitNetwork.playerList[num].name.Substring(0, 1);
                     }
                     playerCount = MonobitNetwork.room.playerCount;
                     Debug.Log(MonobitNetwork.room.playerCount);

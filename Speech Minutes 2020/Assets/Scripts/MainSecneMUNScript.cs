@@ -99,7 +99,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
                 }
                 if (playerCount != MonobitNetwork.room.playerCount)
                 {
-                    if(MonobitNetwork.room.playerCount<=1)
+                    if(MonobitNetwork.room.playerCount<=3)
                     {
                         IconButton.SetActive(false);
                         GameObject[] icons = GameObject.FindGameObjectsWithTag("icon");
@@ -183,7 +183,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
             myVoice.SetMicrophoneErrorHandler(OnMicrophoneError);
             myVoice.SetMicrophoneRestartHandler(OnMicrophoneRestart);
         }
-        if (MonobitNetwork.room.playerCount <= 1)
+        if (MonobitNetwork.room.playerCount <= 3)
         {
             IconButton.SetActive(false);
         }

@@ -43,9 +43,14 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     public GameObject PlayerScroll;
     public GameObject textPrefab;
     public GameObject content1;
+    public GameObject IconButton;
+    public GameObject IconPanel;
+    public GameObject CloseButton;
     void Start()
     {
         PlayerScroll.SetActive(false);
+        IconButton.SetActive(false);
+        IconPanel.SetActive(false);
     }
     /** ボイスチャット送信可否設定の定数. */
     private enum EnableVC
@@ -94,15 +99,30 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
                 }
                 if (playerCount != MonobitNetwork.room.playerCount)
                 {
-                    GameObject[] icons = GameObject.FindGameObjectsWithTag("icon");
-                    foreach (GameObject icon in icons)
+                    if(MonobitNetwork.room.playerCount<=3)
                     {
-                        Destroy(icon);
+                        IconButton.SetActive(false);
+                        GameObject[] icons = GameObject.FindGameObjectsWithTag("icon");
+                        foreach (GameObject icon in icons)
+                        {
+                            Destroy(icon);
+                        }
+                        for (num = 0; num < MonobitNetwork.room.playerCount; num++)
+                        {
+                            GameObject prefab = (GameObject)Instantiate(usericon[num], new Vector3(-x / 2 + x * num / 15, -y / 6, 0), Quaternion.identity);
+                            prefab.transform.SetParent(canvas.transform, false);
+                            prefab.transform.Find("Text").GetComponent<Text>().text = MonobitNetwork.playerList[num].name;
+                            prefab.transform.Find("Initial").GetComponent<Text>().text = MonobitNetwork.playerList[num].name.Substring(0, 1);
+                        }
                     }
-                    for (num = 0; num < MonobitNetwork.room.playerCount; num++)
+                    else
                     {
-                        GameObject prefab = (GameObject)Instantiate(usericon[num], new Vector3(x * num / 20, y / 2, 0), Quaternion.identity);
-                        prefab.transform.SetParent(canvas.transform, false);
+                        GameObject[] icons = GameObject.FindGameObjectsWithTag("icon");
+                        foreach (GameObject icon in icons)
+                        {
+                            Destroy(icon);
+                        }
+                        IconButton.SetActive(true);
                     }
                     playerCount = MonobitNetwork.room.playerCount;
                     Debug.Log(MonobitNetwork.room.playerCount);
@@ -163,6 +183,14 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
             myVoice.SetMicrophoneErrorHandler(OnMicrophoneError);
             myVoice.SetMicrophoneRestartHandler(OnMicrophoneRestart);
         }
+        if (MonobitNetwork.room.playerCount <= 3)
+        {
+            IconButton.SetActive(false);
+        }
+        else
+        {
+            IconButton.SetActive(true);
+        }
     }
     public void DebugButton()
     {
@@ -209,6 +237,28 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
                         PlayerScroll.SetActive(false);
                     }
      }
+    public void IconButtonOnclick()
+    {
+        GameObject[] icons = GameObject.FindGameObjectsWithTag("icon");
+        foreach (GameObject icon in icons)
+        {
+            Destroy(icon);
+        }
+        for (num = 0; num < MonobitNetwork.room.playerCount; num++)
+        {
+            GameObject prefab = (GameObject)Instantiate(usericon[num], new Vector3(-x/8+x * num / 15, y/3-((num)/5)*y / 4, 0), Quaternion.identity);
+            prefab.transform.SetParent(IconPanel.transform, false);
+            prefab.transform.Find("Text").GetComponent<Text>().text = MonobitNetwork.playerList[num].name;
+            prefab.transform.Find("Initial").GetComponent<Text>().text = MonobitNetwork.playerList[num].name.Substring(0, 1);
+        }
+        playerCount = MonobitNetwork.room.playerCount;
+        Debug.Log(MonobitNetwork.room.playerCount);
+        IconPanel.SetActive(true);
+    }
+    public void CloseButtonOnclick()
+    {
+        IconPanel.SetActive(false);
+    }
     /// <summary>
     /// マイクのエラーハンドリング用デリゲート
     /// </summary>

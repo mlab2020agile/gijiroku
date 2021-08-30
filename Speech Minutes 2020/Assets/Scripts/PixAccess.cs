@@ -26,22 +26,29 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	/// 白黒反転
 	/// </summary>
 	//int inversionFlag = 0;
+	public MeshRenderer targetMeshRenderer;
 
 	private Vector2 _prevPosition;
+	//public Material image1;
 
 	public void Start()
 	{
 		Texture2D mainTexture = (Texture2D)GetComponent<Renderer>().material.mainTexture;
+		mainTexture = ResizeTexture(mainTexture, mainTexture.width *2, mainTexture.height *2);
 		Color[] pixels = mainTexture.GetPixels();
 
 		buffer = new Color[pixels.Length];
+		Debug.Log(pixels.Length);
+		Debug.Log(mainTexture.format);
 		pixels.CopyTo(buffer, 0);
+
 
 		drawTexture = new Texture2D(mainTexture.width, mainTexture.height, TextureFormat.RGBA32, false);
 		drawTexture.filterMode = FilterMode.Point;
 
 		PenMode = GameObject.Find("PenMode");
 		itakire = GameObject.Find("Plane");
+		Clear();
 	}
 
 	//PenMode切り替え用
@@ -60,6 +67,12 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 			Buttontext.text = "PenMode:true";
 		}
 	}
+	static Texture2D ResizeTexture(Texture2D srcTexture, int newWidth, int newHeight) 
+	{
+		var resizedTexture = new Texture2D(newWidth, newHeight);
+        Graphics.ConvertTexture(srcTexture, resizedTexture);
+        return resizedTexture;
+    }
 	/// <summary>
 	/// 初期化
 	/// </summary>
@@ -68,6 +81,7 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	{
 
 		Texture2D mainTexture = (Texture2D)GetComponent<Renderer>().material.mainTexture;
+		mainTexture = ResizeTexture(mainTexture, mainTexture.width *2, mainTexture.height *2);
 		Color[] pixels = mainTexture.GetPixels();
 
 		buffer = new Color[pixels.Length];
@@ -80,7 +94,7 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 			{
 				if (y < mainTexture.height)
 				{
-					buffer.SetValue(Color.white, x + 256 * y);
+					buffer.SetValue(Color.white, x+ 512 * y);
 				}
 			}
 		}
@@ -100,11 +114,12 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	// 太さ：1　色：黒
 	public void Draw1(Vector2 p)
 	{
-		for (int x = (int)p.x; x < (int)p.x+1; x++)
+		Debug.Log(p);
+		for (int x = (int)(p.x*2)-1; x < (int)(p.x*2)+1; x++)
 		{
-			for (int y = (int)p.y; y < (int)p.y+1; y++)
+			for (int y = (int)(p.y*2)-1; y < (int)(p.y*2)+1; y++)
 			{
-				buffer.SetValue(Color.black, x + 256 * y);
+				buffer.SetValue(Color.black, x + 512 * y);
 			}
 		}
 	}
@@ -210,7 +225,7 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 		{
 			for (int y = (int)p.y-1; y < (int)p.y+1; y++)
 			{
-				buffer.SetValue(Color.black, x + 256 * y);
+				buffer.SetValue(Color.black, x+128 + 1024 * y);
 			}
 		}
 	}
@@ -420,6 +435,7 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 
 	void Update()
     {
+
 		monobitView.RPC("objectCloorUpdate", MonobitTargets.All);
 
 		if (mode)

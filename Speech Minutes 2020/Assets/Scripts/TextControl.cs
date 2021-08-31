@@ -12,6 +12,8 @@ public class TextControl : MonoBehaviour, IDragHandler
     public bool Selectflag = false;
    // public Color texcolor;
     public GameObject teO;
+    public GameObject EdittingTextPanel;
+    public InputField EdittingTextField;
     void Start()
     {
         Cursor.lockState = CursorLockMode.Confined;
@@ -20,6 +22,7 @@ public class TextControl : MonoBehaviour, IDragHandler
         Text text = this.GetComponentInChildren<Text>();
         // 色を指定
         text.color = Color.black;
+        EdittingTextPanel.SetActive(false);
     }
     /// <summary>
     /// テキストコメントを選択するための関数
@@ -38,7 +41,7 @@ public class TextControl : MonoBehaviour, IDragHandler
             // Textコンポーネントを取得
                chatComent = this.GetComponentInChildren<Text>();
                // 色を指定
-               chatComent.color = Color.green;
+               chatComent.color = Color.white;
                Debug.Log("Selectされました");
             scroll = Input.GetAxis("Mouse ScrollWheel");
           /*  if (scroll > 0)
@@ -107,8 +110,27 @@ public class TextControl : MonoBehaviour, IDragHandler
             Selectflag = false;
             Debug.Log("false&destroy");
         }
+        if (Selectflag == true && Input.GetKey(KeyCode.Space))
+        {
+            //inputFieldのTextコンポーネントを取得
+            EdittingTextField = EdittingTextField.GetComponent<InputField>();
+            // Textコンポーネントを取得
+            Text text = this.GetComponentInChildren<Text>();
+            EdittingTextField.text =text.text;
+            Selectflag = false;
+            EdittingTextPanel.SetActive(true);
+        }
+        if (Selectflag == true && Input.GetKey(KeyCode.Return))
+        {
+            Text text = this.GetComponentInChildren<Text>();
+            text.text = EdittingTextField.text;
+            EdittingTextField.text = "";
+            Selectflag = false;
+            EdittingTextPanel.SetActive(false);
+            Debug.Log("editing text");
+        }
 
-           
+
 
         if (Input.GetMouseButtonDown(1))
             Debug.Log("Pressed secondary button.１");

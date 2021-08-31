@@ -120,7 +120,7 @@ public class TextControl : MonoBehaviour, IDragHandler
             Selectflag = false;
             EdittingTextPanel.SetActive(true);
         }
-        if (Selectflag == true && Input.GetKey(KeyCode.Return))
+        if (Selectflag == true && Input.GetKey(KeyCode.Return) && EdittingTextPanel.activeSelf==true)
         {
             Text text = this.GetComponentInChildren<Text>();
             text.text = EdittingTextField.text;

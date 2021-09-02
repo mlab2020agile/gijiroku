@@ -12,6 +12,8 @@ public class TextControl : MonoBehaviour, IDragHandler
     public bool Selectflag = false;
    // public Color texcolor;
     public GameObject teO;
+    public GameObject PenButton;
+    public GameObject FinishButton;
     public GameObject EdittingTextPanel;
     public InputField EdittingTextField;
     void Start()
@@ -80,12 +82,12 @@ public class TextControl : MonoBehaviour, IDragHandler
                 Debug.Log("大よ"+scroll);
             }else if (scroll < 0)
             {
-                if (textfont.fontSize >= 10)
+                if (textfont.fontSize >= 20)
                 {
                     textfont.fontSize -= 1;// (int)scroll*100;
                     Debug.Log("小よ" + scroll);
                 }
-                else { textfont.fontSize = 10; }
+                else { textfont.fontSize = 20; }
             }
 
             if (Input.GetMouseButtonDown(0))
@@ -109,16 +111,6 @@ public class TextControl : MonoBehaviour, IDragHandler
             Destroy(this.gameObject);
             Selectflag = false;
             Debug.Log("false&destroy");
-        }
-        if (Selectflag == true && Input.GetKey(KeyCode.Space))
-        {
-            //inputFieldのTextコンポーネントを取得
-            EdittingTextField = EdittingTextField.GetComponent<InputField>();
-            // Textコンポーネントを取得
-            Text text = this.GetComponentInChildren<Text>();
-            EdittingTextField.text =text.text;
-            Selectflag = false;
-            EdittingTextPanel.SetActive(true);
         }
         if (Selectflag == true && Input.GetKey(KeyCode.Return) && EdittingTextPanel.activeSelf==true)
         {
@@ -165,4 +157,25 @@ public class TextControl : MonoBehaviour, IDragHandler
             Debug.Log("ok");
         }
     }*/
+    public void PenButtonOnclick()
+    {
+        //inputFieldのTextコンポーネントを取得
+        EdittingTextField = EdittingTextField.GetComponent<InputField>();
+        // Textコンポーネントを取得
+        Text text = this.GetComponentInChildren<Text>();
+        EdittingTextField.text = text.text;
+        Selectflag = false;
+        EdittingTextPanel.SetActive(true);
+        //Debug.Log("Pressed PenButton");
+    }
+    public void FinishButtonOnclick()
+    {
+        // Textコンポーネントを取得
+        Text text = GetComponentInChildren<Text>();
+        text.text = EdittingTextField.text;
+        EdittingTextField.text = "";
+        Selectflag = false;
+        EdittingTextPanel.SetActive(false);
+        Debug.Log("editing text");
+    }
 }

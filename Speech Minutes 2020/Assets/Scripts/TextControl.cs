@@ -82,12 +82,12 @@ public class TextControl : MonoBehaviour, IDragHandler
                 Debug.Log("大よ"+scroll);
             }else if (scroll < 0)
             {
-                if (textfont.fontSize >= 20)
+                if (textfont.fontSize >= 32)
                 {
                     textfont.fontSize -= 1;// (int)scroll*100;
                     Debug.Log("小よ" + scroll);
                 }
-                else { textfont.fontSize = 20; }
+                else { textfont.fontSize = 32; }
             }
 
             if (Input.GetMouseButtonDown(0))
@@ -112,17 +112,6 @@ public class TextControl : MonoBehaviour, IDragHandler
             Selectflag = false;
             Debug.Log("false&destroy");
         }
-        if (Selectflag == true && Input.GetKey(KeyCode.Return) && EdittingTextPanel.activeSelf==true)
-        {
-            Text text = this.GetComponentInChildren<Text>();
-            text.text = EdittingTextField.text;
-            EdittingTextField.text = "";
-            Selectflag = false;
-            EdittingTextPanel.SetActive(false);
-            Debug.Log("editing text");
-        }
-
-
 
         if (Input.GetMouseButtonDown(1))
             Debug.Log("Pressed secondary button.１");
@@ -170,12 +159,15 @@ public class TextControl : MonoBehaviour, IDragHandler
     }
     public void FinishButtonOnclick()
     {
-        // Textコンポーネントを取得
-        Text text = GetComponentInChildren<Text>();
-        text.text = EdittingTextField.text;
-        EdittingTextField.text = "";
-        Selectflag = false;
-        EdittingTextPanel.SetActive(false);
-        Debug.Log("editing text");
+        if(EdittingTextPanel.activeSelf == true)
+        {
+            // Textコンポーネントを取得
+            Text text = GetComponentInChildren<Text>();
+            text.text = EdittingTextField.text;
+            EdittingTextField.text = "";
+            Selectflag = false;
+            EdittingTextPanel.SetActive(false);
+            Debug.Log("editing text");
+        }
     }
 }

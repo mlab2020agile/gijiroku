@@ -114,7 +114,6 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	// 太さ：1　色：黒
 	public void Draw1(Vector2 p)
 	{
-		Debug.Log(p);
 		for (int x = (int)(p.x*2)-1; x < (int)(p.x*2)+1; x++)
 		{
 			for (int y = (int)(p.y*2)-1; y < (int)(p.y*2)+1; y++)
@@ -130,11 +129,11 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	// 太さ：1　色：赤
 	public void Draw2(Vector2 p)
 	{
-		for (int x = (int)p.x; x < (int)p.x+1; x++)
+		for (int x = (int)(p.x*2)-1; x < (int)(p.x*2)+1; x++)
 		{
-			for (int y = (int)p.y; y < (int)p.y+1; y++)
+			for (int y = (int)(p.y*2)-1; y < (int)(p.y*2)+1; y++)
 			{
-				buffer.SetValue(Color.red, x + 256 * y);
+				buffer.SetValue(Color.red, x + 512 * y);
 			}
 
 		}
@@ -146,11 +145,11 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	// 太さ：1　色：青
 	public void Draw3(Vector2 p)
 	{
-		for (int x = (int)p.x; x < (int)p.x+1; x++)
+		for (int x = (int)(p.x*2)-1; x < (int)(p.x*2)+1; x++)
 		{
-			for (int y = (int)p.y; y < (int)p.y+1; y++)
+			for (int y = (int)(p.y*2)-1; y < (int)(p.y*2)+1; y++)
 			{
-				buffer.SetValue(Color.blue, x + 256 * y);
+				buffer.SetValue(Color.blue, x + 512 * y);
 			}
 		}
 	}
@@ -161,11 +160,11 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	// 太さ：1　色：緑
 	public void Draw4(Vector2 p)
 	{
-		for (int x = (int)p.x; x < (int)p.x+1; x++)
+		for (int x = (int)(p.x*2)-1; x < (int)(p.x*2)+1; x++)
 		{
-			for (int y = (int)p.y; y < (int)p.y+1; y++)
+			for (int y = (int)(p.y*2)-1; y < (int)(p.y*2)+1; y++)
 			{
-				buffer.SetValue(Color.green, x + 256 * y);
+				buffer.SetValue(Color.green, x + 512 * y);
 			}
 		}
 	}
@@ -176,11 +175,11 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	// 太さ：1　色：黄色
 	public void Draw5(Vector2 p)
 	{
-		for (int x = (int)p.x; x < (int)p.x+1; x++)
+		for (int x = (int)(p.x*2)-1; x < (int)(p.x*2)+1; x++)
 		{
-			for (int y = (int)p.y; y < (int)p.y+1; y++)
+			for (int y = (int)(p.y*2)-1; y < (int)(p.y*2)+1; y++)
 			{
-				buffer.SetValue(Color.yellow, x + 256 * y);
+				buffer.SetValue(Color.yellow, x + 512 * y);
 			}
 		}
 	}
@@ -191,11 +190,11 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	// 太さ：1　色：ピンク
 	public void Draw6(Vector2 p)
 	{
-		for (int x = (int)p.x; x < (int)p.x+1; x++)
+		for (int x = (int)(p.x*2)-1; x < (int)(p.x*2)+1; x++)
 		{
-			for (int y = (int)p.y; y < (int)p.y+1; y++)
+			for (int y = (int)(p.y*2)-1; y < (int)(p.y*2)+1; y++)
 			{
-				buffer.SetValue(Color.magenta, x + 256 * y);
+				buffer.SetValue(Color.magenta, x + 512 * y);
 			}
 		}
 	}
@@ -206,11 +205,11 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	// 太さ：1　色：白
 	public void Draw7(Vector2 p)
 	{
-		for (int x = (int)p.x; x < (int)p.x+1; x++)
+		for (int x = (int)(p.x*2)-1; x < (int)(p.x*2)+1; x++)
 		{
-			for (int y = (int)p.y; y < (int)p.y+1; y++)
+			for (int y = (int)(p.y*2)-1; y < (int)(p.y*2)+1; y++)
 			{
-				buffer.SetValue(Color.white, x + 256 * y);
+				buffer.SetValue(Color.white, x + 512 * y);
 			}
 		}
 	}
@@ -221,11 +220,11 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	// 太さ：2　色：黒
 	public void Draw8(Vector2 p)
 	{
-		for (int x = (int)p.x-1; x < (int)p.x+1; x++)
+		for (int x = (int)(p.x*2)-2; x < (int)(p.x*2)+2; x++)
 		{
-			for (int y = (int)p.y-1; y < (int)p.y+1; y++)
+			for (int y = (int)(p.y*2)-2; y < (int)(p.y*2)+2; y++)
 			{
-				buffer.SetValue(Color.black, x+128 + 1024 * y);
+				buffer.SetValue(Color.black, x+ 512 * y);
 			}
 		}
 	}
@@ -236,11 +235,11 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	// 太さ：2　色：赤
 	public void Draw9(Vector2 p)
 	{
-		for (int x = (int)p.x-1; x < (int)p.x+1; x++)
+		for (int x = (int)(p.x*2)-2; x < (int)(p.x*2)+2; x++)
 		{
-			for (int y = (int)p.y-1; y < (int)p.y+1; y++)
+			for (int y = (int)(p.y*2)-2; y < (int)(p.y*2)+2; y++)
 			{
-				buffer.SetValue(Color.red, x + 256 * y);
+				buffer.SetValue(Color.red, x + 512 * y);
 			}
 		}
 	}
@@ -251,11 +250,11 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	// 太さ：2　色：青
 	public void Draw10(Vector2 p)
 	{
-		for (int x = (int)p.x-1; x < (int)p.x+1; x++)
+		for (int x = (int)(p.x*2)-2; x < (int)(p.x*2)+2; x++)
 		{
-			for (int y = (int)p.y-1; y < (int)p.y+1; y++)
+			for (int y = (int)(p.y*2)-2; y < (int)(p.y*2)+2; y++)
 			{
-				buffer.SetValue(Color.blue, x + 256 * y);
+				buffer.SetValue(Color.blue, x + 512 * y);
 			}
 		}
 	}
@@ -266,11 +265,11 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	// 太さ：2　色：緑
 	public void Draw11(Vector2 p)
 	{
-		for (int x = (int)p.x-1; x < (int)p.x+1; x++)
+		for (int x = (int)(p.x*2)-2; x < (int)(p.x*2)+2; x++)
 		{
-			for (int y = (int)p.y-1; y < (int)p.y+1; y++)
+			for (int y = (int)(p.y*2)-2; y < (int)(p.y*2)+2; y++)
 			{
-				buffer.SetValue(Color.green, x + 256 * y);
+				buffer.SetValue(Color.green, x + 512 * y);
 			}
 		}
 	}
@@ -281,11 +280,11 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	// 太さ：2　色：黄色
 	public void Draw12(Vector2 p)
 	{
-		for (int x = (int)p.x-1; x < (int)p.x+1; x++)
+		for (int x = (int)(p.x*2)-2; x < (int)(p.x*2)+2; x++)
 		{
-			for (int y = (int)p.y-1; y < (int)p.y+1; y++)
+			for (int y = (int)(p.y*2)-2; y < (int)(p.y*2)+2; y++)
 			{
-				buffer.SetValue(Color.yellow, x + 256 * y);
+				buffer.SetValue(Color.yellow, x + 512 * y);
 			}
 		}
 	}
@@ -296,11 +295,11 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	// 太さ：2　色：ピンク
 	public void Draw13(Vector2 p)
 	{
-		for (int x = (int)p.x-1; x < (int)p.x+1; x++)
+		for (int x = (int)(p.x*2)-2; x < (int)(p.x*2)+2; x++)
 		{
-			for (int y = (int)p.y-1; y < (int)p.y+1; y++)
+			for (int y = (int)(p.y*2)-2; y < (int)(p.y*2)+2; y++)
 			{
-				buffer.SetValue(Color.magenta, x + 256 * y);
+				buffer.SetValue(Color.magenta, x + 512 * y);
 			}
 		}
 	}
@@ -311,11 +310,11 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	// 太さ：2　色：白
 	public void Draw14(Vector2 p)
 	{
-		for (int x = (int)p.x-1; x < (int)p.x+1; x++)
+		for (int x = (int)(p.x*2)-2; x < (int)(p.x*2)+2; x++)
 		{
-			for (int y = (int)p.y-1; y < (int)p.y+1; y++)
+			for (int y = (int)(p.y*2)-2; y < (int)(p.y*2)+2; y++)
 			{
-				buffer.SetValue(Color.white, x + 256 * y);
+				buffer.SetValue(Color.white, x + 512 * y);
 			}
 		}
 	}
@@ -326,11 +325,11 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	// 太さ：4　色：黒
 	public void Draw15(Vector2 p)
 	{
-		for (int x = (int)p.x-2; x < (int)p.x+2; x++)
+		for (int x = (int)(p.x*2)-4; x < (int)(p.x*2)+4; x++)
 		{
-			for (int y = (int)p.y-2; y < (int)p.y+2; y++)
+			for (int y = (int)(p.y*2)-4; y < (int)(p.y*2)+4; y++)
 			{
-				buffer.SetValue(Color.black, x + 256 * y);
+				buffer.SetValue(Color.black, x + 512 * y);
 			}
 		}
 	}
@@ -341,11 +340,11 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	// 太さ：4　色：赤
 	public void Draw16(Vector2 p)
 	{
-		for (int x = (int)p.x-2; x < (int)p.x+2; x++)
+		for (int x = (int)(p.x*2)-4; x < (int)(p.x*2)+4; x++)
 		{
-			for (int y = (int)p.y-2; y < (int)p.y+2; y++)
+			for (int y = (int)(p.y*2)-4; y < (int)(p.y*2)+4; y++)
 			{
-				buffer.SetValue(Color.red, x + 256 * y);
+				buffer.SetValue(Color.red, x + 512 * y);
 			}
 		}
 	}
@@ -356,11 +355,11 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	// 太さ：4　色：青
 	public void Draw17(Vector2 p)
 	{
-		for (int x = (int)p.x-2; x < (int)p.x+2; x++)
+		for (int x = (int)(p.x*2)-4; x < (int)(p.x*2)+4; x++)
 		{
-			for (int y = (int)p.y-2; y < (int)p.y+2; y++)
+			for (int y = (int)(p.y*2)-4; y < (int)(p.y*2)+4; y++)
 			{
-				buffer.SetValue(Color.blue, x + 256 * y);
+				buffer.SetValue(Color.blue, x + 512 * y);
 			}
 		}
 	}
@@ -371,11 +370,11 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	// 太さ：4　色：緑
 	public void Draw18(Vector2 p)
 	{
-		for (int x = (int)p.x-2; x < (int)p.x+2; x++)
+		for (int x = (int)(p.x*2)-4; x < (int)(p.x*2)+4; x++)
 		{
-			for (int y = (int)p.y-2; y < (int)p.y+2; y++)
+			for (int y = (int)(p.y*2)-4; y < (int)(p.y*2)+4; y++)
 			{
-				buffer.SetValue(Color.green, x + 256 * y);
+				buffer.SetValue(Color.green, x + 512 * y);
 			}
 		}
 	}
@@ -386,11 +385,11 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	// 太さ：4　色：黄色
 	public void Draw19(Vector2 p)
 	{
-		for (int x = (int)p.x-2; x < (int)p.x+2; x++)
+		for (int x = (int)(p.x*2)-4; x < (int)(p.x*2)+4; x++)
 		{
-			for (int y = (int)p.y-2; y < (int)p.y+2; y++)
+			for (int y = (int)(p.y*2)-4; y < (int)(p.y*2)+4; y++)
 			{
-				buffer.SetValue(Color.yellow, x + 256 * y);
+				buffer.SetValue(Color.yellow, x + 512 * y);
 			}
 		}
 	}
@@ -401,11 +400,11 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	// 太さ：4　色：ピンク
 	public void Draw20(Vector2 p)
 	{
-		for (int x = (int)p.x-2; x < (int)p.x+2; x++)
+		for (int x = (int)(p.x*2)-4; x < (int)(p.x*2)+4; x++)
 		{
-			for (int y = (int)p.y-2; y < (int)p.y+2; y++)
+			for (int y = (int)(p.y*2)-4; y < (int)(p.y*2)+4; y++)
 			{
-				buffer.SetValue(Color.magenta, x + 256 * y);
+				buffer.SetValue(Color.magenta, x + 512 * y);
 			}
 		}
 	}
@@ -416,11 +415,11 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	// 太さ：4　色：白
 	public void Draw21(Vector2 p)
 	{
-		for (int x = (int)p.x-2; x < (int)p.x+2; x++)
+		for (int x = (int)(p.x*2)-4; x < (int)(p.x*2)+4; x++)
 		{
-			for (int y = (int)p.y-2; y < (int)p.y+1; y++)
+			for (int y = (int)(p.y*2)-4; y < (int)(p.y*2)+4; y++)
 			{
-				buffer.SetValue(Color.white, x + 256 * y);
+				buffer.SetValue(Color.white, x + 512 * y);
 			}
 		}
 	}

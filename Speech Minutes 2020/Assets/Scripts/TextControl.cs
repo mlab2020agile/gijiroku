@@ -15,6 +15,8 @@ public class TextControl : MonoBehaviour, IDragHandler
     public GameObject PenButton;
     public GameObject FinishButton;
     public GameObject TextCloseButton;
+    public GameObject EnlargeButton;
+    public GameObject ShrinkButton;
     public GameObject EdittingTextPanel;
     public InputField EdittingTextField;
     void Start()
@@ -177,5 +179,19 @@ public class TextControl : MonoBehaviour, IDragHandler
         Selectflag = false;
         EdittingTextPanel.SetActive(false);
         Debug.Log("textfield closed");
+    }
+    public void EnlargeButtonOnclick()
+    {
+        Text textfont = this.GetComponentInChildren<Text>();
+        textfont.fontSize += 2;// (int)scroll*100;
+    }
+    public void ShrinkButtonOnclick()
+    {
+        Text textfont = this.GetComponentInChildren<Text>();
+        if (textfont.fontSize >= 32)
+        {
+            textfont.fontSize -= 2;
+        }
+        else { textfont.fontSize = 32; }
     }
 }

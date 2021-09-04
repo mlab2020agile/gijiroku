@@ -14,6 +14,7 @@ public class TextControl : MonoBehaviour, IDragHandler
     public GameObject teO;
     public GameObject PenButton;
     public GameObject FinishButton;
+    public GameObject TextCloseButton;
     public GameObject EdittingTextPanel;
     public InputField EdittingTextField;
     void Start()
@@ -169,5 +170,12 @@ public class TextControl : MonoBehaviour, IDragHandler
             EdittingTextPanel.SetActive(false);
             Debug.Log("editing text");
         }
+    }
+    public void TextCloseButtonOnclick()
+    {
+        EdittingTextField.text = "";
+        Selectflag = false;
+        EdittingTextPanel.SetActive(false);
+        Debug.Log("textfield closed");
     }
 }

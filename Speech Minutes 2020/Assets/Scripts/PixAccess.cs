@@ -34,7 +34,7 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	public void Start()
 	{
 		Texture2D mainTexture = (Texture2D)GetComponent<Renderer>().material.mainTexture;
-		mainTexture = ResizeTexture(mainTexture, mainTexture.width *2, mainTexture.height *2);
+		mainTexture = ResizeTexture(mainTexture, mainTexture.width *2, mainTexture.height );
 		Color[] pixels = mainTexture.GetPixels();
 
 		buffer = new Color[pixels.Length];
@@ -81,7 +81,7 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	{
 
 		Texture2D mainTexture = (Texture2D)GetComponent<Renderer>().material.mainTexture;
-		mainTexture = ResizeTexture(mainTexture, mainTexture.width *2, mainTexture.height *2);
+		mainTexture = ResizeTexture(mainTexture, mainTexture.width *2, mainTexture.height );
 		Color[] pixels = mainTexture.GetPixels();
 
 		buffer = new Color[pixels.Length];
@@ -116,9 +116,12 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	{
 		for (int x = (int)(p.x*2)-1; x < (int)(p.x*2)+1; x++)
 		{
-			for (int y = (int)(p.y*2)-1; y < (int)(p.y*2)+1; y++)
+			for (int y = (int)(p.y)-1; y < (int)(p.y)+1; y++)
 			{
-				buffer.SetValue(Color.black, x + 512 * y);
+				if ((x >= 0) && (y >= 0))
+				{
+					buffer.SetValue(Color.black, x + 512 * y);
+				}
 			}
 		}
 	}
@@ -131,9 +134,12 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	{
 		for (int x = (int)(p.x*2)-1; x < (int)(p.x*2)+1; x++)
 		{
-			for (int y = (int)(p.y*2)-1; y < (int)(p.y*2)+1; y++)
+			for (int y = (int)(p.y)-1; y < (int)(p.y)+1; y++)
 			{
-				buffer.SetValue(Color.red, x + 512 * y);
+				if ((x >= 0) && (y >= 0))
+				{
+					buffer.SetValue(Color.red, x + 512 * y);
+				}
 			}
 
 		}
@@ -147,9 +153,12 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	{
 		for (int x = (int)(p.x*2)-1; x < (int)(p.x*2)+1; x++)
 		{
-			for (int y = (int)(p.y*2)-1; y < (int)(p.y*2)+1; y++)
+			for (int y = (int)(p.y)-1; y < (int)(p.y)+1; y++)
 			{
-				buffer.SetValue(Color.blue, x + 512 * y);
+				if ((x >= 0) && (y >= 0))
+				{
+					buffer.SetValue(Color.blue, x + 512 * y);
+				}
 			}
 		}
 	}
@@ -162,9 +171,12 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	{
 		for (int x = (int)(p.x*2)-1; x < (int)(p.x*2)+1; x++)
 		{
-			for (int y = (int)(p.y*2)-1; y < (int)(p.y*2)+1; y++)
+			for (int y = (int)(p.y)-1; y < (int)(p.y)+1; y++)
 			{
-				buffer.SetValue(Color.green, x + 512 * y);
+				if ((x >= 0) && (y >= 0))
+				{
+					buffer.SetValue(Color.green, x + 512 * y);
+				}
 			}
 		}
 	}
@@ -177,9 +189,12 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	{
 		for (int x = (int)(p.x*2)-1; x < (int)(p.x*2)+1; x++)
 		{
-			for (int y = (int)(p.y*2)-1; y < (int)(p.y*2)+1; y++)
+			for (int y = (int)(p.y)-1; y < (int)(p.y)+1; y++)
 			{
-				buffer.SetValue(Color.yellow, x + 512 * y);
+				if ((x >= 0) && (y >= 0))
+				{
+					buffer.SetValue(Color.yellow, x + 512 * y);
+				}
 			}
 		}
 	}
@@ -192,9 +207,12 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	{
 		for (int x = (int)(p.x*2)-1; x < (int)(p.x*2)+1; x++)
 		{
-			for (int y = (int)(p.y*2)-1; y < (int)(p.y*2)+1; y++)
+			for (int y = (int)(p.y)-1; y < (int)(p.y)+1; y++)
 			{
-				buffer.SetValue(Color.magenta, x + 512 * y);
+				if ((x >= 0) && (y >= 0))
+				{
+					buffer.SetValue(Color.magenta, x + 512 * y);
+				}
 			}
 		}
 	}
@@ -207,9 +225,12 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	{
 		for (int x = (int)(p.x*2)-1; x < (int)(p.x*2)+1; x++)
 		{
-			for (int y = (int)(p.y*2)-1; y < (int)(p.y*2)+1; y++)
+			for (int y = (int)(p.y)-1; y < (int)(p.y)+1; y++)
 			{
-				buffer.SetValue(Color.white, x + 512 * y);
+				if ((x >= 0) && (y >= 0))
+				{
+					buffer.SetValue(Color.white, x + 512 * y);
+				}
 			}
 		}
 	}
@@ -222,9 +243,12 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	{
 		for (int x = (int)(p.x*2)-2; x < (int)(p.x*2)+2; x++)
 		{
-			for (int y = (int)(p.y*2)-2; y < (int)(p.y*2)+2; y++)
+			for (int y = (int)(p.y)-2; y < (int)(p.y)+2; y++)
 			{
-				buffer.SetValue(Color.black, x+ 512 * y);
+				if ((x >= 0) && (y >= 0))
+				{
+					buffer.SetValue(Color.black, x+ 512 * y);
+				}
 			}
 		}
 	}
@@ -237,9 +261,12 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	{
 		for (int x = (int)(p.x*2)-2; x < (int)(p.x*2)+2; x++)
 		{
-			for (int y = (int)(p.y*2)-2; y < (int)(p.y*2)+2; y++)
+			for (int y = (int)(p.y)-2; y < (int)(p.y)+2; y++)
 			{
-				buffer.SetValue(Color.red, x + 512 * y);
+				if ((x >= 0) && (y >= 0))
+				{
+					buffer.SetValue(Color.red, x + 512 * y);
+				}
 			}
 		}
 	}
@@ -252,9 +279,12 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	{
 		for (int x = (int)(p.x*2)-2; x < (int)(p.x*2)+2; x++)
 		{
-			for (int y = (int)(p.y*2)-2; y < (int)(p.y*2)+2; y++)
+			for (int y = (int)(p.y)-2; y < (int)(p.y)+2; y++)
 			{
-				buffer.SetValue(Color.blue, x + 512 * y);
+				if ((x >= 0) && (y >= 0))
+				{
+					buffer.SetValue(Color.blue, x + 512 * y);
+				}
 			}
 		}
 	}
@@ -267,9 +297,12 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	{
 		for (int x = (int)(p.x*2)-2; x < (int)(p.x*2)+2; x++)
 		{
-			for (int y = (int)(p.y*2)-2; y < (int)(p.y*2)+2; y++)
+			for (int y = (int)(p.y)-2; y < (int)(p.y)+2; y++)
 			{
-				buffer.SetValue(Color.green, x + 512 * y);
+				if ((x >= 0) && (y >= 0))
+				{
+					buffer.SetValue(Color.green, x + 512 * y);
+				}
 			}
 		}
 	}
@@ -282,9 +315,12 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	{
 		for (int x = (int)(p.x*2)-2; x < (int)(p.x*2)+2; x++)
 		{
-			for (int y = (int)(p.y*2)-2; y < (int)(p.y*2)+2; y++)
+			for (int y = (int)(p.y)-2; y < (int)(p.y)+2; y++)
 			{
-				buffer.SetValue(Color.yellow, x + 512 * y);
+				if ((x >= 0) && (y >= 0))
+				{
+					buffer.SetValue(Color.yellow, x + 512 * y);
+				}
 			}
 		}
 	}
@@ -297,9 +333,12 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	{
 		for (int x = (int)(p.x*2)-2; x < (int)(p.x*2)+2; x++)
 		{
-			for (int y = (int)(p.y*2)-2; y < (int)(p.y*2)+2; y++)
+			for (int y = (int)(p.y)-2; y < (int)(p.y)+2; y++)
 			{
-				buffer.SetValue(Color.magenta, x + 512 * y);
+				if ((x >= 0) && (y >= 0))
+				{
+					buffer.SetValue(Color.magenta, x + 512 * y);
+				}
 			}
 		}
 	}
@@ -312,9 +351,12 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	{
 		for (int x = (int)(p.x*2)-2; x < (int)(p.x*2)+2; x++)
 		{
-			for (int y = (int)(p.y*2)-2; y < (int)(p.y*2)+2; y++)
+			for (int y = (int)(p.y)-2; y < (int)(p.y)+2; y++)
 			{
-				buffer.SetValue(Color.white, x + 512 * y);
+				if ((x >= 0) && (y >= 0))
+				{
+					buffer.SetValue(Color.white, x + 512 * y);
+				}
 			}
 		}
 	}
@@ -327,9 +369,12 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	{
 		for (int x = (int)(p.x*2)-4; x < (int)(p.x*2)+4; x++)
 		{
-			for (int y = (int)(p.y*2)-4; y < (int)(p.y*2)+4; y++)
+			for (int y = (int)(p.y)-4; y < (int)(p.y)+4; y++)
 			{
-				buffer.SetValue(Color.black, x + 512 * y);
+				if ((x >= 0) && (y >= 0))
+				{
+					buffer.SetValue(Color.black, x + 512 * y);
+				}
 			}
 		}
 	}
@@ -344,7 +389,10 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 		{
 			for (int y = (int)(p.y*2)-4; y < (int)(p.y*2)+4; y++)
 			{
-				buffer.SetValue(Color.red, x + 512 * y);
+				if ((x >= 0) && (y >= 0))
+				{
+					buffer.SetValue(Color.red, x + 512 * y);
+				}
 			}
 		}
 	}
@@ -357,9 +405,12 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	{
 		for (int x = (int)(p.x*2)-4; x < (int)(p.x*2)+4; x++)
 		{
-			for (int y = (int)(p.y*2)-4; y < (int)(p.y*2)+4; y++)
+			for (int y = (int)(p.y)-4; y < (int)(p.y)+4; y++)
 			{
-				buffer.SetValue(Color.blue, x + 512 * y);
+				if ((x >= 0) && (y >= 0))
+				{
+					buffer.SetValue(Color.blue, x + 512 * y);
+				}
 			}
 		}
 	}
@@ -372,9 +423,12 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	{
 		for (int x = (int)(p.x*2)-4; x < (int)(p.x*2)+4; x++)
 		{
-			for (int y = (int)(p.y*2)-4; y < (int)(p.y*2)+4; y++)
+			for (int y = (int)(p.y)-4; y < (int)(p.y)+4; y++)
 			{
-				buffer.SetValue(Color.green, x + 512 * y);
+				if ((x >= 0) && (y >= 0))
+				{
+					buffer.SetValue(Color.green, x + 512 * y);
+				}
 			}
 		}
 	}
@@ -387,9 +441,12 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	{
 		for (int x = (int)(p.x*2)-4; x < (int)(p.x*2)+4; x++)
 		{
-			for (int y = (int)(p.y*2)-4; y < (int)(p.y*2)+4; y++)
+			for (int y = (int)(p.y)-4; y < (int)(p.y)+4; y++)
 			{
-				buffer.SetValue(Color.yellow, x + 512 * y);
+				if ((x >= 0) && (y >= 0))
+				{
+					buffer.SetValue(Color.yellow, x + 512 * y);
+				}
 			}
 		}
 	}
@@ -402,9 +459,12 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	{
 		for (int x = (int)(p.x*2)-4; x < (int)(p.x*2)+4; x++)
 		{
-			for (int y = (int)(p.y*2)-4; y < (int)(p.y*2)+4; y++)
+			for (int y = (int)(p.y)-4; y < (int)(p.y)+4; y++)
 			{
-				buffer.SetValue(Color.magenta, x + 512 * y);
+				if ((x >= 0) && (y >= 0))
+				{
+					buffer.SetValue(Color.magenta, x + 512 * y);
+				}
 			}
 		}
 	}
@@ -417,9 +477,12 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	{
 		for (int x = (int)(p.x*2)-4; x < (int)(p.x*2)+4; x++)
 		{
-			for (int y = (int)(p.y*2)-4; y < (int)(p.y*2)+4; y++)
+			for (int y = (int)(p.y)-4; y < (int)(p.y)+4; y++)
 			{
-				buffer.SetValue(Color.white, x + 512 * y);
+				if ((x >= 0) && (y >= 0))
+				{
+					buffer.SetValue(Color.white, x + 512 * y);
+				}
 			}
 		}
 	}

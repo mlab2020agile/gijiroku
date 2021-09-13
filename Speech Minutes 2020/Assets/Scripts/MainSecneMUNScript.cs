@@ -46,6 +46,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     public GameObject IconButton;
     public GameObject IconPanel;
     public GameObject CloseButton;
+    public GameObject CameraPanel;
     void Start()
     {
         PlayerScroll.SetActive(false);
@@ -126,6 +127,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
                     }
                     playerCount = MonobitNetwork.room.playerCount;
                     Debug.Log(MonobitNetwork.room.playerCount);
+                    CameraPanel.transform.SetAsLastSibling();
                 }
                 if (usernamedropdown)
                 {

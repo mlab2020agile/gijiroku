@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8168,7 +8168,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00004439438, y: -0.000019085257}
+  m_AnchoredPosition: {x: -0.00004439438, y: 0.000011162178}
   m_SizeDelta: {x: -3.9925537, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1073307121
@@ -14756,6 +14756,7 @@ MonoBehaviour:
   IconButton: {fileID: 876514252}
   IconPanel: {fileID: 92115310}
   CloseButton: {fileID: 149645584}
+  CameraPanel: {fileID: 1853055528}
 --- !u!114 &1782908609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15585,6 +15586,7 @@ GameObject:
   - component: {fileID: 1853055529}
   - component: {fileID: 1853055531}
   - component: {fileID: 1853055530}
+  - component: {fileID: 1853055532}
   m_Layer: 5
   m_Name: CameraPanel
   m_TagString: Untagged
@@ -15647,6 +15649,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1853055528}
   m_CullTransparentMesh: 0
+--- !u!114 &1853055532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1853055528}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaef648a382f86841b5adafce6913b07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1860620778
 PrefabInstance:
   m_ObjectHideFlags: 0

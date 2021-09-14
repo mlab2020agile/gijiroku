@@ -100,7 +100,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
                 }
                 if (playerCount != MonobitNetwork.room.playerCount)
                 {
-                    if(MonobitNetwork.room.playerCount<=3)
+                    if(MonobitNetwork.room.playerCount<=2)
                     {
                         IconButton.SetActive(false);
                         GameObject[] icons = GameObject.FindGameObjectsWithTag("icon");
@@ -110,7 +110,8 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
                         }
                         for (num = 0; num < MonobitNetwork.room.playerCount; num++)
                         {
-                            GameObject prefab = (GameObject)Instantiate(usericon[num], new Vector3(-x / 2 + x * num / 15, -y / 6, 0), Quaternion.identity);
+                            //GameObject prefab = (GameObject)Instantiate(usericon[num], new Vector3(-x / 2 + x * num / 15, -y / 6, 0), Quaternion.identity);
+                            GameObject prefab = (GameObject)Instantiate(usericon[num], new Vector3(-550+num*100, -185, 0), Quaternion.identity) ;
                             prefab.transform.SetParent(canvas.transform, false);
                             prefab.transform.Find("Text").GetComponent<Text>().text = MonobitNetwork.playerList[num].name;
                             prefab.transform.Find("Initial").GetComponent<Text>().text = MonobitNetwork.playerList[num].name.Substring(0, 1);
@@ -185,7 +186,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
             myVoice.SetMicrophoneErrorHandler(OnMicrophoneError);
             myVoice.SetMicrophoneRestartHandler(OnMicrophoneRestart);
         }
-        if (MonobitNetwork.room.playerCount <= 3)
+        if (MonobitNetwork.room.playerCount <= 2)
         {
             IconButton.SetActive(false);
         }
@@ -248,7 +249,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         }
         for (num = 0; num < MonobitNetwork.room.playerCount; num++)
         {
-            GameObject prefab = (GameObject)Instantiate(usericon[num], new Vector3(-x/8+x * num / 15, y/3-((num)/5)*y / 4, 0), Quaternion.identity);
+            GameObject prefab = (GameObject)Instantiate(usericon[num], new Vector3(-160 + num*80, 200-150*(num/5), 0), Quaternion.identity);
             prefab.transform.SetParent(IconPanel.transform, false);
             prefab.transform.Find("Text").GetComponent<Text>().text = MonobitNetwork.playerList[num].name;
             prefab.transform.Find("Initial").GetComponent<Text>().text = MonobitNetwork.playerList[num].name.Substring(0, 1);
@@ -259,6 +260,11 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     }
     public void CloseButtonOnclick()
     {
+        GameObject[] icons = GameObject.FindGameObjectsWithTag("icon");
+        foreach (GameObject icon in icons)
+        {
+            Destroy(icon);
+        }
         IconPanel.SetActive(false);
     }
     /// <summary>

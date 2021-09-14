@@ -11,8 +11,7 @@ public class WebCameraTest : MonoBehaviour {
 
     public void OnClick()
     {
-        cameraswitch = !cameraswitch;
-        if (cameraswitch)
+        if(!CameraPanel.activeSelf)
         {
             CameraPanel.SetActive(true);
             webCamTexture = new WebCamTexture();
@@ -20,11 +19,11 @@ public class WebCameraTest : MonoBehaviour {
             webCamTexture.Play();
             Debug.Log("押された!"); // ログを出力
         }
-        else
-        {
-            CameraPanel.SetActive(false);
-            webCamTexture.Stop();
-        }
+    }
+    public void Onpush()
+    {
+        CameraPanel.SetActive(false);
+        webCamTexture.Stop();
     }
 
 

@@ -18,11 +18,11 @@ namespace Tests
             if (a == 0 || b == 0)
             {
                 s = "・部屋名・パスワードどちらも1~5文字の範囲で入力してください\r\n";
-                if (!(Regex.Match(name, "^[a-zA-Z0-9]+$")).Success)
+                if (!(Regex.Match(name, "^[a-zA-Z0-9]+$")).Success　&& a != 0)
                 {
                     s = s + "・半角英数字で入力してください";
                 }
-                else if (!(Regex.Match(pass, "^[a-zA-Z0-9]+$")).Success)
+                else if (!(Regex.Match(pass, "^[a-zA-Z0-9]+$")).Success && b != 0)
                 {
                     s = s + "・半角英数字で入力してください";
                 }
@@ -48,18 +48,18 @@ namespace Tests
                 s = "・部屋名・パスワードどちらも1~5文字の範囲で入力してください\r\n";
                 if (!(Regex.Match(name, "^[a-zA-Z0-9]+$")).Success)
                 {
-                    s = s + "・半角英数字で入力してください\r\n";
+                    s = s + "・半角英数字で入力してください";
                 }
                 else if (!(Regex.Match(pass, "^[a-zA-Z0-9]+$")).Success)
                 {
-                    s = s + "・半角英数字で入力してください\r\n";
+                    s = s + "・半角英数字で入力してください";
                 }
             }
             return s;
         }
 
         [Test]
-        public void PassTest1()
+        public void PassTest01()
         {
             string name = "abcde";
             string pass = "abcde";
@@ -68,7 +68,7 @@ namespace Tests
         }
 
         [Test]
-        public void PassTest2()
+        public void PassTest02()
         {
             string name = "a";
             string pass = "a";
@@ -77,7 +77,7 @@ namespace Tests
         }
 
         [Test]
-        public void PassTest3()
+        public void PassTest03()
         {
             string name = "";
             string pass = "a";
@@ -85,7 +85,7 @@ namespace Tests
             Assert.AreEqual(s,"・部屋名・パスワードどちらも1~5文字の範囲で入力してください\r\n");
         }
         [Test]
-        public void PassTest4()
+        public void PassTest04()
         {
             string name = "a";
             string pass = "";
@@ -93,7 +93,7 @@ namespace Tests
             Assert.AreEqual(s,"・部屋名・パスワードどちらも1~5文字の範囲で入力してください\r\n");
         }
         [Test]
-        public void PassTest5()
+        public void PassTest05()
         {
             string name = "aaaaa";
             string pass = "bbbbb";
@@ -101,7 +101,7 @@ namespace Tests
             Assert.AreEqual(s,"ルームを作成しました");
         }
         [Test]
-        public void PassTest6()
+        public void PassTest06()
         {
             string name = "abcd";
             string pass = "";
@@ -109,7 +109,7 @@ namespace Tests
             Assert.AreEqual(s,"・部屋名・パスワードどちらも1~5文字の範囲で入力してください\r\n");
         }
         [Test]
-        public void PassTest7()
+        public void PassTest07()
         {
             string name = "abcdef";
             string pass = "abcd";
@@ -117,7 +117,7 @@ namespace Tests
             Assert.AreEqual(s,"・部屋名・パスワードどちらも1~5文字の範囲で入力してください\r\n");
         }
         [Test]
-        public void PassTest8()
+        public void PassTest08()
         {
             string name = "Ａ";
             string pass = "a";
@@ -125,7 +125,7 @@ namespace Tests
             Assert.AreEqual(s,"・半角英数字で入力してください");
         }
         [Test]
-        public void PassTest9()
+        public void PassTest09()
         {
             string name = "a";
             string pass = "Ａ";
@@ -138,7 +138,7 @@ namespace Tests
             string name = "";
             string pass = "";
             string s = RoomSakusei(name,pass);
-            Assert.AreEqual(s,"・部屋名・パスワードどちらも1~5文字の範囲で入力してください");
+            Assert.AreEqual(s,"・部屋名・パスワードどちらも1~5文字の範囲で入力してください\r\n");
         }
         [Test]
         public void PassTest11()
@@ -210,7 +210,7 @@ namespace Tests
             string name = "アイウエオ";
             string pass = "";
             string s = RoomSakusei(name,pass);
-            Assert.AreEqual(s,"・部屋名・パスワードどちらも1~5文字の範囲で入力してください\r\n半角英数字で入力してください");
+            Assert.AreEqual(s,"・部屋名・パスワードどちらも1~5文字の範囲で入力してください\r\n・半角英数字で入力してください");
         }
         [Test]
         public void PassTest20()

@@ -180,11 +180,11 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
         if (a == 0 || b == 0)
         {
             s = "・部屋名・パスワードどちらも1~5文字の範囲で入力してください\r\n";
-            if (!(Regex.Match(name, "^[a-zA-Z0-9]+$")).Success)
+            if (!(Regex.Match(name, "^[a-zA-Z0-9]+$")).Success && a != 0)
             {
                 s = s + "・半角英数字で入力してください";
             }
-            else if (!(Regex.Match(pass, "^[a-zA-Z0-9]+$")).Success)
+            else if (!(Regex.Match(pass, "^[a-zA-Z0-9]+$")).Success && b != 0)
             {
                 s = s + "・半角英数字で入力してください";
             }
@@ -210,11 +210,11 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
             s = "・部屋名・パスワードどちらも1~5文字の範囲で入力してください\r\n";
             if (!(Regex.Match(name, "^[a-zA-Z0-9]+$")).Success)
             {
-                s = s + "・半角英数字で入力してください\r\n";
+                s = s + "・半角英数字で入力してください";
             }
             else if (!(Regex.Match(pass, "^[a-zA-Z0-9]+$")).Success)
             {
-                s = s + "・半角英数字で入力してください\r\n";
+                s = s + "・半角英数字で入力してください";
             }
         }
         return s;

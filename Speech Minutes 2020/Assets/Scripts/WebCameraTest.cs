@@ -43,6 +43,12 @@ public class WebCameraTest : MonobitEngine.MonoBehaviour {
     // 他の誰かがカメラボタンを押した時の処理
 	public void Come()
     {
+        cnt +=1;
+        if (cnt == 2)
+        {
+            rawImage2.texture = webCamTexture;
+            webCamTexture.Play();
+        }
         Debug.Log("誰か来た");
     }
 	/// <summary>
@@ -51,6 +57,7 @@ public class WebCameraTest : MonobitEngine.MonoBehaviour {
 	[MunRPC]
     public void Goout()
     {
+        cnt -=1;
         Debug.Log("誰か帰った");
     }
 

@@ -4,28 +4,27 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class TextManager : MonoBehaviour
+public class TextManager : MonobitEngine.MonoBehaviour
 {
     //オブジェクトと結びつける
-    public InputField inputField;
-    public Text text;
+    public InputField inputField;//textbox
+    public Text text;//textoutput
     public Text display;
-
     public GameObject canvas;//キャンバス
-    public GameObject FusenPanel;
+    //public GameObject FusenPanel;
 
     // Start is called before the first frame update
     void Start()
     {
         //Componentを扱えるようにする
         inputField = inputField.GetComponent<InputField>();
-        text = text.GetComponent<Text>();
+        //text = text.GetComponent<Text>();
     }
 
     public void InputText()
     {
         //テキストにinputFieldの内容を反映
-        text.text = inputField.text;
+        //text.text = inputField.text;
         display.text = inputField.text;
         //オブジェクトを表示する
       //  gametext.gameObject.SetActive(true);
@@ -38,12 +37,16 @@ public class TextManager : MonoBehaviour
     { 
         if (GameObject.Find("TextBox").GetComponent<InputField>().text != "") {
             //テキストがあればプレハブからオブジェクト生成
-            FusenPanel.gameObject.SetActive(true);
-            GameObject prefab = (GameObject)Instantiate(FusenPanel);
-            prefab.transform.SetParent(canvas.transform, false);
+            //FusenPanel.gameObject.SetActive(true);
+            //GameObject prefab = (GameObject)Instantiate(FusenPanel);
+            GameObject prefab = MonobitEngine.MonobitNetwork.Instantiate("FusenCanvas", Vector3.zero, Quaternion.identity, 0);
+            Debug.Log("複製完了");
+            //prefab.transform.SetParent(canvas.transform, false);
+            Text prefabtext = prefab.GetComponentInChildren<Text>();
+            prefabtext.text = display.text;
             //int px = Random.Range(30, -35);
             //int py = Random.Range(19, -25);
-           
+
             if (resetcunter<4)
             {
                 resetcunter += 1;
@@ -71,6 +74,6 @@ public class TextManager : MonoBehaviour
     {
         //インプットフィールドの中身を消す
         GameObject.Find("TextBox").GetComponent<InputField>().text = "";
-        FusenPanel.gameObject.SetActive(false);
+        //FusenPanel.gameObject.SetActive(false);
     }
 }

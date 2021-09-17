@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TextControl : MonoBehaviour, IDragHandler
+public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
 {
     // マウススクロール変数
     private float scroll;
@@ -14,13 +14,17 @@ public class TextControl : MonoBehaviour, IDragHandler
     public GameObject teO;
     public GameObject PenButton;
     public GameObject FinishButton;
-    public GameObject TextCloseButton;
     public GameObject EnlargeButton;
     public GameObject ShrinkButton;
-    public GameObject EdittingTextPanel;
-    public InputField EdittingTextField;
+    GameObject EdittingTextPanel;
+    InputField EdittingTextField;
+    GameObject TextCloseButton;
+
     void Start()
     {
+        EdittingTextPanel = GameObject.Find("Canvas").transform.Find("EdittingTextPanel").gameObject;
+        TextCloseButton = GameObject.Find("Canvas").transform.Find("EdittingTextPanel").Find("TextCloseButton").gameObject;
+        EdittingTextField = GameObject.Find("Canvas").transform.Find("EdittingTextPanel").Find("EdittingTextField").GetComponent<InputField>();
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
         // Textコンポーネントを取得

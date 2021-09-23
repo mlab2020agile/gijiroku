@@ -12,7 +12,7 @@ public class WebCameraTest : MonobitEngine.MonoBehaviour {
     bool cameraswitch = false;
 
     public RawImage rawImage;
-    public RawImage rawImage2;
+    //public RawImage rawImage2;
 
     WebCamTexture webCamTexture;
     int cnt = 0;
@@ -46,7 +46,7 @@ public class WebCameraTest : MonobitEngine.MonoBehaviour {
         cnt +=1;
         if (cnt == 2)
         {
-            rawImage2.texture = webCamTexture;
+            //rawImage2.texture = webCamTexture;
             webCamTexture.Play();
         }
         Debug.Log("誰か来た");

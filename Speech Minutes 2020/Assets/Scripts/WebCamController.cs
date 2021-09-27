@@ -57,14 +57,14 @@ public class WebCamController : MonobitEngine.MonoBehaviour
             int width = webcamTexture.width;
             int height = webcamTexture.height;
             Color32 rc = new Color32(0, 0, 0, byte.MaxValue);
-            if (s == 500 || s == 1)
+            if (s%200 == 0)
             {
                 for (int x = 0; x < width; x++)
                 {
                     for (int y = 0; y < height; y++)
                     {
                         Color32 c = colors[x + y * width];
-                        monobitView.RPC("Video", MonobitTargets.All, x, y, c.r, c.g, c.b, c.a);
+                        monobitView.RPC("Video", MonobitTargets.Others, x, y, c.r, c.g, c.b, c.a);
                         //byte gray = (byte)(0.1f * c.r + 0.7f * c.g + 0.2f * c.b);
                         //rc.r = rc.g = rc.b = gray;
                         //colors[x + y * width] = rc;

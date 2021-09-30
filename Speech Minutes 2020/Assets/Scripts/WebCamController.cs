@@ -19,6 +19,7 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     Color32[] colors = null;
     Color32[] colorss = null;
     public RawImage rawImage2;
+    public bool cameraswitch = false;
 
     IEnumerator Init()
     {
@@ -49,32 +50,35 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (colors != null)
+        if (cameraswitch)
         {
-            var cc = webcamTexture.GetPixels32(colors);
-            
-
-            int width = webcamTexture.width;
-            int height = webcamTexture.height;
-            Color32 rc = new Color32(0, 0, 0, byte.MaxValue);
-            if (s%200 == 0)
+            if (colors != null)
             {
-                for (int x = 0; x < width; x++)
+                var cc = webcamTexture.GetPixels32(colors);
+
+
+                int width = webcamTexture.width;
+                int height = webcamTexture.height;
+                Color32 rc = new Color32(0, 0, 0, byte.MaxValue);
+                if (s % 200 == 0)
                 {
-                    for (int y = 0; y < height; y++)
+                    for (int x = 0; x < width; x++)
                     {
-                        Color32 c = colors[x + y * width];
-                        monobitView.RPC("Video", MonobitTargets.Others, x, y, c.r, c.g, c.b, c.a);
-                        //byte gray = (byte)(0.1f * c.r + 0.7f * c.g + 0.2f * c.b);
-                        //rc.r = rc.g = rc.b = gray;
-                        //colors[x + y * width] = rc;
+                        for (int y = 0; y < height; y++)
+                        {
+                            Color32 c = colors[x + y * width];
+                            monobitView.RPC("Video", MonobitTargets.Others, x, y, c.r, c.g, c.b, c.a);
+                            //byte gray = (byte)(0.1f * c.r + 0.7f * c.g + 0.2f * c.b);
+                            //rc.r = rc.g = rc.b = gray;
+                            //colors[x + y * width] = rc;
+                        }
                     }
                 }
+                s += 1;
+                //Debug.Log(s);
+                //texture.SetPixels32(cc);
+                //texture.Apply();
             }
-            s +=1;
-            Debug.Log(s);
-            //texture.SetPixels32(cc);
-            //texture.Apply();
         }
     }
     /// <summary>
@@ -90,6 +94,14 @@ public class WebCamController : MonobitEngine.MonoBehaviour
             texture.SetPixels32(colorss);
             texture.Apply();
         }
+    }
+    public void OnClick()
+    {
+        cameraswitch = true;
+    }
+    public void Onpush()
+    {
+        cameraswitch = false;
     }
 
 }

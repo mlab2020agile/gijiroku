@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using MonobitEngine;
 
+
 public class WebCamController : MonobitEngine.MonoBehaviour
 {
 
@@ -20,6 +21,7 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     Color32[] colorss = null;
     public RawImage rawImage2;
     public bool cameraswitch = false;
+    public Text PlayerText;
 
     IEnumerator Init()
     {
@@ -74,6 +76,7 @@ public class WebCamController : MonobitEngine.MonoBehaviour
                         }
                     }
                 }
+                monobitView.RPC("Name", MonobitTargets.Others, MonobitEngine.MonobitNetwork.player.name);
                 s += 1;
                 //Debug.Log(s);
                 //texture.SetPixels32(cc);
@@ -94,6 +97,14 @@ public class WebCamController : MonobitEngine.MonoBehaviour
             texture.SetPixels32(colorss);
             texture.Apply();
         }
+    }
+    /// <summary>
+	/// 初期化
+	/// </summary>
+	[MunRPC]
+    public void Name(string n)
+    {
+        PlayerText.text = n;
     }
     public void OnClick()
     {

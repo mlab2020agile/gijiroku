@@ -15,6 +15,7 @@ public class WebCameraTest : MonobitEngine.MonoBehaviour {
     //public RawImage rawImage2;
 
     WebCamTexture webCamTexture;
+
     int cnt = 0;
 
     public void OnClick()
@@ -27,6 +28,7 @@ public class WebCameraTest : MonobitEngine.MonoBehaviour {
             webCamTexture.Play();
             monobitView.RPC("Come", MonobitTargets.All);
             Debug.Log("押された!"); // ログを出力
+            
         }
     }
     public void Onpush()
@@ -44,10 +46,9 @@ public class WebCameraTest : MonobitEngine.MonoBehaviour {
 	public void Come()
     {
         cnt +=1;
-        if (cnt == 2)
+        Debug.Log(cnt);
+        if (cnt == 1)
         {
-            //rawImage2.texture = webCamTexture;
-            webCamTexture.Play();
         }
         Debug.Log("誰か来た");
     }

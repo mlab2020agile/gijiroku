@@ -126,7 +126,6 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     public void Come()
     {
         cnt += 1;
-        panelswitch = true;
         Debug.Log("誰か来た");
         Debug.Log(cnt);
         if (cnt==1)
@@ -162,7 +161,6 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     {
         cnt -= 1;
         Debug.Log("誰か帰った");
-        panelswitch = true;
         if (cnt == 2)
         {
             rawImage.GetComponent<RectTransform>().position = new Vector3(-150, -10, 0);

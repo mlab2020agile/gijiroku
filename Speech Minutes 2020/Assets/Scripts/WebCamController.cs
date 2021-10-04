@@ -24,6 +24,9 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     public RawImage rawImage3;
     public bool cameraswitch = false;
     public Text PlayerText;
+    public GameObject Panel1;
+    public GameObject Panel2;
+    public GameObject Panel3;
     int cnt = 0;
     IEnumerator Init()
     {
@@ -109,7 +112,7 @@ public class WebCamController : MonobitEngine.MonoBehaviour
                             }
                         }
                     }
-                    monobitView.RPC("Name", MonobitTargets.Others, MonobitEngine.MonobitNetwork.player.name);
+                    //monobitView.RPC("Name", MonobitTargets.Others, MonobitEngine.MonobitNetwork.player.name);
                     t += 1;
                 }
                 //Debug.Log(s);
@@ -127,31 +130,34 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     {
         cnt += 1;
         Debug.Log("誰か来た");
-        Debug.Log(cnt);
-        if (cnt==1)
+        if (cnt == 1 || cnt == 2)
         {
-            RectTransform rt = rawImage.GetComponent(typeof(RectTransform)) as RectTransform;
-            rt.sizeDelta = new Vector2(300f, 300f);
-            rawImage.transform.localPosition = new Vector3(-150,-10,0);
-        }
-        else if (cnt==2)
-        {
-            RectTransform rt = rawImage.GetComponent(typeof(RectTransform)) as RectTransform;
-            rt.sizeDelta = new Vector2(300f, 300f);
-            rawImage.transform.localPosition = new Vector3(-150,-10,0);
+            Panel2.SetActive(true);
+            rawImage.transform.localPosition = new Vector3(-150, -10, 0);
+            rawImage.transform.localScale = new Vector3(1, 1, 1);
+            RectTransform rt1 = rawImage.GetComponent<RectTransform>();
+            rt1.sizeDelta = new Vector2(300, 300);
             rawImage2.transform.localPosition = new Vector3(160, -10, 0);
-            RectTransform rt2 = rawImage2.GetComponent(typeof(RectTransform)) as RectTransform;
-            rt2.sizeDelta = new Vector2(300f, 300f);
+            rawImage2.transform.localScale = new Vector3(1, 1, 1);
+            RectTransform rt2 = rawImage2.GetComponent<RectTransform>();
+            rt2.sizeDelta = new Vector2(300, 300);
         }
-        /*else if (cnt == 3)
+        else if (cnt == 3)
         {
-            rawImage.GetComponent<RectTransform>().position = new Vector3(-200, -10, 0);
-            rawImage.GetComponent<RectTransform>().sizeDelta = new Vector2(200f, 200f);
-            rawImage2.GetComponent<RectTransform>().position = new Vector3(10, -10, 0);
-            rawImage2.GetComponent<RectTransform>().sizeDelta = new Vector2(200f, 200f);
-            rawImage3.GetComponent<RectTransform>().position = new Vector3(220, -10, 0);
-            rawImage3.GetComponent<RectTransform>().sizeDelta = new Vector2(200f, 200f);
-        }*/
+            Panel3.SetActive(true);
+            rawImage.transform.localPosition = new Vector3(-200, -10, 0);
+            rawImage.transform.localScale = new Vector3(1, 1, 1);
+            RectTransform rt3 = rawImage.GetComponent<RectTransform>();
+            rt3.sizeDelta = new Vector2(200, 200);
+            rawImage2.transform.localPosition = new Vector3(10, -10, 0);
+            rawImage.transform.localScale = new Vector3(1, 1, 1);
+            RectTransform rt4 = rawImage2.GetComponent<RectTransform>();
+            rt4.sizeDelta = new Vector2(200, 200);
+            rawImage3.transform.localPosition = new Vector3(220, -10, 0);
+            rawImage.transform.localScale = new Vector3(1, 1, 1);
+            RectTransform rt5 = rawImage3.GetComponent<RectTransform>();
+            rt5.sizeDelta = new Vector2(200, 200);
+        }
     }
     /// <summary>
     /// 初期化
@@ -163,17 +169,23 @@ public class WebCamController : MonobitEngine.MonoBehaviour
         Debug.Log("誰か帰った");
         if (cnt == 2)
         {
-            rawImage.GetComponent<RectTransform>().position = new Vector3(-150, -10, 0);
-            RectTransform rt = rawImage.GetComponent(typeof(RectTransform)) as RectTransform;
-            rt.sizeDelta = new Vector2(100, 100);
-            //rawImage.GetComponent<RectTransform>().sizeDelta = new Vector2(300f, 300f);
-            rawImage2.GetComponent<RectTransform>().position = new Vector3(160, -10, 0);
-            rawImage.GetComponent<RectTransform>().sizeDelta = new Vector2(300f, 300f);
+            rawImage.transform.localPosition = new Vector3(-150, -10, 0);
+            rawImage.transform.localScale = new Vector3(1, 1, 1);
+            RectTransform rt6 = rawImage.GetComponent<RectTransform>();
+            rt6.sizeDelta = new Vector2(300, 300);
+            rawImage2.transform.localPosition = new Vector3(160, -10, 0);
+            rawImage2.transform.localScale = new Vector3(1, 1, 1);
+            RectTransform rt7 = rawImage2.GetComponent<RectTransform>();
+            rt7.sizeDelta = new Vector2(300, 300);
+            Panel3.SetActive(false);
         }
         else if (cnt == 1)
         {
-            rawImage.GetComponent<RectTransform>().position = new Vector3(0, -10, 0);
-            rawImage.GetComponent<RectTransform>().sizeDelta = new Vector2(300f, 300f);
+            rawImage.transform.localPosition = new Vector3(-150, -10, 0);
+            rawImage.transform.localScale = new Vector3(1, 1, 1);
+            RectTransform rt8 = rawImage.GetComponent<RectTransform>();
+            rt8.sizeDelta = new Vector2(300, 300);
+            Panel2.SetActive(false);
         }
     }
     /// <summary>
@@ -182,9 +194,9 @@ public class WebCamController : MonobitEngine.MonoBehaviour
 	[MunRPC]
     public void Video(int x, int y, Byte r, Byte g, Byte b, Byte a)
     {
-        Color32 ccc = new Color32(r,g,b,255);
+        Color32 ccc = new Color32(r, g, b, 255);
         colorss[x + y * width] = ccc;
-        if (x == width-1 && y == height-1)
+        if (x == width - 1 && y == height - 1)
         {
             texture2.SetPixels32(colorss);
             texture2.Apply();

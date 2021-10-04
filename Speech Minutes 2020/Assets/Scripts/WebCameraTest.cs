@@ -36,11 +36,5 @@ public class WebCameraTest : MonobitEngine.MonoBehaviour {
         webCamTexture.Stop();
     }
 
-	/// <summary>
-	/// 初期化
-	/// </summary>
-	[MunRPC]
-    // 他の誰かがカメラボタンを押した時の処理
-
 
 }

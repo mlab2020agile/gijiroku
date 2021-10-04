@@ -37,9 +37,9 @@ public class WebCamController : MonobitEngine.MonoBehaviour
                 colors = new Color32[webcamTexture.width * webcamTexture.height];
                 colorss = new Color32[webcamTexture.width * webcamTexture.height];
                 texture2 = new Texture2D(webcamTexture.width, webcamTexture.height, TextureFormat.RGBA32, false);
-                texture3 = new Texture2D(webcamTexture.width, webcamTexture.height, TextureFormat.RGBA32, false);
                 rawImage2.GetComponent<RawImage>().material.mainTexture = texture2;
-                rawImage3.GetComponent<RawImage>().material.mainTexture = texture3;
+                //texture3 = new Texture2D(webcamTexture.width, webcamTexture.height, TextureFormat.RGBA32, false);
+                //rawImage3.GetComponent<RawImage>().material.mainTexture = texture3;
                 break;
             }
             yield return null;
@@ -60,10 +60,11 @@ public class WebCamController : MonobitEngine.MonoBehaviour
         {
             if (colors != null)
             {
-                if (cnt == 2)
+                if (cnt == 1 || cnt == 2)
                 {
                     if (s % 200 == 0)
                     {
+                        Debug.Log("sが200の倍数到達");
                         var cc = webcamTexture.GetPixels32(colors);
                         int width = webcamTexture.width;
                         int height = webcamTexture.height;
@@ -83,7 +84,7 @@ public class WebCamController : MonobitEngine.MonoBehaviour
                     monobitView.RPC("Name", MonobitTargets.Others, MonobitEngine.MonobitNetwork.player.name);
                     s += 1;
                 }
-                else if (cnt == 3)
+                /*else if (cnt == 3)
                 {
                     if (t % 200 == 0)
                     {
@@ -114,7 +115,7 @@ public class WebCamController : MonobitEngine.MonoBehaviour
                     }
                     //monobitView.RPC("Name", MonobitTargets.Others, MonobitEngine.MonobitNetwork.player.name);
                     t += 1;
-                }
+                }*/
                 //Debug.Log(s);
                 //texture.SetPixels32(cc);
                 //texture.Apply();
@@ -130,6 +131,7 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     {
         cnt += 1;
         Debug.Log("誰か来た");
+        Debug.Log(cnt);
         if (cnt == 1 || cnt == 2)
         {
             Panel2.SetActive(true);
@@ -198,6 +200,11 @@ public class WebCamController : MonobitEngine.MonoBehaviour
         colorss[x + y * width] = ccc;
         if (x == width - 1 && y == height - 1)
         {
+            if (cnt == 1) // 同期のズレを解消
+            {
+                cnt += 1;
+            }
+            Debug.Log("画像送る");
             texture2.SetPixels32(colorss);
             texture2.Apply();
         }

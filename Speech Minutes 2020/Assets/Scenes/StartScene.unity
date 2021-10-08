@@ -387,12 +387,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1267436419}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70c7e3ef2fae7b64091d1c1210a3134b, type: 3}
+  m_Script: {fileID: 11500000, guid: ee3a4f1d7b2ad4d308075ad2e9e82916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MUNN: {fileID: 1267436419}
-  roomswitch: 0
-  roomswitch2: 0
 --- !u!114 &1267436422
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,26 +1,40 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using NUnit.Framework;
 using UnityEngine;
-using UnityEditor;
-using MonobitEngine;
+using UnityEngine.TestTools;
 using UnityEngine.SceneManagement;
+using MonobitEngine;
 using System.Text.RegularExpressions;
+using UnityEditor;
 
-public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
+namespace Tests
 {
-    /** ルーム名. */
-    private string roomName = "";
-    private string roomPasword = "";
-    private string roomUnrock = "";
-    public string player;
-    public void OnGUI()
+    public class otamesi: MonobitEngine.MonoBehaviour
+    {
+        private string roomName = "";
+        private string roomPasword = "";
+        private string roomUnrock = "";
+        public GameObject MUNN;
+        StartSecneMUNScript var;
+
+        public bool roomswitch = false;
+
+        public bool roomswitch2 = false;
+
+        public void Setup()
+        {
+            SceneManager.LoadScene("StartScene");
+        }
+
+        private void OnGUI()
     {
         //MUNサーバに接続している場合
-        if (MonobitNetwork.isConnect)
+        if (roomswitch)
         {
             //Debug.Log("サーバに接続しました");
             // ルームに入室している場合
-            if (MonobitNetwork.inRoom)
+            if (roomswitch2)
             {
                 
             }
@@ -67,7 +81,7 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
                     {
                         int a = roomName.Length;
                         int b = roomPasword.Length;
-                        MonobitNetwork.CreateRoom(roomName+roomPasword+a+b);
+                        //MonobitNetwork.CreateRoom(roomName+roomPasword+a+b);
                         Debug.Log(s);
                         /********
                         ここでメインのシーンに遷移する
@@ -82,55 +96,7 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
                 }
                 GUILayout.EndHorizontal();
                 // ルーム一覧を検索
-                foreach (RoomData room in MonobitNetwork.GetRoomData())
-                {
-
-                    // ルームパラメータの可視化
-                    System.String roomParam =
-                        System.String.Format(
-                            "{0}({1}/{2})",
-                            room.name,
-                            room.playerCount,
-                            ((room.maxPlayers == 0) ? "-" : room.maxPlayers.ToString())
-                        );
-                    string rn = room.name;
-                    string s1 = rn.Substring(rn.Length - 1);
-                    string s2 = rn.Substring(rn.Length - 2,1);
-                    int i1 = int.Parse(s1);
-                    int i2 = int.Parse(s2);
-                    string s3 = rn.Substring(0,i2);
-                    string s4 = rn.Substring(i2,i1);
-                    //ルームパスワードと結びつけ
-                    GUILayout.BeginHorizontal();
-                    {
-                        GUILayout.Space (x/8);
-                        GUILayout.Label(s3+"のパスワード解除: ",GUILayout.Height(x/40),GUILayout.Width(x/4));
-                        roomUnrock = GUILayout.TextField(roomUnrock,GUILayout.Height(x/40),GUILayout.Width(x/3));
-                    }
-                    GUILayout.EndHorizontal();
-                    GUILayout.BeginHorizontal();
-                    GUILayout.Space(x*3/8);
-                    // ルームを選択して入室する
-                    if (GUILayout.Button("部屋に入室 : " + s3, GUILayout.Height(x/35),GUILayout.Width(x/3)))
-                    {
-                        if (roomUnrock == s4)
-                        {
-                            MonobitNetwork.JoinRoom(room.name);
-                            /********
-                            ここでメインのシーンに遷移する
-                            *********/
-                            SceneManager.LoadScene("newUI");
-                        }
-                        else
-                        {
-                            string s = "パスワードが違います";
-                            EditorUtility.DisplayDialog("警告", s, "Close");
-                            Debug.Log(s);
-                        }
-                        
-                    }
-                    GUILayout.EndHorizontal();
-                }
+                
             }
 
         }
@@ -148,22 +114,19 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
                 GUI.skin.label.fontSize = x/50;
                 GUI.skin.textField.fontSize = x/50;
                 GUI.skin.button.fontSize = x/50;
-                MonobitNetwork.playerName = GUILayout.TextField(
-                    (MonobitNetwork.playerName == null) ?
-                        "" :
-                        MonobitNetwork.playerName,GUILayout.Height(x/40), GUILayout.Width(x/3));
+                string playerName = GUILayout.TextField("" ,GUILayout.Height(x/40), GUILayout.Width(x/3));
             }
             GUILayout.EndHorizontal();
 
             // デフォルトロビーへの自動入室を許可する
-            MonobitNetwork.autoJoinLobby = true;
+            //MonobitNetwork.autoJoinLobby = true;
 
             // MUNサーバに接続する
             GUILayout.BeginHorizontal();
             GUILayout.Space(x*3/8);
             if (GUILayout.Button("サーバに接続",GUILayout.Height(x/35), GUILayout.Width(x/3)))
             {
-                MonobitNetwork.ConnectServer("SimpleChat_v1.0");
+                //MonobitNetwork.ConnectServer("SimpleChat_v1.0");
                 Debug.Log("サーバに接続しました");
             }
             GUILayout.EndHorizontal();
@@ -220,5 +183,33 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
         }
         return s;
     }
-}
+        
 
+
+        // A Test behaves as an ordinary method
+        [Test]
+        public void otamesiSimplePasses()
+        {
+            // Use the Assert class to test conditions
+            //SceneManager.LoadScene("StartScene");
+            //string d = StartSecneMUNScript.RoomSakusei("se", "ai");
+
+            int i = 1;
+            Assert.AreEqual(1, i);
+        }
+
+        // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
+        // `yield return null;` to skip a frame.
+        [UnityTest]
+        public IEnumerator otamesiWithEnumeratorPasses()
+        {
+            // Use the Assert class to test conditions.
+            // Use yield to skip a frame.
+            SceneManager.LoadScene("StartScene");
+            var = MUNN.GetComponent<StartSecneMUNScript>();
+            var.Player = "aa";
+            //OnGUI();
+            yield return new WaitForSeconds(10);
+        }
+    }
+}

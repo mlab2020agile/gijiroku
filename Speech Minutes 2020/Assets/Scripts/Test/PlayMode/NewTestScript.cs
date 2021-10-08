@@ -6,7 +6,7 @@ using UnityEngine.TestTools;
 using UnityEngine.UI;
 
 
-namespace Tests
+/*namespace Tests
 {
     public class NewTestScript
     {
@@ -24,8 +24,8 @@ namespace Tests
         [UnityTest]
         public void OnTolggle0()
         {
-            if (toggle.isOn) Wadai.SetActive(true);
-            else Wadai.SetActive(false);
+            //if (toggle.isOn) Wadai.SetActive(true);
+            //else Wadai.SetActive(false);
         }
         public IEnumerator NewTestScriptWithEnumeratorPasses()
         {
@@ -34,4 +34,4 @@ namespace Tests
             yield return null;
         }
     }
-}
+}*/

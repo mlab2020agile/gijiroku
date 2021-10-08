@@ -129,7 +129,8 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
         }
         if (Selectflag == true && Input.GetKey(KeyCode.Backspace))
         {
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
+            OnDestroy();
             Selectflag = false;
             Debug.Log("false&destroy");
         }
@@ -227,5 +228,9 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
         Debug.Log("フォントサイズ変更");
     }
 
+    void OnDestroy()
+    {
+        MonobitNetwork.Destroy(monobitView);
+    }
 
 }

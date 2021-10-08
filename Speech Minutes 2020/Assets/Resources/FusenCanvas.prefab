@@ -1,32 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &1893821135914324569
+--- !u!114 &5899714091425140566
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3994630695504801791}
+  m_GameObject: {fileID: 5080371890175525740}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e43095d0b31c5c4da5d336507b33fe1, type: 3}
+  m_Script: {fileID: 11500000, guid: 0c3554840c192405e9c7197451b01175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SyncPosition:
-    m_EnableSync: 1
-    m_EnableInterpolate: 1
-    m_LerpRate: 10
-  m_SyncRotation:
-    m_EnableSync: 1
-    m_EnableInterpolate: 0
-    m_LerpRate: 5
-  m_SyncScale:
-    m_EnableSync: 0
-    m_EnableInterpolate: 0
-    m_LerpRate: 1
-  m_SnapEnabled: 1
-  m_SnapThreshold: 3
---- !u!114 &1681965261893557285
+  FusenPanel: {fileID: 8702993008721001250}
+--- !u!114 &8758892955295186179
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -64,7 +51,7 @@ GameObject:
   - component: {fileID: 8241280323035342599}
   - component: {fileID: 5251538765402433018}
   - component: {fileID: 6661551454713360153}
-  - component: {fileID: 2005911477481735078}
+  - component: {fileID: 2328709395778356196}
   m_Layer: 5
   m_Name: FusenCanvas
   m_TagString: Untagged
@@ -89,7 +76,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 10, y: -20}
+  m_AnchoredPosition: {x: 30, y: -60}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!223 &8241280323035342599
@@ -152,7 +139,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &2005911477481735078
+--- !u!114 &2328709395778356196
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,8 +159,7 @@ MonoBehaviour:
   m_IsEncrypt: 1
   InternalObservedComponents: []
   ObservedComponents:
-  - {fileID: 1893821135914324569}
-  - {fileID: 1681965261893557285}
+  - {fileID: 8758892955295186179}
   ownerId: 0
   group: 0
   prefixBackup: 0
@@ -296,11 +282,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: FusenPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 3750750815023387292, guid: 4269700db5d67454581f948c665dbc07,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3750750815023387292, guid: 4269700db5d67454581f948c665dbc07,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3750750815023387292, guid: 4269700db5d67454581f948c665dbc07,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3750750815023387292, guid: 4269700db5d67454581f948c665dbc07,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 5899714091425140566}
+    - target: {fileID: 3750750815023387292, guid: 4269700db5d67454581f948c665dbc07,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnColorChange
+      objectReference: {fileID: 0}
+    - target: {fileID: 3750750815023387292, guid: 4269700db5d67454581f948c665dbc07,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3814227669946047077, guid: 4269700db5d67454581f948c665dbc07,
         type: 3}
       propertyPath: Panel
       value: 
       objectReference: {fileID: 6411745945007126918}
+    - target: {fileID: 5036022588507979273, guid: 4269700db5d67454581f948c665dbc07,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4269700db5d67454581f948c665dbc07, type: 3}
 --- !u!1 &6411745945007126918 stripped
@@ -315,9 +336,9 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 8254056532685296118}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &3994630695504801791 stripped
+--- !u!1 &5080371890175525740 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 5036022588507979273, guid: 4269700db5d67454581f948c665dbc07,
+  m_CorrespondingSourceObject: {fileID: 3750750815023387290, guid: 4269700db5d67454581f948c665dbc07,
     type: 3}
   m_PrefabInstance: {fileID: 8254056532685296118}
   m_PrefabAsset: {fileID: 0}

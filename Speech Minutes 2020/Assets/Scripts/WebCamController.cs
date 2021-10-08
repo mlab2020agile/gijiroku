@@ -8,8 +8,8 @@ using UnityEngine.EventSystems;
 using MonobitEngine;
 public class WebCamController : MonobitEngine.MonoBehaviour
 {
-    int width = 640;
-    int height = 480;
+    int width = 80;
+    int height = 60;
     int fps = 30;
     int s = 1;
     int t = 1;
@@ -32,11 +32,11 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     {
         while (true)
         {
-            if (webcamTexture.width > 16 && webcamTexture.height > 16)
+            if (webcamTexture.width/2 > 16 && webcamTexture.height/2 > 16)
             {
                 colors = new Color32[webcamTexture.width * webcamTexture.height];
-                colorss = new Color32[webcamTexture.width * webcamTexture.height];
-                texture2 = new Texture2D(webcamTexture.width, webcamTexture.height, TextureFormat.RGBA32, false);
+                colorss = new Color32[webcamTexture.width/8 * webcamTexture.height/8];
+                texture2 = new Texture2D(webcamTexture.width/8, webcamTexture.height/8, TextureFormat.RGBA32, false);
                 rawImage2.GetComponent<RawImage>().material.mainTexture = texture2;
                 //texture3 = new Texture2D(webcamTexture.width, webcamTexture.height, TextureFormat.RGBA32, false);
                 //rawImage3.GetComponent<RawImage>().material.mainTexture = texture3;
@@ -49,7 +49,7 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     void Start()
     {
         WebCamDevice[] devices = WebCamTexture.devices;
-        webcamTexture = new WebCamTexture(devices[0].name, this.width, this.height, this.fps);
+        webcamTexture = new WebCamTexture(devices[0].name, 40, 30, this.fps);
         webcamTexture.Play();
         StartCoroutine(Init());
     }
@@ -62,19 +62,19 @@ public class WebCamController : MonobitEngine.MonoBehaviour
             {
                 if (cnt == 1 || cnt == 2)
                 {
-                    if (s % 200 == 0)
+                    if (s % 100 == 0)
                     {
                         Debug.Log("sが200の倍数到達");
                         var cc = webcamTexture.GetPixels32(colors);
                         int width = webcamTexture.width;
                         int height = webcamTexture.height;
                         Color32 rc = new Color32(0, 0, 0, byte.MaxValue);
-                        for (int x = 0; x < width; x++)
+                        for (int x = 0; x < width; x+=8)
                         {
-                            for (int y = 0; y < height; y++)
+                            for (int y = 0; y < height; y+=8)
                             {
                                 Color32 c = colors[x + y * width];
-                                monobitView.RPC("Video", MonobitTargets.Others, x, y, c.r, c.g, c.b, c.a);
+                                monobitView.RPC("Video", MonobitTargets.All, x, y, c.r, c.g, c.b, c.a);
                                 //byte gray = (byte)(0.1f * c.r + 0.7f * c.g + 0.2f * c.b);
                                 //rc.r = rc.g = rc.b = gray;
                                 //colors[x + y * width] = rc;
@@ -197,8 +197,8 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     public void Video(int x, int y, Byte r, Byte g, Byte b, Byte a)
     {
         Color32 ccc = new Color32(r, g, b, 255);
-        colorss[x + y * width] = ccc;
-        if (x == width - 1 && y == height - 1)
+        colorss[x/8 + y/8 * width] = ccc;
+        if (x >= width - 10 && y >= height - 10)
         {
             if (cnt == 1) // 同期のズレを解消
             {

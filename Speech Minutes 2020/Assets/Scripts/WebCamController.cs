@@ -71,29 +71,14 @@ public class WebCamController : MonobitEngine.MonoBehaviour
                         int width = webcamTexture.width;
                         int height = webcamTexture.height;
                         Color32 rc = new Color32(0, 0, 0, byte.MaxValue);
-                        monobitView.RPC("VideoSwitch", MonobitTargets.All, u);
-                        if (u % 2 == 1)
+                        //monobitView.RPC("VideoSwitch", MonobitTargets.All, u);
+                        for (int x = 0; x < width; x+=8)
                         {
-                            for (int x = 0; x < width; x+=8)
-                            {
                             
-                                for (int y = 0; y < height; y+=8)
-                                {
-                                    Color32 c = colors[x + y * width];
-                                    monobitView.RPC("Video", MonobitTargets.All, x, y, c.r, c.g, c.b, c.a);
-                                }
-                            }
-                        }
-                        else
-                        {
-                            for (int x = 0; x < width; x+=8)
+                            for (int y = 0; y < height; y+=8)
                             {
-                            
-                                for (int y = 0; y < height; y+=8)
-                                {
-                                    Color32 c = colors[x + y * width];
-                                    monobitView.RPC("Video2", MonobitTargets.All, x, y, c.r, c.g, c.b, c.a);
-                                }
+                                Color32 c = colors[x + y * width];
+                                monobitView.RPC("Video", MonobitTargets.All, x, y, c.r, c.g, c.b, c.a, MonobitEngine.MonobitNetwork.player.ID);
                             }
                         }
                     }
@@ -210,7 +195,7 @@ public class WebCamController : MonobitEngine.MonoBehaviour
 	/// 初期化
 	/// </summary>
 	[MunRPC]
-    public void Video(int x, int y, Byte r, Byte g, Byte b, Byte a)
+    public void Video(int x, int y, Byte r, Byte g, Byte b, Byte a, int id)
     {
         Color32 ccc = new Color32(r, g, b, 255);
         colorss[x/8 + y/8 * width] = ccc;
@@ -223,8 +208,16 @@ public class WebCamController : MonobitEngine.MonoBehaviour
             Debug.Log("画像送る");
             Debug.Log(width);
             Debug.Log(height);
-            texture2.SetPixels32(colorss);
-            texture2.Apply();
+            if (id == 1)
+            {
+                texture2.SetPixels32(colorss);
+                texture2.Apply();
+            }
+            else if (id == 2)
+            {
+                texture3.SetPixels32(colorss);
+                texture3.Apply();
+            }
         }
     }
     /// <summary>

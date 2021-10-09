@@ -19,6 +19,7 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     WebCamTexture webcamTexture;
     Color32[] colors = null;
     Color32[] colorss = null;
+    Color32[] colorsss = null;
     public RawImage rawImage;
     public RawImage rawImage2;
     public RawImage rawImage3;
@@ -36,10 +37,11 @@ public class WebCamController : MonobitEngine.MonoBehaviour
             {
                 colors = new Color32[webcamTexture.width * webcamTexture.height];
                 colorss = new Color32[webcamTexture.width/8 * webcamTexture.height/8];
+                colorsss = new Color32[webcamTexture.width/8 * webcamTexture.height/8];
                 texture2 = new Texture2D(webcamTexture.width/8, webcamTexture.height/8, TextureFormat.RGBA32, false);
-                rawImage2.GetComponent<RawImage>().material.mainTexture = texture2;
-                //texture3 = new Texture2D(webcamTexture.width, webcamTexture.height, TextureFormat.RGBA32, false);
-                //rawImage3.GetComponent<RawImage>().material.mainTexture = texture3;
+                rawImage2.GetComponent<RawImage>().texture = texture2;
+                texture3 = new Texture2D(webcamTexture.width/8, webcamTexture.height/8, TextureFormat.RGBA32, false);
+                rawImage3.GetComponent<RawImage>().texture = texture3;
                 break;
             }
             yield return null;
@@ -49,7 +51,7 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     void Start()
     {
         WebCamDevice[] devices = WebCamTexture.devices;
-        webcamTexture = new WebCamTexture(devices[0].name, 40, 30, this.fps);
+        webcamTexture = new WebCamTexture(devices[0].name, 80, 60, this.fps);
         webcamTexture.Play();
         StartCoroutine(Init());
     }
@@ -69,15 +71,29 @@ public class WebCamController : MonobitEngine.MonoBehaviour
                         int width = webcamTexture.width;
                         int height = webcamTexture.height;
                         Color32 rc = new Color32(0, 0, 0, byte.MaxValue);
-                        for (int x = 0; x < width; x+=8)
+                        monobitView.RPC("VideoSwitch", MonobitTargets.All, u);
+                        if (u % 2 == 1)
                         {
-                            for (int y = 0; y < height; y+=8)
+                            for (int x = 0; x < width; x+=8)
                             {
-                                Color32 c = colors[x + y * width];
-                                monobitView.RPC("Video", MonobitTargets.All, x, y, c.r, c.g, c.b, c.a);
-                                //byte gray = (byte)(0.1f * c.r + 0.7f * c.g + 0.2f * c.b);
-                                //rc.r = rc.g = rc.b = gray;
-                                //colors[x + y * width] = rc;
+                            
+                                for (int y = 0; y < height; y+=8)
+                                {
+                                    Color32 c = colors[x + y * width];
+                                    monobitView.RPC("Video", MonobitTargets.All, x, y, c.r, c.g, c.b, c.a);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            for (int x = 0; x < width; x+=8)
+                            {
+                            
+                                for (int y = 0; y < height; y+=8)
+                                {
+                                    Color32 c = colors[x + y * width];
+                                    monobitView.RPC("Video2", MonobitTargets.All, x, y, c.r, c.g, c.b, c.a);
+                                }
                             }
                         }
                     }
@@ -132,7 +148,7 @@ public class WebCamController : MonobitEngine.MonoBehaviour
         cnt += 1;
         Debug.Log("誰か来た");
         Debug.Log(cnt);
-        if (cnt == 1 || cnt == 2)
+        /*if (cnt == 1 || cnt == 2)
         {
             Panel2.SetActive(true);
             rawImage.transform.localPosition = new Vector3(-150, -10, 0);
@@ -143,22 +159,22 @@ public class WebCamController : MonobitEngine.MonoBehaviour
             rawImage2.transform.localScale = new Vector3(1, 1, 1);
             RectTransform rt2 = rawImage2.GetComponent<RectTransform>();
             rt2.sizeDelta = new Vector2(300, 300);
-        }
-        else if (cnt == 3)
+        }*/
+        if (cnt == 1 || cnt == 2)
         {
             Panel3.SetActive(true);
-            rawImage.transform.localPosition = new Vector3(-200, -10, 0);
+            rawImage.transform.localPosition = new Vector3(-2000, -10, 0);
             rawImage.transform.localScale = new Vector3(1, 1, 1);
             RectTransform rt3 = rawImage.GetComponent<RectTransform>();
-            rt3.sizeDelta = new Vector2(200, 200);
-            rawImage2.transform.localPosition = new Vector3(10, -10, 0);
+            rt3.sizeDelta = new Vector2(300, 300);
+            rawImage2.transform.localPosition = new Vector3(-150, -10, 0);
             rawImage.transform.localScale = new Vector3(1, 1, 1);
             RectTransform rt4 = rawImage2.GetComponent<RectTransform>();
-            rt4.sizeDelta = new Vector2(200, 200);
-            rawImage3.transform.localPosition = new Vector3(220, -10, 0);
+            rt4.sizeDelta = new Vector2(300, 300);
+            rawImage3.transform.localPosition = new Vector3(160, -10, 0);
             rawImage.transform.localScale = new Vector3(1, 1, 1);
             RectTransform rt5 = rawImage3.GetComponent<RectTransform>();
-            rt5.sizeDelta = new Vector2(200, 200);
+            rt5.sizeDelta = new Vector2(300, 300);
         }
     }
     /// <summary>
@@ -198,13 +214,15 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     {
         Color32 ccc = new Color32(r, g, b, 255);
         colorss[x/8 + y/8 * width] = ccc;
-        if (x >= width - 10 && y >= height - 10)
+        if (x/8 >= width - 10 && y/8 >= height - 10)
         {
             if (cnt == 1) // 同期のズレを解消
             {
                 cnt += 1;
             }
             Debug.Log("画像送る");
+            Debug.Log(width);
+            Debug.Log(height);
             texture2.SetPixels32(colorss);
             texture2.Apply();
         }
@@ -216,20 +234,28 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     public void Video2(int x, int y, Byte r, Byte g, Byte b, Byte a)
     {
         Color32 ccc = new Color32(r, g, b, 255);
-        colorss[x + y * width] = ccc;
-        if (x == width - 1 && y == height - 1)
+        colorsss[x/8 + y/8 * width] = ccc;
+        if (x/8 >= width - 10 && y/8 >= height - 10)
         {
-            texture3.SetPixels32(colorss);
+            texture3.SetPixels32(colorsss);
             texture3.Apply();
+            Debug.Log("画像送る2");
         }
     }
     /// <summary>
 	/// 初期化
 	/// </summary>
 	[MunRPC]
-    public void VideoSwitch()
+    public void VideoSwitch(int s)
     {
-        u += 1;
+        if (s%2 ==0)
+        {
+            u = 1;
+        }
+        else
+        {
+            u = 0;
+        }
     }
     /// <summary>
 	/// 初期化

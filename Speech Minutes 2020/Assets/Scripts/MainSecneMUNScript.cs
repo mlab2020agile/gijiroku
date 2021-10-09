@@ -181,6 +181,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         Mc = go.GetComponent<MonobitMicrophone>();
         AC = Mc.GetAudioClip();
         Debug.Log(MonobitNetwork.playerName);
+        Debug.Log("My ID : " +MonobitEngine.MonobitNetwork.player.ID);
         if (myVoice != null)
         {
             myVoice.SetMicrophoneErrorHandler(OnMicrophoneError);

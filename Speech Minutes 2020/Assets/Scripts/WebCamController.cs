@@ -91,14 +91,12 @@ public class WebCamController : MonobitEngine.MonoBehaviour
         Debug.Log("誰か来た");
         if (ID == 1)
         {
-            Panel1.SetActive(true);
             rawImage1.transform.localPosition = new Vector3(-250, -180, 0);
             RectTransform rt4 = rawImage1.GetComponent<RectTransform>();
             rt4.sizeDelta = new Vector2(110, 110);
         }
         if (ID == 2)
         {
-            Panel2.SetActive(true);
             rawImage2.transform.localPosition = new Vector3(100, -180, 0);
             RectTransform rt5 = rawImage2.GetComponent<RectTransform>();
             rt5.sizeDelta = new Vector2(110, 110);
@@ -112,11 +110,12 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     {
         if (ID == 1)
         {
-            Panel1.SetActive(false);
+            rawImage1.transform.localPosition = new Vector3(1000, 1000, 0);
         }
         else if (ID == 2)
         {
-            Panel2.SetActive(false);
+            rawImage2.transform.localPosition = new Vector3(1000, 1000, 0);
+            //Panel2.SetActive(false);
         }
     }
     /// <summary>
@@ -127,7 +126,7 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     {
         Color32 ccc = new Color32(r, g, b, 255);
         colorss[x/8 + y/8 * width] = ccc;
-        if (x/8 >= width - 10 && y/8 >= height - 10)
+        if (x/8 >= width - 1 && y/8 >= height - 1)
         {
             Debug.Log("画像送る");
             Debug.Log(width);
@@ -155,15 +154,13 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     }
     public void OnClick()
     {
-        if (!CameraPanel.activeSelf)
+        if (!cameraswitch)
         {
-            CameraPanel.SetActive(true);
             monobitView.RPC("Come", MonobitTargets.All,MonobitEngine.MonobitNetwork.player.ID);
             cameraswitch = true;
         }
         else
         {
-            CameraPanel.SetActive(false);
             monobitView.RPC("Goout", MonobitTargets.All,MonobitEngine.MonobitNetwork.player.ID);
             cameraswitch = false;
         }

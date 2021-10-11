@@ -14,15 +14,21 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     int s = 1;
     Texture2D texture1;
     Texture2D texture2;
+    Texture2D texture3;
+    Texture2D texture4;
     WebCamTexture webcamTexture;
     Color32[] colors = null;
     Color32[] colorss = null;
     public RawImage rawImage1;
     public RawImage rawImage2;
+    public RawImage rawImage3;
+    public RawImage rawImage4;
     public bool cameraswitch = false;
     public Text PlayerText;
     public GameObject Panel1;
     public GameObject Panel2;
+    public GameObject Panel3;
+    public GameObject Panel4;
     public GameObject CameraPanel;
     int cnt = 0;
     IEnumerator Init()
@@ -37,6 +43,10 @@ public class WebCamController : MonobitEngine.MonoBehaviour
                 rawImage1.GetComponent<RawImage>().texture = texture1;
                 texture2 = new Texture2D(webcamTexture.width/8, webcamTexture.height/8, TextureFormat.RGBA32, false);
                 rawImage2.GetComponent<RawImage>().texture = texture2;
+                texture3 = new Texture2D(webcamTexture.width/8, webcamTexture.height/8, TextureFormat.RGBA32, false);
+                rawImage3.GetComponent<RawImage>().texture = texture3;
+                texture4 = new Texture2D(webcamTexture.width/8, webcamTexture.height/8, TextureFormat.RGBA32, false);
+                rawImage4.GetComponent<RawImage>().texture = texture4;
                 break;
             }
             yield return null;
@@ -74,7 +84,7 @@ public class WebCamController : MonobitEngine.MonoBehaviour
                             }
                         }
                     }
-                    monobitView.RPC("Name", MonobitTargets.Others, MonobitEngine.MonobitNetwork.player.name);
+                    //monobitView.RPC("Name", MonobitTargets.Others, MonobitEngine.MonobitNetwork.player.name);
                     s += 1;
                 
                     
@@ -91,13 +101,21 @@ public class WebCamController : MonobitEngine.MonoBehaviour
         Debug.Log("誰か来た");
         if (ID == 1)
         {
-            rawImage1.transform.localPosition = new Vector3(-250, -185, 0);
+            rawImage1.transform.localPosition = new Vector3(-250, -160, 0);
             //RectTransform rt4 = rawImage1.GetComponent<RectTransform>();
             //rt4.sizeDelta = new Vector2(100, 100);
         }
         if (ID == 2)
         {
-            rawImage2.transform.localPosition = new Vector3(150, -185, 0);
+            rawImage2.transform.localPosition = new Vector3(-150, -160, 0);
+        }
+        if (ID == 3)
+        {
+            rawImage3.transform.localPosition = new Vector3(-250, -290, 0);
+        }
+        if (ID == 4)
+        {
+            rawImage4.transform.localPosition = new Vector3(-250, -290, 0);
         }
     }
     /// <summary>
@@ -110,9 +128,18 @@ public class WebCamController : MonobitEngine.MonoBehaviour
         {
             rawImage1.transform.localPosition = new Vector3(1000, 1000, 0);
         }
-        else if (ID == 2)
+        if (ID == 2)
         {
             rawImage2.transform.localPosition = new Vector3(1000, 1000, 0);
+            //Panel2.SetActive(false);
+        }
+        if (ID == 3)
+        {
+            rawImage3.transform.localPosition = new Vector3(1000, 1000, 0);
+        }
+        if (ID == 4)
+        {
+            rawImage4.transform.localPosition = new Vector3(1000, 1000, 0);
             //Panel2.SetActive(false);
         }
     }
@@ -131,16 +158,27 @@ public class WebCamController : MonobitEngine.MonoBehaviour
             Debug.Log(height);
             if (id == 1)
             {
-                Debug.Log("ID1に画像表示");
                 texture1.SetPixels32(colorss);
                 texture1.Apply();
-                rawImage1.transform.localPosition = new Vector3(-250, -185, 0);
+                rawImage1.transform.localPosition = new Vector3(-250, -160, 0);
             }
-            else if (id == 2)
+            if (id == 2)
             {
                 texture2.SetPixels32(colorss);
                 texture2.Apply();
-                rawImage2.transform.localPosition = new Vector3(150, -185, 0);
+                rawImage2.transform.localPosition = new Vector3(-150, -160, 0);
+            }
+            if (id == 3)
+            {
+                texture3.SetPixels32(colorss);
+                texture3.Apply();
+                rawImage3.transform.localPosition = new Vector3(-250, -290, 0);
+            }
+            if (id == 4)
+            {
+                texture4.SetPixels32(colorss);
+                texture4.Apply();
+                rawImage4.transform.localPosition = new Vector3(-150, -290, 0);
             }
         }
     }

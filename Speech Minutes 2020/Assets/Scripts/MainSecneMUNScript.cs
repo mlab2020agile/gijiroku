@@ -111,7 +111,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
                         for (num = 0; num < MonobitNetwork.room.playerCount; num++)
                         {
                             //GameObject prefab = (GameObject)Instantiate(usericon[num], new Vector3(-x / 2 + x * num / 15, -y / 6, 0), Quaternion.identity);
-                            GameObject prefab = (GameObject)Instantiate(usericon[num], new Vector3(-550+num*100, -150-(num)*120, 0), Quaternion.identity) ;
+                            GameObject prefab = (GameObject)Instantiate(usericon[num], new Vector3(-550+num*100, -160-(num/2)*130, 0), Quaternion.identity) ;
                             prefab.transform.SetParent(canvas.transform, false);
                             prefab.transform.Find("Text").GetComponent<Text>().text = MonobitNetwork.playerList[num].name;
                             prefab.transform.Find("Initial").GetComponent<Text>().text = MonobitNetwork.playerList[num].name.Substring(0, 1);

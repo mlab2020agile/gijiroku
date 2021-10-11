@@ -91,15 +91,13 @@ public class WebCamController : MonobitEngine.MonoBehaviour
         Debug.Log("誰か来た");
         if (ID == 1)
         {
-            rawImage1.transform.localPosition = new Vector3(-250, -180, 0);
-            RectTransform rt4 = rawImage1.GetComponent<RectTransform>();
-            rt4.sizeDelta = new Vector2(110, 110);
+            rawImage1.transform.localPosition = new Vector3(-250, -185, 0);
+            //RectTransform rt4 = rawImage1.GetComponent<RectTransform>();
+            //rt4.sizeDelta = new Vector2(100, 100);
         }
         if (ID == 2)
         {
-            rawImage2.transform.localPosition = new Vector3(100, -180, 0);
-            RectTransform rt5 = rawImage2.GetComponent<RectTransform>();
-            rt5.sizeDelta = new Vector2(110, 110);
+            rawImage2.transform.localPosition = new Vector3(150, -185, 0);
         }
     }
     /// <summary>

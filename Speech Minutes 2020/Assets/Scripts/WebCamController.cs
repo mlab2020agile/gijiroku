@@ -134,11 +134,13 @@ public class WebCamController : MonobitEngine.MonoBehaviour
                 Debug.Log("ID1に画像表示");
                 texture1.SetPixels32(colorss);
                 texture1.Apply();
+                rawImage1.transform.localPosition = new Vector3(-250, -185, 0);
             }
             else if (id == 2)
             {
                 texture2.SetPixels32(colorss);
                 texture2.Apply();
+                rawImage2.transform.localPosition = new Vector3(150, -185, 0);
             }
         }
     }

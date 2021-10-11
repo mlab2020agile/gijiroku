@@ -4878,7 +4878,6 @@ GameObject:
   - component: {fileID: 618815602}
   - component: {fileID: 618815603}
   - component: {fileID: 618815601}
-  - component: {fileID: 618815600}
   - component: {fileID: 618815599}
   - component: {fileID: 618815598}
   - component: {fileID: 618815597}
@@ -4997,29 +4996,6 @@ MonoBehaviour:
   prefixBackup: -1
   ownershipTransfer: 0
   compressedStream: 0
---- !u!114 &618815600
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 618815594}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60bd76f6cea5f4f8a96dfcd36d975cfd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rawImage1: {fileID: 618815603}
-  rawImage2: {fileID: 370035049}
-  rawImage3: {fileID: 0}
-  rawImage4: {fileID: 0}
-  cameraswitch: 0
-  PlayerText: {fileID: 737248525}
-  Panel1: {fileID: 1027606644}
-  Panel2: {fileID: 1146889419}
-  Panel3: {fileID: 0}
-  Panel4: {fileID: 0}
-  CameraPanel: {fileID: 1853055528}
 --- !u!23 &618815601
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11401,7 +11377,6 @@ GameObject:
   - component: {fileID: 1438757406}
   - component: {fileID: 1438757407}
   - component: {fileID: 1438757405}
-  - component: {fileID: 1438757404}
   - component: {fileID: 1438757403}
   - component: {fileID: 1438757402}
   - component: {fileID: 1438757401}
@@ -11520,29 +11495,6 @@ MonoBehaviour:
   prefixBackup: -1
   ownershipTransfer: 0
   compressedStream: 0
---- !u!114 &1438757404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1438757398}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60bd76f6cea5f4f8a96dfcd36d975cfd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rawImage1: {fileID: 1438757407}
-  rawImage2: {fileID: 370035049}
-  rawImage3: {fileID: 0}
-  rawImage4: {fileID: 0}
-  cameraswitch: 0
-  PlayerText: {fileID: 737248525}
-  Panel1: {fileID: 1245329272}
-  Panel2: {fileID: 1146889419}
-  Panel3: {fileID: 0}
-  Panel4: {fileID: 0}
-  CameraPanel: {fileID: 1853055528}
 --- !u!23 &1438757405
 MeshRenderer:
   m_ObjectHideFlags: 0

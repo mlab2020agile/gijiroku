@@ -67,9 +67,9 @@ public class WebCamController : MonobitEngine.MonoBehaviour
         {
             if (colors != null)
             {
-                    if (s % 100 == 0)
+                    if (s % 50 == 0)
                     {
-                        Debug.Log("sが200の倍数到達");
+                        Debug.Log("sが50の倍数到達");
                         var cc = webcamTexture.GetPixels32(colors);
                         int width = webcamTexture.width;
                         int height = webcamTexture.height;

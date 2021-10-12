@@ -18,7 +18,10 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     Texture2D texture4;
     WebCamTexture webcamTexture;
     Color32[] colors = null;
-    Color32[] colorss = null;
+    Color32[] color1 = null;
+    Color32[] color2 = null;
+    Color32[] color3 = null;
+    Color32[] color4 = null;
     public RawImage rawImage1;
     public RawImage rawImage2;
     public RawImage rawImage3;
@@ -38,7 +41,10 @@ public class WebCamController : MonobitEngine.MonoBehaviour
             if (webcamTexture.width/2 > 16 && webcamTexture.height/2 > 16)
             {
                 colors = new Color32[webcamTexture.width * webcamTexture.height];
-                colorss = new Color32[webcamTexture.width/8 * webcamTexture.height/8];
+                color1 = new Color32[webcamTexture.width/8 * webcamTexture.height/8];
+                color2 = new Color32[webcamTexture.width/8 * webcamTexture.height/8];
+                color3 = new Color32[webcamTexture.width/8 * webcamTexture.height/8];
+                color4 = new Color32[webcamTexture.width/8 * webcamTexture.height/8];
                 texture1 = new Texture2D(webcamTexture.width/8, webcamTexture.height/8, TextureFormat.RGBA32, false);
                 rawImage1.GetComponent<RawImage>().texture = texture1;
                 texture2 = new Texture2D(webcamTexture.width/8, webcamTexture.height/8, TextureFormat.RGBA32, false);
@@ -150,33 +156,54 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     public void Video(int x, int y, Byte r, Byte g, Byte b, Byte a, int id)
     {
         Color32 ccc = new Color32(r, g, b, 255);
-        colorss[x/8 + y/8 * width] = ccc;
-        if (x/8 >= width - 1 && y/8 >= height - 1)
+        if (id == 1)
         {
-            Debug.Log("画像送る");
-            Debug.Log(width);
-            Debug.Log(height);
-            if (id == 1)
+            color1[x/8 + y/8 * width] = ccc;
+            if (x/8 >= width - 1 && y/8 >= height - 1)
             {
-                texture1.SetPixels32(colorss);
+                Debug.Log("画像送る");
+                Debug.Log(width);
+                Debug.Log(height);
+                texture1.SetPixels32(color1);
                 texture1.Apply();
                 rawImage1.transform.localPosition = new Vector3(-250, -160, 0);
             }
-            if (id == 2)
+        }
+        if (id == 2)
+        {
+            color2[x/8 + y/8 * width] = ccc;
+            if (x/8 >= width - 1 && y/8 >= height - 1)
             {
-                texture2.SetPixels32(colorss);
+                Debug.Log("画像送る");
+                Debug.Log(width);
+                Debug.Log(height);
+                texture2.SetPixels32(color2);
                 texture2.Apply();
                 rawImage2.transform.localPosition = new Vector3(-150, -160, 0);
             }
-            if (id == 3)
+        }
+        if (id == 3)
+        {
+            color2[x/8 + y/8 * width] = ccc;
+            if (x/8 >= width - 1 && y/8 >= height - 1)
             {
-                texture3.SetPixels32(colorss);
+                Debug.Log("画像送る");
+                Debug.Log(width);
+                Debug.Log(height);
+                texture3.SetPixels32(color3);
                 texture3.Apply();
                 rawImage3.transform.localPosition = new Vector3(-250, -290, 0);
             }
-            if (id == 4)
+        }
+        if (id == 4)
+        {
+            color2[x/8 + y/8 * width] = ccc;
+            if (x/8 >= width - 1 && y/8 >= height - 1)
             {
-                texture4.SetPixels32(colorss);
+                Debug.Log("画像送る");
+                Debug.Log(width);
+                Debug.Log(height);
+                texture4.SetPixels32(color4);
                 texture4.Apply();
                 rawImage4.transform.localPosition = new Vector3(-150, -290, 0);
             }

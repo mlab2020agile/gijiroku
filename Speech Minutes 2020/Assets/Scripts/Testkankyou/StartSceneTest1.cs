@@ -10,12 +10,14 @@ using System.IO;
 public class StartSceneTest1 : MonobitEngine.MonoBehaviour
 {
     /** ルーム名. */
-    private string roomName = "bb";
-    private string roomPasword = "ccaaaaa";
-    private string name = "aa";
+    private string roomName = "";
+    private string roomPasword = "";
+    private string name = "";
+    private string expect = "";
 
     private string roomUnrock = "";
     private int r = 0;
+    private int i = 0;
     private bool rswitch = false;
     private bool r2switch = false;
     
@@ -29,24 +31,141 @@ public class StartSceneTest1 : MonobitEngine.MonoBehaviour
         yield return new WaitForSeconds(3);
         r2switch = true;
     }
-
-    public void OnGUI()
+        public IEnumerator Waittime522()
     {
-        for (int i = 0; i <30; i++)
-        {
-            //SceneManager.LoadScene("StartScene");
+        yield return new WaitForSeconds(3);
+    }
+
+    public void tete()
+    {
+            i += 1;
             if(i == 1)
             {
-                roomName = "";
-                roomPasword = "";
-                name = "";
+                roomName = "abcde";
+                roomPasword = "abcde";
+                name = "aa";
+                expect = "ルームを作成しました";
             }
-            if(i == 2)
+            else if(i == 2)
+            {
+                roomName = "a";
+                roomPasword = "a";
+                name = "aa";
+                expect = "ルームを作成しました";
+            }
+            else if(i == 3)
+            {
+                roomName = "";
+                roomPasword = "a";
+                name = "aa";
+                expect = "部屋名・パスワードどちらも1~5文字の範囲で入力してください\r\n";
+            }
+            else if(i == 4)
+            {
+                roomName = "a";
+                roomPasword = "";
+                name = "aa";
+                expect = "部屋名・パスワードどちらも1~5文字の範囲で入力してください\r\n";
+            }
+            else if(i == 5)
+            {
+                roomName = "aaaaa";
+                roomPasword = "bbbbb";
+                name = "aa";
+                expect = "ルームを作成しました";
+            }
+            else if(i == 6)
+            {
+                roomName = "abcd";
+                roomPasword = "";
+                name = "aa";
+                expect = "部屋名・パスワードどちらも1~5文字の範囲で入力してください\r\n";
+            }
+            else if(i == 7)
+            {
+                roomName = "abcdef";
+                roomPasword = "";
+                name = "aa";
+                expect = "部屋名・パスワードどちらも1~5文字の範囲で入力してください\r\n";
+            }
+    }
+    public void OnGUI()
+    {
+            StartCoroutine(Waittime522());
+            Debug.Log(i);
+            //SceneManager.LoadScene("StartScene");
+            /*else if(i == 8)
             {
                 roomName = "";
                 roomPasword = "";
-                name = "";
+                name = "aa";
+                expect = "";
             }
+            else if(i == 2)
+            {
+                roomName = "";
+                roomPasword = "";
+                name = "aa";
+                expect = "";
+            }
+            else if(i == 2)
+            {
+                roomName = "";
+                roomPasword = "";
+                name = "aa";
+            }
+            else if(i == 2)
+            {
+                roomName = "";
+                roomPasword = "";
+                name = "aa";
+                expect = "";
+            }
+            else if(i == 2)
+            {
+                roomName = "";
+                roomPasword = "";
+                name = "aa";
+                expect = "";
+            }
+            else if(i == 2)
+            {
+                roomName = "";
+                roomPasword = "";
+                name = "aa";
+                expect = "";
+            }
+            else if(i == 2)
+            {
+                roomName = "";
+                roomPasword = "";
+                name = "aa";
+                expect = "";
+            }
+            else if(i == 2)
+            {
+                roomName = "";
+                roomPasword = "";
+                name = "aa";
+                expect = "";
+            }
+            else if(i == 2)
+            {
+                roomName = "";
+                roomPasword = "";
+                name = "aa";
+                expect = "";
+            }
+            else if(i == 2)
+            {
+                roomName = "";
+                roomPasword = "";
+                name = "aa";
+                expect = "";
+            }*/
+            
+            
+            
             //MUNサーバに接続している場合
             if (MonobitNetwork.isConnect)
             {
@@ -129,7 +248,7 @@ public class StartSceneTest1 : MonobitEngine.MonoBehaviour
                             sw.WriteLine(s);// ファイルに書き出したあと改行
                             sw.Flush();// StreamWriterのバッファに書き出し残しがないか確認
                             sw.Close();// ファイルを閉じる
-                            continue;
+                            //continue;
                             /********
                             ここでメインのシーンに遷移する
                             *********/
@@ -143,7 +262,7 @@ public class StartSceneTest1 : MonobitEngine.MonoBehaviour
                             sw.WriteLine(s);// ファイルに書き出したあと改行
                             sw.Flush();// StreamWriterのバッファに書き出し残しがないか確認
                             sw.Close();// ファイルを閉じる
-                            continue;
+                            //continue;
                             //EditorUtility.DisplayDialog("警告", s, "Close");
                         }
                     }
@@ -200,7 +319,7 @@ public class StartSceneTest1 : MonobitEngine.MonoBehaviour
                 }
         
 
-            }
+            
         //していない場合
             else
             {

@@ -6568,6 +6568,7 @@ GameObject:
   - component: {fileID: 811225945}
   - component: {fileID: 811225944}
   - component: {fileID: 811225943}
+  - component: {fileID: 811225946}
   m_Layer: 5
   m_Name: TextCloseButton
   m_TagString: Untagged
@@ -6635,7 +6636,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 811225946}
         m_MethodName: TextCloseButtonOnclick
         m_Mode: 1
         m_Arguments:
@@ -6681,6 +6682,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 811225941}
   m_CullTransparentMesh: 0
+--- !u!114 &811225946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811225941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10188e0af83e04929b40aed9b898c832, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chatComent: {fileID: 0}
+  Selectflag: 0
+  teO: {fileID: 0}
+  PenButton: {fileID: 0}
+  FinishButton: {fileID: 0}
+  EnlargeButton: {fileID: 0}
+  ShrinkButton: {fileID: 0}
+  m_rectTransform: {fileID: 811225942}
 --- !u!1 &836583533
 GameObject:
   m_ObjectHideFlags: 0
@@ -7432,7 +7453,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &906698403
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8228,7 +8249,11 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
+<<<<<<< HEAD
   m_AnchoredPosition: {x: -0.00004439438, y: 0.000038915558}
+=======
+  m_AnchoredPosition: {x: -0.00004439438, y: -0.000010958522}
+>>>>>>> 679b9ec6324841b093f66335cec29fc5b6d61bbc
   m_SizeDelta: {x: -3.9925537, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1073307121
@@ -14780,7 +14805,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1349270538}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9999998
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

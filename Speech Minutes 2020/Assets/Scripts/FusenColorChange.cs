@@ -86,24 +86,26 @@ public class FusenColorChange : MonobitEngine.MonoBehaviour
         {
             case 0:
                 FusenPanel.GetComponentInChildren<Image>().color = Color.magenta;
-                
+                dropdown.value = colorValue;
                 break;
             case 1:
                 FusenPanel.GetComponentInChildren<Image>().color = Color.yellow;
-              
-                    break;
+                dropdown.value = colorValue;
+                break;
 
             case 2:
                 FusenPanel.GetComponentInChildren<Image>().color = Color.green;
-              
+                dropdown.value = colorValue;
                 break;
 
             case 3:
                 FusenPanel.GetComponentInChildren<Image>().color = Color.red;
+                dropdown.value = colorValue;
                 break;
 
             case 4:
                 FusenPanel.GetComponentInChildren<Image>().color = Color.blue;
+                dropdown.value = colorValue;
                 break;
 
             default:

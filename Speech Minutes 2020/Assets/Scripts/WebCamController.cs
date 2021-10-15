@@ -33,6 +33,7 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     public GameObject Panel3;
     public GameObject Panel4;
     public GameObject CameraPanel;
+    MainSecneMUNScript script;
     int cnt = 0;
     IEnumerator Init()
     {
@@ -65,10 +66,12 @@ public class WebCamController : MonobitEngine.MonoBehaviour
         webcamTexture = new WebCamTexture(devices[0].name, 80, 60, this.fps);
         webcamTexture.Play();
         StartCoroutine(Init());
+        script = GameObject.Find("MUN").GetComponent<MainSecneMUNScript>();
     }
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(script.usercnt);
         if (cameraswitch)
         {
             if (colors != null)
@@ -86,7 +89,7 @@ public class WebCamController : MonobitEngine.MonoBehaviour
                             for (int y = 0; y < height; y+=8)
                             {
                                 Color32 c = colors[x + y * width];
-                                monobitView.RPC("Video", MonobitTargets.All, x, y, c.r, c.g, c.b, c.a, MonobitEngine.MonobitNetwork.player.ID);
+                                monobitView.RPC("Video", MonobitTargets.All, x, y, c.r, c.g, c.b, c.a, MonobitEngine.MonobitNetwork.player.ID-script.usercnt);
                             }
                         }
                     }
@@ -217,12 +220,12 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     {
         if (!cameraswitch)
         {
-            monobitView.RPC("Come", MonobitTargets.All,MonobitEngine.MonobitNetwork.player.ID);
+            monobitView.RPC("Come", MonobitTargets.All,MonobitEngine.MonobitNetwork.player.ID-script.usercnt);
             cameraswitch = true;
         }
         else
         {
-            monobitView.RPC("Goout", MonobitTargets.All,MonobitEngine.MonobitNetwork.player.ID);
+            monobitView.RPC("Goout", MonobitTargets.All,MonobitEngine.MonobitNetwork.player.ID-script.usercnt);
             cameraswitch = false;
         }
     }

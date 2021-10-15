@@ -22,6 +22,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     GameObject canvas;
     [SerializeField]
     public Dropdown usernamedropdown;
+    public int usercnt = 0;
     [SerializeField]
     int playerCount = 0;
     int num;
@@ -209,6 +210,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         {
             vcPlayerInfo.Add(newPlayer, (Int32)EnableVC.ENABLE);
         }
+        monobitView.RPC("Cnt", MonobitTargets.All,usercnt);
     }
     // 誰かがルームからログアウトしたときの処理
     public virtual void OnOtherPlayerDisconnected(MonobitPlayer otherPlayer)
@@ -216,6 +218,18 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         if (vcPlayerInfo.ContainsKey(otherPlayer))
         {
             vcPlayerInfo.Remove(otherPlayer);
+            usercnt += 1;
+        }
+    }
+    /// <summary>
+	/// 初期化
+	/// </summary>
+	[MunRPC]
+    public void Cnt(int cnt)
+    {
+        if (cnt > usercnt)
+        {
+            usercnt = cnt;
         }
     }
      public void ListButtonOnclick()

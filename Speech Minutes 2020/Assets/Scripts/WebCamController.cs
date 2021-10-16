@@ -120,7 +120,7 @@ public class WebCamController : MonobitEngine.MonoBehaviour
         }
         if (ID == 4)
         {
-            rawImage4.transform.localPosition = new Vector3(-250, -290, 0);
+            rawImage4.transform.localPosition = new Vector3(-150, -290, 0);
         }
     }
     /// <summary>

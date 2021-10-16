@@ -3260,7 +3260,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 335903907}
+      - m_Target: {fileID: 1782908608}
         m_MethodName: LeaveRoom
         m_Mode: 1
         m_Arguments:
@@ -8228,7 +8228,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00004439438, y: 0.000024574447}
+  m_AnchoredPosition: {x: -0.00004439438, y: 0.00006537708}
   m_SizeDelta: {x: -3.9925537, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1073307121
@@ -14860,6 +14860,7 @@ MonoBehaviour:
     type: 3}
   canvas: {fileID: 1220727752}
   usernamedropdown: {fileID: 1528637425}
+  usercnt: 0
   playerCount: 0
   usericon:
   - {fileID: 8497763124041145564, guid: 4a67804ffc091470fb043138a8278673, type: 3}
@@ -14872,6 +14873,8 @@ MonoBehaviour:
   - {fileID: 4057294567984113096, guid: 0f7ee1eccb9634bb2a9b5cb1a2ca7624, type: 3}
   Mute: 0
   AC: {fileID: 0}
+  leavecount: 0
+  personalcount: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
   PlayerListButton: {fileID: 2112341121}
   PlayerScrollState: 0
   PlayerScroll: {fileID: 2031516366}

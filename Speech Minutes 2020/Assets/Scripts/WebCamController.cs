@@ -71,7 +71,6 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(script.usercnt);
         if (cameraswitch)
         {
             if (colors != null)

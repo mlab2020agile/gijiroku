@@ -165,11 +165,12 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     }
     public void LeaveRoom()
     {
+        Debug.Log("部屋を出る");
         monobitView.RPC("Leave", MonobitTargets.Others,MonobitEngine.MonobitNetwork.player.ID);
         MonobitNetwork.LeaveRoom();
         //Debug.Log("ルームから退出しました");
         //ここでスタートのシーンに遷移する
-        SceneManager.LoadScene("koba_StartScene");
+        SceneManager.LoadScene("StartScene");
     }
     // 自身がルーム入室に成功したときの処理
        /// <summary>
@@ -178,6 +179,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
 	[MunRPC]
     public void Leave(int ID)
     {
+        Debug.Log("leave関数をよぶ");
         if ( MonobitEngine.MonobitNetwork.player.ID > ID)
         {
             personalcount[MonobitEngine.MonobitNetwork.player.ID]+=1;

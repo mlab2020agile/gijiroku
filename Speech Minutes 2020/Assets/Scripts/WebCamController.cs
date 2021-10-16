@@ -85,25 +85,22 @@ public class WebCamController : MonobitEngine.MonoBehaviour
                         Color32 rc = new Color32(0, 0, 0, byte.MaxValue);
                         for (int x = 0; x < width; x+=8)
                         {
-                            
                             for (int y = 0; y < height; y+=8)
                             {
                                 Color32 c = colors[x + y * width];
-                                monobitView.RPC("Video", MonobitTargets.All, x, y, c.r, c.g, c.b, c.a, MonobitEngine.MonobitNetwork.player.ID-script.usercnt);
+                                monobitView.RPC("Video", MonobitTargets.All, x, y, c.r, c.g, c.b, c.a, MonobitEngine.MonobitNetwork.player.ID-script.personalcount[MonobitEngine.MonobitNetwork.player.ID]);
                             }
                         }
                     }
-                    //monobitView.RPC("Name", MonobitTargets.Others, MonobitEngine.MonobitNetwork.player.name);
+                    //monobitView.RPC(“Name”, MonobitTargets.Others, MonobitEngine.MonobitNetwork.player.name);
                     s += 1;
-                
-                    
             }
         }
     }
     /// <summary>
-	/// 初期化
-	/// </summary>
-	[MunRPC]
+    /// 初期化
+    /// </summary>
+    [MunRPC]
     // 他の誰かがカメラボタンを押した時の処理
     public void Come(int ID)
     {
@@ -153,9 +150,9 @@ public class WebCamController : MonobitEngine.MonoBehaviour
         }
     }
     /// <summary>
-	/// 初期化
-	/// </summary>
-	[MunRPC]
+    /// 初期化
+    /// </summary>
+    [MunRPC]
     public void Video(int x, int y, Byte r, Byte g, Byte b, Byte a, int id)
     {
         Color32 ccc = new Color32(r, g, b, 255);
@@ -213,19 +210,18 @@ public class WebCamController : MonobitEngine.MonoBehaviour
         }
     }
     /// <summary>
-	/// 初期化
-	/// </summary>
-
+    /// 初期化
+    /// </summary>
     public void OnClick()
     {
         if (!cameraswitch)
         {
-            monobitView.RPC("Come", MonobitTargets.All,MonobitEngine.MonobitNetwork.player.ID-script.usercnt);
+            monobitView.RPC("Come", MonobitTargets.All,MonobitEngine.MonobitNetwork.player.ID-script.personalcount[MonobitEngine.MonobitNetwork.player.ID]);
             cameraswitch = true;
         }
         else
         {
-            monobitView.RPC("Goout", MonobitTargets.All,MonobitEngine.MonobitNetwork.player.ID-script.usercnt);
+            monobitView.RPC("Goout", MonobitTargets.All,MonobitEngine.MonobitNetwork.player.ID-script.personalcount[MonobitEngine.MonobitNetwork.player.ID]);
             cameraswitch = false;
         }
     }

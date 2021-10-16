@@ -39,6 +39,8 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     private bool first = true;
     private MonobitMicrophone Mc = null;
     public AudioClip AC;
+    public int leavecount = 0;
+    public int[] personalcount = new int[10] {0,0,0,0,0,0,0,0,0,0};
     public GameObject PlayerListButton;
     public bool PlayerScrollState=false;
     public GameObject PlayerScroll;
@@ -163,12 +165,24 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     }
     public void LeaveRoom()
     {
+        monobitView.RPC("Leave", MonobitTargets.Others,MonobitEngine.MonobitNetwork.player.ID);
         MonobitNetwork.LeaveRoom();
         //Debug.Log("ルームから退出しました");
         //ここでスタートのシーンに遷移する
         SceneManager.LoadScene("koba_StartScene");
     }
     // 自身がルーム入室に成功したときの処理
+       /// <summary>
+	/// 初期化
+	/// </summary>
+	[MunRPC]
+    public void Leave(int ID)
+    {
+        if ( MonobitEngine.MonobitNetwork.player.ID > ID)
+        {
+            personalcount[MonobitEngine.MonobitNetwork.player.ID]+=1;
+        }
+    }
     public void OnJoinedRoom()
     {
         vcPlayerInfo.Clear();
@@ -181,6 +195,8 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         myVoice = go.GetComponent<MonobitVoice>();
         Mc = go.GetComponent<MonobitMicrophone>();
         AC = Mc.GetAudioClip();
+        Debug.Log("leavecount="+ leavecount);
+        personalcount[MonobitEngine.MonobitNetwork.player.ID] += leavecount;
         Debug.Log(MonobitNetwork.playerName);
         Debug.Log("My ID : " +MonobitEngine.MonobitNetwork.player.ID);
         if (myVoice != null)
@@ -218,8 +234,8 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         if (vcPlayerInfo.ContainsKey(otherPlayer))
         {
             vcPlayerInfo.Remove(otherPlayer);
-            usercnt += 1;
         }
+        leavecount += 1;
     }
     /// <summary>
 	/// 初期化
@@ -227,9 +243,9 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
 	[MunRPC]
     public void Cnt(int cnt)
     {
-        if (cnt > usercnt)
+        if (cnt > leavecount)
         {
-            usercnt = cnt;
+            leavecount = cnt;
         }
     }
      public void ListButtonOnclick()

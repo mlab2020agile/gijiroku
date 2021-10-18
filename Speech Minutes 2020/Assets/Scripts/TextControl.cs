@@ -18,15 +18,15 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
     public GameObject FinishButton;
     public GameObject EnlargeButton;
     public GameObject ShrinkButton;
-    GameObject EdittingTextPanel;
-    InputField EdittingTextField;
+    public GameObject EditInputFieldObject;
+    public InputField EditInputField;
     GameObject TextCloseButton;
+    private int touchCount = 0;
+    public int Enterkey;
+
 
     void Start()
     {
-        EdittingTextPanel = GameObject.Find("Canvas").transform.Find("EdittingTextPanel").gameObject;
-        TextCloseButton = GameObject.Find("Canvas").transform.Find("EdittingTextPanel").Find("TextCloseButton").gameObject;
-        EdittingTextField = GameObject.Find("Canvas").transform.Find("EdittingTextPanel").Find("EdittingTextField").GetComponent<InputField>();
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
         // Textコンポーネントを取得
@@ -34,8 +34,8 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
         Debug.Log(text.text);
         // 色を指定
         text.color = Color.black;
-        EdittingTextPanel.SetActive(false);
         string text_ = this.GetComponentInChildren<Text>().text;
+        EditInputFieldObject.SetActive(false);
         monobitView.RPC("RecvChattext", MonobitTargets.OthersBuffered, text_);
     }
     [MunRPC]
@@ -125,6 +125,13 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
                 }
 
             }
+            //クリックされたら
+            if (Input.GetMouseButtonDown(0))
+            {
+                touchCount++;
+                //0.3秒後にHogeメソッドを呼び出す
+                Invoke("DoubleclickJudg", 0.3f);
+            }
 
         }
         if (Selectflag == true && Input.GetKey(KeyCode.Backspace))
@@ -170,39 +177,35 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
         }
     }*/
     public void PenButtonOnclick()
-    {
-
-        //inputFieldのTextコンポーネントを取得
-        EdittingTextField = EdittingTextField.GetComponent<InputField>();
-        // Textコンポーネントを取得
+    { 
         Text text = this.GetComponentInChildren<Text>();
-        EdittingTextField.text = text.text;
+        EditInputField.text = text.text;
         Selectflag = false;
-        EdittingTextPanel.SetActive(true);
+        EditInputFieldObject.SetActive(true);
         //Debug.Log("Pressed PenButton");
     }
     public void FinishButtonOnclick()
     {
-        if (EdittingTextPanel.activeSelf == true)
+        if (EditInputFieldObject.activeSelf == true)
         {
             // Textコンポーネントを取得
             Text text = GetComponentInChildren<Text>();
-            text.text = EdittingTextField.text;
-            string text_ = text.text;
+            text.text = EditInputField.text;
+            string text_ = text.text.ToString() ;
             monobitView.RPC("RecvChattext", MonobitTargets.OthersBuffered, text_);
-            EdittingTextField.text = "";
+            EditInputField.text = "";
             Selectflag = false;
-            EdittingTextPanel.SetActive(false);
+            EditInputFieldObject.SetActive(false);
             Debug.Log("editing text");
         }
     }
-    public void TextCloseButtonOnclick()
+    /*public void TextCloseButtonOnclick()
     {
         EdittingTextField.text = "";
         Selectflag = false;
         EdittingTextPanel.SetActive(false);
         Debug.Log("textfield closed");
-    }
+    }*/
     public void EnlargeButtonOnclick()
     {
         Text textfont = this.GetComponentInChildren<Text>();
@@ -231,6 +234,16 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
     void OnDestroy()
     {
         MonobitNetwork.Destroy(monobitView);
+    }
+
+    void DoubleclickJudg()
+    {
+        //ダブルタッチされているか
+        if (touchCount != 2) { touchCount = 0; return; }
+        else { touchCount = 0; }
+
+        //以下実行したい処理
+        PenButtonOnclick();
     }
 
 }

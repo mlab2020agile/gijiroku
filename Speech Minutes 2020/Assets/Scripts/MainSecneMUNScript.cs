@@ -220,18 +220,6 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         {
             vcPlayerInfo.Remove(otherPlayer);
         }
-        leavecount += 1;
-    }
-    /// <summary>
-	/// 初期化
-	/// </summary>
-	[MunRPC]
-    public void Cnt(int cnt)
-    {
-        if (cnt > leavecount)
-        {
-            leavecount = cnt;
-        }
     }
      public void ListButtonOnclick()
     {

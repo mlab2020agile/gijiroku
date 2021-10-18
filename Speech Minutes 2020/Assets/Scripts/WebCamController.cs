@@ -33,7 +33,6 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     public GameObject Panel3;
     public GameObject Panel4;
     public GameObject CameraPanel;
-    MainSecneMUNScript script;
     int cnt = 0;
     IEnumerator Init()
     {
@@ -66,7 +65,6 @@ public class WebCamController : MonobitEngine.MonoBehaviour
         webcamTexture = new WebCamTexture(devices[0].name, 80, 60, this.fps);
         webcamTexture.Play();
         StartCoroutine(Init());
-        script = GameObject.Find("MUN").GetComponent<MainSecneMUNScript>();
     }
     // Update is called once per frame
     void Update()
@@ -87,7 +85,7 @@ public class WebCamController : MonobitEngine.MonoBehaviour
                             for (int y = 0; y < height; y+=8)
                             {
                                 Color32 c = colors[x + y * width];
-                                monobitView.RPC("Video", MonobitTargets.All, x, y, c.r, c.g, c.b, c.a, MonobitEngine.MonobitNetwork.player.ID-script.personalcount[MonobitEngine.MonobitNetwork.player.ID]);
+                                monobitView.RPC("Video", MonobitTargets.All, x, y, c.r, c.g, c.b, c.a, MonobitEngine.MonobitNetwork.player.ID);
                             }
                         }
                     }
@@ -104,21 +102,21 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     public void Come(int ID)
     {
         Debug.Log("誰か来た");
-        if (ID == 1)
+        if (ID == MonobitNetwork.playerList[0].ID)
         {
             rawImage1.transform.localPosition = new Vector3(-250, -160, 0);
             //RectTransform rt4 = rawImage1.GetComponent<RectTransform>();
             //rt4.sizeDelta = new Vector2(100, 100);
         }
-        if (ID == 2)
+        else if (ID == MonobitNetwork.playerList[1].ID)
         {
             rawImage2.transform.localPosition = new Vector3(-150, -160, 0);
         }
-        if (ID == 3)
+        else if (ID == MonobitNetwork.playerList[2].ID)
         {
             rawImage3.transform.localPosition = new Vector3(-250, -290, 0);
         }
-        if (ID == 4)
+        else if (ID == MonobitNetwork.playerList[3].ID)
         {
             rawImage4.transform.localPosition = new Vector3(-150, -290, 0);
         }
@@ -129,20 +127,20 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     [MunRPC]
     public void Goout(int ID)
     {
-        if (ID == 1)
+        if (ID == MonobitNetwork.playerList[0].ID)
         {
             rawImage1.transform.localPosition = new Vector3(1000, 1000, 0);
         }
-        if (ID == 2)
+        else if (ID == MonobitNetwork.playerList[1].ID)
         {
             rawImage2.transform.localPosition = new Vector3(1000, 1000, 0);
             //Panel2.SetActive(false);
         }
-        if (ID == 3)
+        else if (ID == MonobitNetwork.playerList[2].ID)
         {
             rawImage3.transform.localPosition = new Vector3(1000, 1000, 0);
         }
-        if (ID == 4)
+        else if (ID == MonobitNetwork.playerList[3].ID)
         {
             rawImage4.transform.localPosition = new Vector3(1000, 1000, 0);
             //Panel2.SetActive(false);
@@ -154,58 +152,65 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     [MunRPC]
     public void Video(int x, int y, Byte r, Byte g, Byte b, Byte a, int id)
     {
-        Color32 ccc = new Color32(r, g, b, 255);
-        if(id == 1)
+        try
         {
-            color1[x/8 + y/8 * width] = ccc;
-            if (x/8 >= width - 1 && y/8 >= height - 1)
+            Color32 ccc = new Color32(r, g, b, 255);
+            if(id == MonobitNetwork.playerList[0].ID)
             {
-                Debug.Log("画像送る");
-                Debug.Log(width);
-                Debug.Log(height);
-                texture1.SetPixels32(color1);
-                texture1.Apply();
-                rawImage1.transform.localPosition = new Vector3(-250, -160, 0);
+                color1[x/8 + y/8 * width] = ccc;
+                if (x/8 >= width - 1 && y/8 >= height - 1)
+                {
+                    Debug.Log("画像送る");
+                    Debug.Log(width);
+                    Debug.Log(height);
+                    texture1.SetPixels32(color1);
+                    texture1.Apply();
+                    rawImage1.transform.localPosition = new Vector3(-250, -160, 0);
+                }
+            }
+            else if(id == MonobitNetwork.playerList[1].ID)
+            {
+                color2[x/8 + y/8 * width] = ccc;
+                if (x/8 >= width - 1 && y/8 >= height - 1)
+                {
+                    Debug.Log("画像送る");
+                    Debug.Log(width);
+                    Debug.Log(height);
+                    texture2.SetPixels32(color2);
+                    texture2.Apply();
+                    rawImage2.transform.localPosition = new Vector3(-150, -160, 0);
+                }
+            }
+            else if(id == MonobitNetwork.playerList[2].ID)
+            {
+                color3[x/8 + y/8 * width] = ccc;
+                if (x/8 >= width - 1 && y/8 >= height - 1)
+                {
+                    Debug.Log("画像送る");
+                    Debug.Log(width);
+                    Debug.Log(height);
+                    texture3.SetPixels32(color1);
+                    texture3.Apply();
+                    rawImage3.transform.localPosition = new Vector3(-250, -290, 0);
+                }
+            }
+            else if(id == MonobitNetwork.playerList[3].ID)
+            {
+                color4[x/8 + y/8 * width] = ccc;
+                if (x/8 >= width - 1 && y/8 >= height - 1)
+                {
+                    Debug.Log("画像送る");
+                    Debug.Log(width);
+                    Debug.Log(height);
+                    texture4.SetPixels32(color4);
+                    texture4.Apply();
+                    rawImage4.transform.localPosition = new Vector3(-150, -290, 0);
+                }
             }
         }
-        if(id == 2)
+        catch (NullReferenceException)
         {
-            color2[x/8 + y/8 * width] = ccc;
-            if (x/8 >= width - 1 && y/8 >= height - 1)
-            {
-                Debug.Log("画像送る");
-                Debug.Log(width);
-                Debug.Log(height);
-                texture2.SetPixels32(color2);
-                texture2.Apply();
-                rawImage2.transform.localPosition = new Vector3(-150, -160, 0);
-            }
-        }
-        if(id == 3)
-        {
-            color3[x/8 + y/8 * width] = ccc;
-            if (x/8 >= width - 1 && y/8 >= height - 1)
-            {
-                Debug.Log("画像送る");
-                Debug.Log(width);
-                Debug.Log(height);
-                texture3.SetPixels32(color1);
-                texture3.Apply();
-                rawImage3.transform.localPosition = new Vector3(-250, -290, 0);
-            }
-        }
-        if(id == 4)
-        {
-            color4[x/8 + y/8 * width] = ccc;
-            if (x/8 >= width - 1 && y/8 >= height - 1)
-            {
-                Debug.Log("画像送る");
-                Debug.Log(width);
-                Debug.Log(height);
-                texture4.SetPixels32(color4);
-                texture4.Apply();
-                rawImage4.transform.localPosition = new Vector3(-150, -290, 0);
-            }
+            
         }
     }
     /// <summary>
@@ -215,12 +220,12 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     {
         if (!cameraswitch)
         {
-            monobitView.RPC("Come", MonobitTargets.All,MonobitEngine.MonobitNetwork.player.ID-script.personalcount[MonobitEngine.MonobitNetwork.player.ID]);
+            monobitView.RPC("Come", MonobitTargets.All,MonobitEngine.MonobitNetwork.player.ID);
             cameraswitch = true;
         }
         else
         {
-            monobitView.RPC("Goout", MonobitTargets.All,MonobitEngine.MonobitNetwork.player.ID-script.personalcount[MonobitEngine.MonobitNetwork.player.ID]);
+            monobitView.RPC("Goout", MonobitTargets.All,MonobitEngine.MonobitNetwork.player.ID);
             cameraswitch = false;
         }
     }

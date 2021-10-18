@@ -3271,17 +3271,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 208759432}
-        m_MethodName: LeaveButtonOnClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &402469911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8239,7 +8228,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00004439438, y: -0.0000056946733}
+  m_AnchoredPosition: {x: -0.00004439438, y: -0.0000026233156}
   m_SizeDelta: {x: -3.9925537, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1073307121
@@ -13258,17 +13247,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: OnClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 208759432}
         m_MethodName: OnClick
         m_Mode: 1
@@ -14791,7 +14769,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1349270538}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9999997
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -14884,8 +14862,6 @@ MonoBehaviour:
   - {fileID: 4057294567984113096, guid: 0f7ee1eccb9634bb2a9b5cb1a2ca7624, type: 3}
   Mute: 0
   AC: {fileID: 0}
-  leavecount: 0
-  personalcount: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
   PlayerListButton: {fileID: 2112341121}
   PlayerScrollState: 0
   PlayerScroll: {fileID: 2031516366}
@@ -14896,6 +14872,10 @@ MonoBehaviour:
   IconPanel: {fileID: 92115310}
   CloseButton: {fileID: 149645584}
   CameraPanel: {fileID: 1853055528}
+  rawImage1: {fileID: 208759430}
+  rawImage2: {fileID: 370035049}
+  rawImage3: {fileID: 1438757407}
+  rawImage4: {fileID: 618815603}
 --- !u!114 &1782908609
 MonoBehaviour:
   m_ObjectHideFlags: 0

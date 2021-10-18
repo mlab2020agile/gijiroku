@@ -49,6 +49,11 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     public GameObject IconPanel;
     public GameObject CloseButton;
     public GameObject CameraPanel;
+    public RawImage rawImage1;
+    public RawImage rawImage2;
+    public RawImage rawImage3;
+    public RawImage rawImage4;
+
     void Start()
     {
         PlayerScroll.SetActive(false);
@@ -216,6 +221,11 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     // 誰かがルームからログアウトしたときの処理
     public virtual void OnOtherPlayerDisconnected(MonobitPlayer otherPlayer)
     {
+        rawImage1.transform.localPosition = new Vector3(1000, 1000, 0);
+        rawImage2.transform.localPosition = new Vector3(1000, 1000, 0);
+        rawImage3.transform.localPosition = new Vector3(1000, 1000, 0);
+        rawImage4.transform.localPosition = new Vector3(1000, 1000, 0);
+        
         if (vcPlayerInfo.ContainsKey(otherPlayer))
         {
             vcPlayerInfo.Remove(otherPlayer);

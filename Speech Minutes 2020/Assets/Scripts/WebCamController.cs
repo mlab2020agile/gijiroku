@@ -98,33 +98,6 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     /// 初期化
     /// </summary>
     [MunRPC]
-    // 他の誰かがカメラボタンを押した時の処理
-    public void Come(int ID)
-    {
-        Debug.Log("誰か来た");
-        if (ID == MonobitNetwork.playerList[0].ID)
-        {
-            rawImage1.transform.localPosition = new Vector3(-250, -160, 0);
-            //RectTransform rt4 = rawImage1.GetComponent<RectTransform>();
-            //rt4.sizeDelta = new Vector2(100, 100);
-        }
-        else if (ID == MonobitNetwork.playerList[1].ID)
-        {
-            rawImage2.transform.localPosition = new Vector3(-150, -160, 0);
-        }
-        else if (ID == MonobitNetwork.playerList[2].ID)
-        {
-            rawImage3.transform.localPosition = new Vector3(-250, -290, 0);
-        }
-        else if (ID == MonobitNetwork.playerList[3].ID)
-        {
-            rawImage4.transform.localPosition = new Vector3(-150, -290, 0);
-        }
-    }
-    /// <summary>
-    /// 初期化
-    /// </summary>
-    [MunRPC]
     public void Goout(int ID)
     {
         if (ID == MonobitNetwork.playerList[0].ID)
@@ -220,7 +193,6 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     {
         if (!cameraswitch)
         {
-            monobitView.RPC("Come", MonobitTargets.All,MonobitEngine.MonobitNetwork.player.ID);
             cameraswitch = true;
         }
         else

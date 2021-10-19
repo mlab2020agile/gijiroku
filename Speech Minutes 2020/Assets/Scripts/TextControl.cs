@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using MonobitEngine;
 
-
 public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
 {
     // マウススクロール変数
@@ -20,10 +19,10 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
     public GameObject ShrinkButton;
     public GameObject EditInputFieldObject;
     public InputField EditInputField;
-    GameObject TextCloseButton;
+    public GameObject HideButton;
+    public GameObject dropdown;
     private int touchCount = 0;
-    public int Enterkey;
-
+    
 
     void Start()
     {
@@ -34,7 +33,7 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
         Debug.Log(text.text);
         // 色を指定
         text.color = Color.black;
-        string text_ = this.GetComponentInChildren<Text>().text;
+        string text_ = this.GetComponentInChildren<Text>().text.ToString();
         EditInputFieldObject.SetActive(false);
         monobitView.RPC("RecvChattext", MonobitTargets.OthersBuffered, text_);
     }
@@ -123,16 +122,13 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
 
                     Debug.Log("falseですよ");
                 }
-
+                    touchCount++;
+                    //0.3秒後にHogeメソッドを呼び出す
+                     Invoke("DoubleclickJudg", 0.3f);
             }
-            //クリックされたら
-            if (Input.GetMouseButtonDown(0))
-            {
-                touchCount++;
-                //0.3秒後にHogeメソッドを呼び出す
-                Invoke("DoubleclickJudg", 0.3f);
-            }
-
+            //付箋にカーソルが重なっているか
+            if (EventSystem.current.IsPointerOverGameObject()){HideButton.SetActive(true);}
+            else{HideButton.SetActive(false); }  
         }
         if (Selectflag == true && Input.GetKey(KeyCode.Backspace))
         {
@@ -186,7 +182,7 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
     }
     public void FinishButtonOnclick()
     {
-        if (EditInputFieldObject.activeSelf == true)
+        if (EditInputFieldObject.activeSelf)
         {
             // Textコンポーネントを取得
             Text text = GetComponentInChildren<Text>();
@@ -246,4 +242,25 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
         PenButtonOnclick();
     }
 
+    bool otherHide;
+    public void HideOnclick()
+    {
+        if (!otherHide)
+        {
+            PenButton.SetActive(false);
+            EnlargeButton.SetActive(false);
+            ShrinkButton.SetActive(false);
+            HideButton.SetActive(false);
+            dropdown.SetActive(false);
+            otherHide = !otherHide;
+        }
+        else
+        {
+            PenButton.SetActive(true);
+            EnlargeButton.SetActive(true);
+            ShrinkButton.SetActive(true);
+            dropdown.SetActive(true);
+            otherHide = !otherHide;
+        }
+    }
 }

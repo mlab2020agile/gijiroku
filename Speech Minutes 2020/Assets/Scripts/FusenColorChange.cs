@@ -44,31 +44,31 @@ public class FusenColorChange : MonobitEngine.MonoBehaviour
         switch (dropdown.value)
         {
             case 0:
-                FusenPanel.GetComponentInChildren<Image>().color = Color.magenta;
+                FusenPanel.GetComponentInChildren<Image>().color = ToColor("#ffc0cb");
                 //colorValue = dropdown.value;
                 monobitView.RPC("RecvTextColor", MonobitTargets.OthersBuffered, dropdown.value);
                 break;
                 
             case 1:
-                FusenPanel.GetComponentInChildren<Image>().color = Color.yellow;
+                FusenPanel.GetComponentInChildren<Image>().color = ToColor("#fffacd");
                 //colorValue = dropdown.value;
                 monobitView.RPC("RecvTextColor", MonobitTargets.OthersBuffered, dropdown.value);
                 break;
 
             case 2:
-                FusenPanel.GetComponentInChildren<Image>().color = Color.green;
+                FusenPanel.GetComponentInChildren<Image>().color = ToColor("#98fb98");
                 //colorValue = dropdown.value;
                 monobitView.RPC("RecvTextColor", MonobitTargets.OthersBuffered, dropdown.value);
                 break;
 
             case 3:
-                FusenPanel.GetComponentInChildren<Image>().color = Color.red;
+                FusenPanel.GetComponentInChildren<Image>().color = ToColor("#fa8072");
                 //colorValue = dropdown.value;
                 monobitView.RPC("RecvTextColor", MonobitTargets.OthersBuffered, dropdown.value);
                 break;
 
             case 4:
-                FusenPanel.GetComponentInChildren<Image>().color = Color.blue;
+                FusenPanel.GetComponentInChildren<Image>().color = ToColor("#87cefa");
                 //colorValue = dropdown.value;
                 monobitView.RPC("RecvTextColor", MonobitTargets.OthersBuffered, dropdown.value);
                 break;
@@ -77,7 +77,14 @@ public class FusenColorChange : MonobitEngine.MonoBehaviour
                 break;
         }
     }
-
+    public  Color ToColor(string Color)
+    {
+        var color = default(Color);
+        if (!ColorUtility.TryParseHtmlString(Color, out color))
+         {
+        }
+        return color;
+    }
 
     [MunRPC]
     public void RecvTextColor(int colorValue)
@@ -85,23 +92,23 @@ public class FusenColorChange : MonobitEngine.MonoBehaviour
         switch (colorValue)
         {
             case 0:
-                FusenPanel.GetComponentInChildren<Image>().color = Color.magenta;
+                FusenPanel.GetComponentInChildren<Image>().color = ToColor("#ffc0cb");
                 dropdown.value = colorValue;
                 break;
             case 1:
-                FusenPanel.GetComponentInChildren<Image>().color = Color.yellow;
+                FusenPanel.GetComponentInChildren<Image>().color = ToColor("#fffacd");
                 dropdown.value = colorValue;
                 break;
             case 2:
-                FusenPanel.GetComponentInChildren<Image>().color = Color.green;
+                FusenPanel.GetComponentInChildren<Image>().color = ToColor("#98fb98");
                 dropdown.value = colorValue;
                 break;
             case 3:
-                FusenPanel.GetComponentInChildren<Image>().color = Color.red;
+                FusenPanel.GetComponentInChildren<Image>().color = ToColor("#fa8072");
                 dropdown.value = colorValue;
                 break;
             case 4:
-                FusenPanel.GetComponentInChildren<Image>().color = Color.blue;
+                FusenPanel.GetComponentInChildren<Image>().color = ToColor("#87cefa");
                 dropdown.value = colorValue;
                 break;
             default:

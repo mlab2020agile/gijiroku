@@ -162,7 +162,7 @@ public class WebCamController : MonobitEngine.MonoBehaviour
                     Debug.Log("画像送る");
                     Debug.Log(width);
                     Debug.Log(height);
-                    texture3.SetPixels32(color1);
+                    texture3.SetPixels32(color3);
                     texture3.Apply();
                     rawImage3.transform.localPosition = new Vector3(-250, -290, 0);
                 }

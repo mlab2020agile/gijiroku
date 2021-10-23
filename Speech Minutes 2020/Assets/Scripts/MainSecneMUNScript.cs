@@ -59,6 +59,12 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         PlayerScroll.SetActive(false);
         IconButton.SetActive(false);
         IconPanel.SetActive(false);
+        //MUNサーバに接続している場合
+        if (MonobitNetwork.isConnect)
+        {
+            myVoice.SendStreamType = StreamType.MULTICAST;
+            MuteLine.SetActive(true);
+        }
     }
     /** ボイスチャット送信可否設定の定数. */
     private enum EnableVC
@@ -314,11 +320,13 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
                 Mute = !Mute;
                 if (Mute)
                 {
+                    //ミュート設定
                     myVoice.SendStreamType = StreamType.MULTICAST;
                     MuteLine.SetActive(true);
                 }
                 else
                 {
+                    //ミュート解除
                     myVoice.SendStreamType = StreamType.BROADCAST;
                     MuteLine.SetActive(false);
                 }

@@ -28,6 +28,7 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     public RawImage rawImage4;
     public bool cameraswitch = false;
     public Text PlayerText;
+    public GameObject CameraLine;
     public GameObject Panel1;
     public GameObject Panel2;
     public GameObject Panel3;
@@ -194,11 +195,13 @@ public class WebCamController : MonobitEngine.MonoBehaviour
         if (!cameraswitch)
         {
             cameraswitch = true;
+            CameraLine.SetActive(false);
         }
         else
         {
             monobitView.RPC("Goout", MonobitTargets.All,MonobitEngine.MonobitNetwork.player.ID);
             cameraswitch = false;
+            CameraLine.SetActive(true);
         }
     }
 }

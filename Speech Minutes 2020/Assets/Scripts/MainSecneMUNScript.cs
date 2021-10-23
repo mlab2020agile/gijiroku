@@ -29,7 +29,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     int x = Screen.width;
     int y = Screen.height;
     public GameObject[] usericon = new GameObject[9];
-    public bool Mute = false;
+    public bool Mute = true;
     /** ルーム名. */
     private string roomName = "";
     /** ルーム内のプレイヤーに対するボイスチャット送信可否設定. */
@@ -59,12 +59,6 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         PlayerScroll.SetActive(false);
         IconButton.SetActive(false);
         IconPanel.SetActive(false);
-        //MUNサーバに接続している場合
-        if (MonobitNetwork.isConnect)
-        {
-            myVoice.SendStreamType = StreamType.MULTICAST;
-            MuteLine.SetActive(true);
-        }
     }
     /** ボイスチャット送信可否設定の定数. */
     private enum EnableVC
@@ -155,7 +149,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
                 }
                 if (Mute)
                 {
-                    List<MonobitPlayer> playerList = new List<MonobitPlayer>(vcPlayerInfo.Keys);
+                    /*List<MonobitPlayer> playerList = new List<MonobitPlayer>(vcPlayerInfo.Keys);
                     List<MonobitPlayer> vcTargets = new List<MonobitPlayer>();
                     foreach (MonobitPlayer player in playerList)
                     {
@@ -166,9 +160,14 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
                         {
                             vcTargets.Add(player);
                         }
-                    }
+                    }*/
                     // ボイスチャットの送信可否設定を反映させる
-                    myVoice.SetMulticastTarget(vcTargets.ToArray());
+                    myVoice.SetMulticastTarget(new Int32[] { });
+                    myVoice.SendStreamType = StreamType.MULTICAST;
+                }
+                if (!Mute)
+                {
+                    myVoice.SendStreamType = StreamType.BROADCAST;
                 }
             }
         }
@@ -187,7 +186,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         vcPlayerInfo.Add(MonobitNetwork.player, (Int32)EnableVC.DISABLE);
         foreach (MonobitPlayer player in MonobitNetwork.otherPlayersList)
         {
-            vcPlayerInfo.Add(player, (Int32)EnableVC.ENABLE);
+            vcPlayerInfo.Add(player, (Int32)EnableVC.DISABLE);
         }
         GameObject go = MonobitNetwork.Instantiate("VoiceActor", Vector3.zero, Quaternion.identity, 0);
         myVoice = go.GetComponent<MonobitVoice>();
@@ -220,7 +219,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     {
         if (!vcPlayerInfo.ContainsKey(newPlayer))
         {
-            vcPlayerInfo.Add(newPlayer, (Int32)EnableVC.ENABLE);
+            vcPlayerInfo.Add(newPlayer, (Int32)EnableVC.DISABLE);
         }
         monobitView.RPC("Cnt", MonobitTargets.All,usercnt);
     }
@@ -321,13 +320,13 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
                 if (Mute)
                 {
                     //ミュート設定
-                    myVoice.SendStreamType = StreamType.MULTICAST;
+                    //myVoice.SendStreamType = StreamType.MULTICAST;
                     MuteLine.SetActive(true);
                 }
                 else
                 {
                     //ミュート解除
-                    myVoice.SendStreamType = StreamType.BROADCAST;
+                    //myVoice.SendStreamType = StreamType.BROADCAST;
                     MuteLine.SetActive(false);
                 }
             }

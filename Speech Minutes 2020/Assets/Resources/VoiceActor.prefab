@@ -59,7 +59,7 @@ MonoBehaviour:
   - {fileID: 0}
   ownerId: 0
   group: 0
-  prefixBackup: -1
+  prefixBackup: 0
   ownershipTransfer: 0
   compressedStream: 0
 --- !u!82 &8202524
@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 1895529415, guid: 13dc088abce138c4faf1e941b08737d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_CurrentGainDecibel: 0
+  m_CurrentGainDecibel: 20
   m_BufferCount: 10
   m_AllowLagMs: 500
   m_ClipPlaybackSec: 3

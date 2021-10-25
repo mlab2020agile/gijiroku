@@ -600,7 +600,7 @@ namespace IBM.Watsson.Examples
         [SerializeField]
         private GameObject MuteLine;
 
-        public bool Mute = false;
+        public bool Mute = true;
 
 
         /** ルーム名. */
@@ -659,7 +659,7 @@ namespace IBM.Watsson.Examples
                     }
 
 
-                    if (Mute)
+                    /*if (Mute)
                     {
                         List<MonobitPlayer> playerList = new List<MonobitPlayer>(vcPlayerInfo.Keys);
                         List<MonobitPlayer> vcTargets = new List<MonobitPlayer>();
@@ -677,6 +677,29 @@ namespace IBM.Watsson.Examples
                         }
                         // ボイスチャットの送信可否設定を反映させる
                         myVoice.SetMulticastTarget(vcTargets.ToArray());
+                    }
+                    */
+                    if (Mute)
+                    {
+                        /*List<MonobitPlayer> playerList = new List<MonobitPlayer>(vcPlayerInfo.Keys);
+                        List<MonobitPlayer> vcTargets = new List<MonobitPlayer>();
+                        foreach (MonobitPlayer player in playerList)
+                        {
+                            vcPlayerInfo[player] = (Int32)EnableVC.DISABLE;
+                            Debug.Log("vcPlayerInfo[" + player + "] = " + vcPlayerInfo[player]);
+                            // ボイスチャットの送信可のプレイヤー情報を登録する
+                            if (vcPlayerInfo[player] == (Int32)EnableVC.ENABLE)
+                            {
+                                vcTargets.Add(player);
+                            }
+                        }*/
+                        // ボイスチャットの送信可否設定を反映させる
+                        myVoice.SetMulticastTarget(new Int32[] { });
+                        myVoice.SendStreamType = StreamType.MULTICAST;
+                    }
+                    if (!Mute)
+                    {
+                        myVoice.SendStreamType = StreamType.BROADCAST;
                     }
                 }
             }
@@ -764,7 +787,7 @@ namespace IBM.Watsson.Examples
             UnityEngine.Debug.LogWarning("Info: Microphone Restart !!!");
         }
 
-        public void muteButtonOnclicked()
+        /*public void muteButtonOnclicked()
         {
             //MUNサーバに接続している場合
             if (MonobitNetwork.isConnect)
@@ -784,6 +807,31 @@ namespace IBM.Watsson.Examples
                         myVoice.SendStreamType = StreamType.BROADCAST;
                         MuteLine.SetActive(false);
 
+                    }
+                }
+            }
+        }
+        */
+        public void muteButtonOnclicked()
+        {
+            //MUNサーバに接続している場合
+            if (MonobitNetwork.isConnect)
+            {
+                // ルームに入室している場合
+                if (MonobitNetwork.inRoom)
+                {
+                    Mute = !Mute;
+                    if (Mute)
+                    {
+                        //ミュート設定
+                        //myVoice.SendStreamType = StreamType.MULTICAST;
+                        MuteLine.SetActive(true);
+                    }
+                    else
+                    {
+                        //ミュート解除
+                        //myVoice.SendStreamType = StreamType.BROADCAST;
+                        MuteLine.SetActive(false);
                     }
                 }
             }

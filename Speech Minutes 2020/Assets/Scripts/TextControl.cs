@@ -21,6 +21,7 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
     public InputField EditInputField;
     public GameObject HideButton;
     public GameObject dropdown;
+    public GameObject VisibleButton;
     private int touchCount = 0;
     
 
@@ -127,8 +128,22 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
                      Invoke("DoubleclickJudg", 0.3f);
             }
             //付箋にカーソルが重なっているか
-            if (EventSystem.current.IsPointerOverGameObject()){HideButton.SetActive(true);}
-            else{HideButton.SetActive(false); }  
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                if (PenButton.activeSelf)
+                {
+                    HideButton.SetActive(true);
+                }
+                else
+                {
+                    VisibleButton.SetActive(true);
+                }
+            }
+            else
+            {
+                    HideButton.SetActive(false);
+                    VisibleButton.SetActive(false);
+            }
         }
         if (Selectflag == true && Input.GetKey(KeyCode.Backspace))
         {
@@ -242,25 +257,23 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
         PenButtonOnclick();
     }
 
-    bool otherHide;
+    //bool otherHide;
     public void HideOnclick()
     {
-        if (!otherHide)
-        {
             PenButton.SetActive(false);
             EnlargeButton.SetActive(false);
             ShrinkButton.SetActive(false);
-            HideButton.SetActive(false);
+           VisibleButton.SetActive(true);
+        HideButton.SetActive(false);
             dropdown.SetActive(false);
-            otherHide = !otherHide;
-        }
-        else
-        {
+    }
+    public void visibleOnclick()
+    {
             PenButton.SetActive(true);
             EnlargeButton.SetActive(true);
             ShrinkButton.SetActive(true);
             dropdown.SetActive(true);
-            otherHide = !otherHide;
-        }
+        VisibleButton.SetActive(false);
+        HideButton.SetActive(true);
     }
 }

@@ -53,6 +53,10 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     public RawImage rawImage2;
     public RawImage rawImage3;
     public RawImage rawImage4;
+    public Image image1;
+    public Image image2;
+    public Image image3;
+    public Image image4;
 
     void Start()
     {
@@ -164,10 +168,12 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
                     // ボイスチャットの送信可否設定を反映させる
                     myVoice.SetMulticastTarget(new Int32[] { });
                     myVoice.SendStreamType = StreamType.MULTICAST;
+                    monobitView.RPC("Muteon", MonobitTargets.All, MonobitEngine.MonobitNetwork.player.ID);
                 }
                 if (!Mute)
                 {
                     myVoice.SendStreamType = StreamType.BROADCAST;
+                    monobitView.RPC("Muteoff", MonobitTargets.All, MonobitEngine.MonobitNetwork.player.ID);
                 }
             }
         }
@@ -230,7 +236,12 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         rawImage2.transform.localPosition = new Vector3(1000, 1000, 0);
         rawImage3.transform.localPosition = new Vector3(1000, 1000, 0);
         rawImage4.transform.localPosition = new Vector3(1000, 1000, 0);
-        
+
+        image1.transform.localPosition = new Vector3(1000, 1000, 0);
+        image2.transform.localPosition = new Vector3(1000, 1000, 0);
+        image3.transform.localPosition = new Vector3(1000, 1000, 0);
+        image4.transform.localPosition = new Vector3(1000, 1000, 0);
+
         if (vcPlayerInfo.ContainsKey(otherPlayer))
         {
             vcPlayerInfo.Remove(otherPlayer);
@@ -330,6 +341,52 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
                     MuteLine.SetActive(false);
                 }
             }
+        }
+    }
+    /// <summary>
+    /// 初期化
+    /// </summary>
+    [MunRPC]
+    public void Muteoff(int id)
+    {
+        if (id == MonobitNetwork.playerList[0].ID)
+        {
+            image1.transform.localPosition = new Vector3(1000, 1000, 0);
+        }
+        else if (id == MonobitNetwork.playerList[1].ID)
+        {
+            image2.transform.localPosition = new Vector3(1000, 1000, 0);
+        }
+        else if (id == MonobitNetwork.playerList[2].ID)
+        {
+            image3.transform.localPosition = new Vector3(1000, 1000, 0);
+        }
+        else if (id == MonobitNetwork.playerList[3].ID)
+        {
+            image4.transform.localPosition = new Vector3(1000, 1000, 0);
+        }
+    }
+    /// <summary>
+    /// 初期化
+    /// </summary>
+    [MunRPC]
+    public void Muteon(int id)
+    {
+        if (id == MonobitNetwork.playerList[0].ID)
+        {
+            image1.transform.localPosition = new Vector3(-215, -130, 0);//-250,-160
+        }
+        else if (id == MonobitNetwork.playerList[1].ID)
+        {
+            image2.transform.localPosition = new Vector3(-115, -130, 0);
+        }
+        else if (id == MonobitNetwork.playerList[2].ID)
+        {
+            image3.transform.localPosition = new Vector3(-215, -260, 0);
+        }
+        else if (id == MonobitNetwork.playerList[3].ID)
+        {
+            image4.transform.localPosition = new Vector3(-115, -260, 0);
         }
     }
 }

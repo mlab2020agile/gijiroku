@@ -22,6 +22,7 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
     public GameObject HideButton;
     public GameObject dropdown;
     public GameObject VisibleButton;
+    public GameObject DeleteButton;
     private int touchCount = 0;
     
 
@@ -234,6 +235,13 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
         monobitView.RPC("RecvfontSize", MonobitTargets.OthersBuffered, textfont.fontSize);
     }
 
+    public void DeleteButtonOnclick()
+    {
+        OnDestroy();
+        Selectflag = false;
+        Debug.Log("false&destroy");
+    }
+
     [MunRPC]
     public void RecvfontSize(int fontSize)
     {
@@ -263,9 +271,11 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
             PenButton.SetActive(false);
             EnlargeButton.SetActive(false);
             ShrinkButton.SetActive(false);
-           VisibleButton.SetActive(true);
-        HideButton.SetActive(false);
             dropdown.SetActive(false);
+            DeleteButton.SetActive(false);
+        HideButton.SetActive(false);
+        VisibleButton.SetActive(true);
+
     }
     public void visibleOnclick()
     {
@@ -273,7 +283,8 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
             EnlargeButton.SetActive(true);
             ShrinkButton.SetActive(true);
             dropdown.SetActive(true);
-        VisibleButton.SetActive(false);
+            DeleteButton.SetActive(true);
         HideButton.SetActive(true);
+        VisibleButton.SetActive(false);
     }
 }

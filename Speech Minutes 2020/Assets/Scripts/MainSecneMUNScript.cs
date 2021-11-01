@@ -223,7 +223,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     // 誰かがルームにログインしたときの処理
     public void OnOtherPlayerConnected(MonobitPlayer newPlayer)
     {
-        rawImage1.GetComponent<WebCamController>().StandBy();
+        //rawImage1.GetComponent<WebCamController>().StandBy();
         if (!vcPlayerInfo.ContainsKey(newPlayer))
         {
             vcPlayerInfo.Add(newPlayer, (Int32)EnableVC.DISABLE);

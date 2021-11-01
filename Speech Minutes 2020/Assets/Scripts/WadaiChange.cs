@@ -7,7 +7,9 @@ public class WadaiChange : MonoBehaviour
     public GameObject[] Button;
     public InputField inputField;
     public Text[] text;
+    public Text[] WadaiThemaText;
     int dropdown2;
+
 
     //Dropdownを格納する変数
     [SerializeField] private Dropdown dropdown;
@@ -113,6 +115,7 @@ public class WadaiChange : MonoBehaviour
         //InputField form = GameObject.Find("wadaiInputField").GetComponent<InputField>();
         //form.text = inputField.text;
         text[dropdown.value].text = inputField.text;
+        WadaiThemaText[dropdown2].text = inputField.text;
         //display.text = inputField.text;
         //オブジェクトを表示する
         //  gametext.gameObject.SetActive(true);

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1889,6 +1889,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RecStartButton: {fileID: 1596871990}
   RecStopButton: {fileID: 803302016}
+  RecStopImage: {fileID: 803302019}
+  RecStartImage: {fileID: 1596871993}
 --- !u!1 &236307860
 GameObject:
   m_ObjectHideFlags: 0

@@ -86,7 +86,7 @@ public class WebCamController : MonobitEngine.MonoBehaviour
                             for (int y = 0; y < height; y+=8)
                             {
                                 Color32 c = colors[x + y * width];
-                                monobitView.RPC("Video", MonobitTargets.LimitedPlayer, x, y, c.r, c.g, c.b, c.a, MonobitEngine.MonobitNetwork.player.ID);
+                                monobitView.RPC("Video", MonobitTargets.All, x, y, c.r, c.g, c.b, c.a, MonobitEngine.MonobitNetwork.player.ID);
                             }
                         }
                     }

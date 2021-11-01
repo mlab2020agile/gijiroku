@@ -550,7 +550,7 @@ namespace IBM.Watsson.Examples
 
 
         //Recordボタンを押すと呼び出されるメソッド
-        public void SetRecord()
+        /*public void SetRecord()
         {
             //Recordがtrueなら(最初に押されたら)
             if (Record)
@@ -568,7 +568,7 @@ namespace IBM.Watsson.Examples
             }
             Debug.Log(MonobitNetwork.playerName);
             Debug.Log(now);
-        }
+        }*/
 
 
 

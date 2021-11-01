@@ -12,6 +12,8 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     int height = 60;
     int fps = 30;
     int s = 1;
+    public int t = 0;
+    bool cnt = false;
     Texture2D texture1;
     Texture2D texture2;
     Texture2D texture3;
@@ -34,7 +36,6 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     public GameObject Panel3;
     public GameObject Panel4;
     public GameObject CameraPanel;
-    int cnt = 0;
     IEnumerator Init()
     {
         while (true)
@@ -59,6 +60,10 @@ public class WebCamController : MonobitEngine.MonoBehaviour
             yield return null;
         }
     }
+    IEnumerator Standby()
+    {
+        yield return new WaitForSeconds(0.5f);
+    }
     // Use this for initialization
     void Start()
     {
@@ -74,6 +79,24 @@ public class WebCamController : MonobitEngine.MonoBehaviour
         {
             if (colors != null)
             {
+                if (cnt)
+                {
+                    Debug.Log("sが10の倍数到達");
+                    var cc = webcamTexture.GetPixels32(colors);
+                    int width = webcamTexture.width;
+                    int height = webcamTexture.height;
+                    Color32 rc = new Color32(0, 0, 0, byte.MaxValue);
+                    for (int x = 0; x < width; x+=8)
+                    {
+                        for (int y = 0; y < height; y+=8)
+                        {
+                            Color32 c = colors[x + y * width];
+                            monobitView.RPC("Video", MonobitTargets.All, x, y, c.r, c.g, c.b, c.a, MonobitEngine.MonobitNetwork.player.ID);
+                        }
+                    }
+                }
+                else
+                {
                     if (s % 10 == 0)
                     {
                         Debug.Log("sが10の倍数到達");
@@ -89,12 +112,19 @@ public class WebCamController : MonobitEngine.MonoBehaviour
                                 monobitView.RPC("Video", MonobitTargets.All, x, y, c.r, c.g, c.b, c.a, MonobitEngine.MonobitNetwork.player.ID);
                             }
                         }
+                        t += 1;
+                        if (t > 10)
+                        {
+                            cnt = true;
+                            t = 0;
+                        }
                     }
-                    //monobitView.RPC(“Name”, MonobitTargets.Others, MonobitEngine.MonobitNetwork.player.name);
-                    s += 1;
+                }
+                s += 1;
             }
         }
     }
+    //rawimageを表示させる
     /// <summary>
     /// 初期化
     /// </summary>
@@ -120,6 +150,7 @@ public class WebCamController : MonobitEngine.MonoBehaviour
             //Panel2.SetActive(false);
         }
     }
+    //画像を送信するときの処理
     /// <summary>
     /// 初期化
     /// </summary>
@@ -184,7 +215,7 @@ public class WebCamController : MonobitEngine.MonoBehaviour
         }
         catch (NullReferenceException)
         {
-            
+            Debug.Log("エラーなう");
         }
     }
     /// <summary>
@@ -203,5 +234,9 @@ public class WebCamController : MonobitEngine.MonoBehaviour
             cameraswitch = false;
             CameraLine.SetActive(true);
         }
+    }
+    public void StandBy()
+    {
+        cnt = false;
     }
 }

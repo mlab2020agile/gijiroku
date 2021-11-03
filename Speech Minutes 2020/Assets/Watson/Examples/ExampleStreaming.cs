@@ -145,7 +145,7 @@ namespace IBM.Watsson.Examples
             //Text0~8を非アクティブ
             for(int i=0; i<9; i++)
             {
-                LogText[i].SetActive(false);
+                //LogText[i].SetActive(false);
             }
         }
 

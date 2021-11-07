@@ -139,7 +139,7 @@ public class WebCamController : MonobitEngine.MonoBehaviour
                     Debug.Log(height);
                     texture1.SetPixels32(color1);
                     texture1.Apply();
-                    rawImage1.transform.localPosition = new Vector3(-250, -160, 0);
+                    rawImage1.transform.localPosition = new Vector3(-260, -160, 0);
                 }
             }
             else if(id == MonobitNetwork.playerList[1].ID)
@@ -152,7 +152,7 @@ public class WebCamController : MonobitEngine.MonoBehaviour
                     Debug.Log(height);
                     texture2.SetPixels32(color2);
                     texture2.Apply();
-                    rawImage2.transform.localPosition = new Vector3(-150, -160, 0);
+                    rawImage2.transform.localPosition = new Vector3(-120, -160, 0);
                 }
             }
             else if(id == MonobitNetwork.playerList[2].ID)
@@ -165,7 +165,7 @@ public class WebCamController : MonobitEngine.MonoBehaviour
                     Debug.Log(height);
                     texture3.SetPixels32(color3);
                     texture3.Apply();
-                    rawImage3.transform.localPosition = new Vector3(-250, -290, 0);
+                    rawImage3.transform.localPosition = new Vector3(-260, -290, 0);
                 }
             }
             else if(id == MonobitNetwork.playerList[3].ID)
@@ -178,7 +178,7 @@ public class WebCamController : MonobitEngine.MonoBehaviour
                     Debug.Log(height);
                     texture4.SetPixels32(color4);
                     texture4.Apply();
-                    rawImage4.transform.localPosition = new Vector3(-150, -290, 0);
+                    rawImage4.transform.localPosition = new Vector3(-120, -290, 0);
                 }
             }
         }

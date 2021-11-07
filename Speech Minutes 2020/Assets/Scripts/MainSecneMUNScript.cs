@@ -122,7 +122,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
                         for (num = 0; num < MonobitNetwork.room.playerCount; num++)
                         {
                             //GameObject prefab = (GameObject)Instantiate(usericon[num], new Vector3(-x / 2 + x * num / 15, -y / 6, 0), Quaternion.identity);
-                            GameObject prefab = (GameObject)Instantiate(usericon[num], new Vector3(-550+(num%2)*100, -160-(num/2)*130, 0), Quaternion.identity) ;
+                            GameObject prefab = (GameObject)Instantiate(usericon[num], new Vector3(-545+(num%2)*140, -160-(num/2)*130, 0), Quaternion.identity) ;
                             prefab.transform.SetParent(canvas.transform, false);
                             prefab.transform.Find("Text").GetComponent<Text>().text = MonobitNetwork.playerList[num].name;
                             prefab.transform.Find("Initial").GetComponent<Text>().text = MonobitNetwork.playerList[num].name.Substring(0, 1);
@@ -375,19 +375,19 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     {
         if (id == MonobitNetwork.playerList[0].ID)
         {
-            image1.transform.localPosition = new Vector3(-215, -130, 0);//-250,-160
+            image1.transform.localPosition = new Vector3(-195, -130, 0);//-250,-160
         }
         else if (id == MonobitNetwork.playerList[1].ID)
         {
-            image2.transform.localPosition = new Vector3(-115, -130, 0);
+            image2.transform.localPosition = new Vector3(-55, -130, 0);
         }
         else if (id == MonobitNetwork.playerList[2].ID)
         {
-            image3.transform.localPosition = new Vector3(-215, -260, 0);
+            image3.transform.localPosition = new Vector3(-195, -260, 0);
         }
         else if (id == MonobitNetwork.playerList[3].ID)
         {
-            image4.transform.localPosition = new Vector3(-115, -260, 0);
+            image4.transform.localPosition = new Vector3(-55, -260, 0);
         }
     }
 }

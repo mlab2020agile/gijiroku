@@ -123,7 +123,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
                         for (num = 0; num < MonobitNetwork.room.playerCount; num++)
                         {
                             //GameObject prefab = (GameObject)Instantiate(usericon[num], new Vector3(-x / 2 + x * num / 15, -y / 6, 0), Quaternion.identity);
-                            GameObject prefab = (GameObject)Instantiate(usericon[num], new Vector3(-545+(num%2)*140, -160-(num/2)*130, 0), Quaternion.identity) ;
+                            GameObject prefab = (GameObject)Instantiate(usericon[num], new Vector3(-560+(num%2)*150, -150-(num/2)*140, 0), Quaternion.identity) ;
                             prefab.transform.SetParent(canvas.transform, false);
                             prefab.transform.Find("Text").GetComponent<Text>().text = MonobitNetwork.playerList[num].name;
                             prefab.transform.Find("Initial").GetComponent<Text>().text = MonobitNetwork.playerList[num].name.Substring(0, 1);
@@ -354,7 +354,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         if (id == MonobitNetwork.playerList[0].ID)
         {
             //image1.transform.localPosition = new Vector3(1000, 1000, 0);
-            image1.transform.localPosition = new Vector3(-195, -130, 0);//-250,-160
+            image1.transform.localPosition = new Vector3(-210, -110, 0);//-250,-160
             sprite = Resources.Load<Sprite>("textures/muteoff");
             image1.GetComponent<Image>().sprite = sprite;
 
@@ -362,21 +362,21 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         else if (id == MonobitNetwork.playerList[1].ID)
         {
             //image2.transform.localPosition = new Vector3(1000, 1000, 0);
-            image2.transform.localPosition = new Vector3(-55, -130, 0);
+            image2.transform.localPosition = new Vector3(-60, -110, 0);
             sprite = Resources.Load<Sprite>("textures/muteoff");
             image2.GetComponent<Image>().sprite = sprite;
         }
         else if (id == MonobitNetwork.playerList[2].ID)
         {
             //image3.transform.localPosition = new Vector3(1000, 1000, 0);
-            image3.transform.localPosition = new Vector3(-195, -260, 0);
+            image3.transform.localPosition = new Vector3(-210, -250, 0);
             sprite = Resources.Load<Sprite>("textures/muteoff");
             image3.GetComponent<Image>().sprite = sprite;
         }
         else if (id == MonobitNetwork.playerList[3].ID)
         {
             //image4.transform.localPosition = new Vector3(1000, 1000, 0);
-            image4.transform.localPosition = new Vector3(-55, -260, 0);
+            image4.transform.localPosition = new Vector3(-60, -250, 0);
             sprite = Resources.Load<Sprite>("textures/muteoff");
             image4.GetComponent<Image>().sprite = sprite;
         }
@@ -389,25 +389,25 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     {
         if (id == MonobitNetwork.playerList[0].ID)
         {
-            image1.transform.localPosition = new Vector3(-195, -130, 0);//-250,-160
+            image1.transform.localPosition = new Vector3(-210, -110, 0);//-250,-160
             sprite = Resources.Load<Sprite>("textures/muteon");
             image1.GetComponent<Image>().sprite = sprite;
         }
         else if (id == MonobitNetwork.playerList[1].ID)
         {
-            image2.transform.localPosition = new Vector3(-55, -130, 0);
+            image2.transform.localPosition = new Vector3(-60, -110, 0);
             sprite = Resources.Load<Sprite>("textures/muteon");
             image2.GetComponent<Image>().sprite = sprite;
         }
         else if (id == MonobitNetwork.playerList[2].ID)
         {
-            image3.transform.localPosition = new Vector3(-195, -260, 0);
+            image3.transform.localPosition = new Vector3(-210, -250, 0);
             sprite = Resources.Load<Sprite>("textures/muteon");
             image3.GetComponent<Image>().sprite = sprite;
         }
         else if (id == MonobitNetwork.playerList[3].ID)
         {
-            image4.transform.localPosition = new Vector3(-55, -260, 0);
+            image4.transform.localPosition = new Vector3(-60, -250, 0);
             sprite = Resources.Load<Sprite>("textures/muteon");
             image4.GetComponent<Image>().sprite = sprite;
         }

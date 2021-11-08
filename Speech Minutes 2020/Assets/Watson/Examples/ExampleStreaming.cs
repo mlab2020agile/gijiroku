@@ -125,17 +125,17 @@ namespace IBM.Watsson.Examples
         */
 
         [MunRPC]
-        public void RecvChat(string logtime, string name, string word)
+        public void RecvChat(string logtime, string name, string word, int push)
         {
-            if(NowBottonPushed == -1)
+            if(push == -1)
             {
                 LogText[8].GetComponent<Text>().text += Environment.NewLine;
                 LogText[8].GetComponent<Text>().text += logtime + "," + name + "," + word;
             }
             else
             {
-                LogText[NowBottonPushed].GetComponent<Text>().text += Environment.NewLine;
-                LogText[NowBottonPushed].GetComponent<Text>().text += logtime +"," + name + "," + word;
+                LogText[push].GetComponent<Text>().text += Environment.NewLine;
+                LogText[push].GetComponent<Text>().text += logtime +"," + name + "," + word;
             }
 
         }
@@ -316,7 +316,7 @@ namespace IBM.Watsson.Examples
                         if (res.final)
                         {
                             Dataoutput(timeStamp, MonobitNetwork.playerName, alt.transcript, alt.confidence);
-                            monobitView.RPC("RecvChat", MonobitTargets.All, logtime, MonobitNetwork.playerName, alt.transcript);
+                            monobitView.RPC("RecvChat", MonobitTargets.All, logtime, MonobitNetwork.playerName, alt.transcript, NowBottonPushed);
 
 
 

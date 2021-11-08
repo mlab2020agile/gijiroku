@@ -1561,7 +1561,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 16, y: -43}
+  m_AnchoredPosition: {x: -20, y: -43}
   m_SizeDelta: {x: 337.84833, y: 500.8103}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &193279416
@@ -3551,9 +3551,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '
-
-'
+  m_Text: "\u8A71\u984C3"
 --- !u!222 &383575269
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4232,6 +4230,17 @@ MonoBehaviour:
       - m_Target: {fileID: 1048993022}
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1233767569}
+        m_MethodName: SetAsLastSibling
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5506,13 +5515,13 @@ MonoBehaviour:
   - {fileID: 1654918210}
   WadaiThemaText:
   - {fileID: 1102725458}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1370391115}
+  - {fileID: 383575268}
+  - {fileID: 639128442}
+  - {fileID: 590332213}
+  - {fileID: 1148355085}
+  - {fileID: 825749767}
+  - {fileID: 2142612182}
   dropdown: {fileID: 1768247750}
 --- !u!114 &573485234
 MonoBehaviour:
@@ -5677,9 +5686,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '
-
-'
+  m_Text: "\u8A71\u984C5"
 --- !u!222 &590332214
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6237,9 +6244,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '
-
-'
+  m_Text: "\u8A71\u984C4"
 --- !u!222 &639128443
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7682,9 +7687,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '
-
-'
+  m_Text: "\u8A71\u984C7"
 --- !u!222 &825749768
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7797,6 +7800,17 @@ MonoBehaviour:
       - m_Target: {fileID: 2090131843}
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1752860045}
+        m_MethodName: SetAsLastSibling
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -8454,7 +8468,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 16, y: -43}
+  m_AnchoredPosition: {x: 0, y: -43}
   m_SizeDelta: {x: 337.84833, y: 500.8103}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &947483113
@@ -9712,9 +9726,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '
-
-'
+  m_Text: "\u8A71\u984C1"
 --- !u!222 &1102725459
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10185,9 +10197,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '
-
-'
+  m_Text: "\u8A71\u984C6"
 --- !u!222 &1148355086
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10729,6 +10739,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1753046502}
+        m_MethodName: SetAsLastSibling
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1188650771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11109,7 +11130,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 16, y: -43}
+  m_AnchoredPosition: {x: 30, y: -43}
   m_SizeDelta: {x: 337.84833, y: 500.8103}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1242396886
@@ -12396,9 +12417,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '
-
-'
+  m_Text: "\u8A71\u984C2"
 --- !u!222 &1370391116
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13368,7 +13387,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 16, y: -43}
+  m_AnchoredPosition: {x: 10, y: -43}
   m_SizeDelta: {x: 337.84833, y: 500.8103}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1490804192
@@ -15228,6 +15247,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1841276889}
+        m_MethodName: SetAsLastSibling
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1625098838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15696,7 +15726,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 16, y: -43}
+  m_AnchoredPosition: {x: -10, y: -43}
   m_SizeDelta: {x: 337.84833, y: 500.8103}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1667105030
@@ -16099,6 +16129,17 @@ MonoBehaviour:
       - m_Target: {fileID: 279008103}
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1661946177}
+        m_MethodName: SetAsLastSibling
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -16701,7 +16742,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 16, y: -43}
+  m_AnchoredPosition: {x: 20, y: -43}
   m_SizeDelta: {x: 337.84833, y: 500.8103}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1753046501
@@ -16742,7 +16783,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 16, y: -43}
+  m_AnchoredPosition: {x: 40, y: -43}
   m_SizeDelta: {x: 337.84833, y: 500.8103}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1753046503
@@ -17950,6 +17991,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1483266879}
+        m_MethodName: SetAsLastSibling
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1834267503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18208,7 +18260,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 16, y: -43}
+  m_AnchoredPosition: {x: -30, y: -43}
   m_SizeDelta: {x: 337.84833, y: 500.8103}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1841276890
@@ -18458,6 +18510,17 @@ MonoBehaviour:
       - m_Target: {fileID: 1675256315}
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 912701155}
+        m_MethodName: SetAsLastSibling
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -18936,6 +18999,17 @@ MonoBehaviour:
       - m_Target: {fileID: 224426787}
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 186502335}
+        m_MethodName: SetAsLastSibling
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -20086,9 +20160,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '
-
-'
+  m_Text: "\u8A71\u984C8"
 --- !u!222 &2142612183
 CanvasRenderer:
   m_ObjectHideFlags: 0

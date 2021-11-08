@@ -57,6 +57,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     public Image image2;
     public Image image3;
     public Image image4;
+    private Sprite sprite;
 
     void Start()
     {
@@ -352,19 +353,32 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     {
         if (id == MonobitNetwork.playerList[0].ID)
         {
-            image1.transform.localPosition = new Vector3(1000, 1000, 0);
+            //image1.transform.localPosition = new Vector3(1000, 1000, 0);
+            image1.transform.localPosition = new Vector3(-195, -130, 0);//-250,-160
+            sprite = Resources.Load<Sprite>("textures/muteoff");
+            image1.GetComponent<Image>().sprite = sprite;
+
         }
         else if (id == MonobitNetwork.playerList[1].ID)
         {
-            image2.transform.localPosition = new Vector3(1000, 1000, 0);
+            //image2.transform.localPosition = new Vector3(1000, 1000, 0);
+            image2.transform.localPosition = new Vector3(-55, -130, 0);
+            sprite = Resources.Load<Sprite>("textures/muteoff");
+            image2.GetComponent<Image>().sprite = sprite;
         }
         else if (id == MonobitNetwork.playerList[2].ID)
         {
-            image3.transform.localPosition = new Vector3(1000, 1000, 0);
+            //image3.transform.localPosition = new Vector3(1000, 1000, 0);
+            image3.transform.localPosition = new Vector3(-195, -260, 0);
+            sprite = Resources.Load<Sprite>("textures/muteoff");
+            image3.GetComponent<Image>().sprite = sprite;
         }
         else if (id == MonobitNetwork.playerList[3].ID)
         {
-            image4.transform.localPosition = new Vector3(1000, 1000, 0);
+            //image4.transform.localPosition = new Vector3(1000, 1000, 0);
+            image4.transform.localPosition = new Vector3(-55, -260, 0);
+            sprite = Resources.Load<Sprite>("textures/muteoff");
+            image4.GetComponent<Image>().sprite = sprite;
         }
     }
     /// <summary>
@@ -376,18 +390,26 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         if (id == MonobitNetwork.playerList[0].ID)
         {
             image1.transform.localPosition = new Vector3(-195, -130, 0);//-250,-160
+            sprite = Resources.Load<Sprite>("textures/muteon");
+            image1.GetComponent<Image>().sprite = sprite;
         }
         else if (id == MonobitNetwork.playerList[1].ID)
         {
             image2.transform.localPosition = new Vector3(-55, -130, 0);
+            sprite = Resources.Load<Sprite>("textures/muteon");
+            image2.GetComponent<Image>().sprite = sprite;
         }
         else if (id == MonobitNetwork.playerList[2].ID)
         {
             image3.transform.localPosition = new Vector3(-195, -260, 0);
+            sprite = Resources.Load<Sprite>("textures/muteon");
+            image3.GetComponent<Image>().sprite = sprite;
         }
         else if (id == MonobitNetwork.playerList[3].ID)
         {
             image4.transform.localPosition = new Vector3(-55, -260, 0);
+            sprite = Resources.Load<Sprite>("textures/muteon");
+            image4.GetComponent<Image>().sprite = sprite;
         }
     }
 }

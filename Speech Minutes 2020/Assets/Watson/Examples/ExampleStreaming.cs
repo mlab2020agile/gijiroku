@@ -127,6 +127,7 @@ namespace IBM.Watsson.Examples
         [MunRPC]
         public void RecvChat(string logtime, string name, string word, int push)
         {
+            Debug.Log("値 "+push);
             if(push == -1)
             {
                 LogText[8].GetComponent<Text>().text += Environment.NewLine;

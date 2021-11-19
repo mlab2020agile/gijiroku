@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class WadaiChange : MonoBehaviour
+using UnityEngine.EventSystems;
+using MonobitEngine;
+public class WadaiChange : MonobitEngine.MonoBehaviour
 {
     public GameObject[] Button;
     public InputField inputField;
@@ -114,21 +116,30 @@ public class WadaiChange : MonoBehaviour
         //テキストにinputFieldの内容を反映
         //InputField form = GameObject.Find("wadaiInputField").GetComponent<InputField>();
         //form.text = inputField.text;
-        text[dropdown.value].text = inputField.text;
-        WadaiThemaText[dropdown2].text = inputField.text;
+        Debug.Log(dropdown.value);
+        Debug.Log(inputField.text);
+        monobitView.RPC("wdi", MonobitTargets.All,dropdown.value,inputField.text);
+        /*text[dropdown.value].text = inputField.text;
+        WadaiThemaText[dropdown.value].text = inputField.text;
         //display.text = inputField.text;
         //オブジェクトを表示する
         //  gametext.gameObject.SetActive(true);
         //インプットフィールドの中身を消す
-        GameObject.Find("wadaiInputField").GetComponent<InputField>().text = "";
+        GameObject.Find("wadaiInputField").GetComponent<InputField>().text = "";*/
         //gametext.gameObject.SetActive(false);
     }
-   /* public void WadaiSend()
+    /// <summary>
+    /// 初期化
+    /// </summary>
+    [MunRPC]
+    public void wdi(int va, string tx)
     {
-        //インプットフィールドの中身を消す
-        GameObject.Find("TextBox").GetComponent<InputField>().text = "";
-        gametext.gameObject.SetActive(false);
-    }*/
+        text[va].text = tx;
+        WadaiThemaText[va].text = tx;
+        GameObject.Find("wadaiInputField").GetComponent<InputField>().text = "";
+    }
+    
+
 
 
 }

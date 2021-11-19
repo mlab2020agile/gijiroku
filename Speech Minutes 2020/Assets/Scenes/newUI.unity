@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.5748171, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2461,7 +2461,7 @@ MonoBehaviour:
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 256473321}
   m_HorizontalScrollbarVisibility: 0
-  m_VerticalScrollbarVisibility: 0
+  m_VerticalScrollbarVisibility: 1
   m_HorizontalScrollbarSpacing: 0
   m_VerticalScrollbarSpacing: 0
   m_OnValueChanged:
@@ -2833,7 +2833,7 @@ MonoBehaviour:
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 1457606430}
   m_HorizontalScrollbarVisibility: 0
-  m_VerticalScrollbarVisibility: 0
+  m_VerticalScrollbarVisibility: 1
   m_HorizontalScrollbarSpacing: 0
   m_VerticalScrollbarSpacing: 0
   m_OnValueChanged:
@@ -2974,6 +2974,15 @@ MonoBehaviour:
   - {fileID: 1986690652}
   - {fileID: 1559566267}
   - {fileID: 590621313}
+  ScrollRect:
+  - {fileID: 564804668}
+  - {fileID: 328506836}
+  - {fileID: 2099869086}
+  - {fileID: 1711878071}
+  - {fileID: 1306285878}
+  - {fileID: 496493096}
+  - {fileID: 1656304640}
+  - {fileID: 268249014}
   mun: {fileID: 1782908607}
   RoomNameText: {fileID: 1452743819}
   PlayerList: {fileID: 487300997}
@@ -4101,7 +4110,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 8, y: -0.000012163442}
+  m_AnchoredPosition: {x: 8, y: -0.000015258789}
   m_SizeDelta: {x: 288.5334, y: -453.17673}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &442734499
@@ -4902,7 +4911,7 @@ MonoBehaviour:
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 1397587306}
   m_HorizontalScrollbarVisibility: 0
-  m_VerticalScrollbarVisibility: 0
+  m_VerticalScrollbarVisibility: 1
   m_HorizontalScrollbarSpacing: 0
   m_VerticalScrollbarSpacing: 0
   m_OnValueChanged:
@@ -5657,7 +5666,7 @@ MonoBehaviour:
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 1484526912}
   m_HorizontalScrollbarVisibility: 0
-  m_VerticalScrollbarVisibility: 0
+  m_VerticalScrollbarVisibility: 1
   m_HorizontalScrollbarSpacing: 0
   m_VerticalScrollbarSpacing: 0
   m_OnValueChanged:
@@ -9308,7 +9317,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 8, y: -0.000026064592}
+  m_AnchoredPosition: {x: 8, y: -0.000030517578}
   m_SizeDelta: {x: 288.5334, y: -453.17673}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &940364053
@@ -10004,7 +10013,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 8, y: -0.0000016245673}
+  m_AnchoredPosition: {x: 8, y: 0}
   m_SizeDelta: {x: 288.5334, y: -453.17673}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1034159467
@@ -12956,7 +12965,7 @@ MonoBehaviour:
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 941184445}
   m_HorizontalScrollbarVisibility: 0
-  m_VerticalScrollbarVisibility: 0
+  m_VerticalScrollbarVisibility: 1
   m_HorizontalScrollbarSpacing: 0
   m_VerticalScrollbarSpacing: 0
   m_OnValueChanged:
@@ -16389,7 +16398,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 8, y: -0.00002579142}
+  m_AnchoredPosition: {x: 8, y: -0.000030517578}
   m_SizeDelta: {x: 288.5334, y: -453.17673}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1552320690
@@ -16499,7 +16508,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 8, y: -0.000009302534}
+  m_AnchoredPosition: {x: 8, y: -0.000015258789}
   m_SizeDelta: {x: 288.5334, y: -453.17673}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1559566269
@@ -17867,7 +17876,7 @@ MonoBehaviour:
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 803591474}
   m_HorizontalScrollbarVisibility: 0
-  m_VerticalScrollbarVisibility: 0
+  m_VerticalScrollbarVisibility: 1
   m_HorizontalScrollbarSpacing: 0
   m_VerticalScrollbarSpacing: 0
   m_OnValueChanged:
@@ -18274,7 +18283,7 @@ MonoBehaviour:
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 1798094163}
   m_HorizontalScrollbarVisibility: 0
-  m_VerticalScrollbarVisibility: 0
+  m_VerticalScrollbarVisibility: 1
   m_HorizontalScrollbarSpacing: 0
   m_VerticalScrollbarSpacing: 0
   m_OnValueChanged:
@@ -19514,7 +19523,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 8, y: -0.000009119204}
+  m_AnchoredPosition: {x: 8, y: -0.000015258789}
   m_SizeDelta: {x: 288.5334, y: -453.17673}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1810379357
@@ -21853,7 +21862,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 8, y: -0.000012162748}
+  m_AnchoredPosition: {x: 8, y: -0.000015258789}
   m_SizeDelta: {x: 288.5334, y: -453.17673}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1991469790
@@ -22130,7 +22139,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 8, y: -0.000035360063}
+  m_AnchoredPosition: {x: 8, y: -0.000030517578}
   m_SizeDelta: {x: 288.5334, y: -453.17673}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &2031516366
@@ -22489,7 +22498,7 @@ MonoBehaviour:
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 636799200}
   m_HorizontalScrollbarVisibility: 0
-  m_VerticalScrollbarVisibility: 0
+  m_VerticalScrollbarVisibility: 1
   m_HorizontalScrollbarSpacing: 0
   m_VerticalScrollbarSpacing: 0
   m_OnValueChanged:

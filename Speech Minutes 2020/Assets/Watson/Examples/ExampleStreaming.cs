@@ -69,6 +69,8 @@ namespace IBM.Watsson.Examples
         private int _recordingBufferSize = 1;
         private int _recordingHZ = 22050;
         bool OnRecord = true;
+        public ScrollRect[] ScrollRect;
+
 
         [SerializeField]
         public GameObject mun;
@@ -137,6 +139,8 @@ namespace IBM.Watsson.Examples
             {
                 LogText[push].GetComponent<Text>().text += Environment.NewLine;
                 LogText[push].GetComponent<Text>().text += logtime +"," + name + "," + word;
+                ScrollRect[push].verticalNormalizedPosition = 0.0f;
+                //Debug.Log("ScrollPositionIsMoved");
             }
 
         }
@@ -570,11 +574,6 @@ namespace IBM.Watsson.Examples
             Debug.Log(MonobitNetwork.playerName);
             Debug.Log(now);
         }*/
-
-
-
-
-
 
 
 

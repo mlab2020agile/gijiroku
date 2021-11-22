@@ -58,6 +58,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     public Image image3;
     public Image image4;
     private Sprite sprite;
+    public Text[] LogText;
 
     void Start()
     {
@@ -215,6 +216,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
             IconButton.SetActive(true);
         }
     }
+
     public void DebugButton()
     {
         Debug.Log("myVoice = " + myVoice);
@@ -230,7 +232,29 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
             vcPlayerInfo.Add(newPlayer, (Int32)EnableVC.DISABLE);
         }
         monobitView.RPC("Cnt", MonobitTargets.All,usercnt);
+        if (MonobitEngine.MonobitNetwork.isHost)
+        {
+            //int id =MonobitNetwork.playerList.Length-1;
+            monobitView.RPC("SendAllLogData",MonobitTargets.All, LogText[0]);
+            //, LogText[1], LogText[2], LogText[3], LogText[4], LogText[5], LogText[6], LogText[7]
+        }
     }
+
+    [MunRPC]
+    public void SendAllLogText(String LogText1)
+        //, String LogText2, String LogText3, String LogText4, String LogText5, String LogText6, String LogText7, String LogText8
+    {
+        LogText[0].GetComponent<Text>().text = LogText1;
+        //LogText[1].text = LogText2;
+       // LogText[2].text = LogText3;
+        //LogText[3].text = LogText4;
+        //LogText[4].text = LogText5;
+        //LogText[5].text = LogText6;
+        //LogText[6].text = LogText7;
+        //LogText[7].text = LogText8;
+        Debug.Log("ThanksHost");
+    }
+
     // 誰かがルームからログアウトしたときの処理
     public virtual void OnOtherPlayerDisconnected(MonobitPlayer otherPlayer)
     {

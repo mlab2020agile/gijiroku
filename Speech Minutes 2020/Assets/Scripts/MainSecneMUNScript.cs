@@ -46,6 +46,8 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     public GameObject textPrefab;
     public GameObject content1;
     public GameObject IconButton;
+    public GameObject IconHideButton;
+    public bool IconHideState = false;
     public GameObject IconPanel;
     public GameObject CloseButton;
     public GameObject CameraPanel;
@@ -59,12 +61,17 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     public Image image4;
     private Sprite sprite;
     public GameObject[] LogText;
+    List<int> IconList = new List<int> { 0,0,0,0,0,0,0,0};
 
     void Start()
     {
         PlayerScroll.SetActive(false);
         IconButton.SetActive(false);
         IconPanel.SetActive(false);
+        for(int iconnum = 0; iconnum < 8; iconnum++)
+        {
+            IconList[iconnum] = 0;
+        }
     }
     /** ボイスチャット送信可否設定の定数. */
     private enum EnableVC
@@ -111,9 +118,20 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
                     PlayerList.text = PlayerList.text + player.name + " ";
                     InitialList.text = InitialList.text + player.name.Substring(0,1)+"     ";
                 }
+
+                if (IconHideState==true)
+                {
+                    monobitView.RPC("HideTrue", MonobitTargets.All, MonobitEngine.MonobitNetwork.player.ID);
+                    //GameObject.Find("IconHideButton").GetComponent<Text>().text= "Hide:ON";
+                }
+                else
+                {
+                    monobitView.RPC("HideFalse", MonobitTargets.All, MonobitEngine.MonobitNetwork.player.ID);
+                    //GameObject.Find("IconHideButton").GetComponent<Text>().text = "Hide:OFF";
+                }
                 if (playerCount != MonobitNetwork.room.playerCount)
                 {
-                    if(MonobitNetwork.room.playerCount<=4)
+                    if (MonobitNetwork.room.playerCount <= 4)
                     {
                         IconButton.SetActive(false);
                         GameObject[] icons = GameObject.FindGameObjectsWithTag("icon");
@@ -121,13 +139,24 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
                         {
                             Destroy(icon);
                         }
-                        for (num = 0; num < MonobitNetwork.room.playerCount; num++)
+                        int iconsum = 0;
+                        for (int iconnum = 0; iconnum < 8; iconnum++)
+                        {
+                            iconsum += IconList[iconnum];
+                        }
+                        int a = -1;
+                        for (num = 0; num < MonobitNetwork.room.playerCount - iconsum; num++)
                         {
                             //GameObject prefab = (GameObject)Instantiate(usericon[num], new Vector3(-x / 2 + x * num / 15, -y / 6, 0), Quaternion.identity);
-                            GameObject prefab = (GameObject)Instantiate(usericon[num], new Vector3(-560+(num%2)*150, -150-(num/2)*140, 0), Quaternion.identity) ;
+                            GameObject prefab = (GameObject)Instantiate(usericon[num], new Vector3(-560 + (num % 2) * 150, -150 - (num / 2) * 140, 0), Quaternion.identity);
                             prefab.transform.SetParent(canvas.transform, false);
-                            prefab.transform.Find("Text").GetComponent<Text>().text = MonobitNetwork.playerList[num].name;
-                            prefab.transform.Find("Initial").GetComponent<Text>().text = MonobitNetwork.playerList[num].name.Substring(0, 1);
+                            a += 1;
+                            while (IconList[a] == 1)
+                            {
+                                a += 1;
+                            }
+                            prefab.transform.Find("Text").GetComponent<Text>().text = MonobitNetwork.playerList[a].name;
+                            prefab.transform.Find("Initial").GetComponent<Text>().text = MonobitNetwork.playerList[a].name.Substring(0, 1);
                         }
                     }
                     else
@@ -143,6 +172,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
                     Debug.Log(MonobitNetwork.room.playerCount);
                     CameraPanel.transform.SetAsLastSibling();
                 }
+
                 if (usernamedropdown)
                 {
                     usernamedropdown.options.Clear();//現在の要素をクリアする
@@ -323,6 +353,10 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         }
         IconPanel.SetActive(false);
     }
+    public void IconHideButtonOnclick()
+    {
+        IconHideState = !IconHideState;
+    }
     /// <summary>
     /// マイクのエラーハンドリング用デリゲート
     /// </summary>
@@ -435,5 +469,21 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
             sprite = Resources.Load<Sprite>("textures/muteon");
             image4.GetComponent<Image>().sprite = sprite;
         }
+    }
+    /// <summary>
+    /// 初期化
+    /// </summary>
+    [MunRPC]
+    public void HideTrue(int id)
+    {
+        IconList[id-1] = 1;
+    }
+    /// <summary>
+    /// 初期化
+    /// </summary>
+    [MunRPC]
+    public void HideFalse(int id)
+    {
+        IconList[id-1] = 0;
     }
 }

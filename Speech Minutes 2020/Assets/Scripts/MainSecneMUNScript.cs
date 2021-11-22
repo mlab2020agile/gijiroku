@@ -58,7 +58,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     public Image image3;
     public Image image4;
     private Sprite sprite;
-    public Text[] LogText;
+    public GameObject[] LogText;
 
     void Start()
     {
@@ -235,13 +235,13 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         if (MonobitEngine.MonobitNetwork.isHost)
         {
             //int id =MonobitNetwork.playerList.Length-1;
-            monobitView.RPC("SendAllLogData",MonobitTargets.All, LogText[0]);
+            monobitView.RPC("SendAllLogData",MonobitTargets.All, LogText[0].GetComponent<Text>().text);
             //, LogText[1], LogText[2], LogText[3], LogText[4], LogText[5], LogText[6], LogText[7]
         }
     }
 
     [MunRPC]
-    public void SendAllLogText(String LogText1)
+    public void SendAllLogData(String LogText1)
         //, String LogText2, String LogText3, String LogText4, String LogText5, String LogText6, String LogText7, String LogText8
     {
         LogText[0].GetComponent<Text>().text = LogText1;

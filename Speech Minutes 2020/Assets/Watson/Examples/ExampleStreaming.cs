@@ -431,7 +431,17 @@ namespace IBM.Watsson.Examples
         //話題ボタンが押されると呼び出されるメソッド
         public void WadaiButton1()
         {
-            if (NowBottonPushed != 0)
+            Debug.Log(MonobitNetwork.isHost);
+            if( MonobitNetwork.isHost )
+            {
+                monobitView.RPC("WB1",MonobitTargets.All,NowBottonPushed);
+            }
+
+        }
+        [MunRPC]
+        public void WB1(int xb)
+        {
+            if (xb != 0)
             {
                 FilePathSelect(0);
                 Debug.Log("話題1が押されました");
@@ -443,7 +453,6 @@ namespace IBM.Watsson.Examples
                 Debug.Log("話題が解除されました");
                 NowBottonPushed = -1;
             }
-
         }
         public void WadaiButton2()
         {

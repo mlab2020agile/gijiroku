@@ -431,7 +431,6 @@ namespace IBM.Watsson.Examples
         //話題ボタンが押されると呼び出されるメソッド
         public void WadaiButton1()
         {
-            Debug.Log(MonobitNetwork.isHost);
             if( MonobitNetwork.isHost )
             {
                 monobitView.RPC("WB1",MonobitTargets.All,NowBottonPushed);
@@ -456,7 +455,16 @@ namespace IBM.Watsson.Examples
         }
         public void WadaiButton2()
         {
-            if (NowBottonPushed != 1)
+            if( MonobitNetwork.isHost )
+            {
+                monobitView.RPC("WB2",MonobitTargets.All,NowBottonPushed);
+            }
+
+        }
+        [MunRPC]
+        public void WB2(int xb)
+        {
+            if (xb != 1)
             {
                 FilePathSelect(1);
                 Debug.Log("話題2が押されました");
@@ -471,10 +479,19 @@ namespace IBM.Watsson.Examples
         }
         public void WadaiButton3()
         {
-            if (NowBottonPushed != 2)
+            if( MonobitNetwork.isHost )
+            {
+                monobitView.RPC("WB3",MonobitTargets.All,NowBottonPushed);
+            }
+
+        }
+        [MunRPC]
+        public void WB3(int xb)
+        {
+            if (xb != 2)
             {
                 FilePathSelect(2);
-                Debug.Log("話題3が押されました");
+                Debug.Log("話題2が押されました");
                 NowBottonPushed = 2;
             }
             else
@@ -486,7 +503,16 @@ namespace IBM.Watsson.Examples
         }
         public void WadaiButton4()
         {
-            if (NowBottonPushed != 3)
+            if( MonobitNetwork.isHost )
+            {
+                monobitView.RPC("WB4",MonobitTargets.All,NowBottonPushed);
+            }
+
+        }
+        [MunRPC]
+        public void WB4(int xb)
+        {
+            if (xb != 3)
             {
                 FilePathSelect(3);
                 Debug.Log("話題4が押されました");
@@ -501,7 +527,16 @@ namespace IBM.Watsson.Examples
         }
         public void WadaiButton5()
         {
-            if (NowBottonPushed != 4)
+            if( MonobitNetwork.isHost )
+            {
+                monobitView.RPC("WB5",MonobitTargets.All,NowBottonPushed);
+            }
+
+        }
+        [MunRPC]
+        public void WB5(int xb)
+        {
+            if (xb != 4)
             {
                 FilePathSelect(4);
                 Debug.Log("話題5が押されました");
@@ -516,7 +551,16 @@ namespace IBM.Watsson.Examples
         }
         public void WadaiButton6()
         {
-            if (NowBottonPushed != 5)
+            if( MonobitNetwork.isHost )
+            {
+                monobitView.RPC("WB6",MonobitTargets.All,NowBottonPushed);
+            }
+
+        }
+        [MunRPC]
+        public void WB6(int xb)
+        {
+            if (xb != 5)
             {
                 FilePathSelect(5);
                 Debug.Log("話題6が押されました");
@@ -531,7 +575,16 @@ namespace IBM.Watsson.Examples
         }
         public void WadaiButton7()
         {
-            if (NowBottonPushed != 6)
+            if( MonobitNetwork.isHost )
+            {
+                monobitView.RPC("WB7",MonobitTargets.All,NowBottonPushed);
+            }
+
+        }
+        [MunRPC]
+        public void WB7(int xb)
+        {
+            if (xb != 6)
             {
                 FilePathSelect(6);
                 Debug.Log("話題7が押されました");
@@ -546,7 +599,16 @@ namespace IBM.Watsson.Examples
         }
         public void WadaiButton8()
         {
-            if (NowBottonPushed != 7)
+            if( MonobitNetwork.isHost )
+            {
+                monobitView.RPC("WB8",MonobitTargets.All,NowBottonPushed);
+            }
+
+        }
+        [MunRPC]
+        public void WB8(int xb)
+        {
+            if (xb != 7)
             {
                 FilePathSelect(7);
                 Debug.Log("話題8が押されました");

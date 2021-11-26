@@ -35,9 +35,12 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
         Debug.Log(text.text);
         // 色を指定
         text.color = Color.black;
-        string text_ = this.GetComponentInChildren<Text>().text.ToString();
         EditInputFieldObject.SetActive(false);
+        if (monobitView.isMine)
+        {
+        string text_ = this.GetComponentInChildren<Text>().text;
         monobitView.RPC("RecvChattext", MonobitTargets.OthersBuffered, text_);
+        }
     }
     [MunRPC]
     public void RecvChattext(string text_)

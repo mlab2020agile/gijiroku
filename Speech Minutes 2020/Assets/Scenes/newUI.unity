@@ -19481,6 +19481,15 @@ MonoBehaviour:
   - {fileID: 1799531858}
   - {fileID: 1986690652}
   - {fileID: 1559566267}
+  WadaiThema:
+  - {fileID: 1370391113}
+  - {fileID: 1786543954}
+  - {fileID: 1513920075}
+  - {fileID: 770609109}
+  - {fileID: 1405082150}
+  - {fileID: 641492912}
+  - {fileID: 295698437}
+  - {fileID: 563109411}
 --- !u!114 &1782908609
 MonoBehaviour:
   m_ObjectHideFlags: 0

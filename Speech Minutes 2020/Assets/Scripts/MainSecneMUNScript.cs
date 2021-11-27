@@ -61,6 +61,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     public Image image4;
     private Sprite sprite;
     public GameObject[] LogText;
+    public GameObject[] WadaiThema;
     List<int> IconList = new List<int> { 0,0,0,0,0,0,0,0};
 
     void Start()
@@ -265,24 +266,39 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         if (MonobitEngine.MonobitNetwork.isHost)
         {
             //int id =MonobitNetwork.playerList.Length-1;
-            monobitView.RPC("SendAllLogData",MonobitTargets.All, LogText[0].GetComponent<Text>().text);
-            //, LogText[1], LogText[2], LogText[3], LogText[4], LogText[5], LogText[6], LogText[7]
+            monobitView.RPC("SendAllLogData",MonobitTargets.All, LogText[0].GetComponent<Text>().text, LogText[1].GetComponent<Text>().text,
+            LogText[2].GetComponent<Text>().text, LogText[3].GetComponent<Text>().text, LogText[4].GetComponent<Text>().text,
+            LogText[5].GetComponent<Text>().text,LogText[6].GetComponent<Text>().text,LogText[7].GetComponent<Text>().text);
+            monobitView.RPC("SendAllWadaiThema",MonobitTargets.All, WadaiThema[0].GetComponent<Text>().text, WadaiThema[1].GetComponent<Text>().text,
+            WadaiThema[2].GetComponent<Text>().text, WadaiThema[3].GetComponent<Text>().text, WadaiThema[4].GetComponent<Text>().text,
+            WadaiThema[5].GetComponent<Text>().text, WadaiThema[6].GetComponent<Text>().text, WadaiThema[7].GetComponent<Text>().text);
         }
     }
 
     [MunRPC]
-    public void SendAllLogData(String LogText1)
-        //, String LogText2, String LogText3, String LogText4, String LogText5, String LogText6, String LogText7, String LogText8
+    public void SendAllLogData(String LogText1, String LogText2, String LogText3, String LogText4, String LogText5, String LogText6, String LogText7, String LogText8)
     {
         LogText[0].GetComponent<Text>().text = LogText1;
-        //LogText[1].text = LogText2;
-       // LogText[2].text = LogText3;
-        //LogText[3].text = LogText4;
-        //LogText[4].text = LogText5;
-        //LogText[5].text = LogText6;
-        //LogText[6].text = LogText7;
-        //LogText[7].text = LogText8;
+        LogText[1].GetComponent<Text>().text = LogText2;
+        LogText[2].GetComponent<Text>().text = LogText3;
+        LogText[3].GetComponent<Text>().text = LogText4;
+        LogText[4].GetComponent<Text>().text = LogText5;
+        LogText[5].GetComponent<Text>().text = LogText6;
+        LogText[6].GetComponent<Text>().text = LogText7;
+        LogText[7].GetComponent<Text>().text = LogText8;
         Debug.Log("ThanksHost");
+    }
+    [MunRPC]
+    public void SendAllWadaiThema(String WadaiThema1, String WadaiThema2, String WadaiThema3, String WadaiThema4, String WadaiThema5, String WadaiThema6, String WadaiThema7, String WadaiThema8)
+    {
+        WadaiThema[0].GetComponent<Text>().text = WadaiThema1;
+        WadaiThema[1].GetComponent<Text>().text = WadaiThema2;
+        WadaiThema[2].GetComponent<Text>().text = WadaiThema3;
+        WadaiThema[3].GetComponent<Text>().text = WadaiThema4;
+        WadaiThema[4].GetComponent<Text>().text = WadaiThema5;
+        WadaiThema[5].GetComponent<Text>().text = WadaiThema6;
+        WadaiThema[6].GetComponent<Text>().text = WadaiThema7;
+        WadaiThema[7].GetComponent<Text>().text = WadaiThema8;
     }
 
     // 誰かがルームからログアウトしたときの処理

@@ -374,6 +374,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     public void IconHideButtonOnclick()
     {
         IconHideState = !IconHideState;
+        monobitView.RPC("Hide", MonobitTargets.All);
     }
     /// <summary>
     /// マイクのエラーハンドリング用デリゲート
@@ -503,5 +504,49 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     public void HideFalse(int id)
     {
         IconList[id-1] = 0;
+    }
+    /// <summary>
+    /// 初期化
+    /// </summary>
+    [MunRPC]
+    public void Hide()
+    {
+        if (MonobitNetwork.room.playerCount <= 4)
+        {
+            IconButton.SetActive(false);
+            GameObject[] icons = GameObject.FindGameObjectsWithTag("icon");
+            foreach (GameObject icon in icons)
+            {
+                Destroy(icon);
+            }
+            int iconsum = 0;
+            for (int iconnum = 0; iconnum < 8; iconnum++)
+            {
+                iconsum += IconList[iconnum];
+            }
+            int a = -1;
+            for (num = 0; num < MonobitNetwork.room.playerCount - iconsum; num++)
+            {
+                //GameObject prefab = (GameObject)Instantiate(usericon[num], new Vector3(-x / 2 + x * num / 15, -y / 6, 0), Quaternion.identity);
+                GameObject prefab = (GameObject)Instantiate(usericon[num], new Vector3(-560 + (num % 2) * 150, -150 - (num / 2) * 140, 0), Quaternion.identity);
+                prefab.transform.SetParent(canvas.transform, false);
+                a += 1;
+                while (IconList[a] == 1)
+                {
+                    a += 1;
+                }
+                prefab.transform.Find("Text").GetComponent<Text>().text = MonobitNetwork.playerList[a].name;
+                prefab.transform.Find("Initial").GetComponent<Text>().text = MonobitNetwork.playerList[a].name.Substring(0, 1);
+            }
+        }
+        else
+        {
+            GameObject[] icons = GameObject.FindGameObjectsWithTag("icon");
+            foreach (GameObject icon in icons)
+            {
+                Destroy(icon);
+            }
+            IconButton.SetActive(true);
+        }
     }
 }

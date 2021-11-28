@@ -15,6 +15,8 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     [SerializeField]
     private Text InitialList;
     [SerializeField]
+    private Text IconHideText;
+    [SerializeField]
     private GameObject MuteLine;
     [SerializeField]
     private GameObject UserIcon;
@@ -123,12 +125,12 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
                 if (IconHideState==true)
                 {
                     monobitView.RPC("HideTrue", MonobitTargets.All, MonobitEngine.MonobitNetwork.player.ID);
-                    //GameObject.Find("IconHideButton").GetComponent<Text>().text= "Hide:ON";
+                    IconHideText.text= "Hide:ON";
                 }
                 else
                 {
                     monobitView.RPC("HideFalse", MonobitTargets.All, MonobitEngine.MonobitNetwork.player.ID);
-                    //GameObject.Find("IconHideButton").GetComponent<Text>().text = "Hide:OFF";
+                    IconHideText.text = "Hide:OFF";
                 }
                 if (playerCount != MonobitNetwork.room.playerCount)
                 {

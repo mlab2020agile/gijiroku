@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8883,7 +8883,7 @@ GameObject:
   - component: {fileID: 845537595}
   - component: {fileID: 845537594}
   m_Layer: 5
-  m_Name: Text
+  m_Name: IconHideText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19434,6 +19434,7 @@ MonoBehaviour:
   RoomNameText: {fileID: 1452743819}
   PlayerList: {fileID: 487300997}
   InitialList: {fileID: 857610515}
+  IconHideText: {fileID: 845537594}
   MuteLine: {fileID: 458717932}
   UserIcon: {fileID: 1896763839628612042, guid: f8559ea24f0da4bf98fd7a2421eefa32,
     type: 3}

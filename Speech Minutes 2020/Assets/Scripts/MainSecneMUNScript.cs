@@ -64,7 +64,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     private Sprite sprite;
     public GameObject[] LogText;
     public GameObject[] WadaiThema;
-    List<int> IconList = new List<int> { 0, 0, 0, 0, 0, 0, 0, 0 };
+    public List<int> IconList = new List<int> { 0, 0, 0, 0, 0, 0, 0, 0 };
     List<int> MuteList = new List<int> { 0, 0, 0, 0, 0, 0, 0, 0 };
 
     void Start()

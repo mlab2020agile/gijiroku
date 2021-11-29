@@ -34,7 +34,8 @@ public class WadaiChange : MonobitEngine.MonoBehaviour
     {
         if (MonobitEngine.MonobitNetwork.isHost)
         {
-            monobitView.RPC("wdikyouyuu", MonobitTargets.All,NowBottonPushed, text2.text);
+            monobitView.RPC("wdikyouyuu", MonobitTargets.All,NowBottonPushed, text2.text,text[0].text,text[1].text,
+            text[2].text,text[3].text,text[4].text,text[5].text,text[6].text,text[7].text);
         }
         if(dropdown.value != dropdown2)
         {
@@ -49,8 +50,16 @@ public class WadaiChange : MonobitEngine.MonoBehaviour
     }
     
     [MunRPC]
-    public void wdikyouyuu(int va, string y)
+    public void wdikyouyuu(int va, string y, string w1, string w2, string w3, string w4, string w5, string w6, string w7, string w8)
     {
+        text[0].text = w1;
+        text[1].text = w2;
+        text[2].text = w3;
+        text[3].text = w4;
+        text[4].text = w5;
+        text[5].text = w6;
+        text[6].text = w7;
+        text[7].text = w8;
         if(NowBottonPushed != va)
         {
             NowBottonPushed = va;

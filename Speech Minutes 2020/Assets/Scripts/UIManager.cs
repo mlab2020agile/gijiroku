@@ -1,25 +1,58 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using MonobitEngine;
 
-public class UIManager : MonoBehaviour
+public class UIManager : MonobitEngine.MonoBehaviour
 {
     [SerializeField] GameObject WadaiPanel;
     [SerializeField] GameObject WhiteBoardPanel;
     [SerializeField] GameObject SendTextPanel;
     // Start is called before the first frame update
+    [SerializeField] GameObject WadaiUIElements;
+
+
+    [SerializeField] GameObject HostSettingButton;
+    [SerializeField] GameObject PreHostSettingPanel;
+    [SerializeField] GameObject HostChangePanel;
+    [SerializeField] GameObject kickPanel;
+
+
+    [SerializeField] GameObject ClientSettingButton;
+    [SerializeField] GameObject PreRequestPanel;
+    [SerializeField] GameObject RequestPanel;
 
     bool EnableWadaiPanel = true;
     bool EnableWhiteBoardPanel = true;
     bool EnableSendTextPanel = true;
+
+    bool EnableHostSetting = true;
+    bool EnableClientSetting = true;
 
     void Start()
     {
         EnableWadaiPanel = true;
         EnableWhiteBoardPanel = true;
         EnableSendTextPanel = true;
+
     }
 
+    void Update()
+    {
+        if (MonobitEngine.MonobitNetwork.isHost)
+        {
+            HostSettingButton.SetActive(true);
+            ClientSettingButton.SetActive(false);
+        }
+        if (!MonobitEngine.MonobitNetwork.isHost)
+        {
+            HostSettingButton.SetActive(false);
+            ClientSettingButton.SetActive(true);
+        }
+
+    }
     //UI右上の話題選択ボタンが押されたとき
     public void OnclickWadaiButton()
     {
@@ -30,6 +63,10 @@ public class UIManager : MonoBehaviour
         EnableSendTextPanel = true;
 
         WadaiPanel.SetActive(EnableWadaiPanel);
+        if (!MonobitEngine.MonobitNetwork.player.isHost)
+        {
+            WadaiUIElements.SetActive(false);
+        }
         EnableWadaiPanel = !EnableWadaiPanel;
     }
 
@@ -57,6 +94,57 @@ public class UIManager : MonoBehaviour
 
         SendTextPanel.SetActive(EnableSendTextPanel);
         EnableSendTextPanel = !EnableSendTextPanel;
+    }
+
+    public void OnClickHostsetting()
+    {
+        PreHostSettingPanel.SetActive(EnableHostSetting);
+        EnableHostSetting = !EnableHostSetting;
+        HostChangePanel.SetActive(false);
+        kickPanel.SetActive(false);
+    }
+
+    public void OnClickChangeHostButton()
+    {
+        HostChangePanel.SetActive(true);
+    }
+
+    public void OnClickChangeHostOK()
+    {
+        if (MonobitEngine.MonobitNetwork.isHost && MonobitEngine.MonobitNetwork.otherPlayersList.Length > 0)
+        {
+            int index = MonobitEngine.MonobitNetwork.player.ID - 1;
+            MonobitEngine.MonobitNetwork.ChangeHost(MonobitEngine.MonobitNetwork.otherPlayersList[index]);
+            Debug.Log("HereIsHostAuthority");
+        }
+    }
+    public void OnClickChangeHostCancel()
+    {
+        HostChangePanel.SetActive(false);
+    }
+    public void OnClickKickButton()
+    {
+        kickPanel.SetActive(true);
+    }
+
+    public void OnClickClientSetting()
+    {
+        PreRequestPanel.SetActive(EnableClientSetting);
+        EnableClientSetting = !EnableClientSetting;
+    }
+
+    public void OnClickPreRequestPanel()
+    {
+        RequestPanel.SetActive(true);
+    }
+
+    public void OnClickRequestOK()
+    {
+        Debug.Log("WannabeHost");
+    }
+    public void OnClickRequestCancel()
+    {
+        RequestPanel.SetActive(false);
     }
 
 

@@ -11,6 +11,8 @@ public class WadaiChange : MonobitEngine.MonoBehaviour
     public Text[] text;
     public Text[] WadaiThemaText;
     int dropdown2;
+    public Text text2;
+    int NowBottonPushed = -1;
 
 
     //Dropdownを格納する変数
@@ -40,74 +42,39 @@ public class WadaiChange : MonobitEngine.MonoBehaviour
             form.text = "";*/
             dropdown2 = dropdown.value;
         }
-
-        /*
-        //DropdownのValueが0のとき（赤が選択されているとき）
-        if (dropdown.value == 0)
-        {
-
-        }
-        //DropdownのValueが1のとき（青が選択されているとき）
-        else if (dropdown.value == 1)
-        {
-            InputField form = GameObject.Find("InputField").GetComponent<InputField>();
-            form.text = "";
-        }
-        //DropdownのValueが2のとき（黄が選択されているとき）
-        else if (dropdown.value == 2)
-        {
-
-        }
-        //DropdownのValueが3のとき（白が選択されているとき）
-        else if (dropdown.value == 3)
-        {
-
-        }
-        //DropdownのValueが4のとき（黒が選択されているとき）
-        else if (dropdown.value == 4)
-        {
-
-        }
-        else if (dropdown.value == 5)
-        {
-
-        }
-        //DropdownのValueが3のとき（白が選択されているとき）
-        else if (dropdown.value == 6)
-        {
-
-        }
-        //DropdownのValueが4のとき（黒が選択されているとき）
-        else if (dropdown.value == 7)
-        {
-
-        }*/
     }
-    
-    /*public void Update()
+    public void Wadai1()
     {
-        //テキストにinputFieldの内容を反映
-        if(text[dropdown.value].text != "")
-        {
-            inputField.text = text[dropdown.value].text;
-        }
-       
-       // display.text = inputField.text;
-        //オブジェクトを表示する
-        //  gametext.gameObject.SetActive(true);
-    }*/
-
-    //オプションが変更されたときに実行するメソッド
-    /*public void InputText()
+        NowBottonPushed = 0;
+    }
+    public void Wadai2()
     {
-        if (dropdown.value != dropdown2)
-        {
-            InputField form = GameObject.Find("wadaiInputField").GetComponent<InputField>();
-            form.text = "";
-            dropdown2 = dropdown.value;
-        }
-        text[dropdown.value].text = inputField.text;
-    }*/
+        NowBottonPushed = 1;
+    }
+    public void Wadai3()
+    {
+        NowBottonPushed = 2;
+    }
+    public void Wadai4()
+    {
+        NowBottonPushed = 3;
+    }
+    public void Wadai5()
+    {
+        NowBottonPushed = 4;
+    }
+    public void Wadai6()
+    {
+        NowBottonPushed = 5;
+    }
+    public void Wadai7()
+    {
+        NowBottonPushed = 6;
+    }
+    public void Wadai8()
+    {
+        NowBottonPushed = 7;
+    }
     /// <summary>
     /// inputfieldの文字を送信ボタンで反映
     /// </summary>
@@ -137,6 +104,42 @@ public class WadaiChange : MonobitEngine.MonoBehaviour
         text[va].text = tx;
         WadaiThemaText[va].text = tx;
         GameObject.Find("wadaiInputField").GetComponent<InputField>().text = "";
+        if (NowBottonPushed == va)
+        {
+            text2.text = "現在の話題："+tx;
+            if(va == 0)
+            {
+                text2.color = new Color32(189, 193, 74, 255);
+            }
+            if(va == 1)
+            {
+                text2.color = new Color32(195, 160, 65, 255);
+            }
+            if(va == 2)
+            {
+                text2.color = new Color32(207, 89, 81, 255);
+            }
+            if(va == 3)
+            {
+                text2.color = new Color32(207, 75, 200, 255);
+            }
+            if(va == 4)
+            {
+                text2.color = new Color32(144, 82, 204, 255);
+            }
+            if(va == 5)
+            {
+                text2.color = new Color32(74, 87, 202, 255);
+            }
+            if(va == 6)
+            {
+                text2.color = new Color32(63, 197, 212, 255);
+            }
+            if(va == 7)
+            {
+                text2.color = new Color32(62, 207, 69, 255);
+            }
+        }
     }
     
 

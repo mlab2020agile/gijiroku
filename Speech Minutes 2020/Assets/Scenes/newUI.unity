@@ -2984,6 +2984,8 @@ MonoBehaviour:
   - {fileID: 1656304640}
   - {fileID: 268249014}
   mun: {fileID: 1782908607}
+  inputField: {fileID: 573485234}
+  dropdown: {fileID: 1768247750}
   RoomNameText: {fileID: 1452743819}
   PlayerList: {fileID: 487300997}
   MuteLine: {fileID: 0}
@@ -3109,6 +3111,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 573485233}
         m_MethodName: WadaiSend
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 335903907}
+        m_MethodName: SendButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3394,7 +3407,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 520, y: 86}
-  m_SizeDelta: {x: -1270, y: -758}
+  m_SizeDelta: {x: -1270, y: -822.4885}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &377150901
 MonoBehaviour:
@@ -5837,6 +5850,7 @@ MonoBehaviour:
   - {fileID: 641492914}
   - {fileID: 295698439}
   - {fileID: 563109413}
+  text2: {fileID: 562009144}
   dropdown: {fileID: 1768247750}
 --- !u!114 &573485234
 MonoBehaviour:
@@ -6682,6 +6696,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 573485233}
+        m_MethodName: Wadai4
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &635960809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7320,6 +7345,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 335903907}
         m_MethodName: WadaiButton3
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 573485233}
+        m_MethodName: Wadai3
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8265,6 +8301,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 335903907}
         m_MethodName: WadaiButton1
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 573485233}
+        m_MethodName: Wadai1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10970,6 +11017,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 573485233}
+        m_MethodName: Wadai5
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1095098725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11625,6 +11683,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 335903907}
         m_MethodName: WadaiButton2
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 573485233}
+        m_MethodName: Wadai2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13748,6 +13817,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 335903907}
         m_MethodName: WadaiButton6
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 573485233}
+        m_MethodName: Wadai6
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17497,6 +17577,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 573485233}
+        m_MethodName: Wadai7
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1615024562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19169,6 +19260,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  text2: {fileID: 0}
   dropdown: {fileID: 1768247750}
 --- !u!114 &1768247750
 MonoBehaviour:
@@ -21559,6 +21651,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 335903907}
         m_MethodName: WadaiButton8
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 573485233}
+        m_MethodName: Wadai8
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -64,7 +64,8 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     private Sprite sprite;
     public GameObject[] LogText;
     public GameObject[] WadaiThema;
-    List<int> IconList = new List<int> { 0,0,0,0,0,0,0,0};
+    List<int> IconList = new List<int> { 0, 0, 0, 0, 0, 0, 0, 0 };
+    List<int> MuteList = new List<int> { 0, 0, 0, 0, 0, 0, 0, 0 };
 
     void Start()
     {
@@ -250,6 +251,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         {
             IconButton.SetActive(true);
         }
+        monobitView.RPC("Hide", MonobitTargets.All);
     }
 
     public void DebugButton()
@@ -440,6 +442,42 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     [MunRPC]
     public void Muteoff(int id)
     {
+        MuteList[id - 1] = 1;
+        /*
+        if (IconList[id - 1] == 0)
+        {
+            int iconid = 0;
+            for (int iconnum = 0; iconnum < id; iconnum++)
+            {
+                iconid += IconList[iconnum];
+            }
+            if (iconid == 0)
+            {
+                image1.transform.localPosition = new Vector3(-210, -110, 0);//-250,-160
+                sprite = Resources.Load<Sprite>("textures/muteoff");
+                image1.GetComponent<Image>().sprite = sprite;
+            }
+            else if (iconid == 1)
+            {
+                image2.transform.localPosition = new Vector3(-60, -110, 0);
+                sprite = Resources.Load<Sprite>("textures/muteoff");
+                image2.GetComponent<Image>().sprite = sprite;
+            }
+            else if (iconid == 2)
+            {
+                image3.transform.localPosition = new Vector3(-210, -250, 0);
+                sprite = Resources.Load<Sprite>("textures/muteoff");
+                image3.GetComponent<Image>().sprite = sprite;
+            }
+            else if (iconid == 3)
+            {
+                image4.transform.localPosition = new Vector3(-60, -250, 0);
+                sprite = Resources.Load<Sprite>("textures/muteoff");
+                image4.GetComponent<Image>().sprite = sprite;
+            }
+        }
+        */
+        /*
         if (id == MonobitNetwork.playerList[0].ID)
         {
             //image1.transform.localPosition = new Vector3(1000, 1000, 0);
@@ -469,6 +507,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
             sprite = Resources.Load<Sprite>("textures/muteoff");
             image4.GetComponent<Image>().sprite = sprite;
         }
+        */
     }
     /// <summary>
     /// 初期化
@@ -476,6 +515,42 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     [MunRPC]
     public void Muteon(int id)
     {
+        MuteList[id - 1] = 0;
+        /*
+        if(IconList[id - 1] == 0)
+        {
+            int iconid = 0;
+            for (int iconnum = 0; iconnum < id; iconnum++)
+            {
+                iconid += IconList[iconnum];
+            }
+            if (iconid==0)
+            {
+                image1.transform.localPosition = new Vector3(-210, -110, 0);//-250,-160
+                sprite = Resources.Load<Sprite>("textures/muteon");
+                image1.GetComponent<Image>().sprite = sprite;
+            }
+            else if (iconid == 1)
+            {
+                image2.transform.localPosition = new Vector3(-60, -110, 0);
+                sprite = Resources.Load<Sprite>("textures/muteon");
+                image2.GetComponent<Image>().sprite = sprite;
+            }
+            else if (iconid == 2)
+            {
+                image3.transform.localPosition = new Vector3(-210, -250, 0);
+                sprite = Resources.Load<Sprite>("textures/muteon");
+                image3.GetComponent<Image>().sprite = sprite;
+            }
+            else if (iconid == 3)
+            {
+                image4.transform.localPosition = new Vector3(-60, -250, 0);
+                sprite = Resources.Load<Sprite>("textures/muteon");
+                image4.GetComponent<Image>().sprite = sprite;
+            }
+        }
+        */
+        /*
         if (id == MonobitNetwork.playerList[0].ID)
         {
             image1.transform.localPosition = new Vector3(-210, -110, 0);//-250,-160
@@ -500,6 +575,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
             sprite = Resources.Load<Sprite>("textures/muteon");
             image4.GetComponent<Image>().sprite = sprite;
         }
+        */
     }
     /// <summary>
     /// 初期化
@@ -561,5 +637,87 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
             IconButton.SetActive(true);
         }
         CameraPanel.GetComponent<RectTransform>().SetAsLastSibling();
+        int iconhide = 0;//非表示にしている人数
+        for (int iconnum = 0; iconnum < 8; iconnum++)
+        {
+            iconhide += IconList[iconnum];
+        }
+        int icondisplay = MonobitNetwork.room.playerCount - iconhide;
+        int icondisplay_1 = 0;
+        image1.transform.localPosition = new Vector3(1000, 1000, 0);
+        image2.transform.localPosition = new Vector3(1000, 1000, 0);
+        image3.transform.localPosition = new Vector3(1000, 1000, 0);
+        image4.transform.localPosition = new Vector3(1000, 1000, 0);
+        if (icondisplay > 0 && icondisplay<5)
+        {
+            while (IconList[icondisplay_1] == 1)
+            {
+                icondisplay_1 += 1;
+            }
+            image1.transform.localPosition = new Vector3(-210, -110, 0);//-250,-160
+            if(MuteList[icondisplay_1] == 1)
+            {
+                sprite = Resources.Load<Sprite>("textures/muteoff");
+            }
+            else
+            {
+                sprite = Resources.Load<Sprite>("textures/muteon");
+            }
+            image1.GetComponent<Image>().sprite = sprite;
+
+            if (icondisplay > 1)
+            {
+                while (IconList[icondisplay_1] == 1)
+                {
+                    icondisplay_1 += 1;
+                }
+                image2.transform.localPosition = new Vector3(-60, -110, 0);
+                if (MuteList[icondisplay_1] == 1)
+                {
+                    sprite = Resources.Load<Sprite>("textures/muteoff");
+                }
+                else
+                {
+                    sprite = Resources.Load<Sprite>("textures/muteon");
+                }
+                image2.GetComponent<Image>().sprite = sprite;
+
+                if (icondisplay > 2)
+                {
+                    while (IconList[icondisplay_1] == 1)
+                    {
+                        icondisplay_1 += 1;
+                    }
+                    image3.transform.localPosition = new Vector3(-210, -250, 0);
+                    if (MuteList[icondisplay_1] == 1)
+                    {
+                        sprite = Resources.Load<Sprite>("textures/muteoff");
+                    }
+                    else
+                    {
+                        sprite = Resources.Load<Sprite>("textures/muteon");
+                    }
+                    image3.GetComponent<Image>().sprite = sprite;
+
+                    if (icondisplay > 3)
+                    {
+                        while (IconList[icondisplay_1] == 1)
+                        {
+                            icondisplay_1 += 1;
+                        }
+                        image4.transform.localPosition = new Vector3(-60, -250, 0);
+                        if (MuteList[icondisplay_1] == 1)
+                        {
+                            sprite = Resources.Load<Sprite>("textures/muteoff");
+                        }
+                        else
+                        {
+                            sprite = Resources.Load<Sprite>("textures/muteon");
+                        }
+                        image4.GetComponent<Image>().sprite = sprite;
+                    }
+                }
+            }
+        }
     }
 }

@@ -45,36 +45,101 @@ public class WadaiChange : MonobitEngine.MonoBehaviour
     }
     public void Wadai1()
     {
-        NowBottonPushed = 0;
+        if (MonobitEngine.MonobitNetwork.isHost)
+        {
+            monobitView.RPC("wdi1", MonobitTargets.All);
+        }
     }
     public void Wadai2()
     {
-        NowBottonPushed = 1;
+        if (MonobitEngine.MonobitNetwork.isHost)
+        {
+            monobitView.RPC("wdi2", MonobitTargets.All);
+        }
     }
     public void Wadai3()
     {
-        NowBottonPushed = 2;
+        if (MonobitEngine.MonobitNetwork.isHost)
+        {
+            monobitView.RPC("wdi3", MonobitTargets.All);
+        }
     }
     public void Wadai4()
     {
-        NowBottonPushed = 3;
+        if (MonobitEngine.MonobitNetwork.isHost)
+        {
+            monobitView.RPC("wdi4", MonobitTargets.All);
+        }
     }
     public void Wadai5()
     {
-        NowBottonPushed = 4;
+        if (MonobitEngine.MonobitNetwork.isHost)
+        {
+            monobitView.RPC("wdi5", MonobitTargets.All);
+        }
     }
     public void Wadai6()
     {
-        NowBottonPushed = 5;
+        if (MonobitEngine.MonobitNetwork.isHost)
+        {
+            monobitView.RPC("wdi6", MonobitTargets.All);
+        }
     }
     public void Wadai7()
     {
-        NowBottonPushed = 6;
+        if (MonobitEngine.MonobitNetwork.isHost)
+        {
+            monobitView.RPC("wdi7", MonobitTargets.All);
+        }
     }
     public void Wadai8()
     {
+        if (MonobitEngine.MonobitNetwork.isHost)
+        {
+            monobitView.RPC("wdi8", MonobitTargets.All);
+        }
+    }
+    [MunRPC]
+    public void wdi1()
+    {
+        NowBottonPushed = 0;
+    }
+    [MunRPC]
+    public void wdi2()
+    {
+        NowBottonPushed = 1;
+    }
+    [MunRPC]
+    public void wdi3()
+    {
+        NowBottonPushed = 2;
+    }
+    [MunRPC]
+    public void wdi4()
+    {
+        NowBottonPushed = 3;
+    }
+    [MunRPC]
+    public void wdi5()
+    {
+        NowBottonPushed = 4;
+    }
+    [MunRPC]
+    public void wdi6()
+    {
+        NowBottonPushed = 5;
+    }
+    [MunRPC]
+    public void wdi7()
+    {
+        NowBottonPushed = 6;
+    }
+    [MunRPC]
+    public void wdi8()
+    {
         NowBottonPushed = 7;
     }
+
     /// <summary>
     /// inputfieldの文字を送信ボタンで反映
     /// </summary>

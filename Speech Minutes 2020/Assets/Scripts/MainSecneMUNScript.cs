@@ -433,6 +433,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
                     //myVoice.SendStreamType = StreamType.BROADCAST;
                     MuteLine.SetActive(false);
                 }
+                monobitView.RPC("Hide", MonobitTargets.All);
             }
         }
     }
@@ -664,6 +665,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
                 sprite = Resources.Load<Sprite>("textures/muteon");
             }
             image1.GetComponent<Image>().sprite = sprite;
+            icondisplay_1 += 1;
 
             if (icondisplay > 1)
             {
@@ -681,6 +683,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
                     sprite = Resources.Load<Sprite>("textures/muteon");
                 }
                 image2.GetComponent<Image>().sprite = sprite;
+                icondisplay_1 += 1;
 
                 if (icondisplay > 2)
                 {
@@ -698,6 +701,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
                         sprite = Resources.Load<Sprite>("textures/muteon");
                     }
                     image3.GetComponent<Image>().sprite = sprite;
+                    icondisplay_1 += 1;
 
                     if (icondisplay > 3)
                     {

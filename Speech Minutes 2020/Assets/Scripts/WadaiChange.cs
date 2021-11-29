@@ -32,6 +32,10 @@ public class WadaiChange : MonobitEngine.MonoBehaviour
     /// </summary>
     private void Update()
     {
+        if (MonobitEngine.MonobitNetwork.isHost)
+        {
+            monobitView.RPC("wdikyouyuu", MonobitTargets.All,NowBottonPushed, text2.text);
+        }
         if(dropdown.value != dropdown2)
         {
             if(text[dropdown.value].text != "")
@@ -44,52 +48,47 @@ public class WadaiChange : MonobitEngine.MonoBehaviour
         }
     }
     
-   // 誰かがルームにログインしたときの処理
-    /*public void OnOtherPlayerConnected(MonobitPlayer newPlayer)
-    {
-        if (MonobitEngine.MonobitNetwork.isHost)
-        {
-            monobitView.RPC("wdikyouyuu", MonobitTargets.All,NowBottonPushed,text2.text);
-        }
-    }
     [MunRPC]
     public void wdikyouyuu(int va, string y)
     {
-        NowBottonPushed = va;
-        text2.text = y;
-        if(va == 0)
+        if(NowBottonPushed != va)
         {
-            text2.color = new Color32(189, 193, 74, 255);
+            NowBottonPushed = va;
+            text2.text = y;
+            if(va == 0)
+            {
+                text2.color = new Color32(189, 193, 74, 255);
+            }
+            if(va == 1)
+            {
+                text2.color = new Color32(195, 160, 65, 255);
+            }
+            if(va == 2)
+            {
+                text2.color = new Color32(207, 89, 81, 255);
+            }
+            if(va == 3)
+            {
+                text2.color = new Color32(207, 75, 200, 255);
+            }
+            if(va == 4)
+            {
+                text2.color = new Color32(144, 82, 204, 255);
+            }
+            if(va == 5)
+            {
+                text2.color = new Color32(74, 87, 202, 255);
+            }
+            if(va == 6)
+            {
+                text2.color = new Color32(63, 197, 212, 255);
+            }
+            if(va == 7)
+            {
+                text2.color = new Color32(62, 207, 69, 255);
+            }
         }
-        if(va == 1)
-        {
-            text2.color = new Color32(195, 160, 65, 255);
-        }
-        if(va == 2)
-        {
-            text2.color = new Color32(207, 89, 81, 255);
-        }
-        if(va == 3)
-        {
-            text2.color = new Color32(207, 75, 200, 255);
-        }
-        if(va == 4)
-        {
-            text2.color = new Color32(144, 82, 204, 255);
-        }
-        if(va == 5)
-        {
-            text2.color = new Color32(74, 87, 202, 255);
-        }
-        if(va == 6)
-        {
-            text2.color = new Color32(63, 197, 212, 255);
-        }
-        if(va == 7)
-        {
-            text2.color = new Color32(62, 207, 69, 255);
-        }
-    }*/
+    }
     public void Wadai1()
     {
         if (MonobitEngine.MonobitNetwork.isHost)

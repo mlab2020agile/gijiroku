@@ -732,10 +732,6 @@ namespace IBM.Watsson.Examples
 
         private void Update()
         {
-            if( MonobitNetwork.isHost )
-            {
-                monobitView.RPC("Wdikyo",MonobitTargets.All,NowBottonPushed);
-            }
             now = DateTime.Now;
             timeStamp = now.ToString("yyyy/MM/dd HH:mm:ss");
             logtime = now.ToLongTimeString();
@@ -849,6 +845,10 @@ namespace IBM.Watsson.Examples
         public void OnOtherPlayerConnected(MonobitPlayer newPlayer)
         {
             Debug.Log("入ったよ");
+            if( MonobitNetwork.isHost )
+            {
+                monobitView.RPC("Wdikyo",MonobitTargets.All,NowBottonPushed);
+            }
             if (!vcPlayerInfo.ContainsKey(newPlayer))
             {
                 vcPlayerInfo.Add(newPlayer, (Int32)EnableVC.ENABLE);

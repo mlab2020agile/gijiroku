@@ -71,10 +71,9 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         PlayerScroll.SetActive(false);
         IconButton.SetActive(false);
         IconPanel.SetActive(false);
-        for(int iconnum = 0; iconnum < 8; iconnum++)
-        {
-            IconList[iconnum] = 0;
-        }
+        IconHideText.text = "アイコン表示中";
+        IconHideButton.GetComponent<Image>().color = new Color(127/255f,255/255f,191/255f);
+        CameraPanel.GetComponent<RectTransform>().SetAsLastSibling();
     }
     /** ボイスチャット送信可否設定の定数. */
     private enum EnableVC
@@ -125,15 +124,16 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
                 if (IconHideState==true)
                 {
                     monobitView.RPC("HideTrue", MonobitTargets.All, MonobitEngine.MonobitNetwork.player.ID);
-                    IconHideText.text= "Hide:ON";
+                    //IconHideText.text= "アイコン非表示中";
                 }
                 else
                 {
                     monobitView.RPC("HideFalse", MonobitTargets.All, MonobitEngine.MonobitNetwork.player.ID);
-                    IconHideText.text = "Hide:OFF";
+                    //IconHideText.text = "アイコン表示中";
                 }
                 if (playerCount != MonobitNetwork.room.playerCount)
                 {
+                    /*
                     if (MonobitNetwork.room.playerCount <= 4)
                     {
                         IconButton.SetActive(false);
@@ -174,6 +174,8 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
                     playerCount = MonobitNetwork.room.playerCount;
                     Debug.Log(MonobitNetwork.room.playerCount);
                     CameraPanel.transform.SetAsLastSibling();
+                    */
+                    monobitView.RPC("Hide", MonobitTargets.All);
                 }
 
                 if (usernamedropdown)
@@ -374,6 +376,16 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     public void IconHideButtonOnclick()
     {
         IconHideState = !IconHideState;
+        if (IconHideState)
+        {
+            IconHideText.text = "アイコン非表示中";
+            IconHideButton.GetComponent<Image>().color = new Color(255 / 255f, 127 / 255f, 127 / 255f);
+        }
+        else
+        {
+            IconHideText.text = "アイコン表示中";
+            IconHideButton.GetComponent<Image>().color = new Color(127 / 255f, 255 / 255f, 191 / 255f);
+        }
         monobitView.RPC("Hide", MonobitTargets.All);
     }
     /// <summary>
@@ -548,5 +560,6 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
             }
             IconButton.SetActive(true);
         }
+        CameraPanel.GetComponent<RectTransform>().SetAsLastSibling();
     }
 }

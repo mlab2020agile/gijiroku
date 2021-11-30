@@ -31,11 +31,26 @@ public class UIManager : MonobitEngine.MonoBehaviour
     bool EnableHostSetting = true;
     bool EnableClientSetting = true;
 
+    public GameObject PrefabobjforKick;
+    public GameObject PrefabobjforHost;
+
+    public Transform ContentforKick;
+    public Transform ContentforHost;
+
     void Start()
     {
         EnableWadaiPanel = true;
         EnableWhiteBoardPanel = true;
         EnableSendTextPanel = true;
+        var parent1 = ContentforKick.transform;
+        var parent2 = ContentforHost.transform;
+        foreach (MonobitEngine.MonobitPlayer player in MonobitEngine.MonobitNetwork.otherPlayersList)
+        {
+            GameObject obj1 = Instantiate(PrefabobjforKick, Vector3.zero, Quaternion.identity, parent1);
+            GameObject obj2 = Instantiate(PrefabobjforHost, Vector3.zero, Quaternion.identity, parent2);
+            obj1.GetComponentInChildren<Text>().text = "name"+ " "+player.name+ "id" +" "+ player.ID;
+            obj2.GetComponentInChildren<Text>().text = "name" + " " + player.name + "id" + " " + player.ID;
+        }
 
     }
 
@@ -109,15 +124,6 @@ public class UIManager : MonobitEngine.MonoBehaviour
         HostChangePanel.SetActive(true);
     }
 
-    public void OnClickChangeHostOK()
-    {
-        if (MonobitEngine.MonobitNetwork.isHost && MonobitEngine.MonobitNetwork.otherPlayersList.Length > 0)
-        {
-            int index = MonobitEngine.MonobitNetwork.player.ID - 1;
-            MonobitEngine.MonobitNetwork.ChangeHost(MonobitEngine.MonobitNetwork.otherPlayersList[index]);
-            Debug.Log("HereIsHostAuthority");
-        }
-    }
     public void OnClickChangeHostCancel()
     {
         HostChangePanel.SetActive(false);
@@ -147,6 +153,15 @@ public class UIManager : MonobitEngine.MonoBehaviour
         RequestPanel.SetActive(false);
     }
 
+    public void OnOtherPlayerConnected(MonobitPlayer newPlayer)
+    {
+        var parent1 = ContentforKick.transform;
+        var parent2 = ContentforHost.transform;
+        GameObject obj1 = Instantiate(PrefabobjforKick, Vector3.zero, Quaternion.identity, parent1);
+        GameObject obj2 = Instantiate(PrefabobjforHost, Vector3.zero, Quaternion.identity, parent2);
+        obj1.GetComponentInChildren<Text>().text = "name" + " " + newPlayer.name + "id" + " " + newPlayer.ID;
+        obj2.GetComponentInChildren<Text>().text = "name" + " " + newPlayer.name + "id" + " " + newPlayer.ID;
+    }
 
-
+    
 }

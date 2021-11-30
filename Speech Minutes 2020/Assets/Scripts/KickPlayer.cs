@@ -6,6 +6,7 @@ using MonobitEngine;
 using UnityEngine.SceneManagement;
 using MonobitEngine.VoiceChat;
 using UnityEngine.UI;
+using System.Linq;
 
 public class KickPlayer : MonobitEngine.MonoBehaviour
 {
@@ -17,11 +18,15 @@ public class KickPlayer : MonobitEngine.MonoBehaviour
 
     private int id;
 
+    private int firstid;
+
     private void Start()
     {
+        firstid = MonobitEngine.MonobitNetwork.otherPlayersList.First().ID;
+        Debug.Log("first id is" + firstid);
         line = text.text;
         string[] str= line.Split(' ');
-        id = int.Parse(str[2])-2;
+        id = int.Parse(str[2])-firstid;
         Debug.Log(id);
     }
     public void OnClickKickButton()

@@ -25,8 +25,8 @@ public class KickPlayer : MonobitEngine.MonoBehaviour
         firstid = MonobitEngine.MonobitNetwork.otherPlayersList.First().ID;
         Debug.Log("first id is" + firstid);
         line = text.text;
-        string[] str= line.Split(' ');
-        id = int.Parse(str[2])-firstid;
+        string[] str = line.Split(' ');
+        id = int.Parse(str[3]);
         Debug.Log(id);
     }
     public void OnClickKickButton()
@@ -34,16 +34,17 @@ public class KickPlayer : MonobitEngine.MonoBehaviour
         KickOKButton.SetActive(true);
     }
 
-    public void OnclickKickOKButton() {
+    public void OnclickKickOKButton()
+    {
         MonobitEngine.MonobitNetwork.Kick(MonobitEngine.MonobitNetwork.otherPlayersList[id]);
         Destroy(gameObject);
     }
 
     public virtual void OnOtherPlayerDisconnected(MonobitPlayer otherPlayer)
     {
-            if (id == otherPlayer.ID)
-            {
-            Destroy(gameObject);
+        if (id == otherPlayer.ID)
+        {
+            Destroy(this.gameObject);
         }
     }
 }

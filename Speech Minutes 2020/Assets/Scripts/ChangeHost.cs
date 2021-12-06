@@ -20,13 +20,18 @@ public class ChangeHost : MonobitEngine.MonoBehaviour
 
     private int firstid;
 
+    private int Myid;
+
+    private int Otherid;
+
+    private int Othernumber;
     private void Start()
     {
         firstid = MonobitEngine.MonobitNetwork.otherPlayersList.First().ID;
         Debug.Log("first id is" + firstid);
         line = text.text;
         string[] str = line.Split(' ');
-        id = int.Parse(str[2]) - firstid;
+        id = int.Parse(str[3]);
         Debug.Log(id);
     }
     public void OnClickHostChangeButton()
@@ -36,18 +41,47 @@ public class ChangeHost : MonobitEngine.MonoBehaviour
 
     public void OnclickHostChangeOKButton()
     {
-        if (MonobitEngine.MonobitNetwork.isHost && MonobitEngine.MonobitNetwork.otherPlayersList.Length > 0)
+        for (int i = 0; i < MonobitEngine.MonobitNetwork.otherPlayersList.Length; i++)
         {
-            MonobitEngine.MonobitNetwork.ChangeHost(MonobitEngine.MonobitNetwork.otherPlayersList[id]);
-            Debug.Log("HereIsHostAuthority");
+            if (id == MonobitEngine.MonobitNetwork.otherPlayersList[i].ID)
+            {
+                if (MonobitEngine.MonobitNetwork.isHost && MonobitEngine.MonobitNetwork.otherPlayersList.Length > 0)
+                {
+                    MonobitEngine.MonobitNetwork.ChangeHost(MonobitEngine.MonobitNetwork.otherPlayersList[i]);
+                    Debug.Log("HereIsHostAuthority");
+                }
+            }
         }
+        /*
+                for (int i = 0; i < MonobitEngine.MonobitNetwork.playerList.Length; i++)
+                {
+                    if (MonobitNetwork.playerList[i].ID == id)
+                    {
+                        Otherid = i;
+                        Debug.Log(Otherid);
+                    }
+                    if (MonobitNetwork.playerList[i].ID == id)
+                    {
+                        Myid = i;
+                    }
+                }
+                if (Myid > Otherid)
+                {
+                    Othernumber = Otherid;
+                }
+                else
+                {
+                    Othernumber = Otherid - 1;
+                }
+
+              */
     }
 
-    public virtual void OnOtherPlayerDisconnected(MonobitPlayer otherPlayer)
+    private void OnOtherPlayerDisconnected(MonobitPlayer otherPlayer)
     {
         if (id == otherPlayer.ID)
         {
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
     }
 }

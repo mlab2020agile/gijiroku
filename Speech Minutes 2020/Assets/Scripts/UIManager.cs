@@ -11,7 +11,7 @@ public class UIManager : MonobitEngine.MonoBehaviour
     [SerializeField] GameObject WhiteBoardPanel;
     [SerializeField] GameObject SendTextPanel;
     // Start is called before the first frame update
-    [SerializeField] GameObject WadaiUIElements;
+    [SerializeField] GameObject WadaiElementsPanel;
 
 
     [SerializeField] GameObject HostSettingButton;
@@ -48,8 +48,8 @@ public class UIManager : MonobitEngine.MonoBehaviour
         {
             GameObject obj1 = Instantiate(PrefabobjforKick, Vector3.zero, Quaternion.identity, parent1);
             GameObject obj2 = Instantiate(PrefabobjforHost, Vector3.zero, Quaternion.identity, parent2);
-            obj1.GetComponentInChildren<Text>().text = "name"+ " "+player.name+ "id" +" "+ player.ID;
-            obj2.GetComponentInChildren<Text>().text = "name" + " " + player.name + "id" + " " + player.ID;
+            obj1.GetComponentInChildren<Text>().text = "name" + " " + player.name + " " + "id" + " " + player.ID;
+            obj2.GetComponentInChildren<Text>().text = "name" + " " + player.name + " " + "id" + " " + player.ID;
         }
 
     }
@@ -80,8 +80,9 @@ public class UIManager : MonobitEngine.MonoBehaviour
         WadaiPanel.SetActive(EnableWadaiPanel);
         if (!MonobitEngine.MonobitNetwork.player.isHost)
         {
-            WadaiUIElements.SetActive(false);
+            WadaiElementsPanel.SetActive(false);
         }
+        WadaiElementsPanel.SetActive(true);
         EnableWadaiPanel = !EnableWadaiPanel;
     }
 
@@ -159,9 +160,9 @@ public class UIManager : MonobitEngine.MonoBehaviour
         var parent2 = ContentforHost.transform;
         GameObject obj1 = Instantiate(PrefabobjforKick, Vector3.zero, Quaternion.identity, parent1);
         GameObject obj2 = Instantiate(PrefabobjforHost, Vector3.zero, Quaternion.identity, parent2);
-        obj1.GetComponentInChildren<Text>().text = "name" + " " + newPlayer.name + "id" + " " + newPlayer.ID;
-        obj2.GetComponentInChildren<Text>().text = "name" + " " + newPlayer.name + "id" + " " + newPlayer.ID;
+        obj1.GetComponentInChildren<Text>().text = "name" + " " + newPlayer.name + " " + "id" + " " + newPlayer.ID;
+        obj2.GetComponentInChildren<Text>().text = "name" + " " + newPlayer.name + " " + "id" + " " + newPlayer.ID;
     }
 
-    
+
 }

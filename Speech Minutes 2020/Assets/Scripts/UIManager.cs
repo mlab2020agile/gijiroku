@@ -46,6 +46,15 @@ public class UIManager : MonobitEngine.MonoBehaviour
 
     public CanvasGroup kickPanelCanvasGroup;
 
+    public GameObject RequestWaitPanel;
+
+    public Text hascometext;
+    private string hascomeName;
+    private int hascomeID;
+
+    public GameObject AllowPanel;
+
+    public GameObject DisallowPanel;
     void Start()
     {
         EnableWadaiPanel = true;
@@ -94,7 +103,7 @@ public class UIManager : MonobitEngine.MonoBehaviour
         {
             WadaiElementsPanel.SetActive(false);
         }
-        WadaiElementsPanel.SetActive(true);
+
         EnableWadaiPanel = !EnableWadaiPanel;
     }
 
@@ -178,15 +187,6 @@ public class UIManager : MonobitEngine.MonoBehaviour
         RequestPanel.SetActive(true);
     }
 
-    public void OnClickRequestOK()
-    {
-        Debug.Log("WannabeHost");
-    }
-    public void OnClickRequestCancel()
-    {
-        RequestPanel.SetActive(false);
-    }
-
     public void OnOtherPlayerConnected(MonobitPlayer newPlayer)
     {
         var parent1 = ContentforKick.transform;
@@ -197,5 +197,50 @@ public class UIManager : MonobitEngine.MonoBehaviour
         obj2.GetComponentInChildren<Text>().text = "name" + " " + newPlayer.name + " " + "id" + " " + newPlayer.ID;
     }
 
-
+    public void OnRequestOkClick()
+    {
+        monobitView.RPC("Requesthascome", MonobitTargets.Host, MonobitEngine.MonobitNetwork.player.name, MonobitEngine.MonobitNetwork.player.ID);
+        RequestWaitPanel.SetActive(true);
+    }
+    [MunRPC]
+    public void Requesthascome(string name, int ID)
+    {
+        AllowPanel.SetActive(true);
+        hascometext.text = name + "からホスト権のリクエストが来ています。";
+        hascomeName = name;
+        hascomeID = ID;
+    }
+    public void OnRequestCancelClick()
+    {
+        RequestPanel.SetActive(false);
+    }
+    public void RequestAllow()
+    {
+        AllowPanel.SetActive(false);
+        for (int i = 0; i < MonobitEngine.MonobitNetwork.otherPlayersList.Length; i++)
+        {
+            if (hascomeID == MonobitEngine.MonobitNetwork.otherPlayersList[i].ID)
+            {
+                if (MonobitEngine.MonobitNetwork.isHost && MonobitEngine.MonobitNetwork.otherPlayersList.Length > 0)
+                {
+                    MonobitEngine.MonobitNetwork.ChangeHost(MonobitEngine.MonobitNetwork.otherPlayersList[i]);
+                }
+            }
+        }
+    }
+    public void RequestDisallow()
+    {
+        AllowPanel.SetActive(false);
+        monobitView.RPC("Disallow", MonobitTargets.Host, MonobitEngine.MonobitNetwork.player.name);
+    }
+    [MunRPC]
+    public void Disallow(string name)
+    {
+        DisallowPanel.SetActive(true);
+        RequestWaitPanel.SetActive(false);
+    }
+    public void OnDisallowOKClick()
+    {
+        DisallowPanel.SetActive(false);
+    }
 }

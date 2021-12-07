@@ -16,6 +16,7 @@ public class UIManager : MonobitEngine.MonoBehaviour
 
     [SerializeField] GameObject HostSettingButton;
     [SerializeField] GameObject PreHostSettingPanel;
+
     [SerializeField] GameObject HostChangePanel;
     [SerializeField] GameObject kickPanel;
 
@@ -37,6 +38,14 @@ public class UIManager : MonobitEngine.MonoBehaviour
     public Transform ContentforKick;
     public Transform ContentforHost;
 
+    public RectTransform HostChangePanelRect;
+
+    public CanvasGroup HostChangePanelCanvasGroup;
+
+    public RectTransform kickPanelRect;
+
+    public CanvasGroup kickPanelCanvasGroup;
+
     void Start()
     {
         EnableWadaiPanel = true;
@@ -51,7 +60,10 @@ public class UIManager : MonobitEngine.MonoBehaviour
             obj1.GetComponentInChildren<Text>().text = "name" + " " + player.name + " " + "id" + " " + player.ID;
             obj2.GetComponentInChildren<Text>().text = "name" + " " + player.name + " " + "id" + " " + player.ID;
         }
-
+        HostChangePanel.SetActive(true);
+        OnClickChangeHostCancel();
+        kickPanel.SetActive(true);
+        OnClickKickCancel();
     }
 
     void Update()
@@ -116,24 +128,45 @@ public class UIManager : MonobitEngine.MonoBehaviour
     {
         PreHostSettingPanel.SetActive(EnableHostSetting);
         EnableHostSetting = !EnableHostSetting;
-        HostChangePanel.SetActive(false);
-        kickPanel.SetActive(false);
+        //kickPanel.SetActive(false);
+
+        HostChangePanelCanvasGroup.alpha = 0;
+        HostChangePanelRect.SetAsFirstSibling();
+        kickPanelCanvasGroup.alpha = 0;
+        kickPanelRect.SetAsFirstSibling();
     }
 
     public void OnClickChangeHostButton()
     {
-        HostChangePanel.SetActive(true);
+        HostChangePanelCanvasGroup.interactable = true;
+        HostChangePanelCanvasGroup.alpha = 1;
+        HostChangePanelRect.SetAsLastSibling();
+        /*Vector3 localPos = HostChangePanelTransform.localPosition;
+        localPos.y = -74;
+        HostChangePanelTransform.localPosition = localPos;*/
     }
 
     public void OnClickChangeHostCancel()
     {
-        HostChangePanel.SetActive(false);
+        HostChangePanelCanvasGroup.interactable = false;
+        HostChangePanelCanvasGroup.alpha = 0;
+        HostChangePanelRect.SetAsFirstSibling();
+        /*Vector3 localPos = HostChangePanelTransform.localPosition;
+        localPos.y = 340;
+        HostChangePanelTransform.localPosition = localPos;*/
     }
     public void OnClickKickButton()
     {
-        kickPanel.SetActive(true);
+        kickPanelCanvasGroup.interactable = true;
+        kickPanelCanvasGroup.alpha = 1;
+        kickPanelRect.SetAsLastSibling();
     }
-
+    public void OnClickKickCancel()
+    {
+        kickPanelCanvasGroup.interactable = false;
+        kickPanelCanvasGroup.alpha = 0;
+        kickPanelRect.SetAsFirstSibling();
+    }
     public void OnClickClientSetting()
     {
         PreRequestPanel.SetActive(EnableClientSetting);

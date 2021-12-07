@@ -22,8 +22,6 @@ public class KickPlayer : MonobitEngine.MonoBehaviour
 
     private void Start()
     {
-        firstid = MonobitEngine.MonobitNetwork.otherPlayersList.First().ID;
-        Debug.Log("first id is" + firstid);
         line = text.text;
         string[] str = line.Split(' ');
         id = int.Parse(str[3]);
@@ -36,13 +34,27 @@ public class KickPlayer : MonobitEngine.MonoBehaviour
 
     public void OnclickKickOKButton()
     {
-        MonobitEngine.MonobitNetwork.Kick(MonobitEngine.MonobitNetwork.otherPlayersList[id]);
-        Destroy(gameObject);
+        for (int i = 0; i < MonobitEngine.MonobitNetwork.otherPlayersList.Length; i++)
+        {
+            if (id == MonobitEngine.MonobitNetwork.otherPlayersList[i].ID)
+            {
+                MonobitEngine.MonobitNetwork.Kick(MonobitEngine.MonobitNetwork.otherPlayersList[i]);
+                Destroy(this.gameObject);
+            }
+        }
+
     }
 
-    public virtual void OnOtherPlayerDisconnected(MonobitPlayer otherPlayer)
+    private void OnOtherPlayerDisconnected(MonobitPlayer otherPlayer)
     {
-        if (id == otherPlayer.ID)
+        StartCoroutine(delaydestroy(otherPlayer.ID));
+    }
+
+    IEnumerator delaydestroy(int ID)
+    {
+        // 1フレーム待たないと完全に実行されない
+        yield return new WaitForEndOfFrame();
+        if (id == ID)
         {
             Destroy(this.gameObject);
         }

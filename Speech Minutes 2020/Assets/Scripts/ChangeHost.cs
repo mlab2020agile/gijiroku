@@ -27,8 +27,6 @@ public class ChangeHost : MonobitEngine.MonoBehaviour
     private int Othernumber;
     private void Start()
     {
-        firstid = MonobitEngine.MonobitNetwork.otherPlayersList.First().ID;
-        Debug.Log("first id is" + firstid);
         line = text.text;
         string[] str = line.Split(' ');
         id = int.Parse(str[3]);
@@ -79,7 +77,16 @@ public class ChangeHost : MonobitEngine.MonoBehaviour
 
     private void OnOtherPlayerDisconnected(MonobitPlayer otherPlayer)
     {
-        if (id == otherPlayer.ID)
+        StartCoroutine(delaydestroy(otherPlayer.ID));
+    }
+
+    IEnumerator delaydestroy(int ID)
+    {
+        // 1フレーム待たないと完全に実行されない
+        yield return new WaitForEndOfFrame();
+        // 1フレーム待たないと完全に実行されない
+        yield return new WaitForEndOfFrame();
+        if (id == ID)
         {
             Destroy(this.gameObject);
         }

@@ -388,6 +388,10 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
             IconHideText.text = "アイコン表示中";
             IconHideButton.GetComponent<Image>().color = new Color(127 / 255f, 255 / 255f, 191 / 255f);
         }
+        rawImage1.transform.localPosition = new Vector3(1000, 1000, 0);
+        rawImage2.transform.localPosition = new Vector3(1000, 1000, 0);
+        rawImage3.transform.localPosition = new Vector3(1000, 1000, 0);
+        rawImage4.transform.localPosition = new Vector3(1000, 1000, 0);
         monobitView.RPC("Hide", MonobitTargets.All);
     }
     /// <summary>

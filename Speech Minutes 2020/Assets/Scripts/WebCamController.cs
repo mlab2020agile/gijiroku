@@ -12,6 +12,7 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     int height = 60;
     int fps = 30;
     int s = 1;
+    int w= 0;
     Texture2D texture1;
     Texture2D texture2;
     Texture2D texture3;
@@ -129,68 +130,59 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     {
         try
         {
-            if (script.IconList[id - 1] == 0)
+            Color32 ccc = new Color32(r, g, b, 255);
+            if(id == MonobitNetwork.playerList[0].ID)
             {
-                int iconhide = 0;//非表示にしている人数
-                for (int iconnum = 0; iconnum < id; iconnum++)
+                color1[x/8 + y/8 * width] = ccc;
+                if (x/8 >= width - 1 && y/8 >= height - 1)
                 {
-                    iconhide += script.IconList[iconnum];
-                }
-                Color32 ccc = new Color32(r, g, b, 255);
-                if (id-iconhide==1)
-                {
-                    color1[x / 8 + y / 8 * width] = ccc;
-                    if (x / 8 >= width - 1 && y / 8 >= height - 1)
-                    {
-                        Debug.Log("画像送る");
-                        Debug.Log(width);
-                        Debug.Log(height);
-                        texture1.SetPixels32(color1);
-                        texture1.Apply();
-                        rawImage1.transform.localPosition = new Vector3(-275, -140, 0);
-                    }
-                }
-                else if (id - iconhide == 2)
-                {
-                    color2[x / 8 + y / 8 * width] = ccc;
-                    if (x / 8 >= width - 1 && y / 8 >= height - 1)
-                    {
-                        Debug.Log("画像送る");
-                        Debug.Log(width);
-                        Debug.Log(height);
-                        texture2.SetPixels32(color2);
-                        texture2.Apply();
-                        rawImage2.transform.localPosition = new Vector3(-125, -140, 0);
-                    }
-                }
-                else if (id - iconhide == 3)
-                {
-                    color3[x / 8 + y / 8 * width] = ccc;
-                    if (x / 8 >= width - 1 && y / 8 >= height - 1)
-                    {
-                        Debug.Log("画像送る");
-                        Debug.Log(width);
-                        Debug.Log(height);
-                        texture3.SetPixels32(color3);
-                        texture3.Apply();
-                        rawImage3.transform.localPosition = new Vector3(-275, -280, 0);
-                    }
-                }
-                else if (id - iconhide == 4)
-                {
-                    color4[x / 8 + y / 8 * width] = ccc;
-                    if (x / 8 >= width - 1 && y / 8 >= height - 1)
-                    {
-                        Debug.Log("画像送る");
-                        Debug.Log(width);
-                        Debug.Log(height);
-                        texture4.SetPixels32(color4);
-                        texture4.Apply();
-                        rawImage4.transform.localPosition = new Vector3(-125, -280, 0);
-                    }
+                    Debug.Log("画像送る");
+                    Debug.Log(width);
+                    Debug.Log(height);
+                    texture1.SetPixels32(color1);
+                    texture1.Apply();
+                    rawImage1.transform.localPosition = new Vector3(-275, -140, 0);
                 }
             }
-            
+            else if(id == MonobitNetwork.playerList[1].ID)
+            {
+                color2[x/8 + y/8 * width] = ccc;
+                if (x/8 >= width - 1 && y/8 >= height - 1)
+                {
+                    Debug.Log("画像送る");
+                    Debug.Log(width);
+                    Debug.Log(height);
+                    texture2.SetPixels32(color2);
+                    texture2.Apply();
+                    rawImage2.transform.localPosition = new Vector3(-125, -140, 0);
+                }
+            }
+            else if(id == MonobitNetwork.playerList[2].ID)
+            {
+                color3[x/8 + y/8 * width] = ccc;
+                if (x/8 >= width - 1 && y/8 >= height - 1)
+                {
+                    Debug.Log("画像送る");
+                    Debug.Log(width);
+                    Debug.Log(height);
+                    texture3.SetPixels32(color3);
+                    texture3.Apply();
+                    rawImage3.transform.localPosition = new Vector3(-275, -280, 0);
+                }
+            }
+            else if(id == MonobitNetwork.playerList[3].ID)
+            {
+                color4[x/8 + y/8 * width] = ccc;
+                if (x/8 >= width - 1 && y/8 >= height - 1)
+                {
+                    Debug.Log("画像送る");
+                    Debug.Log(width);
+                    Debug.Log(height);
+                    texture4.SetPixels32(color4);
+                    texture4.Apply();
+                    rawImage4.transform.localPosition = new Vector3(-125, -280, 0);
+                }
+            }
         }
         catch (NullReferenceException)
         {

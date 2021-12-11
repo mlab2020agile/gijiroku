@@ -37,8 +37,7 @@ public class MargeCsv : MonobitEngine.MonoBehaviour
         }
     }
 
-    
-    [MunRPC, MenuItem("Example/Copy Something")]
+    [MunRPC]
     public void Share(string data, string path, string file)
     {
         //FileUtil.CopyFileOrDirectory(folder, "Assets/MargeFolder");
@@ -53,9 +52,8 @@ public class MargeCsv : MonobitEngine.MonoBehaviour
     }
     
 
-
     //フォルダのコピー生成
-    [MunRPC,MenuItem("Example/Copy Something")]
+    [MunRPC]
     public void CopySomething(string timeStamp)
     {
         string path = "Assets/MargeFolder/" + timeStamp;

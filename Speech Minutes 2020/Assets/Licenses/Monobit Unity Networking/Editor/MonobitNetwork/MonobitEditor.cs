@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEditor;
 using MonobitEngine.Definitions;
-
+#if UNITY_EDITOR
 namespace MonobitEngine.Editor
 {
 	[InitializeOnLoad]
@@ -75,3 +75,4 @@ namespace MonobitEngine.Editor
 		}
     }
 }
+#endif

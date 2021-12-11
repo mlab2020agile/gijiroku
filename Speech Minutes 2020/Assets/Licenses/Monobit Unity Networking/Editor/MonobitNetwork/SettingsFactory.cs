@@ -4,7 +4,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using UnityEngine;
 using UnityEditor;
-
+#if UNITY_EDITOR
 namespace MonobitEngine.Editor
 {
 	/**
@@ -29,3 +29,4 @@ namespace MonobitEngine.Editor
 		}
 	}
 }
+#endif

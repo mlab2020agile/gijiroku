@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System;
 using System.IO;
 using UnityEngine;
@@ -353,3 +354,4 @@ namespace MonobitEngine.Editor
         }
     }
 }
+#endif

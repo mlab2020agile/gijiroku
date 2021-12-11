@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
-
+#if UNITY_EDITOR
 namespace MonobitEngine.Editor
 {
     /**
@@ -118,3 +118,4 @@ namespace MonobitEngine.Editor
         }
     }
 }
+#endif

@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEditor;
 using MonobitEngine.VoiceChat;
-
+#if UNITY_EDITOR
 namespace MonobitEngine.Editor
 {
 	[CustomEditor(typeof(MonobitStreamingPlayer), true)]
@@ -89,3 +89,4 @@ namespace MonobitEngine.Editor
 		}
 	}
 }
+#endif

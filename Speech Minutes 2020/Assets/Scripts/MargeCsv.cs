@@ -57,7 +57,6 @@ public class MargeCsv : MonobitEngine.MonoBehaviour
     public void CopySomething(string timeStamp)
     {
         string path = "Assets/MargeFolder/" + timeStamp;
-        FileUtil.CopyFileOrDirectory("Assets/MargeCSVLogFiles", path/*"Assets/MargeFolder/" + timeStamp*/);
         Debug.Log("コピーしました");
 
         string[] files = System.IO.Directory.GetFiles(path, "*.csv", System.IO.SearchOption.AllDirectories);

@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿#if UNITY_EDITOR
+using UnityEditor;
 using UnityEngine;
 using System.Collections;
 using MonobitEngine.Editor;
@@ -61,3 +62,4 @@ namespace Monobit.Support.Editor
 		}
 	}
 }
+#endif

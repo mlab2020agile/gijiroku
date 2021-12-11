@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Collections.Generic;
 using UnityEditor;
-
+#if UNITY_EDITOR
 namespace MonobitEngine
 {
     public class RedistMUN : AssetPostprocessor
@@ -398,3 +398,4 @@ namespace MonobitEngine
         }
     }
 }
+#endif

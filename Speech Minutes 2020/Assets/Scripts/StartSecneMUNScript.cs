@@ -77,7 +77,9 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
                     else
                     {
                         Debug.Log(s);
+                        #if UNITY_EDITOR
                         EditorUtility.DisplayDialog("警告", s, "Close");
+                        #endif
                     }
                 }
                 GUILayout.EndHorizontal();
@@ -124,7 +126,9 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
                         else
                         {
                             string s = "パスワードが違います";
+                            #if UNITY_EDITOR
                             EditorUtility.DisplayDialog("警告", s, "Close");
+                            #endif
                             Debug.Log(s);
                         }
                         

@@ -1,8 +1,8 @@
-﻿using UnityEditor;
+﻿#if UNITY_EDITOR
+using UnityEditor;
 using UnityEngine;
 using UnityEditor.Animations;
 using System.Collections.Generic;
-
 namespace MonobitEngine.Editor
 {
     /**
@@ -142,3 +142,4 @@ namespace MonobitEngine.Editor
         }
     }
 }
+#endif

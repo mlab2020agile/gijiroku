@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -49,12 +49,19 @@ public class UIManager : MonobitEngine.MonoBehaviour
     public GameObject RequestWaitPanel;
 
     public Text hascometext;
+
     private string hascomeName;
+
     private int hascomeID;
 
     public GameObject AllowPanel;
 
     public GameObject DisallowPanel;
+
+    int HostJudge=0;
+
+
+
     void Start()
     {
         EnableWadaiPanel = true;
@@ -73,6 +80,8 @@ public class UIManager : MonobitEngine.MonoBehaviour
         OnClickChangeHostCancel();
         kickPanel.SetActive(true);
         OnClickKickCancel();
+        hascomeID = MonobitEngine.MonobitNetwork.player.ID;
+        hascomeName = MonobitEngine.MonobitNetwork.player.name;
     }
 
     void Update()
@@ -86,6 +95,16 @@ public class UIManager : MonobitEngine.MonoBehaviour
         {
             HostSettingButton.SetActive(false);
             ClientSettingButton.SetActive(true);
+        }
+        if(HostJudge==1&&MonobitEngine.MonobitNetwork.isHost){
+            HostJudge=0;
+            AllowPanel.SetActive(true);
+            hascometext.text = hascomeName + "からホスト権のリクエストが来ています。";
+        }
+        if(HostJudge==2&&!MonobitEngine.MonobitNetwork.isHost){
+            HostJudge=0;
+        DisallowPanel.SetActive(true);
+        RequestWaitPanel.SetActive(false);
         }
 
     }
@@ -197,19 +216,25 @@ public class UIManager : MonobitEngine.MonoBehaviour
         obj2.GetComponentInChildren<Text>().text = "name" + " " + newPlayer.name + " " + "id" + " " + newPlayer.ID;
     }
 
+//ここから？ホスト権要求
+
     public void OnRequestOkClick()
     {
-        monobitView.RPC("Requesthascome", MonobitTargets.Host, MonobitEngine.MonobitNetwork.player.name, MonobitEngine.MonobitNetwork.player.ID);
+        HostJudge=1;
+        monobitView.RPC("hascome", MonobitEngine.MonobitTargets.Host,hascomeName,hascomeID,HostJudge);
+        RequestPanel.SetActive(false);
         RequestWaitPanel.SetActive(true);
     }
+
     [MunRPC]
-    public void Requesthascome(string name, int ID)
+    public void hascome(string name,int id,int judge)
     {
-        AllowPanel.SetActive(true);
-        hascometext.text = name + "からホスト権のリクエストが来ています。";
+        HostJudge=judge;
+        //hascometext.text = name + "からホスト権のリクエストが来ています。";
         hascomeName = name;
-        hascomeID = ID;
+        hascomeID = id;
     }
+   
     public void OnRequestCancelClick()
     {
         RequestPanel.SetActive(false);
@@ -230,14 +255,14 @@ public class UIManager : MonobitEngine.MonoBehaviour
     }
     public void RequestDisallow()
     {
+        HostJudge=2;
         AllowPanel.SetActive(false);
-        monobitView.RPC("Disallow", MonobitTargets.Host, MonobitEngine.MonobitNetwork.player.name);
+        monobitView.RPC("Disallow", MonobitTargets.Host,HostJudge);
     }
     [MunRPC]
-    public void Disallow(string name)
+    public void Disallow(string name,int judge)
     {
-        DisallowPanel.SetActive(true);
-        RequestWaitPanel.SetActive(false);
+        HostJudge=judge;
     }
     public void OnDisallowOKClick()
     {

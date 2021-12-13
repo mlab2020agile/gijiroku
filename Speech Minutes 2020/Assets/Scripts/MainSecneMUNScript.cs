@@ -727,5 +727,26 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
                 }
             }
         }
+        int hide = 0;
+        for (int number = 0; number < MonobitNetwork.room.playerCount; number++)
+        {
+            hide += IconList[MonobitNetwork.playerList[number].ID - 1];
+        }
+        if (MonobitNetwork.room.playerCount - hide == 0)
+        {
+            rawImage1.transform.localPosition = new Vector3(1000, 1000, 0);
+        }
+        if (MonobitNetwork.room.playerCount - hide == 1)
+        {
+            rawImage2.transform.localPosition = new Vector3(1000, 1000, 0);
+        }
+        if (MonobitNetwork.room.playerCount - hide == 2)
+        {
+            rawImage3.transform.localPosition = new Vector3(1000, 1000, 0);
+        }
+        if (MonobitNetwork.room.playerCount - hide == 3)
+        {
+            rawImage4.transform.localPosition = new Vector3(1000, 1000, 0);
+        }
     }
 }

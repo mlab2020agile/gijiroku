@@ -73,7 +73,7 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (cameraswitch)
+        if (cameraswitch && script.IconList[MonobitEngine.MonobitNetwork.player.ID - 1] == 0)
         {
             if (colors != null)
             {
@@ -131,15 +131,20 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     {
         try
         {
-            if (script.IconList[id - 1] == 0)
+            if (0 == 0)
             {
                 Color32 ccc = new Color32(r, g, b, 255);
                 int iconhide = 0;//非表示にしている人数
-                for (int iconnum = 0; iconnum < id; iconnum++)
+                int list = 0;
+                while (MonobitNetwork.playerList[list].ID != id)
                 {
-                    iconhide += script.IconList[iconnum];
+                    list++;
                 }
-                if (id - iconhide == 1)
+                for (int num = 0; num < list + 1; num++)
+                {
+                    iconhide += script.IconList[num];
+                }
+                if (list - iconhide == 0)
                 {
                     color1[x / 8 + y / 8 * width] = ccc;
                     if (x / 8 >= width - 1 && y / 8 >= height - 1)
@@ -153,7 +158,7 @@ public class WebCamController : MonobitEngine.MonoBehaviour
                         Debug.Log("List[]:" + script.IconList[id - 1]);
                     }
                 }
-                else if (id - iconhide == 2)
+                else if (list - iconhide == 1)
                 {
                     color2[x / 8 + y / 8 * width] = ccc;
                     if (x / 8 >= width - 1 && y / 8 >= height - 1)
@@ -166,7 +171,7 @@ public class WebCamController : MonobitEngine.MonoBehaviour
                         rawImage2.transform.localPosition = new Vector3(-125, -140, 0);
                     }
                 }
-                else if (id - iconhide == 3)
+                else if (list - iconhide == 2)
                 {
                     color3[x / 8 + y / 8 * width] = ccc;
                     if (x / 8 >= width - 1 && y / 8 >= height - 1)
@@ -179,7 +184,7 @@ public class WebCamController : MonobitEngine.MonoBehaviour
                         rawImage3.transform.localPosition = new Vector3(-275, -280, 0);
                     }
                 }
-                else if (id - iconhide == 4)
+                else if (list - iconhide == 3)
                 {
                     color4[x / 8 + y / 8 * width] = ccc;
                     if (x / 8 >= width - 1 && y / 8 >= height - 1)

@@ -43,7 +43,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     public AudioClip AC;
 
     public GameObject PlayerListButton;
-    public bool PlayerScrollState=false;
+    public bool PlayerScrollState = false;
     public GameObject PlayerScroll;
     public GameObject textPrefab;
     public GameObject content1;
@@ -73,7 +73,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         IconButton.SetActive(false);
         IconPanel.SetActive(false);
         IconHideText.text = "アイコン表示中";
-        IconHideButton.GetComponent<Image>().color = new Color(127/255f,255/255f,191/255f);
+        IconHideButton.GetComponent<Image>().color = new Color(127 / 255f, 255 / 255f, 191 / 255f);
         CameraPanel.GetComponent<RectTransform>().SetAsLastSibling();
     }
     /** ボイスチャット送信可否設定の定数. */
@@ -107,11 +107,11 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
                 roomName = MonobitEngine.MonobitNetwork.room.name;
                 string rn = roomName;
                 string s1 = rn.Substring(rn.Length - 1);
-                string s2 = rn.Substring(rn.Length - 2,1);
+                string s2 = rn.Substring(rn.Length - 2, 1);
                 int i1 = int.Parse(s1);
                 int i2 = int.Parse(s2);
-                string s3 = rn.Substring(0,i2);
-                string s4 = rn.Substring(i2,i1);
+                string s3 = rn.Substring(0, i2);
+                string s4 = rn.Substring(i2, i1);
                 RoomNameText.text = "roomName : " + s3;
                 PlayerList.text = "PlayerList : ";
                 InitialList.text = "";
@@ -119,10 +119,10 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
                 foreach (MonobitPlayer player in MonobitNetwork.playerList)
                 {
                     PlayerList.text = PlayerList.text + player.name + " ";
-                    InitialList.text = InitialList.text + player.name.Substring(0,1)+"     ";
+                    InitialList.text = InitialList.text + player.name.Substring(0, 1) + "     ";
                 }
 
-                if (IconHideState==true)
+                if (IconHideState == true)
                 {
                     monobitView.RPC("HideTrue", MonobitTargets.All, MonobitEngine.MonobitNetwork.player.ID);
                     //IconHideText.text= "アイコン非表示中";
@@ -237,7 +237,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         Mc = go.GetComponent<MonobitMicrophone>();
         AC = Mc.GetAudioClip();
         Debug.Log(MonobitNetwork.playerName);
-        Debug.Log("My ID : " +MonobitEngine.MonobitNetwork.player.ID);
+        Debug.Log("My ID : " + MonobitEngine.MonobitNetwork.player.ID);
         if (myVoice != null)
         {
             myVoice.SetMicrophoneErrorHandler(OnMicrophoneError);
@@ -252,6 +252,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
             IconButton.SetActive(true);
         }
         monobitView.RPC("Hide", MonobitTargets.All);
+        GameObject prefab = MonobitEngine.MonobitNetwork.Instantiate("Canvas_usericon1", Vector3.zero, Quaternion.identity, 0);
     }
 
     public void DebugButton()
@@ -268,14 +269,14 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         {
             vcPlayerInfo.Add(newPlayer, (Int32)EnableVC.DISABLE);
         }
-        monobitView.RPC("Cnt", MonobitTargets.All,usercnt);
+        monobitView.RPC("Cnt", MonobitTargets.All, usercnt);
         if (MonobitEngine.MonobitNetwork.isHost)
         {
             //int id =MonobitNetwork.playerList.Length-1;
-            monobitView.RPC("SendAllLogData",MonobitTargets.All, LogText[0].GetComponent<Text>().text, LogText[1].GetComponent<Text>().text,
+            monobitView.RPC("SendAllLogData", MonobitTargets.All, LogText[0].GetComponent<Text>().text, LogText[1].GetComponent<Text>().text,
             LogText[2].GetComponent<Text>().text, LogText[3].GetComponent<Text>().text, LogText[4].GetComponent<Text>().text,
-            LogText[5].GetComponent<Text>().text,LogText[6].GetComponent<Text>().text,LogText[7].GetComponent<Text>().text);
-            monobitView.RPC("SendAllWadaiThema",MonobitTargets.All, WadaiThema[0].GetComponent<Text>().text, WadaiThema[1].GetComponent<Text>().text,
+            LogText[5].GetComponent<Text>().text, LogText[6].GetComponent<Text>().text, LogText[7].GetComponent<Text>().text);
+            monobitView.RPC("SendAllWadaiThema", MonobitTargets.All, WadaiThema[0].GetComponent<Text>().text, WadaiThema[1].GetComponent<Text>().text,
             WadaiThema[2].GetComponent<Text>().text, WadaiThema[3].GetComponent<Text>().text, WadaiThema[4].GetComponent<Text>().text,
             WadaiThema[5].GetComponent<Text>().text, WadaiThema[6].GetComponent<Text>().text, WadaiThema[7].GetComponent<Text>().text);
         }
@@ -325,29 +326,29 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
             vcPlayerInfo.Remove(otherPlayer);
         }
     }
-     public void ListButtonOnclick()
+    public void ListButtonOnclick()
     {
-                    if (PlayerScrollState == false)
-                    {
-                        foreach (MonobitPlayer player in MonobitNetwork.playerList)
-                        {
-                            GameObject _text = Instantiate(textPrefab, content1.transform);
-                            _text.GetComponent<Text>().text = player.name;
-                        }
-                        PlayerScrollState = !PlayerScrollState;
-                        PlayerScroll.SetActive(true);
-                    }
-                    else
-                    {
-                        foreach (Transform child in content1.transform)
-                        {
-                            // 一つずつ破棄する
-                            Destroy(child.gameObject);
-                        }
-                        PlayerScrollState = !PlayerScrollState;
-                        PlayerScroll.SetActive(false);
-                    }
-     }
+        if (PlayerScrollState == false)
+        {
+            foreach (MonobitPlayer player in MonobitNetwork.playerList)
+            {
+                GameObject _text = Instantiate(textPrefab, content1.transform);
+                _text.GetComponent<Text>().text = player.name;
+            }
+            PlayerScrollState = !PlayerScrollState;
+            PlayerScroll.SetActive(true);
+        }
+        else
+        {
+            foreach (Transform child in content1.transform)
+            {
+                // 一つずつ破棄する
+                Destroy(child.gameObject);
+            }
+            PlayerScrollState = !PlayerScrollState;
+            PlayerScroll.SetActive(false);
+        }
+    }
     public void IconButtonOnclick()
     {
         GameObject[] icons = GameObject.FindGameObjectsWithTag("icon");
@@ -357,7 +358,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         }
         for (num = 0; num < MonobitNetwork.room.playerCount; num++)
         {
-            GameObject prefab = (GameObject)Instantiate(usericon[num], new Vector3(-160 + num*80, 200-150*(num/5), 0), Quaternion.identity);
+            GameObject prefab = (GameObject)Instantiate(usericon[num], new Vector3(-160 + num * 80, 200 - 150 * (num / 5), 0), Quaternion.identity);
             prefab.transform.SetParent(IconPanel.transform, false);
             prefab.transform.Find("Text").GetComponent<Text>().text = MonobitNetwork.playerList[num].name;
             prefab.transform.Find("Initial").GetComponent<Text>().text = MonobitNetwork.playerList[num].name.Substring(0, 1);
@@ -588,7 +589,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     [MunRPC]
     public void HideTrue(int id)
     {
-        IconList[id-1] = 1;
+        IconList[id - 1] = 1;
     }
     /// <summary>
     /// 初期化
@@ -596,7 +597,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     [MunRPC]
     public void HideFalse(int id)
     {
-        IconList[id-1] = 0;
+        IconList[id - 1] = 0;
     }
     /// <summary>
     /// 初期化
@@ -653,14 +654,14 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         image2.transform.localPosition = new Vector3(1000, 1000, 0);
         image3.transform.localPosition = new Vector3(1000, 1000, 0);
         image4.transform.localPosition = new Vector3(1000, 1000, 0);
-        if (icondisplay > 0 && icondisplay<5)
+        if (icondisplay > 0 && icondisplay < 5)
         {
             while (IconList[icondisplay_1] == 1)
             {
                 icondisplay_1 += 1;
             }
             image1.transform.localPosition = new Vector3(-210, -110, 0);//-250,-160
-            if(MuteList[icondisplay_1] == 1)
+            if (MuteList[icondisplay_1] == 1)
             {
                 sprite = Resources.Load<Sprite>("textures/muteoff");
             }

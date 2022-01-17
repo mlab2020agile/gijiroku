@@ -14,15 +14,16 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     public Image IconImage;
     public Text IconInitial;
     public int UserID;
+    MainSecneMUNScript script;
     // Start is called before the first frame update
     void Start()
     {
-        if (monobitView.isMine)
-        {
-            UserID = MonobitEngine.MonobitNetwork.player.ID;
-            IconName.GetComponent<Text>().text = MonobitNetwork.playerList[UserID - 1].name;
-            IconInitial.GetComponent<Text>().text = MonobitNetwork.playerList[UserID - 1].name.Substring(0, 1);
-        }
+        script = GameObject.Find("MUN").GetComponent<MainSecneMUNScript>();
+        
+        UserID = script.Icon;
+        IconName.GetComponent<Text>().text = MonobitNetwork.playerList[UserID - 1].name;
+        IconInitial.GetComponent<Text>().text = MonobitNetwork.playerList[UserID - 1].name.Substring(0, 1);
+        
     }
 
     // Update is called once per frame

@@ -14,7 +14,8 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     public Image IconImage;
     public Text IconInitial;
     public Image MuteImage;
-    public int UserID = 0;
+    public int UserID;
+    public string UserName;
     MainSecneMUNScript script;
     private Sprite sprite;
     // Start is called before the first frame update
@@ -32,12 +33,13 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     public void Icondicision()
     {
         script = GameObject.Find("MUN").GetComponent<MainSecneMUNScript>();
-        if (UserID == 0)
-        {
-            UserID = script.Iconid;
-            IconName.GetComponent<Text>().text = script.Iconname;
-            IconInitial.GetComponent<Text>().text = IconName.text.Substring(0, 1);
-        }
+        UserID = script.Iconid;
+        Debug.Log("dicision:" + UserID);
+        UserName = script.Iconname;
+        monobitView.RPC("IconSync", MonobitTargets.AllBuffered, UserID, UserName);
+
+        //IconName.GetComponent<Text>().text = script.Iconname;
+        //IconInitial.GetComponent<Text>().text = IconName.text.Substring(0, 1);
     }
 
     public void Mutejudge()
@@ -54,5 +56,14 @@ public class IconCreate : MonobitEngine.MonoBehaviour
             MuteImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("textures/muteoff");
             Debug.Log("muteoff");
         }
+    }
+    /// <summary>
+    /// 初期化
+    /// </summary>
+    [MunRPC]
+    public void IconSync(int id, string name)
+    {
+        IconName.GetComponent<Text>().text = script.Iconname;
+        IconInitial.GetComponent<Text>().text = IconName.text.Substring(0, 1);
     }
 }

@@ -625,6 +625,8 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         Iconname = name;
         script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
         script.Icondicision();
+        Debug.Log("Iconid:"+Iconid);
+        Debug.Log("Iconname:"+Iconname);
         Iconid = 0;
         Iconname = "";
     }

@@ -20,17 +20,21 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        script = GameObject.Find("MUN").GetComponent<MainSecneMUNScript>();
         
-        UserID = script.Icon;
-        IconName.GetComponent<Text>().text = MonobitNetwork.playerList[UserID - 1].name;
-        IconInitial.GetComponent<Text>().text = MonobitNetwork.playerList[UserID - 1].name.Substring(0, 1);
     }
 
     // Update is called once per frame
     void Update()
     {
 
+    }
+
+    public void Icondicision()
+    {
+        script = GameObject.Find("MUN").GetComponent<MainSecneMUNScript>();
+        UserID = script.Iconid;
+        IconName.GetComponent<Text>().text = script.Iconname;
+        IconInitial.GetComponent<Text>().text = IconName.text.Substring(0, 1);
     }
 
     public void Mutejudge()

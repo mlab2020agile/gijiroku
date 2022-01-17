@@ -66,7 +66,8 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     public GameObject[] WadaiThema;
     public List<int> IconList = new List<int> { 0, 0, 0, 0, 0, 0, 0, 0 };
     List<int> MuteList = new List<int> { 0, 0, 0, 0, 0, 0, 0, 0 };
-    public int Icon;
+    public int Iconid;
+    public string Iconname;
     public int muteid;
     public int notmuteid;
     IconCreate script;
@@ -258,7 +259,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         }
         monobitView.RPC("Hide", MonobitTargets.All);
         GameObject prefab = MonobitEngine.MonobitNetwork.Instantiate("Canvas_usericon1", Vector3.zero, Quaternion.identity, 0);
-        monobitView.RPC("IconSend", MonobitTargets.AllBuffered, MonobitEngine.MonobitNetwork.player.ID);
+        monobitView.RPC("IconSend", MonobitTargets.AllBuffered, MonobitEngine.MonobitNetwork.player.ID, MonobitEngine.MonobitNetwork.player.name);
     }
 
     public void DebugButton()
@@ -612,9 +613,14 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     /// 初期化
     /// </summary>
     [MunRPC]
-    public void IconSend(int id)
+    public void IconSend(int id,string name)
     {
-        Icon=id;
+        Iconid=id;
+        Iconname = name;
+        script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
+        script.Icondicision();
+        Iconid = 0;
+        Iconname = "";
     }
     /// <summary>
     /// 初期化

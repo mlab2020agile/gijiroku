@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/Alert.unity
+    guid: 4741350993a354de5aa63d34151dbe64
   m_configObjects: {}

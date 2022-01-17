@@ -14,7 +14,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     public Image IconImage;
     public Text IconInitial;
     public Image MuteImage;
-    public int UserID;
+    public int UserID = 0;
     MainSecneMUNScript script;
     private Sprite sprite;
     // Start is called before the first frame update
@@ -32,9 +32,12 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     public void Icondicision()
     {
         script = GameObject.Find("MUN").GetComponent<MainSecneMUNScript>();
-        UserID = script.Iconid;
-        IconName.GetComponent<Text>().text = script.Iconname;
-        IconInitial.GetComponent<Text>().text = IconName.text.Substring(0, 1);
+        if (UserID == 0)
+        {
+            UserID = script.Iconid;
+            IconName.GetComponent<Text>().text = script.Iconname;
+            IconInitial.GetComponent<Text>().text = IconName.text.Substring(0, 1);
+        }
     }
 
     public void Mutejudge()

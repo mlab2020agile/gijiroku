@@ -13,6 +13,7 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
     private string roomPasword = "";
     private string roomUnrock = "";
     public string player;
+    public static string abcd123 = "aaaaaaaa";
     public void OnGUI()
     {
         //MUNサーバに接続している場合
@@ -62,13 +63,14 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
                 GUILayout.Space(x*3/8);
                 if (GUILayout.Button("部屋を作成",GUILayout.Height(x/35),GUILayout.Width(x/3)))
                 {
-                    string s = RoomSakusei(roomName,roomPasword);
-                    if (s =="ルームを作成しました")
+                    abcd123 = RoomSakusei(roomName,roomPasword);
+                    if (abcd123 =="ルームを作成しました")
                     {
                         int a = roomName.Length;
                         int b = roomPasword.Length;
                         MonobitNetwork.CreateRoom(roomName+roomPasword+a+b);
-                        Debug.Log(s);
+                        Debug.Log(abcd123);
+                    
                         /********
                         ここでメインのシーンに遷移する
                         *********/
@@ -76,10 +78,11 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log(s);
+                        Debug.Log(abcd123);
                         #if UNITY_EDITOR
-                        EditorUtility.DisplayDialog("警告", s, "Close");
+                        //EditorUtility.DisplayDialog("警告", ss, "Close");
                         #endif
+                        SceneManager.LoadScene("Alert");
                     }
                 }
                 GUILayout.EndHorizontal();
@@ -125,11 +128,12 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
                         }
                         else
                         {
-                            string s = "パスワードが違います";
+                            abcd123 = "パスワードが違います";
                             #if UNITY_EDITOR
-                            EditorUtility.DisplayDialog("警告", s, "Close");
+                            //EditorUtility.DisplayDialog("警告", ss, "Close");
                             #endif
-                            Debug.Log(s);
+                            SceneManager.LoadScene("Alert");
+                            Debug.Log(abcd123);
                         }
                         
                     }

@@ -230,6 +230,12 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         //ここでスタートのシーンに遷移する
         SceneManager.LoadScene("StartScene");
     }
+
+    public void OnLeftRoom()
+    {
+        SceneManager.LoadScene("StartScene");
+        Debug.Log("OnLeftRoom");
+    }
     public void OnJoinedRoom()
     {
         vcPlayerInfo.Clear();
@@ -613,9 +619,9 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     /// 初期化
     /// </summary>
     [MunRPC]
-    public void IconSend(int id,string name)
+    public void IconSend(int id, string name)
     {
-        Iconid=id;
+        Iconid = id;
         Iconname = name;
         script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
         script.Icondicision();

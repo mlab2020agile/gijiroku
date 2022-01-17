@@ -67,6 +67,9 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     public List<int> IconList = new List<int> { 0, 0, 0, 0, 0, 0, 0, 0 };
     List<int> MuteList = new List<int> { 0, 0, 0, 0, 0, 0, 0, 0 };
     public int Icon;
+    public int muteid;
+    public int notmuteid;
+    IconCreate script;
 
     void Start()
     {
@@ -76,6 +79,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         IconHideText.text = "アイコン表示中";
         IconHideButton.GetComponent<Image>().color = new Color(127 / 255f, 255 / 255f, 191 / 255f);
         CameraPanel.GetComponent<RectTransform>().SetAsLastSibling();
+        //script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
     }
     /** ボイスチャット送信可否設定の定数. */
     private enum EnableVC
@@ -433,12 +437,15 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
                     //ミュート設定
                     //myVoice.SendStreamType = StreamType.MULTICAST;
                     MuteLine.SetActive(true);
+                    monobitView.RPC("mute", MonobitTargets.AllBuffered, MonobitEngine.MonobitNetwork.player.ID);
+
                 }
                 else
                 {
                     //ミュート解除
                     //myVoice.SendStreamType = StreamType.BROADCAST;
                     MuteLine.SetActive(false);
+                    monobitView.RPC("notmute", MonobitTargets.AllBuffered, MonobitEngine.MonobitNetwork.player.ID);
                 }
                 monobitView.RPC("Hide", MonobitTargets.All);
             }
@@ -608,6 +615,28 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     public void IconSend(int id)
     {
         Icon=id;
+    }
+    /// <summary>
+    /// 初期化
+    /// </summary>
+    [MunRPC]
+    public void mute(int id)
+    {
+        muteid = id;
+        script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
+        script.Mutejudge();
+        muteid = 0;
+    }
+    /// <summary>
+    /// 初期化
+    /// </summary>
+    [MunRPC]
+    public void notmute(int id)
+    {
+        notmuteid = id;
+        script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
+        script.Mutejudge();
+        notmuteid = 0;
     }
     /// <summary>
     /// 初期化

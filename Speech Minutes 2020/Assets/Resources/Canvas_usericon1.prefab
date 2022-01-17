@@ -181,6 +181,7 @@ MonoBehaviour:
   IconName: {fileID: 932172788670501640}
   IconImage: {fileID: 6299726009443455180}
   IconInitial: {fileID: 3310951625668880594}
+  MuteImage: {fileID: 6026618447720632042}
   UserID: 0
 --- !u!1 &4369897766498987639
 GameObject:

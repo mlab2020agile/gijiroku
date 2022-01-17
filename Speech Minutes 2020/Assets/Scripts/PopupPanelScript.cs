@@ -15,6 +15,7 @@ public class PopupPanelScript : MonobitEngine.MonoBehaviour, IDragHandler
     GameObject canvas;
     RectTransform PanelRectTransform;
     public RectTransform m_rectTransform = null;
+    public float rate;
 
     // Start is called before the first frame update
     void Start()
@@ -47,21 +48,84 @@ public class PopupPanelScript : MonobitEngine.MonoBehaviour, IDragHandler
     void Update()
     {
         //パネルが画面外に出ないようにする処理
-        if(PanelRectTransform.localPosition.x < -470f)
+        rate = 1.0f*Screen.width/Screen.height;
+        if (1.7f<rate)
         {
-            PanelRectTransform.localPosition = new Vector3(-470f, PanelRectTransform.localPosition.y, PanelRectTransform.localPosition.z);
+            if(PanelRectTransform.localPosition.x < -470f)
+            {
+                PanelRectTransform.localPosition = new Vector3(-470f, PanelRectTransform.localPosition.y, PanelRectTransform.localPosition.z);
+            }
+            if(PanelRectTransform.localPosition.y < -110f)
+            {
+                PanelRectTransform.localPosition = new Vector3(PanelRectTransform.localPosition.x, -110f, PanelRectTransform.localPosition.z);
+            }
+            if(PanelRectTransform.localPosition.x > 470f)
+            {
+                PanelRectTransform.localPosition = new Vector3(470f, PanelRectTransform.localPosition.y, PanelRectTransform.localPosition.z);
+            }
+            if(PanelRectTransform.localPosition.y > 110f)
+            {
+                PanelRectTransform.localPosition = new Vector3(PanelRectTransform.localPosition.x, 110f, PanelRectTransform.localPosition.z);
+            }
         }
-        if(PanelRectTransform.localPosition.y < -110f)
+        else if ((1.5f<rate) && (rate<= 1.7f))
         {
-            PanelRectTransform.localPosition = new Vector3(PanelRectTransform.localPosition.x, -110f, PanelRectTransform.localPosition.z);
+            if(PanelRectTransform.localPosition.x < -470f)
+            {
+                PanelRectTransform.localPosition = new Vector3(-470f, PanelRectTransform.localPosition.y, PanelRectTransform.localPosition.z);
+            }
+            if(PanelRectTransform.localPosition.y < -150f)
+            {
+                PanelRectTransform.localPosition = new Vector3(PanelRectTransform.localPosition.x, -150f, PanelRectTransform.localPosition.z);
+            }
+            if(PanelRectTransform.localPosition.x > 470f)
+            {
+                PanelRectTransform.localPosition = new Vector3(470f, PanelRectTransform.localPosition.y, PanelRectTransform.localPosition.z);
+            }
+            if(PanelRectTransform.localPosition.y > 150f)
+            {
+                PanelRectTransform.localPosition = new Vector3(PanelRectTransform.localPosition.x, 150f, PanelRectTransform.localPosition.z);
+            }
         }
-        if(PanelRectTransform.localPosition.x > 470f)
+        else if ((1.3f<rate) && (rate<= 1.5f))
         {
-            PanelRectTransform.localPosition = new Vector3(470f, PanelRectTransform.localPosition.y, PanelRectTransform.localPosition.z);
+            if(PanelRectTransform.localPosition.x < -470f)
+            {
+                PanelRectTransform.localPosition = new Vector3(-470f, PanelRectTransform.localPosition.y, PanelRectTransform.localPosition.z);
+            }
+            if(PanelRectTransform.localPosition.y < -230f)
+            {
+                PanelRectTransform.localPosition = new Vector3(PanelRectTransform.localPosition.x, -230f, PanelRectTransform.localPosition.z);
+            }
+            if(PanelRectTransform.localPosition.x > 470f)
+            {
+                PanelRectTransform.localPosition = new Vector3(470f, PanelRectTransform.localPosition.y, PanelRectTransform.localPosition.z);
+            }
+            if(PanelRectTransform.localPosition.y > 230f)
+            {
+                PanelRectTransform.localPosition = new Vector3(PanelRectTransform.localPosition.x, 230f, PanelRectTransform.localPosition.z);
+            }
+            
         }
-        if(PanelRectTransform.localPosition.y > 110f)
+         else
         {
-            PanelRectTransform.localPosition = new Vector3(PanelRectTransform.localPosition.x, 110f, PanelRectTransform.localPosition.z);
+            if(PanelRectTransform.localPosition.x < -470f)
+            {
+                PanelRectTransform.localPosition = new Vector3(-470f, PanelRectTransform.localPosition.y, PanelRectTransform.localPosition.z);
+            }
+            if(PanelRectTransform.localPosition.y < -260f)
+            {
+                PanelRectTransform.localPosition = new Vector3(PanelRectTransform.localPosition.x, -260f, PanelRectTransform.localPosition.z);
+            }
+            if(PanelRectTransform.localPosition.x > 470f)
+            {
+                PanelRectTransform.localPosition = new Vector3(470f, PanelRectTransform.localPosition.y, PanelRectTransform.localPosition.z);
+            }
+            if(PanelRectTransform.localPosition.y > 260f)
+            {
+                PanelRectTransform.localPosition = new Vector3(PanelRectTransform.localPosition.x, 260f, PanelRectTransform.localPosition.z);
+            }
+            
         }
     }
 }

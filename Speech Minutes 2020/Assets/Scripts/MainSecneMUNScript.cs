@@ -621,14 +621,17 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     [MunRPC]
     public void IconSend(int id, string name)
     {
-        Iconid = id;
-        Iconname = name;
-        script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
-        script.Icondicision();
-        Debug.Log("Iconid:"+Iconid);
-        Debug.Log("Iconname:"+Iconname);
-        Iconid = 0;
-        Iconname = "";
+        if (MonobitEngine.MonobitNetwork.player.ID == id)
+        {
+            Iconid = id;
+            Iconname = name;
+            script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
+            script.Icondicision();
+            Debug.Log("Iconid:" + Iconid);
+            Debug.Log("Iconname:" + Iconname);
+            Iconid = 0;
+            Iconname = "";
+        }
     }
     /// <summary>
     /// 初期化
@@ -636,10 +639,13 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     [MunRPC]
     public void mute(int id)
     {
-        muteid = id;
-        script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
-        script.Mutejudge();
-        muteid = 0;
+        if (MonobitEngine.MonobitNetwork.player.ID == id)
+        {
+            muteid = id;
+            script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
+            script.MuteSituation();
+            muteid = 0;
+        }  
     }
     /// <summary>
     /// 初期化
@@ -647,10 +653,13 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     [MunRPC]
     public void notmute(int id)
     {
-        notmuteid = id;
-        script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
-        script.Mutejudge();
-        notmuteid = 0;
+        if (MonobitEngine.MonobitNetwork.player.ID == id)
+        {
+            notmuteid = id;
+            script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
+            script.NotMuteSituation();
+            notmuteid = 0;
+        }
     }
     /// <summary>
     /// 初期化

@@ -16,6 +16,8 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     public Image MuteImage;
     public int UserID;
     public string UserName;
+    public int MuteID;
+    public int NotMuteID;
     MainSecneMUNScript script;
     private Sprite sprite;
     // Start is called before the first frame update
@@ -36,26 +38,31 @@ public class IconCreate : MonobitEngine.MonoBehaviour
         UserID = script.Iconid;
         Debug.Log("dicision:" + UserID);
         UserName = script.Iconname;
-        monobitView.RPC("IconSync", MonobitTargets.AllBuffered, UserID, UserName);
-
-        //IconName.GetComponent<Text>().text = script.Iconname;
-        //IconInitial.GetComponent<Text>().text = IconName.text.Substring(0, 1);
+        IconName.GetComponent<Text>().text = UserName;
+        IconInitial.GetComponent<Text>().text = UserName.Substring(0, 1);
+        monobitView.RPC("IconSync", MonobitTargets.OthersBuffered, UserID, UserName);
     }
 
-    public void Mutejudge()
+    public void MuteSituation()
     {
-        Debug.Log("mutejudge");
+        script = GameObject.Find("MUN").GetComponent<MainSecneMUNScript>();
+        MuteID = script.muteid;
+        Debug.Log("mutesituation");
         Debug.Log("id:"+UserID);
-        if (UserID == script.muteid)
-        {
-            MuteImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("textures/muteon");
-            Debug.Log("muteon");
-        }
-        else if (UserID == script.notmuteid)
-        {
-            MuteImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("textures/muteoff");
-            Debug.Log("muteoff");
-        }
+        MuteImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("textures/muteon");
+        Debug.Log("muteon");
+        monobitView.RPC("MuteIconSync", MonobitTargets.OthersBuffered, MuteID);
+    }
+
+    public void NotMuteSituation()
+    {
+        script = GameObject.Find("MUN").GetComponent<MainSecneMUNScript>();
+        NotMuteID = script.notmuteid;
+        Debug.Log("notmutesituation");
+        Debug.Log("id:" + UserID);
+        MuteImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("textures/muteoff");
+        Debug.Log("muteoff");
+        monobitView.RPC("NotMuteIconSync", MonobitTargets.OthersBuffered, NotMuteID);
     }
     /// <summary>
     /// 初期化
@@ -63,7 +70,27 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     [MunRPC]
     public void IconSync(int id, string name)
     {
-        IconName.GetComponent<Text>().text = script.Iconname;
-        IconInitial.GetComponent<Text>().text = IconName.text.Substring(0, 1);
+        UserID = id;
+        UserName = name;
+        IconName.GetComponent<Text>().text = UserName;
+        IconInitial.GetComponent<Text>().text = UserName.Substring(0, 1);
+    }
+    /// <summary>
+    /// 初期化
+    /// </summary>
+    [MunRPC]
+    public void MuteIconSync(int id)
+    {
+        MuteID = id;
+        MuteImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("textures/muteon");
+    }
+    /// <summary>
+    /// 初期化
+    /// </summary>
+    [MunRPC]
+    public void NotMuteIconSync(int id)
+    {
+        NotMuteID = id;
+        MuteImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("textures/muteoff");
     }
 }

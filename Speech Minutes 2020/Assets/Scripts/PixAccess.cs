@@ -387,7 +387,7 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	{
 		for (int x = (int)(p.x*2)-4; x < (int)(p.x*2)+4; x++)
 		{
-			for (int y = (int)(p.y*2)-4; y < (int)(p.y*2)+4; y++)
+			for (int y = (int)(p.y)-4; y < (int)(p.y)+4; y++)
 			{
 				if ((x >= 0) && (y >= 0))
 				{

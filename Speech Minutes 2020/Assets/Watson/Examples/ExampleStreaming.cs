@@ -70,6 +70,7 @@ namespace IBM.Watsson.Examples
         private int _recordingHZ = 22050;
         bool OnRecord = true;
         public ScrollRect[] ScrollRect;
+        private int pp = 0;
 
 
         [SerializeField]
@@ -393,6 +394,16 @@ namespace IBM.Watsson.Examples
         //filePathのパス指定
         public void FilePathSelect(int number)
         {
+            if (pp==0)
+            {
+                pp=1;
+                LogDataFilePath = @"/LogDatas/LogData.txt";
+                filePath = Application.dataPath + LogDataFilePath;
+                text.text = "話題未選択";
+                text.color = new Color32(0, 0, 0, 255);
+            }
+            else
+            {
             switch (number)
             {
                 case 0:
@@ -451,6 +462,7 @@ namespace IBM.Watsson.Examples
                     text.color = new Color32(0, 0, 0, 255);
                     break;
             }
+        }
         }
     
         //話題ボタンが押されると呼び出されるメソッド

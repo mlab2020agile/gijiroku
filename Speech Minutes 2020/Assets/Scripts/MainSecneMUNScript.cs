@@ -72,6 +72,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     public int notmuteid;
     IconCreate script;
     LineUpIcon lineupiconscript;
+    int playercount = 0;
 
     void Start()
     {
@@ -138,6 +139,12 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
                 {
                     monobitView.RPC("HideFalse", MonobitTargets.All, MonobitEngine.MonobitNetwork.player.ID);
                     //IconHideText.text = "アイコン表示中";
+                }
+                if (playercount != MonobitNetwork.room.playerCount)
+                {
+                    monobitView.RPC("IconUpdate", MonobitTargets.AllBuffered);
+                    Debug.Log("IconUpDate Now");
+                    playercount = MonobitNetwork.room.playerCount;
                 }
                 if (playerCount != MonobitNetwork.room.playerCount)
                 {
@@ -235,8 +242,6 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
 
     public void OnLeftRoom()
     {
-        monobitView.RPC("IconUpdate", MonobitTargets.AllBuffered);
-        Debug.Log("IconUpdate Now");
         SceneManager.LoadScene("StartScene");
         Debug.Log("OnLeftRoom");
     }

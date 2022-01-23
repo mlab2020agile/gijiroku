@@ -37,6 +37,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     {
         script = GameObject.Find("MUN").GetComponent<MainSecneMUNScript>();
         UserID = script.Iconid;
+        Debug.Log("Icondicision:" + UserID);
         switch (UserID%9)
         {
             case 0:
@@ -128,6 +129,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     public void IconSync(int id, string name)
     {
         UserID = id;
+        Debug.Log("IconSync:" + UserID);
         switch (UserID % 9)
         {
             case 0:

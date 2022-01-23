@@ -25,6 +25,14 @@ public class LineUpIcon : MonobitEngine.MonoBehaviour
     {
         IconStateList.Add(0);
     }
+    //リスト作成
+    public void CreateList(int id)
+    {
+        for(int i = 0; i < id; i++)
+        {
+            IconStateList.Add(0);
+        }
+    }
     //リスト変更
     public void ChangeList(int id,int state)
     {

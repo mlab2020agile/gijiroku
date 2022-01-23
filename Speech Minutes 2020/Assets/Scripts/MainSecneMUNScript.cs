@@ -184,6 +184,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
                     CameraPanel.transform.SetAsLastSibling();
                     */
                     monobitView.RPC("Hide", MonobitTargets.All);
+                    //playerCount = MonobitNetwork.room.playerCount;
                 }
 
                 if (usernamedropdown)
@@ -234,6 +235,8 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
 
     public void OnLeftRoom()
     {
+        monobitView.RPC("IconUpdate", MonobitTargets.AllBuffered);
+        Debug.Log("IconUpdate Now");
         SceneManager.LoadScene("StartScene");
         Debug.Log("OnLeftRoom");
     }
@@ -266,8 +269,9 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         }
         monobitView.RPC("Hide", MonobitTargets.All);
         GameObject prefab = MonobitEngine.MonobitNetwork.Instantiate("Canvas_usericon1", Vector3.zero, Quaternion.identity, 0);
+        monobitView.RPC("IconListCreate", MonobitTargets.AllBuffered, MonobitEngine.MonobitNetwork.player.ID);
         monobitView.RPC("IconSend", MonobitTargets.AllBuffered, MonobitEngine.MonobitNetwork.player.ID, MonobitEngine.MonobitNetwork.player.name);
-        monobitView.RPC("IconListIncrease", MonobitTargets.AllBuffered);
+        monobitView.RPC("IconListIncrease", MonobitTargets.OthersBuffered);
         monobitView.RPC("IconUpdate", MonobitTargets.AllBuffered);
     }
 
@@ -647,6 +651,18 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     {
         lineupiconscript = GameObject.Find("MUN").GetComponent<LineUpIcon>();
         lineupiconscript.AddList();
+    }
+    /// <summary>
+    /// 初期化
+    /// </summary>
+    [MunRPC]
+    public void IconListCreate(int id)
+    {
+        if (MonobitEngine.MonobitNetwork.player.ID == id)
+        {
+            lineupiconscript = GameObject.Find("MUN").GetComponent<LineUpIcon>();
+            lineupiconscript.CreateList(id);
+        }
     }
     /// <summary>
     /// 初期化

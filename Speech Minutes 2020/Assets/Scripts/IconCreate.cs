@@ -32,7 +32,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     {
 
     }
-
+    //ユーザーアイコンの中身作成
     public void Icondicision()
     {
         script = GameObject.Find("MUN").GetComponent<MainSecneMUNScript>();
@@ -74,6 +74,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
         IconInitial.GetComponent<Text>().text = UserName.Substring(0, 1);
         monobitView.RPC("IconSync", MonobitTargets.OthersBuffered, UserID, UserName);
     }
+    //ユーザーアイコン位置更新
     public void IconPositionUpdate()
     {
         lineupiconscript = GameObject.Find("MUN").GetComponent<LineUpIcon>();
@@ -97,7 +98,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
         }
         monobitView.RPC("IconPositionSync", MonobitTargets.OthersBuffered, lineupiconscript.IconOrder(MonobitEngine.MonobitNetwork.player.ID));
     }
-
+    //ミュートアイコンに変更
     public void MuteSituation()
     {
         script = GameObject.Find("MUN").GetComponent<MainSecneMUNScript>();
@@ -108,7 +109,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
         Debug.Log("muteon");
         monobitView.RPC("MuteIconSync", MonobitTargets.OthersBuffered, MuteID);
     }
-
+    //ミュート解除アイコンに変更
     public void NotMuteSituation()
     {
         script = GameObject.Find("MUN").GetComponent<MainSecneMUNScript>();
@@ -123,6 +124,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     /// 初期化
     /// </summary>
     [MunRPC]
+    //ユーザーアイコン位置変更
     public void IconSync(int id, string name)
     {
         UserID = id;
@@ -166,6 +168,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     /// 初期化
     /// </summary>
     [MunRPC]
+    //ミュートアイコン同期
     public void MuteIconSync(int id)
     {
         MuteID = id;
@@ -175,6 +178,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     /// 初期化
     /// </summary>
     [MunRPC]
+    //ミュート解除アイコン同期
     public void NotMuteIconSync(int id)
     {
         NotMuteID = id;
@@ -184,6 +188,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     /// 初期化
     /// </summary>
     [MunRPC]
+    //ユーザーアイコン位置同期
     public void IconPositionSync(int number)
     {
         switch (number)

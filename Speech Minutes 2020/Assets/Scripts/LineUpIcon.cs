@@ -64,6 +64,13 @@ public class LineUpIcon : MonobitEngine.MonoBehaviour
                 icondisplaynumber++;
             }
         }
-        return icondisplaynumber;
+        if (IconStateList[list] == 1)
+        {
+            return 0;
+        }
+        else
+        {
+            return icondisplaynumber;
+        }
     }
 }

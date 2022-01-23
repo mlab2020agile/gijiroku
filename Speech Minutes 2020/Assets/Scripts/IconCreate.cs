@@ -20,6 +20,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     public int NotMuteID;
     MainSecneMUNScript script;
     private Sprite sprite;
+    LineUpIcon lineupiconscript;
     // Start is called before the first frame update
     void Start()
     {
@@ -72,6 +73,29 @@ public class IconCreate : MonobitEngine.MonoBehaviour
         IconName.GetComponent<Text>().text = UserName;
         IconInitial.GetComponent<Text>().text = UserName.Substring(0, 1);
         monobitView.RPC("IconSync", MonobitTargets.OthersBuffered, UserID, UserName);
+    }
+    public void IconPositionUpdate()
+    {
+        lineupiconscript = GameObject.Find("MUN").GetComponent<LineUpIcon>();
+        switch (lineupiconscript.IconOrder(MonobitEngine.MonobitNetwork.player.ID))
+        {
+            case 1:
+                UserIcon.transform.localPosition = new Vector3(0, 0, 0);
+                break;
+            case 2:
+                UserIcon.transform.localPosition = new Vector3(160, 0, 0);
+                break;
+            case 3:
+                UserIcon.transform.localPosition = new Vector3(0, -150, 0);
+                break;
+            case 4:
+                UserIcon.transform.localPosition = new Vector3(160, -150, 0);
+                break;
+            default:
+                UserIcon.transform.localPosition = new Vector3(1000, 1000, 0);
+                break;
+        }
+        monobitView.RPC("IconPositionSync", MonobitTargets.OthersBuffered, lineupiconscript.IconOrder(MonobitEngine.MonobitNetwork.player.ID));
     }
 
     public void MuteSituation()
@@ -155,5 +179,30 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     {
         NotMuteID = id;
         MuteImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("textures/muteoff");
+    }
+    /// <summary>
+    /// 初期化
+    /// </summary>
+    [MunRPC]
+    public void IconPositionSync(int number)
+    {
+        switch (number)
+        {
+            case 1:
+                UserIcon.transform.localPosition = new Vector3(0, 0, 0);
+                break;
+            case 2:
+                UserIcon.transform.localPosition = new Vector3(160, 0, 0);
+                break;
+            case 3:
+                UserIcon.transform.localPosition = new Vector3(0, -150, 0);
+                break;
+            case 4:
+                UserIcon.transform.localPosition = new Vector3(160, -150, 0);
+                break;
+            default:
+                UserIcon.transform.localPosition = new Vector3(1000, 1000, 0);
+                break;
+        }
     }
 }

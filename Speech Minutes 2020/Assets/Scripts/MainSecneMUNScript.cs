@@ -71,6 +71,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     public int muteid;
     public int notmuteid;
     IconCreate script;
+    LineUpIcon lineupiconscript;
 
     void Start()
     {
@@ -266,6 +267,8 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         monobitView.RPC("Hide", MonobitTargets.All);
         GameObject prefab = MonobitEngine.MonobitNetwork.Instantiate("Canvas_usericon1", Vector3.zero, Quaternion.identity, 0);
         monobitView.RPC("IconSend", MonobitTargets.AllBuffered, MonobitEngine.MonobitNetwork.player.ID, MonobitEngine.MonobitNetwork.player.name);
+        monobitView.RPC("IconListIncrease", MonobitTargets.AllBuffered);
+        monobitView.RPC("IconUpdate", MonobitTargets.AllBuffered);
     }
 
     public void DebugButton()
@@ -396,12 +399,15 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         {
             IconHideText.text = "アイコン非表示中";
             IconHideButton.GetComponent<Image>().color = new Color(255 / 255f, 127 / 255f, 127 / 255f);
+            monobitView.RPC("HideOn", MonobitTargets.AllBuffered, MonobitEngine.MonobitNetwork.player.ID);
         }
         else
         {
             IconHideText.text = "アイコン表示中";
             IconHideButton.GetComponent<Image>().color = new Color(127 / 255f, 255 / 255f, 191 / 255f);
+            monobitView.RPC("HideOff", MonobitTargets.AllBuffered, MonobitEngine.MonobitNetwork.player.ID);
         }
+        monobitView.RPC("IconUpdate", MonobitTargets.AllBuffered);
         rawImage1.transform.localPosition = new Vector3(1000, 1000, 0);
         rawImage2.transform.localPosition = new Vector3(1000, 1000, 0);
         rawImage3.transform.localPosition = new Vector3(1000, 1000, 0);
@@ -632,6 +638,42 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
             Iconid = 0;
             Iconname = "";
         }
+    }
+    /// <summary>
+    /// 初期化
+    /// </summary>
+    [MunRPC]
+    public void IconListIncrease()
+    {
+        lineupiconscript = GameObject.Find("MUN").GetComponent<LineUpIcon>();
+        lineupiconscript.AddList();
+    }
+    /// <summary>
+    /// 初期化
+    /// </summary>
+    [MunRPC]
+    public void IconUpdate()
+    {
+        script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
+        script.IconPositionUpdate();
+    }
+    /// <summary>
+    /// 初期化
+    /// </summary>
+    [MunRPC]
+    public void HideOn(int id)
+    {
+        lineupiconscript = GameObject.Find("MUN").GetComponent<LineUpIcon>();
+        lineupiconscript.ChangeList(id,1);
+    }
+    /// <summary>
+    /// 初期化
+    /// </summary>
+    [MunRPC]
+    public void HideOff(int id)
+    {
+        lineupiconscript = GameObject.Find("MUN").GetComponent<LineUpIcon>();
+        lineupiconscript.ChangeList(id, 0);
     }
     /// <summary>
     /// 初期化

@@ -229,6 +229,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     public void ChangeList(int id, int state)
     {
         IconStateList[id] = state;
+        Debug.Log("changelist:"+ id+","+IconStateList[id]);
         monobitView.RPC("ChangeListSync", MonobitTargets.OthersBuffered, id, state);
     }
     //リストの何番目か
@@ -273,5 +274,6 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     public void ChangeListSync(int id, int state)
     {
         IconStateList[id] = state;
+        Debug.Log("changelistsync:" + id + "," + IconStateList[id]);
     }
 }

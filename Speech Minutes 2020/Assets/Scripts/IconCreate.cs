@@ -253,12 +253,12 @@ public class IconCreate : MonobitEngine.MonoBehaviour
         list = List(number);
         for (int i = 0; i < list + 1; i++)
         {
-            if (IconStateList[MonobitNetwork.playerList[i].ID] == 0)
+            if (IconStateList[MonobitNetwork.playerList[i].ID + 1] == 0)
             {
                 icondisplaynumber++;
             }
         }
-        if (IconStateList[list+1] == 1)
+        if (IconStateList[MonobitNetwork.playerList[list].ID + 1] == 1)
         {
             return 0;
         }

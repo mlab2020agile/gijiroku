@@ -274,10 +274,13 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         }
         monobitView.RPC("Hide", MonobitTargets.All);
         GameObject prefab = MonobitEngine.MonobitNetwork.Instantiate("Canvas_usericon1", Vector3.zero, Quaternion.identity, 0);
-        monobitView.RPC("IconListCreate", MonobitTargets.AllBuffered, MonobitEngine.MonobitNetwork.player.ID);
-        monobitView.RPC("IconSend", MonobitTargets.AllBuffered, MonobitEngine.MonobitNetwork.player.ID, MonobitEngine.MonobitNetwork.player.name);
+        IconListCreate();
+        IconSend();
+        //monobitView.RPC("IconListCreate", MonobitTargets.AllBuffered, MonobitEngine.MonobitNetwork.player.ID);
+        //monobitView.RPC("IconSend", MonobitTargets.AllBuffered, MonobitEngine.MonobitNetwork.player.ID, MonobitEngine.MonobitNetwork.player.name);
         monobitView.RPC("IconListIncrease", MonobitTargets.OthersBuffered);
-        monobitView.RPC("IconUpdate", MonobitTargets.AllBuffered);
+        //monobitView.RPC("IconUpdate", MonobitTargets.AllBuffered);
+        IconUpdatee();
     }
 
     public void DebugButton()
@@ -408,13 +411,15 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         {
             IconHideText.text = "アイコン非表示中";
             IconHideButton.GetComponent<Image>().color = new Color(255 / 255f, 127 / 255f, 127 / 255f);
-            monobitView.RPC("HideOn", MonobitTargets.AllBuffered, MonobitEngine.MonobitNetwork.player.ID);
+            HideOn();
+            //monobitView.RPC("HideOn", MonobitTargets.AllBuffered, MonobitEngine.MonobitNetwork.player.ID);
         }
         else
         {
             IconHideText.text = "アイコン表示中";
             IconHideButton.GetComponent<Image>().color = new Color(127 / 255f, 255 / 255f, 191 / 255f);
-            monobitView.RPC("HideOff", MonobitTargets.AllBuffered, MonobitEngine.MonobitNetwork.player.ID);
+            HideOff();
+            //monobitView.RPC("HideOff", MonobitTargets.AllBuffered, MonobitEngine.MonobitNetwork.player.ID);
         }
         monobitView.RPC("IconUpdate", MonobitTargets.AllBuffered);
         rawImage1.transform.localPosition = new Vector3(1000, 1000, 0);
@@ -459,7 +464,8 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
                     //ミュート設定
                     //myVoice.SendStreamType = StreamType.MULTICAST;
                     MuteLine.SetActive(true);
-                    monobitView.RPC("mute", MonobitTargets.AllBuffered, MonobitEngine.MonobitNetwork.player.ID);
+                    mute();
+                    //monobitView.RPC("mute", MonobitTargets.AllBuffered, MonobitEngine.MonobitNetwork.player.ID);
 
                 }
                 else
@@ -467,7 +473,8 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
                     //ミュート解除
                     //myVoice.SendStreamType = StreamType.BROADCAST;
                     MuteLine.SetActive(false);
-                    monobitView.RPC("notmute", MonobitTargets.AllBuffered, MonobitEngine.MonobitNetwork.player.ID);
+                    notmute();
+                    //monobitView.RPC("notmute", MonobitTargets.AllBuffered, MonobitEngine.MonobitNetwork.player.ID);
                 }
                 monobitView.RPC("Hide", MonobitTargets.All);
             }
@@ -648,6 +655,17 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
             Iconname = "";
         }
     }
+    public void IconSend()
+    {
+        Iconid = MonobitEngine.MonobitNetwork.player.ID;
+        Iconname = MonobitEngine.MonobitNetwork.player.name;
+        script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
+        script.Icondicision();
+        Debug.Log("Iconid:" + Iconid);
+        Debug.Log("Iconname:" + Iconname);
+        Iconid = 0;
+        Iconname = "";
+    }
     /// <summary>
     /// 初期化
     /// </summary>
@@ -669,6 +687,11 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
             lineupiconscript.CreateList(id);
         }
     }
+    public void IconListCreate()
+    {
+        lineupiconscript = GameObject.Find("MUN").GetComponent<LineUpIcon>();
+        lineupiconscript.CreateList(MonobitEngine.MonobitNetwork.player.ID);
+    }
     /// <summary>
     /// 初期化
     /// </summary>
@@ -677,6 +700,12 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     {
         script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
         script.IconPositionUpdate();
+    }
+    public void IconUpdatee()
+    {
+        script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
+        script.IconPositionUpdate();
+        monobitView.RPC("IconUpdate", MonobitTargets.OthersBuffered);
     }
     /// <summary>
     /// 初期化
@@ -687,6 +716,11 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         lineupiconscript = GameObject.Find("MUN").GetComponent<LineUpIcon>();
         lineupiconscript.ChangeList(id,1);
     }
+    public void HideOn()
+    {
+        lineupiconscript = GameObject.Find("MUN").GetComponent<LineUpIcon>();
+        lineupiconscript.ChangeList(MonobitEngine.MonobitNetwork.player.ID, 1);
+    }
     /// <summary>
     /// 初期化
     /// </summary>
@@ -695,6 +729,11 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     {
         lineupiconscript = GameObject.Find("MUN").GetComponent<LineUpIcon>();
         lineupiconscript.ChangeList(id, 0);
+    }
+    public void HideOff()
+    {
+        lineupiconscript = GameObject.Find("MUN").GetComponent<LineUpIcon>();
+        lineupiconscript.ChangeList(MonobitEngine.MonobitNetwork.player.ID, 0);
     }
     /// <summary>
     /// 初期化
@@ -710,6 +749,13 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
             muteid = 0;
         }  
     }
+    public void mute()
+    {
+        muteid = MonobitEngine.MonobitNetwork.player.ID;
+        script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
+        script.MuteSituation();
+        muteid = 0;
+    }
     /// <summary>
     /// 初期化
     /// </summary>
@@ -723,6 +769,13 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
             script.NotMuteSituation();
             notmuteid = 0;
         }
+    }
+    public void notmute()
+    {
+        notmuteid = MonobitEngine.MonobitNetwork.player.ID;
+        script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
+        script.NotMuteSituation();
+        notmuteid = 0;
     }
     /// <summary>
     /// 初期化

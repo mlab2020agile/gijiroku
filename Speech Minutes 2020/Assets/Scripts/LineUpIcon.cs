@@ -37,6 +37,7 @@ public class LineUpIcon : MonobitEngine.MonoBehaviour
     public void ChangeList(int id,int state)
     {
         IconStateList[id]=state;
+        monobitView.RPC("ChangeListSync", MonobitTargets.OthersBuffered,id,state);
     }
     //リストの何番目か
     public int List(int n)
@@ -72,5 +73,13 @@ public class LineUpIcon : MonobitEngine.MonoBehaviour
         {
             return icondisplaynumber;
         }
+    }
+    /// <summary>
+    /// 初期化
+    /// </summary>
+    [MunRPC]
+    public void ChangeListSync(int id, int state)
+    {
+        IconStateList[id] = state;
     }
 }

@@ -258,7 +258,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
                 icondisplaynumber++;
             }
         }
-        if (IconStateList[list] == 1)
+        if (IconStateList[list+1] == 1)
         {
             return 0;
         }

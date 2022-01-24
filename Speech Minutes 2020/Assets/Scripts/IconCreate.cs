@@ -79,6 +79,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     //ユーザーアイコン位置更新
     public void IconPositionUpdate()
     {
+        Debug.Log("MonobitEngine.MonobitNetwork.player.ID:" + MonobitEngine.MonobitNetwork.player.ID+ IconOrder(MonobitEngine.MonobitNetwork.player.ID));
         switch (IconOrder(MonobitEngine.MonobitNetwork.player.ID))
         {
             case 1:
@@ -243,6 +244,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
                 order = i;
             }
         }
+        Debug.Log("order:" +order);
         return order;
     }
     //ユーザーアイコンが何番目に表示されるか
@@ -251,14 +253,17 @@ public class IconCreate : MonobitEngine.MonoBehaviour
         int list;
         int icondisplaynumber = 0;
         list = List(number);
+        Debug.Log("list:" + list);
         for (int i = 0; i < list + 1; i++)
         {
-            if (IconStateList[MonobitNetwork.playerList[i].ID + 1] == 0)
+            if (IconStateList[MonobitNetwork.playerList[i].ID] == 0)
             {
                 icondisplaynumber++;
+                Debug.Log("icondisplaynumber:" + icondisplaynumber);
             }
         }
-        if (IconStateList[MonobitNetwork.playerList[list].ID + 1] == 1)
+        Debug.Log("IconStateList[MonobitNetwork.playerList[list].ID + 1]:" + IconStateList[MonobitNetwork.playerList[list].ID + 1]);
+        if (IconStateList[MonobitNetwork.playerList[list].ID] == 1)
         {
             return 0;
         }

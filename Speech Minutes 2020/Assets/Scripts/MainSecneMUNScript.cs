@@ -283,6 +283,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         monobitView.RPC("IconListIncrease", MonobitTargets.OthersBuffered);
         //monobitView.RPC("IconUpdate", MonobitTargets.AllBuffered);
         IconUpdatee();
+        Debug.Log("IconUpDate Now");
     }
 
     public void DebugButton()
@@ -425,6 +426,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         }
         //monobitView.RPC("IconUpdate", MonobitTargets.AllBuffered);
         IconUpdatee();
+        Debug.Log("IconUpDate Now");
         rawImage1.transform.localPosition = new Vector3(1000, 1000, 0);
         rawImage2.transform.localPosition = new Vector3(1000, 1000, 0);
         rawImage3.transform.localPosition = new Vector3(1000, 1000, 0);

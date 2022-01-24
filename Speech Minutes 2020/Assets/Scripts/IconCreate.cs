@@ -250,10 +250,10 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     {
         int list;
         int icondisplaynumber = 0;
-        list = List(number) + 1;
-        for (int i = 1; i < list + 1; i++)
+        list = List(number);
+        for (int i = 0; i < list + 1; i++)
         {
-            if (IconStateList[i] == 0)
+            if (IconStateList[MonobitNetwork.playerList[i].ID+1] == 0)
             {
                 icondisplaynumber++;
             }

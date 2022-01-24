@@ -21,7 +21,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     MainSecneMUNScript script;
     private Sprite sprite;
     LineUpIcon lineupiconscript;
-    public List<int> IconStateList = new List<int> { 0 };
+    public List<int> IconStateList = new List<int> { 0,0,0,0,0,0,0,0,0,0 };
     // Start is called before the first frame update
     void Start()
     {

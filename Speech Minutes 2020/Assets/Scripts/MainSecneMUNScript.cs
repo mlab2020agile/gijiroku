@@ -276,6 +276,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         monobitView.RPC("Hide", MonobitTargets.All);
         GameObject prefab = MonobitEngine.MonobitNetwork.Instantiate("Canvas_usericon1", Vector3.zero, Quaternion.identity, 0);
         IconListCreate();
+        Debug.Log("IconListCreate");
         IconSend();
         //monobitView.RPC("IconListCreate", MonobitTargets.AllBuffered, MonobitEngine.MonobitNetwork.player.ID);
         //monobitView.RPC("IconSend", MonobitTargets.AllBuffered, MonobitEngine.MonobitNetwork.player.ID, MonobitEngine.MonobitNetwork.player.name);

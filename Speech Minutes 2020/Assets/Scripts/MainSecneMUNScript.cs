@@ -142,7 +142,8 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
                 }
                 if (playercount != MonobitNetwork.room.playerCount)
                 {
-                    monobitView.RPC("IconUpdate", MonobitTargets.AllBuffered);
+                    //monobitView.RPC("IconUpdate", MonobitTargets.AllBuffered);
+                    IconUpdatee();
                     Debug.Log("IconUpDate Now");
                     playercount = MonobitNetwork.room.playerCount;
                 }
@@ -421,7 +422,8 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
             HideOff();
             //monobitView.RPC("HideOff", MonobitTargets.AllBuffered, MonobitEngine.MonobitNetwork.player.ID);
         }
-        monobitView.RPC("IconUpdate", MonobitTargets.AllBuffered);
+        //monobitView.RPC("IconUpdate", MonobitTargets.AllBuffered);
+        IconUpdatee();
         rawImage1.transform.localPosition = new Vector3(1000, 1000, 0);
         rawImage2.transform.localPosition = new Vector3(1000, 1000, 0);
         rawImage3.transform.localPosition = new Vector3(1000, 1000, 0);
@@ -672,8 +674,8 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     [MunRPC]
     public void IconListIncrease()
     {
-        lineupiconscript = GameObject.Find("MUN").GetComponent<LineUpIcon>();
-        lineupiconscript.AddList();
+        script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
+        script.AddList();
     }
     /// <summary>
     /// 初期化
@@ -683,14 +685,14 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     {
         if (MonobitEngine.MonobitNetwork.player.ID == id)
         {
-            lineupiconscript = GameObject.Find("MUN").GetComponent<LineUpIcon>();
-            lineupiconscript.CreateList(id);
+            script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
+            script.CreateList(id);
         }
     }
     public void IconListCreate()
     {
-        lineupiconscript = GameObject.Find("MUN").GetComponent<LineUpIcon>();
-        lineupiconscript.CreateList(MonobitEngine.MonobitNetwork.player.ID);
+        script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
+        script.CreateList(MonobitEngine.MonobitNetwork.player.ID);
     }
     /// <summary>
     /// 初期化
@@ -713,13 +715,13 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     [MunRPC]
     public void HideOn(int id)
     {
-        lineupiconscript = GameObject.Find("MUN").GetComponent<LineUpIcon>();
-        lineupiconscript.ChangeList(id,1);
+        script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
+        script.ChangeList(id,1);
     }
     public void HideOn()
     {
-        lineupiconscript = GameObject.Find("MUN").GetComponent<LineUpIcon>();
-        lineupiconscript.ChangeList(MonobitEngine.MonobitNetwork.player.ID, 1);
+        script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
+        script.ChangeList(MonobitEngine.MonobitNetwork.player.ID, 1);
     }
     /// <summary>
     /// 初期化
@@ -727,13 +729,13 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     [MunRPC]
     public void HideOff(int id)
     {
-        lineupiconscript = GameObject.Find("MUN").GetComponent<LineUpIcon>();
-        lineupiconscript.ChangeList(id, 0);
+        script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
+        script.ChangeList(id, 0);
     }
     public void HideOff()
     {
-        lineupiconscript = GameObject.Find("MUN").GetComponent<LineUpIcon>();
-        lineupiconscript.ChangeList(MonobitEngine.MonobitNetwork.player.ID, 0);
+        script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
+        script.ChangeList(MonobitEngine.MonobitNetwork.player.ID, 0);
     }
     /// <summary>
     /// 初期化

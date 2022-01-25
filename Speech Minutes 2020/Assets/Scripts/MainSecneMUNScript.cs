@@ -725,6 +725,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     {
         script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
         script.ChangeList(MonobitEngine.MonobitNetwork.player.ID, 1);
+        monobitView.RPC("HideOn", MonobitTargets.OthersBuffered, MonobitEngine.MonobitNetwork.player.ID);
     }
     /// <summary>
     /// 初期化
@@ -739,6 +740,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     {
         script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
         script.ChangeList(MonobitEngine.MonobitNetwork.player.ID, 0);
+        monobitView.RPC("HideOff", MonobitTargets.OthersBuffered, MonobitEngine.MonobitNetwork.player.ID);
     }
     /// <summary>
     /// 初期化

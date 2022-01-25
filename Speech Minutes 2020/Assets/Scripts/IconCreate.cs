@@ -256,13 +256,14 @@ public class IconCreate : MonobitEngine.MonoBehaviour
         Debug.Log("list:" + list);
         for (int i = 0; i < list + 1; i++)
         {
+            Debug.Log("IconStateList[MonobitNetwork.playerList[i].ID]:" + MonobitNetwork.playerList[i].ID + IconStateList[MonobitNetwork.playerList[i].ID]);
             if (IconStateList[MonobitNetwork.playerList[i].ID] == 0)
             {
                 icondisplaynumber++;
                 Debug.Log("icondisplaynumber:" + icondisplaynumber);
             }
         }
-        Debug.Log("IconStateList[MonobitNetwork.playerList[list].ID + 1]:" + IconStateList[MonobitNetwork.playerList[list].ID + 1]);
+        Debug.Log("IconStateList[MonobitNetwork.playerList[list].ID]:" + IconStateList[MonobitNetwork.playerList[list].ID]);
         if (IconStateList[MonobitNetwork.playerList[list].ID] == 1)
         {
             return 0;

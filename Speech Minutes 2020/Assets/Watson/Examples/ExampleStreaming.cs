@@ -105,7 +105,7 @@ namespace IBM.Watsson.Examples
 
             //voicesampleからの移植
             //LogData i .txt と WadaiButton の初期化
-            for (int i = 0; i < 8; i++)
+            /*for (int i = 0; i < 8; i++)
             {
                 //filePathのパス指定
                 FilePathSelect(i);
@@ -114,11 +114,11 @@ namespace IBM.Watsson.Examples
                 {
                     FilePathSelect(-1); break;
                 }
-            }
+            }*/
+            FilePathSelect(-1);
             filePath = Application.dataPath + @"/LogDatas/LogData.txt";
             File.CreateText(filePath);
 
-            
             text.text = "話題未選択";
         }
 

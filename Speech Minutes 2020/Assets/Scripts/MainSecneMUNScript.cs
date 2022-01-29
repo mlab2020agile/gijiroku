@@ -73,6 +73,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     IconCreate script;
     LineUpIcon lineupiconscript;
     int playercount = 0;
+    public bool cameraswitch = false;
 
     void Start()
     {
@@ -432,6 +433,20 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         rawImage3.transform.localPosition = new Vector3(1000, 1000, 0);
         rawImage4.transform.localPosition = new Vector3(1000, 1000, 0);
         monobitView.RPC("Hide", MonobitTargets.All);
+    }
+    public void CameraButtonOnclick()
+    {
+        cameraswitch = !cameraswitch;
+        if (cameraswitch)
+        {
+            script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
+            script.CameraOn();
+        }
+        else
+        {
+            script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
+            script.CameraOff();
+        }
     }
     /// <summary>
     /// マイクのエラーハンドリング用デリゲート

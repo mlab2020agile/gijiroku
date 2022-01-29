@@ -22,23 +22,75 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     private Sprite sprite;
     LineUpIcon lineupiconscript;
     public List<int> IconStateList = new List<int> { 0,0,0,0,0,0,0,0,0,0 };
+
+    int width = 80;
+    int height = 60;
+    int fps = 30;
+    int s = 1;
+    Texture2D texture;
+    WebCamTexture webcamTexture;
+    Color32[] colors = null;
+    Color32[] color = null;
+    public GameObject Panel;
+    public RawImage rawImage;
+    public bool videoswitch = false;
+
+    IEnumerator Init()
+    {
+        while (true)
+        {
+            if (webcamTexture.width / 2 > 16 && webcamTexture.height / 2 > 16)
+            {
+                colors = new Color32[webcamTexture.width * webcamTexture.height];
+                color = new Color32[webcamTexture.width / 8 * webcamTexture.height / 8];
+                texture = new Texture2D(webcamTexture.width / 8, webcamTexture.height / 8, TextureFormat.RGBA32, false);
+                rawImage.GetComponent<RawImage>().texture = texture;
+                break;
+            }
+            yield return null;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
-        
+        WebCamDevice[] devices = WebCamTexture.devices;
+        webcamTexture = new WebCamTexture(devices[0].name, 80, 60, this.fps);
+        webcamTexture.Play();
+        StartCoroutine(Init());
+        Panel.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (videoswitch)
+        {
+            if (colors != null)
+            {
+                if (s % 10 == 0)
+                {
+                    var cc = webcamTexture.GetPixels32(colors);
+                    int width = webcamTexture.width;
+                    int height = webcamTexture.height;
+                    Color32 rc = new Color32(0, 0, 0, byte.MaxValue);
+                    for (int x = 0; x < width; x += 8)
+                    {
+                        for (int y = 0; y < height; y += 8)
+                        {
+                            Color32 c = colors[x + y * width];
+                            Video(x, y, c.r, c.g, c.b, c.a);
+                        }
+                    }
+                }
+                s += 1;
+            }
+        }
     }
     //ユーザーアイコンの中身作成
     public void Icondicision()
     {
         script = GameObject.Find("MUN").GetComponent<MainSecneMUNScript>();
         UserID = script.Iconid;
-        Debug.Log("Icondicision:" + UserID);
         switch (UserID%9)
         {
             case 0:
@@ -79,7 +131,6 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     //ユーザーアイコン位置更新
     public void IconPositionUpdate()
     {
-        Debug.Log("MonobitEngine.MonobitNetwork.player.ID:" + MonobitEngine.MonobitNetwork.player.ID+ IconOrder(MonobitEngine.MonobitNetwork.player.ID));
         switch (IconOrder(MonobitEngine.MonobitNetwork.player.ID))
         {
             case 1:
@@ -105,10 +156,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     {
         script = GameObject.Find("MUN").GetComponent<MainSecneMUNScript>();
         MuteID = script.muteid;
-        Debug.Log("mutesituation");
-        Debug.Log("id:"+UserID);
         MuteImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("textures/muteon");
-        Debug.Log("muteon");
         monobitView.RPC("MuteIconSync", MonobitTargets.OthersBuffered, MuteID);
     }
     //ミュート解除アイコンに変更
@@ -116,11 +164,37 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     {
         script = GameObject.Find("MUN").GetComponent<MainSecneMUNScript>();
         NotMuteID = script.notmuteid;
-        Debug.Log("notmutesituation");
-        Debug.Log("id:" + UserID);
         MuteImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("textures/muteoff");
-        Debug.Log("muteoff");
         monobitView.RPC("NotMuteIconSync", MonobitTargets.OthersBuffered, NotMuteID);
+    }
+    public void CameraOn()
+    {
+        Panel.SetActive(true);
+        videoswitch = true;
+        monobitView.RPC("CameraOnSync", MonobitTargets.OthersBuffered);
+    }
+    public void CameraOff()
+    {
+        Panel.SetActive(false);
+        videoswitch = false;
+        monobitView.RPC("CameraOffSync", MonobitTargets.OthersBuffered);
+    }
+    public void Video(int x, int y, Byte r, Byte g, Byte b, Byte a)
+    {
+        try
+        {
+            Color32 ccc = new Color32(r, g, b, 255);
+            color[x / 8 + y / 8 * width] = ccc;
+            if (x / 8 >= width - 1 && y / 8 >= height - 1)
+            {
+                texture.SetPixels32(color);
+                texture.Apply();
+            }
+        }
+        catch (NullReferenceException)
+        {
+        }
+        monobitView.RPC("VideoSync", MonobitTargets.OthersBuffered, x, y, r, g, b, a);
     }
     /// <summary>
     /// 初期化
@@ -130,7 +204,6 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     public void IconSync(int id, string name)
     {
         UserID = id;
-        Debug.Log("IconSync:" + UserID);
         switch (UserID % 9)
         {
             case 0:
@@ -191,6 +264,24 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     /// 初期化
     /// </summary>
     [MunRPC]
+    public void CameraOnSync()
+    {
+        Panel.SetActive(true);
+        videoswitch = true;
+    }
+    /// <summary>
+    /// 初期化
+    /// </summary>
+    [MunRPC]
+    public void CameraOffSync()
+    {
+        Panel.SetActive(false);
+        videoswitch = false;
+    }
+    /// <summary>
+    /// 初期化
+    /// </summary>
+    [MunRPC]
     //ユーザーアイコン位置同期
     public void IconPositionSync(int number)
     {
@@ -230,7 +321,6 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     public void ChangeList(int id, int state)
     {
         IconStateList[id] = state;
-        Debug.Log("changelist:"+ id+","+IconStateList[id]);
         monobitView.RPC("ChangeListSync", MonobitTargets.OthersBuffered, id, state);
     }
     //リストの何番目か
@@ -244,7 +334,6 @@ public class IconCreate : MonobitEngine.MonoBehaviour
                 order = i;
             }
         }
-        Debug.Log("order:" +order);
         return order;
     }
     //ユーザーアイコンが何番目に表示されるか
@@ -253,17 +342,14 @@ public class IconCreate : MonobitEngine.MonoBehaviour
         int list;
         int icondisplaynumber = 0;
         list = List(number);
-        Debug.Log("list:" + list);
         for (int i = 0; i < list + 1; i++)
         {
-            Debug.Log("IconStateList[MonobitNetwork.playerList[i].ID]:" + MonobitNetwork.playerList[i].ID + IconStateList[MonobitNetwork.playerList[i].ID]);
             if (IconStateList[MonobitNetwork.playerList[i].ID] == 0)
             {
                 icondisplaynumber++;
                 Debug.Log("icondisplaynumber:" + icondisplaynumber);
             }
         }
-        Debug.Log("IconStateList[MonobitNetwork.playerList[list].ID]:" + IconStateList[MonobitNetwork.playerList[list].ID]);
         if (IconStateList[MonobitNetwork.playerList[list].ID] == 1)
         {
             return 0;
@@ -281,5 +367,25 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     {
         IconStateList[id] = state;
         Debug.Log("changelistsync:" + id + "," + IconStateList[id]);
+    }
+    /// <summary>
+    /// 初期化
+    /// </summary>
+    [MunRPC]
+    public void VideoSync(int x, int y, Byte r, Byte g, Byte b, Byte a)
+    {
+        try
+        {
+            Color32 ccc = new Color32(r, g, b, 255);
+            color[x / 8 + y / 8 * width] = ccc;
+            if (x / 8 >= width - 1 && y / 8 >= height - 1)
+            {
+                texture.SetPixels32(color);
+                texture.Apply();
+            }
+        }
+        catch (NullReferenceException)
+        {
+        }
     }
 }

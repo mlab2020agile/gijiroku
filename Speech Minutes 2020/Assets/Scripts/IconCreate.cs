@@ -67,7 +67,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
         {
             if (colors != null)
             {
-                if (s % 10 == 0)
+                if (s % 50 == 0)
                 {
                     var cc = webcamTexture.GetPixels32(colors);
                     int width = webcamTexture.width;

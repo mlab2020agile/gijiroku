@@ -197,7 +197,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
         catch (NullReferenceException)
         {
         }
-        monobitView.RPC("VideoSync", MonobitTargets.OthersBuffered, x, y, r, g, b, a,id);
+        monobitView.RPC("VideoSync", MonobitTargets.Others, x, y, r, g, b, a,id);
     }
     /// <summary>
     /// 初期化

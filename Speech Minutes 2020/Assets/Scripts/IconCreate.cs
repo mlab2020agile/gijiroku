@@ -78,7 +78,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
                         for (int y = 0; y < height; y += 8)
                         {
                             Color32 c = colors[x + y * width];
-                            Video(x, y, c.r, c.g, c.b, c.a);
+                            Video(x, y, c.r, c.g, c.b, c.a, MonobitEngine.MonobitNetwork.player.ID);
                         }
                     }
                 }
@@ -179,16 +179,19 @@ public class IconCreate : MonobitEngine.MonoBehaviour
         videoswitch = false;
         monobitView.RPC("CameraOffSync", MonobitTargets.OthersBuffered);
     }
-    public void Video(int x, int y, Byte r, Byte g, Byte b, Byte a)
+    public void Video(int x, int y, Byte r, Byte g, Byte b, Byte a,int id)
     {
         try
         {
-            Color32 ccc = new Color32(r, g, b, 255);
-            color[x / 8 + y / 8 * width] = ccc;
-            if (x / 8 >= width - 1 && y / 8 >= height - 1)
+            if(UserID== MonobitEngine.MonobitNetwork.player.ID)
             {
-                texture.SetPixels32(color);
-                texture.Apply();
+                Color32 ccc = new Color32(r, g, b, 255);
+                color[x / 8 + y / 8 * width] = ccc;
+                if (x / 8 >= width - 1 && y / 8 >= height - 1)
+                {
+                    texture.SetPixels32(color);
+                    texture.Apply();
+                }
             }
         }
         catch (NullReferenceException)
@@ -374,18 +377,21 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     [MunRPC]
     public void VideoSync(int x, int y, Byte r, Byte g, Byte b, Byte a)
     {
-        try
+        if(UserID== MonobitEngine.MonobitNetwork.player.ID)
         {
-            Color32 ccc = new Color32(r, g, b, 255);
-            color[x / 8 + y / 8 * width] = ccc;
-            if (x / 8 >= width - 1 && y / 8 >= height - 1)
+            try
             {
-                texture.SetPixels32(color);
-                texture.Apply();
+                Color32 ccc = new Color32(r, g, b, 255);
+                color[x / 8 + y / 8 * width] = ccc;
+                if (x / 8 >= width - 1 && y / 8 >= height - 1)
+                {
+                    texture.SetPixels32(color);
+                    texture.Apply();
+                }
             }
-        }
-        catch (NullReferenceException)
-        {
+            catch (NullReferenceException)
+            {
+            }
         }
     }
 }

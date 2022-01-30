@@ -137,13 +137,13 @@ public class IconCreate : MonobitEngine.MonoBehaviour
                 UserIcon.transform.localPosition = new Vector3(0, 0, 0);
                 break;
             case 2:
-                UserIcon.transform.localPosition = new Vector3(160, 0, 0);
+                UserIcon.transform.localPosition = new Vector3(120, 0, 0);
                 break;
             case 3:
-                UserIcon.transform.localPosition = new Vector3(0, -150, 0);
+                UserIcon.transform.localPosition = new Vector3(0, -110, 0);
                 break;
             case 4:
-                UserIcon.transform.localPosition = new Vector3(160, -150, 0);
+                UserIcon.transform.localPosition = new Vector3(120, -110, 0);
                 break;
             default:
                 UserIcon.transform.localPosition = new Vector3(1000, 1000, 0);
@@ -294,13 +294,13 @@ public class IconCreate : MonobitEngine.MonoBehaviour
                 UserIcon.transform.localPosition = new Vector3(0, 0, 0);
                 break;
             case 2:
-                UserIcon.transform.localPosition = new Vector3(160, 0, 0);
+                UserIcon.transform.localPosition = new Vector3(120, 0, 0);
                 break;
             case 3:
-                UserIcon.transform.localPosition = new Vector3(0, -150, 0);
+                UserIcon.transform.localPosition = new Vector3(0, -110, 0);
                 break;
             case 4:
-                UserIcon.transform.localPosition = new Vector3(160, -150, 0);
+                UserIcon.transform.localPosition = new Vector3(120, -110, 0);
                 break;
             default:
                 UserIcon.transform.localPosition = new Vector3(1000, 1000, 0);

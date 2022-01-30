@@ -183,7 +183,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     {
         try
         {
-            if(UserID== MonobitEngine.MonobitNetwork.player.ID)
+            if(UserID == id)
             {
                 Color32 ccc = new Color32(r, g, b, 255);
                 color[x / 8 + y / 8 * width] = ccc;
@@ -197,7 +197,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
         catch (NullReferenceException)
         {
         }
-        monobitView.RPC("VideoSync", MonobitTargets.OthersBuffered, x, y, r, g, b, a);
+        monobitView.RPC("VideoSync", MonobitTargets.OthersBuffered, x, y, r, g, b, a,id);
     }
     /// <summary>
     /// 初期化
@@ -375,9 +375,9 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     /// 初期化
     /// </summary>
     [MunRPC]
-    public void VideoSync(int x, int y, Byte r, Byte g, Byte b, Byte a)
+    public void VideoSync(int x, int y, Byte r, Byte g, Byte b, Byte a,int id)
     {
-        if(UserID== MonobitEngine.MonobitNetwork.player.ID)
+        if(UserID == id)
         {
             try
             {

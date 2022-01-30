@@ -198,6 +198,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
         {
         }
         monobitView.RPC("VideoSync", MonobitTargets.OthersBuffered, x, y, r, g, b, a,id);
+
     }
     /// <summary>
     /// 初期化

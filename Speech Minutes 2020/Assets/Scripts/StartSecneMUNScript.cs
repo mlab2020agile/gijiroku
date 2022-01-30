@@ -13,6 +13,7 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
     private string roomPasword = "";
     private string roomUnrock = "";
     public string player;
+    public string uname;
     public static string abcd123 = "aaaaaaaa";
     public void OnGUI()
     {
@@ -156,10 +157,7 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
                 GUI.skin.label.fontSize = x/50;
                 GUI.skin.textField.fontSize = x/50;
                 GUI.skin.button.fontSize = x/50;
-                MonobitNetwork.playerName = GUILayout.TextField(
-                    (MonobitNetwork.playerName == null) ?
-                        "" :
-                        MonobitNetwork.playerName,GUILayout.Height(x/40), GUILayout.Width(x/3));
+                uname = GUILayout.TextField(uname,GUILayout.Height(x/40), GUILayout.Width(x/3));
             }
             GUILayout.EndHorizontal();
 
@@ -171,8 +169,17 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
             GUILayout.Space(x*3/8);
             if (GUILayout.Button("サーバに接続",GUILayout.Height(x/35), GUILayout.Width(x/3)))
             {
-                MonobitNetwork.ConnectServer("SimpleChat_v1.0");
-                Debug.Log("サーバに接続しました");
+                if (uname == "")
+                {
+                    abcd123 = "名前を入力してください";
+                    SceneManager.LoadScene("Alert");
+                }
+                else
+                {
+                    MonobitNetwork.playerName = uname;
+                    MonobitNetwork.ConnectServer("SimpleChat_v1.0");
+                    Debug.Log("サーバに接続しました");
+                }
             }
             GUILayout.EndHorizontal();
 

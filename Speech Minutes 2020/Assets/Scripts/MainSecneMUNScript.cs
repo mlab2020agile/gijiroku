@@ -201,7 +201,6 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
             vcPlayerInfo.Add(newPlayer, (Int32)EnableVC.DISABLE);
         }
         monobitView.RPC("Cnt", MonobitTargets.All, usercnt);
-        
         if (MonobitEngine.MonobitNetwork.isHost)
         {
             //int id =MonobitNetwork.playerList.Length-1;

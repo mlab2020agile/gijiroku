@@ -59,6 +59,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     LineUpIcon lineupiconscript;
     int playercount = 0;
     public bool cameraswitch = false;
+    public GameObject CameraLine;
 
     void Start()
     {
@@ -311,11 +312,13 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         {
             script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
             script.CameraOn();
+            CameraLine.SetActive(false);
         }
         else
         {
             script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
             script.CameraOff();
+            CameraLine.SetActive(true);
         }
     }
     /// <summary>

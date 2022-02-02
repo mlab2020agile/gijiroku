@@ -20,6 +20,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     public int NotMuteID;
     MainSecneMUNScript script;
     private Sprite sprite;
+    LineUpIcon lineupiconscript;
     public List<int> IconStateList = new List<int> { 0,0,0,0,0,0,0,0,0,0 };
 
     int width = 80;
@@ -133,16 +134,16 @@ public class IconCreate : MonobitEngine.MonoBehaviour
         switch (IconOrder(MonobitEngine.MonobitNetwork.player.ID))
         {
             case 1:
-                UserIcon.transform.localPosition = new Vector3(-480, -100, 0);
+                UserIcon.transform.localPosition = new Vector3(0, 0, 0);
                 break;
             case 2:
-                UserIcon.transform.localPosition = new Vector3(-360, -100, 0);
+                UserIcon.transform.localPosition = new Vector3(120, 0, 0);
                 break;
             case 3:
-                UserIcon.transform.localPosition = new Vector3(-480, -210, 0);
+                UserIcon.transform.localPosition = new Vector3(0, -110, 0);
                 break;
             case 4:
-                UserIcon.transform.localPosition = new Vector3(-360, -210, 0);
+                UserIcon.transform.localPosition = new Vector3(120, -110, 0);
                 break;
             default:
                 UserIcon.transform.localPosition = new Vector3(1000, 1000, 0);
@@ -291,16 +292,16 @@ public class IconCreate : MonobitEngine.MonoBehaviour
         switch (number)
         {
             case 1:
-                UserIcon.transform.localPosition = new Vector3(-480, -100, 0);
+                UserIcon.transform.localPosition = new Vector3(0, 0, 0);
                 break;
             case 2:
-                UserIcon.transform.localPosition = new Vector3(-360, -100, 0);
+                UserIcon.transform.localPosition = new Vector3(120, 0, 0);
                 break;
             case 3:
-                UserIcon.transform.localPosition = new Vector3(-480, -210, 0);
+                UserIcon.transform.localPosition = new Vector3(0, -110, 0);
                 break;
             case 4:
-                UserIcon.transform.localPosition = new Vector3(-360, -210, 0);
+                UserIcon.transform.localPosition = new Vector3(120, -110, 0);
                 break;
             default:
                 UserIcon.transform.localPosition = new Vector3(1000, 1000, 0);

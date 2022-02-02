@@ -5674,18 +5674,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60bd76f6cea5f4f8a96dfcd36d975cfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rawImage1: {fileID: 0}
-  rawImage2: {fileID: 0}
-  rawImage3: {fileID: 0}
-  rawImage4: {fileID: 0}
-  cameraswitch: 0
-  PlayerText: {fileID: 0}
-  CameraLine: {fileID: 0}
-  Panel1: {fileID: 0}
-  Panel2: {fileID: 0}
-  Panel3: {fileID: 0}
-  Panel4: {fileID: 0}
-  CameraPanel: {fileID: 0}
 --- !u!64 &462275195
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -23030,12 +23018,16 @@ MonoBehaviour:
   InitialList: {fileID: 857610515}
   IconHideText: {fileID: 845537594}
   MuteLine: {fileID: 458717932}
+<<<<<<< HEAD
   UserIcon: {fileID: 1896763839628612042, guid: f8559ea24f0da4bf98fd7a2421eefa32,
     type: 3}
+=======
+>>>>>>> parent of e31b0b27 (ユーザーアイコン位置の修正)
   canvas: {fileID: 1220727752}
   usernamedropdown: {fileID: 1528637425}
   usercnt: 0
   playerCount: 0
+<<<<<<< HEAD
   usericon:
   - {fileID: 8497763124041145564, guid: 4a67804ffc091470fb043138a8278673, type: 3}
   - {fileID: 583642534462269586, guid: 729ef622a1fb844ec908475df6ccfdda, type: 3}
@@ -23045,6 +23037,8 @@ MonoBehaviour:
   - {fileID: 4923587328164985891, guid: 79d8b9402425447f6a9852a7f56250fa, type: 3}
   - {fileID: 9160488632699716748, guid: 5aef3daae42524489b5da6b335bec091, type: 3}
   - {fileID: 4057294567984113096, guid: 0f7ee1eccb9634bb2a9b5cb1a2ca7624, type: 3}
+=======
+>>>>>>> parent of e31b0b27 (ユーザーアイコン位置の修正)
   Mute: 1
   AC: {fileID: 0}
   PlayerListButton: {fileID: 0}
@@ -23055,6 +23049,7 @@ MonoBehaviour:
   content1: {fileID: 19519329}
   IconHideButton: {fileID: 741014133}
   IconHideState: 0
+<<<<<<< HEAD
   IconPanel: {fileID: 92115310}
   CloseButton: {fileID: 149645584}
   CameraPanel: {fileID: 1853055528}
@@ -23066,6 +23061,9 @@ MonoBehaviour:
   image2: {fileID: 593301464}
   image3: {fileID: 1116781478}
   image4: {fileID: 405549862}
+=======
+  CloseButton: {fileID: 149645584}
+>>>>>>> parent of e31b0b27 (ユーザーアイコン位置の修正)
   LogText:
   - {fileID: 442734497}
   - {fileID: 2010789897}
@@ -23084,12 +23082,12 @@ MonoBehaviour:
   - {fileID: 641492912}
   - {fileID: 295698437}
   - {fileID: 563109411}
-  IconList: 0000000000000000000000000000000000000000000000000000000000000000
   Iconid: 0
   Iconname: 
   muteid: 0
   notmuteid: 0
   cameraswitch: 0
+  CameraLine: {fileID: 1456131186}
 --- !u!114 &1782908609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23165,7 +23163,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f25732e2f01f46bcaf457a735fd836f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IconStateList: 00000000
 --- !u!1 &1786543954
 GameObject:
   m_ObjectHideFlags: 0

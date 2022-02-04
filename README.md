@@ -12,3 +12,6 @@
 
 ## Unityのバージョンについて
 - Unityのバージョンは2018.4.23.f1を使用
+
+## テストケースリンク
+- https://docs.google.com/spreadsheets/d/1Cpis457mzLgTDf4hvMrtnZZFkvcvk0h0/edit#gid=1926496207

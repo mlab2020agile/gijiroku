@@ -151,7 +151,7 @@ public class UIManager : MonobitEngine.MonoBehaviour
         SendTextPanel.SetActive(EnableSendTextPanel);
         EnableSendTextPanel = !EnableSendTextPanel;
     }
-
+    //ホスト設定ボタンが押されたとき
     public void OnClickHostsetting()
     {
         PreHostSettingPanel.SetActive(EnableHostSetting);
@@ -163,7 +163,7 @@ public class UIManager : MonobitEngine.MonoBehaviour
         kickPanelCanvasGroup.alpha = 0;
         kickPanelRect.SetAsFirstSibling();
     }
-
+    //ホスト変更ボタンが押されたとき
     public void OnClickChangeHostButton()
     {
         HostChangePanelCanvasGroup.interactable = true;
@@ -173,7 +173,7 @@ public class UIManager : MonobitEngine.MonoBehaviour
         localPos.y = -74;
         HostChangePanelTransform.localPosition = localPos;*/
     }
-
+    //ホスト変更キャンセルボタンが押されたとき
     public void OnClickChangeHostCancel()
     {
         HostChangePanelCanvasGroup.interactable = false;
@@ -183,18 +183,21 @@ public class UIManager : MonobitEngine.MonoBehaviour
         localPos.y = 340;
         HostChangePanelTransform.localPosition = localPos;*/
     }
+    //キックボタンが押されたとき
     public void OnClickKickButton()
     {
         kickPanelCanvasGroup.interactable = true;
         kickPanelCanvasGroup.alpha = 1;
         kickPanelRect.SetAsLastSibling();
     }
+    //キックキャンセルボタンが押されたとき
     public void OnClickKickCancel()
     {
         kickPanelCanvasGroup.interactable = false;
         kickPanelCanvasGroup.alpha = 0;
         kickPanelRect.SetAsFirstSibling();
     }
+    //クライアント設定ボタンが押されたとき
     public void OnClickClientSetting()
     {
         PreRequestPanel.SetActive(EnableClientSetting);
@@ -215,9 +218,7 @@ public class UIManager : MonobitEngine.MonoBehaviour
         obj1.GetComponentInChildren<Text>().text = "name" + " " + newPlayer.name + " " + "id" + " " + newPlayer.ID;
         obj2.GetComponentInChildren<Text>().text = "name" + " " + newPlayer.name + " " + "id" + " " + newPlayer.ID;
     }
-
-//ここから？ホスト権要求
-
+    //ホスト権要求を承諾するボタンを押したとき
     public void OnRequestOkClick()
     {
         HostJudge=1;
@@ -234,11 +235,12 @@ public class UIManager : MonobitEngine.MonoBehaviour
         hascomeName = name;
         hascomeID = id;
     }
-   
+    //ホスト権要求キャンセルボタンが押されたとき
     public void OnRequestCancelClick()
     {
         RequestPanel.SetActive(false);
     }
+    //ホスト権要求が認められたとき
     public void RequestAllow()
     {
         AllowPanel.SetActive(false);
@@ -253,6 +255,7 @@ public class UIManager : MonobitEngine.MonoBehaviour
             }
         }
     }
+    //ホスト権要求が認められないとき
     public void RequestDisallow()
     {
         HostJudge=2;

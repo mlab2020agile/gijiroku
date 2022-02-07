@@ -79,6 +79,7 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
                         *********/
                         SceneManager.LoadScene("newUI");
                     }
+                    //制約範囲外の場合は警告シーンへ
                     else
                     {
                         Debug.Log(abcd123);
@@ -129,6 +130,7 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
                             *********/
                             SceneManager.LoadScene("newUI");
                         }
+                        //間違っていた場合は警告のシーンへ
                         else
                         {
                             abcd123 = "パスワードが違います";
@@ -171,6 +173,7 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
             GUILayout.Space(x*3/8);
             if (GUILayout.Button("サーバに接続",GUILayout.Height(x/35), GUILayout.Width(x/3)))
             {
+                //名前入力がない場合は警告のシーンへ
                 if (uname == "")
                 {
                     abcd123 = "名前を入力してください";

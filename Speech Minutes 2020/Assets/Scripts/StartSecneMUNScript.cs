@@ -29,6 +29,7 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
             // ルームに入室していない場合
             else
             {
+                //スクリーンサイズによってUIの位置や大きさを決定
                 int x = Screen.width;
                 int y = Screen.height;
                 // ルーム名の入力
@@ -69,6 +70,7 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
                     {
                         int a = roomName.Length;
                         int b = roomPasword.Length;
+                        //MUNの仕様上string型の情報はroomの１つしか持っていけないため部屋名とパスワードとそれぞれの文字数を合わせている
                         MonobitNetwork.CreateRoom(roomName+roomPasword+a+b);
                         Debug.Log(abcd123);
                     
@@ -188,6 +190,7 @@ public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
 
 
     }
+    //1~5文字の半角英数字になっているかの判定と判定によっての警告文を決定
     public string RoomSakusei(string name, string pass)
     {
         string s ="";

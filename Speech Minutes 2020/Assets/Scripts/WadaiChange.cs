@@ -49,6 +49,7 @@ public class WadaiChange : MonobitEngine.MonoBehaviour
         }
     }
     
+    //ホストのみ話題変更が可能である
     [MunRPC]
     public void wdikyouyuu(int va, string y, string w1, string w2, string w3, string w4, string w5, string w6, string w7, string w8)
     {
@@ -206,18 +207,11 @@ public class WadaiChange : MonobitEngine.MonoBehaviour
         Debug.Log(dropdown.value);
         Debug.Log(inputField.text);
         monobitView.RPC("wdi", MonobitTargets.All,dropdown.value,inputField.text);
-        /*text[dropdown.value].text = inputField.text;
-        WadaiThemaText[dropdown.value].text = inputField.text;
-        //display.text = inputField.text;
-        //オブジェクトを表示する
-        //  gametext.gameObject.SetActive(true);
-        //インプットフィールドの中身を消す
-        GameObject.Find("wadaiInputField").GetComponent<InputField>().text = "";*/
-        //gametext.gameObject.SetActive(false);
     }
     /// <summary>
     /// 初期化
     /// </summary>
+    //話題変更を他の参加者にも反映させるメソッド
     [MunRPC]
     public void wdi(int va, string tx)
     {

@@ -48,6 +48,7 @@ public class PopupPanelScript : MonobitEngine.MonoBehaviour, IDragHandler
     void Update()
     {
         //パネルが画面外に出ないようにする処理
+        //画面比率によって判定を分けている
         rate = 1.0f*Screen.width/Screen.height;
         if (1.7f<rate)
         {

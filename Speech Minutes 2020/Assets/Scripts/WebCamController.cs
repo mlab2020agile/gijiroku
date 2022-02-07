@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿//使ってないプログラム
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -101,6 +102,7 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     /// <summary>
     /// 初期化
     /// </summary>
+
     [MunRPC]
     public void Goout(int ID)
     {
@@ -126,6 +128,7 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     /// <summary>
     /// 初期化
     /// </summary>
+    //ピクセル毎のRGBと座標を他の参加者に送信
     [MunRPC]
     public void Video(int x, int y, Byte r, Byte g, Byte b, Byte a, int id)
     {

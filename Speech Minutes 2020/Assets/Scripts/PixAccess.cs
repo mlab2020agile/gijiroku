@@ -76,6 +76,7 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	/// <summary>
 	/// 初期化
 	/// </summary>
+	//全けしのメソッド
 	[MunRPC]
 	public void Clear()
 	{
@@ -100,7 +101,7 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 		}
 	}
 
-
+	//「clear」ボタンを押すと呼びだ朝れるメソッド
 	public void Clearfjag()
 	{
 		monobitView.RPC("Clear", MonobitTargets.All);

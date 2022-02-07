@@ -18,6 +18,7 @@ public class ChangeLineColors : MonoBehaviour
     }
 
     // Update is called once per frame
+    //ホワイトボードのUIの中にある色変更のプルダウン
     void Update()
     {
         if(dropdown.value == 0){

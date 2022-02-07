@@ -17,6 +17,7 @@ public class ChangeLineWeight : MonoBehaviour
     }
 
     // Update is called once per frame
+    //ホワイトボードのUIの中にある太さ変更のプルダウン
     void Update()
     {
         if(dropdown.value == 0){

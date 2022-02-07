@@ -1,5 +1,4 @@
-﻿//使ってないプログラム
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -44,6 +43,7 @@ public class WebCamController : MonobitEngine.MonoBehaviour
         {
             if (webcamTexture.width/2 > 16 && webcamTexture.height/2 > 16)
             {
+                //縦横それぞれwebカメラで映したピクセル数の1/8のピクセル数にするため/8をしている
                 colors = new Color32[webcamTexture.width * webcamTexture.height];
                 color1 = new Color32[webcamTexture.width/8 * webcamTexture.height/8];
                 color2 = new Color32[webcamTexture.width/8 * webcamTexture.height/8];
@@ -85,6 +85,7 @@ public class WebCamController : MonobitEngine.MonoBehaviour
                         int width = webcamTexture.width;
                         int height = webcamTexture.height;
                         Color32 rc = new Color32(0, 0, 0, byte.MaxValue);
+                        //ピクセル数縦横1/8ずつなのでステップ数も8ずつにしている
                         for (int x = 0; x < width; x+=8)
                         {
                             for (int y = 0; y < height; y+=8)
@@ -102,7 +103,7 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     /// <summary>
     /// 初期化
     /// </summary>
-
+    //オフにしているときは画面外にカメラパネルを飛ばす
     [MunRPC]
     public void Goout(int ID)
     {
@@ -113,7 +114,7 @@ public class WebCamController : MonobitEngine.MonoBehaviour
         else if (ID == MonobitNetwork.playerList[1].ID)
         {
             rawImage2.transform.localPosition = new Vector3(1000, 1000, 0);
-            //Panel2.SetActive(false);
+            //Panel2.SetActive(false);←はエラー出るかも
         }
         else if (ID == MonobitNetwork.playerList[2].ID)
         {

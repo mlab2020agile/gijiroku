@@ -155,6 +155,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
             }
         }
     }
+    //ルームを退出したときの処理
     public void LeaveRoom()
     {
         Debug.Log("部屋を出る");
@@ -169,6 +170,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         SceneManager.LoadScene("StartScene");
         Debug.Log("OnLeftRoom");
     }
+    //ルームにログインしたときの処理
     public void OnJoinedRoom()
     {
         vcPlayerInfo.Clear();
@@ -226,6 +228,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
             WadaiThema[5].GetComponent<Text>().text, WadaiThema[6].GetComponent<Text>().text, WadaiThema[7].GetComponent<Text>().text);
         }
     }
+    //ルーム入室時に話題のログの中身を統一させるメソッド
 
     [MunRPC]
     public void SendAllLogData(String LogText1, String LogText2, String LogText3, String LogText4, String LogText5, String LogText6, String LogText7, String LogText8)
@@ -240,6 +243,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         LogText[7].GetComponent<Text>().text = LogText8;
         Debug.Log("ThanksHost");
     }
+    //ルーム入室時に話題のタイトルを統一させるメソッド
     [MunRPC]
     public void SendAllWadaiThema(String WadaiThema1, String WadaiThema2, String WadaiThema3, String WadaiThema4, String WadaiThema5, String WadaiThema6, String WadaiThema7, String WadaiThema8)
     {

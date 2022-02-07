@@ -321,7 +321,7 @@ namespace IBM.Watsson.Examples
             }
             yield break;
         }
-
+        //音声認識のスクリプト
         private void OnRecognize(SpeechRecognitionEvent result)
         {
             
@@ -454,7 +454,7 @@ namespace IBM.Watsson.Examples
             }
         }
     
-        //話題ボタンが押されると呼び出されるメソッド
+        //話題ボタンが押されると呼び出されるメソッドを8つ
         public void WadaiButton1()
         {
             if( MonobitNetwork.isHost )

@@ -10,6 +10,7 @@ public class ButtonActive : MonoBehaviour
     public Toggle toggle;
 
 
+    //wadaiパネルのアクティブ・非アクティブ化
     public void OnTolggle0()
     {
         if (toggle.isOn) Wadai.SetActive(true);

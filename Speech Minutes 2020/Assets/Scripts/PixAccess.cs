@@ -530,6 +530,7 @@ public class PixAccess : MonobitEngine.MonoBehaviour
                 	RaycastHit hit;
                 	if (Physics.Raycast(ray, out hit, 100.0f))
                 	{
+						//してるlineWidthとlineColorによって関数を呼び出す物を決める
 						if (lineWidth == 1)
 						{
 							if (lineColor == Color.black)

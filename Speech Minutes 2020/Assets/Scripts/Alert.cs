@@ -23,6 +23,7 @@ public class Alert : MonoBehaviour
     {
         
     }
+    //「OK」ボタン押すと元のシーンに戻る
     public void OnClickReturn()
     {
         SceneManager.LoadScene("StartScene");

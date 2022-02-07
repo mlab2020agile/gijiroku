@@ -35,6 +35,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     public RawImage rawImage;
     public bool videoswitch = false;
 
+    //非同期処理でカラー32型の変数と２Dテクスチャを設定
     IEnumerator Init()
     {
         while (true)
@@ -42,6 +43,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
             if (webcamTexture.width / 2 > 16 && webcamTexture.height / 2 > 16)
             {
                 colors = new Color32[webcamTexture.width * webcamTexture.height];
+                //縦横それぞれwebカメラで映したピクセル数の1/8のピクセル数にするため/8をしている
                 color = new Color32[webcamTexture.width / 8 * webcamTexture.height / 8];
                 texture = new Texture2D(webcamTexture.width / 8, webcamTexture.height / 8, TextureFormat.RGBA32, false);
                 rawImage.GetComponent<RawImage>().texture = texture;
@@ -67,6 +69,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
         {
             if (colors != null)
             {
+                //50フレームに一度更新
                 if (s % 50 == 0)
                 {
                     var cc = webcamTexture.GetPixels32(colors);
@@ -126,6 +129,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
         UserName = script.Iconname;
         IconName.GetComponent<Text>().text = UserName;
         IconInitial.GetComponent<Text>().text = UserName.Substring(0, 1);
+        //変更内容を他のユーザーに共有
         monobitView.RPC("IconSync", MonobitTargets.OthersBuffered, UserID, UserName);
     }
     //ユーザーアイコン位置更新
@@ -149,6 +153,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
                 UserIcon.transform.localPosition = new Vector3(1000, 1000, 0);
                 break;
         }
+        //変更内容を他のユーザーに共有
         monobitView.RPC("IconPositionSync", MonobitTargets.OthersBuffered, IconOrder(MonobitEngine.MonobitNetwork.player.ID));
     }
     //ミュートアイコンに変更
@@ -167,18 +172,23 @@ public class IconCreate : MonobitEngine.MonoBehaviour
         MuteImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("textures/muteoff");
         monobitView.RPC("NotMuteIconSync", MonobitTargets.OthersBuffered, NotMuteID);
     }
+    //カメラパネルを表示
     public void CameraOn()
     {
         Panel.SetActive(true);
         videoswitch = true;
+        //変更内容を他のユーザーに共有
         monobitView.RPC("CameraOnSync", MonobitTargets.OthersBuffered);
     }
+    //カメラパネルを非表示
     public void CameraOff()
     {
         Panel.SetActive(false);
         videoswitch = false;
+        //変更内容を他のユーザーに共有
         monobitView.RPC("CameraOffSync", MonobitTargets.OthersBuffered);
     }
+    //カメラ画像をテクスチャにセット
     public void Video(int x, int y, Byte r, Byte g, Byte b, Byte a,int id)
     {
         try
@@ -197,6 +207,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
         catch (NullReferenceException)
         {
         }
+        //変更内容を他のユーザーに共有
         monobitView.RPC("VideoSync", MonobitTargets.OthersBuffered, x, y, r, g, b, a,id);
 
     }
@@ -204,7 +215,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     /// 初期化
     /// </summary>
     [MunRPC]
-    //ユーザーアイコン位置変更
+    //ユーザーアイコンの中身を同期
     public void IconSync(int id, string name)
     {
         UserID = id;
@@ -268,6 +279,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     /// 初期化
     /// </summary>
     [MunRPC]
+    //カメラパネル表示の同期
     public void CameraOnSync()
     {
         Panel.SetActive(true);
@@ -277,6 +289,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     /// 初期化
     /// </summary>
     [MunRPC]
+    //カメラパネル非表示の同期
     public void CameraOffSync()
     {
         Panel.SetActive(false);
@@ -308,12 +321,12 @@ public class IconCreate : MonobitEngine.MonoBehaviour
                 break;
         }
     }
-    //リスト追加
+    //アイコン状態(表示or非表示)のリスト追加
     public void AddList()
     {
         IconStateList.Add(0);
     }
-    //リスト作成
+    //アイコン状態(表示or非表示)のリスト作成
     public void CreateList(int id)
     {
         for (int i = 0; i < id; i++)
@@ -321,13 +334,14 @@ public class IconCreate : MonobitEngine.MonoBehaviour
             IconStateList.Add(0);
         }
     }
-    //リスト変更
+    //アイコン状態(表示or非表示)のリスト変更
     public void ChangeList(int id, int state)
     {
         IconStateList[id] = state;
+        //変更内容を他のユーザーに共有
         monobitView.RPC("ChangeListSync", MonobitTargets.OthersBuffered, id, state);
     }
-    //リストの何番目か
+    //アイコン状態(表示or非表示)のリストの何番目か
     public int List(int n)
     {
         int order = 0;
@@ -340,7 +354,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
         }
         return order;
     }
-    //ユーザーアイコンが何番目に表示されるか
+    //ユーザーアイコンが画面の何番目に表示されるか
     public int IconOrder(int number)
     {
         int list;
@@ -367,6 +381,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     /// 初期化
     /// </summary>
     [MunRPC]
+    //アイコン状態(表示or非表示)のリスト変更を同期
     public void ChangeListSync(int id, int state)
     {
         IconStateList[id] = state;
@@ -376,6 +391,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     /// 初期化
     /// </summary>
     [MunRPC]
+    //カメラ画像をテクスチャにセット
     public void VideoSync(int x, int y, Byte r, Byte g, Byte b, Byte a,int id)
     {
         if(UserID == id)

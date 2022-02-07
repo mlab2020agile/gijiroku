@@ -9,67 +9,41 @@ public class FusenColorChange : MonobitEngine.MonoBehaviour
     [SerializeField]
     GameObject FusenPanel;
     Dropdown dropdown;
-    //private int colorValue;
-    // Start is called before the first frame update
     void Start()
     {
         dropdown = GetComponent<Dropdown>();
         
     }
 
-    // Update is called once per frame
-    /*void Update()
-    {
-    
-        //ドロップダウンの値によって色を変化させる
-        if (dropdown.value == 0)
-        {
-            FusenPanel.GetComponentInChildren<Image>().color = Color.magenta;
-
-        }
-
-        if (dropdown.value == 1)
-        {
-            FusenPanel.GetComponentInChildren<Image>().color = Color.yellow;
-        }
-
-        if (dropdown.value == 2)
-        {
-            FusenPanel.GetComponentInChildren<Image>().color = Color.green;
-        }
-
-    }*/
+    //付箋の色を変更するメソッド
     public void ChangeColor(Dropdown dropdown)
     {
         switch (dropdown.value)
         {
             case 0:
+                //自分の付箋の色を変更する処理
                 FusenPanel.GetComponentInChildren<Image>().color = ToColor("#ffc0cb");
-                //colorValue = dropdown.value;
+                //自分以外にも上記の付箋の色変更が反映される処理
                 monobitView.RPC("RecvTextColor", MonobitTargets.OthersBuffered, dropdown.value);
                 break;
                 
             case 1:
                 FusenPanel.GetComponentInChildren<Image>().color = ToColor("#fffacd");
-                //colorValue = dropdown.value;
                 monobitView.RPC("RecvTextColor", MonobitTargets.OthersBuffered, dropdown.value);
                 break;
 
             case 2:
                 FusenPanel.GetComponentInChildren<Image>().color = ToColor("#98fb98");
-                //colorValue = dropdown.value;
                 monobitView.RPC("RecvTextColor", MonobitTargets.OthersBuffered, dropdown.value);
                 break;
 
             case 3:
                 FusenPanel.GetComponentInChildren<Image>().color = ToColor("#fa8072");
-                //colorValue = dropdown.value;
                 monobitView.RPC("RecvTextColor", MonobitTargets.OthersBuffered, dropdown.value);
                 break;
 
             case 4:
                 FusenPanel.GetComponentInChildren<Image>().color = ToColor("#87cefa");
-                //colorValue = dropdown.value;
                 monobitView.RPC("RecvTextColor", MonobitTargets.OthersBuffered, dropdown.value);
                 break;
 
@@ -77,6 +51,8 @@ public class FusenColorChange : MonobitEngine.MonoBehaviour
                 break;
         }
     }
+
+    //カラーコードから色を呼び出すメソッド
     public  Color ToColor(string Color)
     {
         var color = default(Color);
@@ -86,6 +62,7 @@ public class FusenColorChange : MonobitEngine.MonoBehaviour
         return color;
     }
 
+    //ドロップダウンの値から付箋の色を変える処理を自分以外にMunRPCを使って送るメソッド
     [MunRPC]
     public void RecvTextColor(int colorValue)
     {

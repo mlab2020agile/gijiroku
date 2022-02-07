@@ -11,7 +11,6 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
     private float scroll;
     public Text chatComent;
     public bool Selectflag = false;
-    // public Color texcolor;
     public GameObject teO;
     public GameObject PenButton;
     public GameObject FinishButton;
@@ -42,6 +41,8 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
         monobitView.RPC("RecvChattext", MonobitTargets.OthersBuffered, text_);
         }
     }
+
+    //付箋のテキスト内容を反映させるメソッド
     [MunRPC]
     public void RecvChattext(string text_)
     {
@@ -69,20 +70,7 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
             chatComent.color = Color.white;
             Debug.Log("Selectされました");
             scroll = Input.GetAxis("Mouse ScrollWheel");
-            /*  if (scroll > 0)
-              {
-                  text.fontSize += 14;
-                  Debug.Log("回ったよ");
-              }*/
-
-
-
         }
-        /* EventSystem ev = EventSystem.current;
-         if (ev.alreadySelecting)
-         {
-             Debug.Log("何かを選択しています");
-         }*/
     }
     /// <summary>
     /// テキストのフォントサイズ変更及び削除
@@ -151,7 +139,6 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
         }
         if (Selectflag == true && Input.GetKey(KeyCode.Backspace))
         {
-            //Destroy(this.gameObject);
             OnDestroy();
             Selectflag = false;
             Debug.Log("false&destroy");
@@ -183,22 +170,16 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
         m_rectTransform.position += new Vector3(e.delta.x, e.delta.y, 0f);
     }
 
-    /*//テキストボックスの削除(バックスペースで削除)
-    public void Destroy()
-    {
-        if (Input.GetKey(KeyCode.Backspace)) {
-            Destroy(this.gameObject);
-            Debug.Log("ok");
-        }
-    }*/
+    //付箋の編集ボタンを押した時に呼び出されるメソッド
     public void PenButtonOnclick()
     { 
         Text text = this.GetComponentInChildren<Text>();
         EditInputField.text = text.text;
         Selectflag = false;
         EditInputFieldObject.SetActive(true);
-        //Debug.Log("Pressed PenButton");
     }
+
+    //付箋を編集中に付箋上部の編集テキストフィールド横のチェックマークボタンを押した時に呼び出されるメソッド
     public void FinishButtonOnclick()
     {
         if (EditInputFieldObject.activeSelf)
@@ -214,19 +195,16 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
             Debug.Log("editing text");
         }
     }
-    /*public void TextCloseButtonOnclick()
-    {
-        EdittingTextField.text = "";
-        Selectflag = false;
-        EdittingTextPanel.SetActive(false);
-        Debug.Log("textfield closed");
-    }*/
+
+    //付箋の拡大ボタンを押した時に呼び出されるメソッド
     public void EnlargeButtonOnclick()
     {
         Text textfont = this.GetComponentInChildren<Text>();
-        textfont.fontSize += 2;// (int)scroll*100;
+        textfont.fontSize += 2;　// (int)scroll*100;
         monobitView.RPC("RecvfontSize", MonobitTargets.OthersBuffered, textfont.fontSize);
     }
+
+    //付箋の縮小ボタンを押した時に呼び出されるメソッド
     public void ShrinkButtonOnclick()
     {
         Text textfont = this.GetComponentInChildren<Text>();
@@ -238,6 +216,7 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
         monobitView.RPC("RecvfontSize", MonobitTargets.OthersBuffered, textfont.fontSize);
     }
 
+    //付箋の削除ボタンを押した時に呼び出されるメソッド
     public void DeleteButtonOnclick()
     {
         OnDestroy();
@@ -245,6 +224,7 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
         Debug.Log("false&destroy");
     }
 
+    //付箋のテキストサイズを変更するメソッド
     [MunRPC]
     public void RecvfontSize(int fontSize)
     {
@@ -253,11 +233,13 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
         Debug.Log("フォントサイズ変更");
     }
 
+    //付箋の削除する時のメソッド
     void OnDestroy()
     {
         MonobitNetwork.Destroy(monobitView);
     }
 
+    //付箋をダブルクリックで編集する時の判定メソッド
     void DoubleclickJudg()
     {
         //ダブルタッチされているか
@@ -268,7 +250,7 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
         PenButtonOnclick();
     }
 
-    //bool otherHide;
+    //付箋周りのUIを隠すボタン(湾曲した矢印)を押した時に呼び出されるメソッド
     public void HideOnclick()
     {
             PenButton.SetActive(false);
@@ -280,6 +262,7 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
         VisibleButton.SetActive(true);
 
     }
+    //付箋周りのUIを再表示ボタン(3点リーダ)を押した時に呼び出されるメソッド
     public void visibleOnclick()
     {
             PenButton.SetActive(true);

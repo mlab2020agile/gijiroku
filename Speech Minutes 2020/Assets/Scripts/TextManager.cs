@@ -12,9 +12,7 @@ public class TextManager : MonobitEngine.MonoBehaviour
     public Text text;//textoutput
     public Text display;
     public GameObject canvas;//キャンバス
-    //public GameObject FusenPanel;
 
-    // Start is called before the first frame update
     void Start()
     {
         //Componentを扱えるようにする
@@ -27,13 +25,12 @@ public class TextManager : MonobitEngine.MonoBehaviour
         //テキストにinputFieldの内容を反映
         //text.text = inputField.text;
         display.text = inputField.text;
-        //オブジェクトを表示する
-      //  gametext.gameObject.SetActive(true);
     }
     int resetcunter = 0;
     public RectTransform input_rectTransform = null;
     public RectTransform display_rectTransform = null;
-    //テキストボックスへの入力が終わった時に呼び出す
+
+    //テキストボックスへの入力が終わった時に呼び出すメソッド
     public void EndEdit()
     { 
         if (GameObject.Find("TextBox").GetComponent<InputField>().text != "") {
@@ -45,8 +42,6 @@ public class TextManager : MonobitEngine.MonoBehaviour
             //prefab.transform.SetParent(canvas.transform, false);
             Text prefabtext = prefab.GetComponentInChildren<Text>();
             prefabtext.text = display.text;
-            //int px = Random.Range(30, -35);
-            //int py = Random.Range(19, -25);
 
             if (resetcunter<4)
             {
@@ -62,19 +57,10 @@ public class TextManager : MonobitEngine.MonoBehaviour
         }
     }
 
-   /* public void Update()
-    {
-        EventSystem ev = EventSystem.current;
-        if (ev.alreadySelecting)
-        {
-            Debug.Log("何かを選択しています");
-        }
-    }*/
-    //送信ボタンを押した時
+    //付箋作成のテキストフィールド横の送信ボタンを押した時の処理
     public void Send()
     {
         //インプットフィールドの中身を消す
         GameObject.Find("TextBox").GetComponent<InputField>().text = "";
-        //FusenPanel.gameObject.SetActive(false);
     }
 }

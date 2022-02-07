@@ -210,6 +210,7 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     /// <summary>
     /// 初期化
     /// </summary>
+    //カメラボタンが押された時に呼び出されるメソッド
     public void OnClick()
     {
         if (!cameraswitch)

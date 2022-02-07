@@ -914,6 +914,7 @@ namespace IBM.Watsson.Examples
             }
         }
         */
+        //ミュートボタンが押されたときに呼び出されるメソッド
         public void muteButtonOnclicked()
         {
             //MUNサーバに接続している場合

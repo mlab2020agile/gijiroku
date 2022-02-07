@@ -265,6 +265,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
             vcPlayerInfo.Remove(otherPlayer);
         }
     }
+    //プレイヤーリストボタンが押された時に呼び出されるメソッド
     public void ListButtonOnclick()
     {
         if (PlayerScrollState == false)
@@ -288,6 +289,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
             PlayerScroll.SetActive(false);
         }
     }
+    //アイコン非表示ボタンが押された時に呼び出されるメソッド
     public void IconHideButtonOnclick()
     {
         IconHideState = !IconHideState;
@@ -309,6 +311,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         IconUpdatee();
         Debug.Log("IconUpDate Now");
     }
+    //カメラボタンが押された時に呼び出されるメソッド
     public void CameraButtonOnclick()
     {
         cameraswitch = !cameraswitch;
@@ -347,6 +350,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     {
         UnityEngine.Debug.LogWarning("Info: Microphone Restart !!!");
     }
+    //VCボタンが押された時に呼び出されるメソッド
     public void muteButtonOnclicked()
     {
         //MUNサーバに接続している場合

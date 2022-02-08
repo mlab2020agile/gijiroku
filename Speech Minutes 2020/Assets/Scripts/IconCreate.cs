@@ -94,6 +94,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     {
         script = GameObject.Find("MUN").GetComponent<MainSecneMUNScript>();
         UserID = script.Iconid;
+        //ユーザーアイコンのテクスチャは9通り
         switch (UserID%9)
         {
             case 0:
@@ -135,6 +136,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     //ユーザーアイコン位置更新
     public void IconPositionUpdate()
     {
+        //ユーザーアイコンを4つまで並べる
         switch (IconOrder(MonobitEngine.MonobitNetwork.player.ID))
         {
             case 1:
@@ -162,6 +164,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
         script = GameObject.Find("MUN").GetComponent<MainSecneMUNScript>();
         MuteID = script.muteid;
         MuteImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("textures/muteon");
+        //変更内容を他のユーザーに共有
         monobitView.RPC("MuteIconSync", MonobitTargets.OthersBuffered, MuteID);
     }
     //ミュート解除アイコンに変更
@@ -170,6 +173,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
         script = GameObject.Find("MUN").GetComponent<MainSecneMUNScript>();
         NotMuteID = script.notmuteid;
         MuteImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("textures/muteoff");
+        //変更内容を他のユーザーに共有
         monobitView.RPC("NotMuteIconSync", MonobitTargets.OthersBuffered, NotMuteID);
     }
     //カメラパネルを表示
@@ -197,6 +201,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
             {
                 Color32 ccc = new Color32(r, g, b, 255);
                 color[x / 8 + y / 8 * width] = ccc;
+                //範囲内に存在するか
                 if (x / 8 >= width - 1 && y / 8 >= height - 1)
                 {
                     texture.SetPixels32(color);
@@ -219,6 +224,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     public void IconSync(int id, string name)
     {
         UserID = id;
+        //ユーザーアイコンのテクスチャは9通り
         switch (UserID % 9)
         {
             case 0:
@@ -302,6 +308,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     //ユーザーアイコン位置同期
     public void IconPositionSync(int number)
     {
+        //ユーザーアイコンを4つまで並べる
         switch (number)
         {
             case 1:
@@ -324,6 +331,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     //アイコン状態(表示or非表示)のリスト追加
     public void AddList()
     {
+        //アイコン状態(表示or非表示)のリストの末尾に０という要素を追加
         IconStateList.Add(0);
     }
     //アイコン状態(表示or非表示)のリスト作成
@@ -331,6 +339,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     {
         for (int i = 0; i < id; i++)
         {
+            //アイコン状態(表示or非表示)のリストの末尾に０という要素を追加
             IconStateList.Add(0);
         }
     }
@@ -341,12 +350,13 @@ public class IconCreate : MonobitEngine.MonoBehaviour
         //変更内容を他のユーザーに共有
         monobitView.RPC("ChangeListSync", MonobitTargets.OthersBuffered, id, state);
     }
-    //アイコン状態(表示or非表示)のリストの何番目か
+    //ユーザーリストの何番目か
     public int List(int n)
     {
         int order = 0;
         for (int i = 0; i < MonobitNetwork.room.playerCount; i++)
         {
+            //プレイヤーリストのi番目のIDと与えられたIDが一致するか
             if (n == MonobitNetwork.playerList[i].ID)
             {
                 order = i;
@@ -362,17 +372,19 @@ public class IconCreate : MonobitEngine.MonoBehaviour
         list = List(number);
         for (int i = 0; i < list + 1; i++)
         {
+            //自分を含めアイコンを表示しているユーザーを数える
             if (IconStateList[MonobitNetwork.playerList[i].ID] == 0)
             {
                 icondisplaynumber++;
                 Debug.Log("icondisplaynumber:" + icondisplaynumber);
             }
         }
+        //アイコン非表示の場合
         if (IconStateList[MonobitNetwork.playerList[list].ID] == 1)
         {
             return 0;
         }
-        else
+        else//アイコン表示の場合
         {
             return icondisplaynumber;
         }
@@ -400,6 +412,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
             {
                 Color32 ccc = new Color32(r, g, b, 255);
                 color[x / 8 + y / 8 * width] = ccc;
+                //範囲内に存在するか
                 if (x / 8 >= width - 1 && y / 8 >= height - 1)
                 {
                     texture.SetPixels32(color);

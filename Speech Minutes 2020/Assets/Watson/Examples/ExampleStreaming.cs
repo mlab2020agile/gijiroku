@@ -122,22 +122,22 @@ namespace IBM.Watsson.Examples
             text.text = "話題未選択";
         }
 
-        
+
 
         [MunRPC]
         public void Wdikyo(int va)
         {
-            if (NowBottonPushed!=va)
+            if (NowBottonPushed != va)
             {
-                NowBottonPushed =va;
+                NowBottonPushed = va;
                 FilePathSelect(va);
             }
         }
         [MunRPC]
         public void RecvChat(string logtime, string name, string word, int push)
         {
-            Debug.Log("値 "+push);
-            if(push == -1)
+            Debug.Log("値 " + push);
+            if (push == -1)
             {
                 LogText[8].GetComponent<Text>().text += Environment.NewLine;
                 LogText[8].GetComponent<Text>().text += logtime + "," + name + "," + word;
@@ -145,14 +145,13 @@ namespace IBM.Watsson.Examples
             else
             {
                 LogText[push].GetComponent<Text>().text += Environment.NewLine;
-                LogText[push].GetComponent<Text>().text += logtime +"," + name + "," + word;
-
+                LogText[push].GetComponent<Text>().text += logtime + "," + name + "," + word;
+                ///ログが更新された時ログパネルのスクロールバーを一番下まで自動でスクロールさせる
                 StartCoroutine(ForceScrollDown(push));
                 //Debug.Log("ScrollPositionIsMoved");
             }
 
         }
-
         IEnumerator ForceScrollDown(int push)
         {
 
@@ -161,11 +160,12 @@ namespace IBM.Watsson.Examples
             ScrollRect[push].verticalNormalizedPosition = 0.0f;
 
         }
-        
+
+        //使われてないメソッド
         public void LogClear()
         {
             //Text0~8を非アクティブ
-            for(int i=0; i<9; i++)
+            for (int i = 0; i < 9; i++)
             {
                 //LogText[i].SetActive(false);
             }
@@ -232,6 +232,7 @@ namespace IBM.Watsson.Examples
         /// <summary>
         /// publicに変えました
         /// </summary>
+       //音声認識開始メソッド
         public void StartRecording()
         {
             LogSystem.InstallDefaultReactors();
@@ -247,6 +248,7 @@ namespace IBM.Watsson.Examples
         /// <summary>
         /// publicに変えました
         /// </summary>
+        //音声認識終了メソッド
         public void StopRecording()
         {
             if (_recordingRoutine != 0)
@@ -324,7 +326,7 @@ namespace IBM.Watsson.Examples
         //音声認識のスクリプト
         private void OnRecognize(SpeechRecognitionEvent result)
         {
-            
+
             if (result != null && result.results.Length > 0)
             {
                 foreach (var res in result.results)
@@ -358,7 +360,7 @@ namespace IBM.Watsson.Examples
                         {
                             Log.Debug("ExampleStreaming.OnRecognize()", "Word alternatives found. Start time: {0} | EndTime: {1}", wordAlternative.start_time, wordAlternative.end_time);
                             foreach (var alternative in wordAlternative.alternatives)
-                            Log.Debug("ExampleStreaming.OnRecognize()", "\t word: {0} | confidence: {1}", alternative.word, alternative.confidence);
+                                Log.Debug("ExampleStreaming.OnRecognize()", "\t word: {0} | confidence: {1}", alternative.word, alternative.confidence);
                         }
                     }
                 }
@@ -399,50 +401,50 @@ namespace IBM.Watsson.Examples
                 case 0:
                     LogDataFilePath = @"/LogDatas/LogData0.txt";
                     filePath = Application.dataPath + LogDataFilePath;
-                    text.text = "現在の話題："+Button[number].GetComponentInChildren<Text>().text;
+                    text.text = "現在の話題：" + Button[number].GetComponentInChildren<Text>().text;
                     text.color = new Color32(189, 193, 74, 255);
 
                     break;
                 case 1:
                     LogDataFilePath = @"/LogDatas/LogData1.txt";
                     filePath = Application.dataPath + LogDataFilePath;
-                    text.text = "現在の話題："+Button[number].GetComponentInChildren<Text>().text;
+                    text.text = "現在の話題：" + Button[number].GetComponentInChildren<Text>().text;
                     text.color = new Color32(195, 160, 65, 255);
                     break;
                 case 2:
                     LogDataFilePath = @"/LogDatas/LogData2.txt";
                     filePath = Application.dataPath + LogDataFilePath;
-                    text.text = "現在の話題："+Button[number].GetComponentInChildren<Text>().text;
+                    text.text = "現在の話題：" + Button[number].GetComponentInChildren<Text>().text;
                     text.color = new Color32(207, 89, 81, 255);
                     break;
                 case 3:
                     LogDataFilePath = @"/LogDatas/LogData3.txt";
                     filePath = Application.dataPath + LogDataFilePath;
-                    text.text = "現在の話題："+Button[number].GetComponentInChildren<Text>().text;
+                    text.text = "現在の話題：" + Button[number].GetComponentInChildren<Text>().text;
                     text.color = new Color32(207, 75, 200, 255);
                     break;
                 case 4:
                     LogDataFilePath = @"/LogDatas/LogData4.txt";
                     filePath = Application.dataPath + LogDataFilePath;
-                    text.text = "現在の話題："+Button[number].GetComponentInChildren<Text>().text;
+                    text.text = "現在の話題：" + Button[number].GetComponentInChildren<Text>().text;
                     text.color = new Color32(144, 82, 204, 255);
                     break;
                 case 5:
                     LogDataFilePath = @"/LogDatas/LogData5.txt";
                     filePath = Application.dataPath + LogDataFilePath;
-                    text.text = "現在の話題："+Button[number].GetComponentInChildren<Text>().text;
+                    text.text = "現在の話題：" + Button[number].GetComponentInChildren<Text>().text;
                     text.color = new Color32(74, 87, 202, 255);
                     break;
                 case 6:
                     LogDataFilePath = @"/LogDatas/LogData6.txt";
                     filePath = Application.dataPath + LogDataFilePath;
-                    text.text = "現在の話題："+Button[number].GetComponentInChildren<Text>().text;
+                    text.text = "現在の話題：" + Button[number].GetComponentInChildren<Text>().text;
                     text.color = new Color32(63, 197, 212, 255);
                     break;
                 case 7:
                     LogDataFilePath = @"/LogDatas/LogData7.txt";
                     filePath = Application.dataPath + LogDataFilePath;
-                    text.text = "現在の話題："+Button[number].GetComponentInChildren<Text>().text;
+                    text.text = "現在の話題：" + Button[number].GetComponentInChildren<Text>().text;
                     text.color = new Color32(62, 207, 69, 255);
                     break;
                 default:
@@ -453,13 +455,13 @@ namespace IBM.Watsson.Examples
                     break;
             }
         }
-    
+
         //話題ボタンが押されると呼び出されるメソッドを8つ
         public void WadaiButton1()
         {
-            if( MonobitNetwork.isHost )
+            if (MonobitNetwork.isHost)
             {
-                monobitView.RPC("WB1",MonobitTargets.All,NowBottonPushed);
+                monobitView.RPC("WB1", MonobitTargets.All, NowBottonPushed);
             }
 
         }
@@ -481,9 +483,9 @@ namespace IBM.Watsson.Examples
         }
         public void WadaiButton2()
         {
-            if( MonobitNetwork.isHost )
+            if (MonobitNetwork.isHost)
             {
-                monobitView.RPC("WB2",MonobitTargets.All,NowBottonPushed);
+                monobitView.RPC("WB2", MonobitTargets.All, NowBottonPushed);
             }
 
         }
@@ -505,9 +507,9 @@ namespace IBM.Watsson.Examples
         }
         public void WadaiButton3()
         {
-            if( MonobitNetwork.isHost )
+            if (MonobitNetwork.isHost)
             {
-                monobitView.RPC("WB3",MonobitTargets.All,NowBottonPushed);
+                monobitView.RPC("WB3", MonobitTargets.All, NowBottonPushed);
             }
 
         }
@@ -529,9 +531,9 @@ namespace IBM.Watsson.Examples
         }
         public void WadaiButton4()
         {
-            if( MonobitNetwork.isHost )
+            if (MonobitNetwork.isHost)
             {
-                monobitView.RPC("WB4",MonobitTargets.All,NowBottonPushed);
+                monobitView.RPC("WB4", MonobitTargets.All, NowBottonPushed);
             }
 
         }
@@ -553,9 +555,9 @@ namespace IBM.Watsson.Examples
         }
         public void WadaiButton5()
         {
-            if( MonobitNetwork.isHost )
+            if (MonobitNetwork.isHost)
             {
-                monobitView.RPC("WB5",MonobitTargets.All,NowBottonPushed);
+                monobitView.RPC("WB5", MonobitTargets.All, NowBottonPushed);
             }
 
         }
@@ -577,9 +579,9 @@ namespace IBM.Watsson.Examples
         }
         public void WadaiButton6()
         {
-            if( MonobitNetwork.isHost )
+            if (MonobitNetwork.isHost)
             {
-                monobitView.RPC("WB6",MonobitTargets.All,NowBottonPushed);
+                monobitView.RPC("WB6", MonobitTargets.All, NowBottonPushed);
             }
 
         }
@@ -601,9 +603,9 @@ namespace IBM.Watsson.Examples
         }
         public void WadaiButton7()
         {
-            if( MonobitNetwork.isHost )
+            if (MonobitNetwork.isHost)
             {
-                monobitView.RPC("WB7",MonobitTargets.All,NowBottonPushed);
+                monobitView.RPC("WB7", MonobitTargets.All, NowBottonPushed);
             }
 
         }
@@ -625,9 +627,9 @@ namespace IBM.Watsson.Examples
         }
         public void WadaiButton8()
         {
-            if( MonobitNetwork.isHost )
+            if (MonobitNetwork.isHost)
             {
-                monobitView.RPC("WB8",MonobitTargets.All,NowBottonPushed);
+                monobitView.RPC("WB8", MonobitTargets.All, NowBottonPushed);
             }
 
         }
@@ -846,9 +848,9 @@ namespace IBM.Watsson.Examples
         public void OnOtherPlayerConnected(MonobitPlayer newPlayer)
         {
             Debug.Log("入ったよ");
-            if( MonobitNetwork.isHost )
+            if (MonobitNetwork.isHost)
             {
-                monobitView.RPC("Wdikyo",MonobitTargets.All,NowBottonPushed);
+                monobitView.RPC("Wdikyo", MonobitTargets.All, NowBottonPushed);
             }
             if (!vcPlayerInfo.ContainsKey(newPlayer))
             {

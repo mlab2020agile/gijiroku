@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 
 public class StartSecneMUNScript : MonobitEngine.MonoBehaviour
 {
+    //test
     /** ルーム名. */
     private string roomName = "";
     private string roomPasword = "";

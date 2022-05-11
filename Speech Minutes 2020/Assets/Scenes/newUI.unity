@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -308,7 +308,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000095096526, y: -0.000004909732}
+  m_AnchoredPosition: {x: 0.000023810719, y: -0.00003017989}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &20385978
@@ -4258,7 +4258,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4412c46f153fe4e02b5a6c33b1a4e168, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5fe45998d2e4a48cb8435c0b3a258dbf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5177,6 +5177,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60bd76f6cea5f4f8a96dfcd36d975cfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rawImage1: {fileID: 0}
+  rawImage2: {fileID: 0}
+  rawImage3: {fileID: 0}
+  rawImage4: {fileID: 0}
+  cameraswitch: 0
+  PlayerText: {fileID: 0}
+  CameraLine: {fileID: 0}
+  Panel1: {fileID: 0}
+  Panel2: {fileID: 0}
+  Panel3: {fileID: 0}
+  Panel4: {fileID: 0}
+  CameraPanel: {fileID: 0}
 --- !u!64 &462275195
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -11685,7 +11697,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1266175368}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.99999964
+  m_Size: 0.99999946
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -21518,10 +21530,21 @@ MonoBehaviour:
   PlayerList: {fileID: 487300997}
   IconHideText: {fileID: 845537594}
   MuteLine: {fileID: 458717932}
+  UserIcon: {fileID: 0}
   canvas: {fileID: 1220727752}
   usernamedropdown: {fileID: 1528637425}
   usercnt: 0
   playerCount: 0
+  usericon:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   Mute: 1
   AC: {fileID: 0}
   PlayerListButton: {fileID: 0}
@@ -21532,7 +21555,6 @@ MonoBehaviour:
   content1: {fileID: 19519329}
   IconHideButton: {fileID: 741014133}
   IconHideState: 0
-  CloseButton: {fileID: 149645584}
   LogText:
   - {fileID: 442734497}
   - {fileID: 2010789897}
@@ -21551,6 +21573,7 @@ MonoBehaviour:
   - {fileID: 641492912}
   - {fileID: 295698437}
   - {fileID: 563109411}
+  IconList: 0000000000000000000000000000000000000000000000000000000000000000
   Iconid: 0
   Iconname: 
   muteid: 0
@@ -21632,6 +21655,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f25732e2f01f46bcaf457a735fd836f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IconStateList: 00000000
 --- !u!1 &1786543954
 GameObject:
   m_ObjectHideFlags: 0

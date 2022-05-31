@@ -109,8 +109,14 @@ namespace IBM.Watsson.Examples
                 {
                     FilePathSelect(-1); break;
                 }
+<<<<<<< Updated upstream
             }
             filePath = Application.dataPath + @"/LogDatas/LogData.txt";
+=======
+            }*/
+            FilePathSelect(-1);
+            filePath = Application.streamingAssetsPath + @"/LogDatas/LogData.txt";
+>>>>>>> Stashed changes
             File.CreateText(filePath);
 
             
@@ -376,12 +382,19 @@ namespace IBM.Watsson.Examples
             {
                 case 0:
                     LogDataFilePath = @"/LogDatas/LogData0.txt";
+<<<<<<< Updated upstream
                     filePath = Application.dataPath + LogDataFilePath;
                     text.text = Button[number].GetComponentInChildren<Text>().text + "を選択中";
+=======
+                    filePath = Application.streamingAssetsPath + LogDataFilePath;
+                    text.text = "現在の話題：" + Button[number].GetComponentInChildren<Text>().text;
+                    text.color = new Color32(189, 193, 74, 255);
+>>>>>>> Stashed changes
 
                     break;
                 case 1:
                     LogDataFilePath = @"/LogDatas/LogData1.txt";
+<<<<<<< Updated upstream
                     filePath = Application.dataPath + LogDataFilePath;
                     text.text = Button[number].GetComponentInChildren<Text>().text + "を選択中";
                     break;
@@ -414,10 +427,51 @@ namespace IBM.Watsson.Examples
                     LogDataFilePath = @"/LogDatas/LogData7.txt";
                     filePath = Application.dataPath + LogDataFilePath;
                     text.text = Button[number].GetComponentInChildren<Text>().text + "を選択中";
+=======
+                    filePath = Application.streamingAssetsPath+ LogDataFilePath;
+                    text.text = "現在の話題：" + Button[number].GetComponentInChildren<Text>().text;
+                    text.color = new Color32(195, 160, 65, 255);
+                    break;
+                case 2:
+                    LogDataFilePath = @"/LogDatas/LogData2.txt";
+                    filePath = Application.streamingAssetsPath+ LogDataFilePath;
+                    text.text = "現在の話題：" + Button[number].GetComponentInChildren<Text>().text;
+                    text.color = new Color32(207, 89, 81, 255);
+                    break;
+                case 3:
+                    LogDataFilePath = @"/LogDatas/LogData3.txt";
+                    filePath = Application.streamingAssetsPath+ LogDataFilePath;
+                    text.text = "現在の話題：" + Button[number].GetComponentInChildren<Text>().text;
+                    text.color = new Color32(207, 75, 200, 255);
+                    break;
+                case 4:
+                    LogDataFilePath = @"/LogDatas/LogData4.txt";
+                    filePath = Application.streamingAssetsPath+ LogDataFilePath;
+                    text.text = "現在の話題：" + Button[number].GetComponentInChildren<Text>().text;
+                    text.color = new Color32(144, 82, 204, 255);
+                    break;
+                case 5:
+                    LogDataFilePath = @"/LogDatas/LogData5.txt";
+                    filePath = Application.streamingAssetsPath+ LogDataFilePath;
+                    text.text = "現在の話題：" + Button[number].GetComponentInChildren<Text>().text;
+                    text.color = new Color32(74, 87, 202, 255);
+                    break;
+                case 6:
+                    LogDataFilePath = @"/LogDatas/LogData6.txt";
+                    filePath = Application.streamingAssetsPath+ LogDataFilePath;
+                    text.text = "現在の話題：" + Button[number].GetComponentInChildren<Text>().text;
+                    text.color = new Color32(63, 197, 212, 255);
+                    break;
+                case 7:
+                    LogDataFilePath = @"/LogDatas/LogData7.txt";
+                    filePath = Application.streamingAssetsPath + LogDataFilePath;
+                    text.text = "現在の話題：" + Button[number].GetComponentInChildren<Text>().text;
+                    text.color = new Color32(62, 207, 69, 255);
+>>>>>>> Stashed changes
                     break;
                 default:
                     LogDataFilePath = @"/LogDatas/LogData.txt";
-                    filePath = Application.dataPath + LogDataFilePath;
+                    filePath = Application.streamingAssetsPath + LogDataFilePath;
                     text.text = "話題未選択";
                     break;
             }
